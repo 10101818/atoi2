@@ -505,6 +505,8 @@ namespace MedicalEquipmentHostingSystem.Controllers
                 dt.Columns.Add("品牌");
                 dt.Columns.Add("出厂日期");
                 dt.Columns.Add("备注");
+                dt.Columns.Add("富士I类");
+                dt.Columns.Add("富士II类");
 
                 dt.Columns.Add("固定资产");
                 dt.Columns.Add("资产等级");
@@ -540,7 +542,7 @@ namespace MedicalEquipmentHostingSystem.Controllers
                 {
                     dt.Rows.Add(equipment.OID, equipment.Name, equipment.EquipmentCode, equipment.SerialCode, equipment.Manufacturer.Name, equipment.ResponseTimeLength, equipment.EquipmentLevel.Name,
                         equipment.EquipmentClass1.Description, equipment.EquipmentClass2.Description, equipment.EquipmentClass3.Description, equipment.ClassCode, equipment.ServiceScope == true? "是":"否",
-                        equipment.Brand, equipment.ManufacturingDate == DateTime.MinValue ? "" : equipment.ManufacturingDate.ToString("yyyy-MM-dd"), equipment.Comments,
+                        equipment.Brand, equipment.ManufacturingDate == DateTime.MinValue ? "" : equipment.ManufacturingDate.ToString("yyyy-MM-dd"), equipment.Comments, equipment.FujiClass2.FujiClass1.Name, equipment.FujiClass2.Name,
                         equipment.FixedAsset == true? "是":"否", equipment.AssetLevel.Name, equipment.ValidityStartDate == DateTime.MinValue ? "" : equipment.ValidityStartDate.ToString("yyyy-MM-dd") + " - " + equipment.ValidityEndDate.ToString("yyyy-MM-dd"),
                         equipment.AssetCode, equipment.DepreciationYears,
                         equipment.SaleContractName, equipment.PurchaseWay, equipment.PurchaseDate.ToString("yyyy-MM-dd"), equipment.Supplier.Name, equipment.PurchaseAmount, equipment.IsImport == true ? "进口" : "国产",

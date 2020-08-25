@@ -93,7 +93,9 @@ namespace BusinessObjects.DataAccess
         {
             List<EquipmentInfo> infos = new List<EquipmentInfo>();
 
-            sqlStr = "SELECT e.*, s.Name AS SupplierName, su.Name AS ManufacturerName, c.ContractID, ct.ScopeID, ct.ScopeComments FROM tblEquipment AS e " +
+            sqlStr = "SELECT e.*, f2.Name AS FujiClass2Name, f1.ID AS FujiClass1ID, f1.Name AS FujiClass1Name, s.Name AS SupplierName, su.Name AS ManufacturerName, c.ContractID, ct.ScopeID, ct.ScopeComments FROM tblEquipment AS e " +
+                     " LEFT JOIN tblFujiClass2 AS f2 ON e.FujiClass2ID=f2.ID " +
+                     " LEFT JOIN tblFujiClass1 AS f1 ON f2.FujiClass1ID=f1.ID " +
                      " LEFT JOIN tblSupplier AS s ON e.SupplierID=s.ID " +
                      " LEFT JOIN tblSupplier AS su ON e.ManufacturerID=su.ID " +
                      " LEFT JOIN v_ActiveContract AS c on c.EquipmentID = e.ID" +

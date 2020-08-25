@@ -1016,7 +1016,7 @@ namespace MedicalEquipmentHostingSystem.Controllers
 
                 List<double> contractActualAmountList = new List<double>(), spareActualAmountList = new List<double>(), regularActualAmountList = new List<double>(), quanTityActualAmountList = new List<double>(), smallActualAmountList = new List<double>(), importantComponentActualAmountList = new List<double>(), generalComponentActualAmountList = new List<double>(), componentActualAmountList = new List<double>(), importantRepair3partyActualCostList = new List<double>(),generalRepair3partyActualCostList = new List<double>(), repair3partyActualCostList = new List<double>();
 
-                double assetsAmount = this.valuationDao.QueryEquipmentList(userID, -1,-1, "", "", "", 0, 0, "", "", "f2.ID", true).Sum(e => e.Equipment.PurchaseAmount), deviationAvg = 0, stdDeviation = 0, length = forecastQuantity * 12;
+                double assetsAmount = this.valuationDao.QueryEquipmentList(userID, -1, -1, "", "", "", 0, 0, "", "", "f2.ID", true).Sum(e => e.Equipment.PurchaseAmount), deviationAvg = 0, stdDeviation = 0, length = ValControlInfo.ForecastYears.ForecastYear * 12;
                 double vaR = assetsAmount * assetsAmountRate * 0.01;
 
                 DateTime startDate = control.ContractStartDate.AddYears(-ValControlInfo.ActualYears.ActualYear);
@@ -1052,11 +1052,6 @@ namespace MedicalEquipmentHostingSystem.Controllers
                     startDate = startDate.AddMonths(1);
                 }
 
-
-
-
-
-
                 List<double> deviations = new List<double>();
                 List<Dictionary<string, object>> cost = new List<Dictionary<string, object>>();
                 if (showType == VaRType.StablePeriod)
@@ -1070,7 +1065,7 @@ namespace MedicalEquipmentHostingSystem.Controllers
                         forecastCost = new Dictionary<string, object>();
                         actualCost = new Dictionary<string, object>();
                         DateTime date = control.ContractStartDate.AddMonths(i);
-                        DateTime actualDate = startDate.AddMonths(i);
+                        DateTime actualDate = control.ContractStartDate.AddYears(-ValControlInfo.ActualYears.ActualYear).AddMonths(i);
                         double forecastValue = systemCost + labourCost_Forecast + smallCost + spareAmount
                             + eqptContractAmount.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.ContractAmount)
                             + componentAmout.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.Amount)
@@ -1102,9 +1097,10 @@ namespace MedicalEquipmentHostingSystem.Controllers
                         if(i < 12 )deviations.Add(actualValue - forecastValue);
                         cost.Add(costDetail);
                     }
+                    
                     deviationAvg = (deviations.Sum()) / 12;
                     stdDeviation = Statistics.StandardDeviation(deviations);
-                    double NORMINV = Normal.InvCDF(0, 1, assetsAmountRate * 0.01);
+                    double NORMINV = Normal.InvCDF(0, 1, riskRate * 0.01);
                     double SQRT = Math.Sqrt(forecastQuantity * 12);
                     vaR = NORMINV * SQRT * stdDeviation + deviationAvg * forecastQuantity * 12;
                     if (double.IsNaN(vaR) || vaR < 0)

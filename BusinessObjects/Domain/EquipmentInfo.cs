@@ -588,6 +588,10 @@ namespace BusinessObjects.Domain
             this.FujiClass2.ID = SQLUtil.ConvertInt(dr["FujiClass2ID"]);
             if (dr.Table.Columns.Contains("FujiClass2Name"))
                 this.FujiClass2.Name = SQLUtil.TrimNull(dr["FujiClass2Name"]);
+            if (dr.Table.Columns.Contains("FujiClass1Name"))
+                this.FujiClass2.FujiClass1.Name = SQLUtil.TrimNull(dr["FujiClass1Name"]);
+            if (dr.Table.Columns.Contains("FujiClass1ID"))
+                this.FujiClass2.FujiClass1.ID = SQLUtil.ConvertInt(dr["FujiClass1ID"]);
             this.CTSerialCode = SQLUtil.TrimNull(dr["CTSerialCode"]);
             this.CTUsedSeconds = SQLUtil.ConvertDouble(dr["CTUsedSeconds"]);
         }
