@@ -627,7 +627,12 @@
     }
     function OpenNewComponent() {
         if (!AddComponentVue.Info.Equipment || !AddComponentVue.Info.Equipment.ID)
-            jAlert("请选择设备", "提示", function () { })
+        {
+            jAlert("请选择设备", "提示");
+        }
+        else if(AddComponentVue.Info.Equipment.FujiClass2.ID == 0 || !AddComponentVue.Info.Equipment.FujiClass2.Name){
+            jAlert("该设备的富士II类为空", "提示")
+        }  
         else {
             InitNewComponentForm();
             $("#NewComponent").dialog({ title: "新增零件" });
@@ -666,17 +671,15 @@
         AddComponentVue.Info = cloneObj(component);
         AddComponentVue.Info.index = index;
         GetComponentByFujiClass2();
-
-      
         RefreshEquipment();
-        $("#AddComponent").dialog({ title: "编辑零件" });
+        $("#AddComponent").dialog({ title: "更新零件" });
         $("#AddComponent").dialog("open");
     }
     function OpenEditConsumable(consumable, index) {
         InitAddConsumableForm();
         AddConsumableVue.Consumable = cloneObj(consumable);
         AddConsumableVue.Consumable.index = index;
-        $("#AddConsumable").dialog({ title: "编辑耗材" });
+        $("#AddConsumable").dialog({ title: "更新耗材" });
         $("#AddConsumable").dialog("open");
     }
     function OpenEditService(service, index) {
@@ -684,7 +687,7 @@
         AddServiceVue.Service = cloneObj(service);
         AddServiceVue.Service.index = index;
         GetFujiClass2s();
-        $("#AddService").dialog({ title: "编辑服务" });
+        $("#AddService").dialog({ title: "更新服务" });
         $("#AddService").dialog("open");
     }
 
@@ -699,12 +702,12 @@
         OpenEquipmentDialog(1);
     }
     //添加到弹窗
-    function SaveEquipments() {
+    function SaveEquipments() { 
         var Equipments = CheckSaveSelectEquipment()
         if (Equipments == undefined) return;
         else {
             AddComponentVue.Info.Equipment = Equipments;
-            AddComponentVue.$forceUpdate();
+            AddComponentVue.$forceUpdate();   
         }
         GetComponentByFujiClass2(true);
     }

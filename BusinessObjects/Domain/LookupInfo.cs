@@ -818,17 +818,4 @@ namespace BusinessObjects.Domain
         }
     }
 
-    public static class ActualSql
-    {
-        public static string GetMonthActualAmount(string startDateField, string endDateField, string priceField)
-        {
-            string sql = "CASE WHEN {0} <= @StartDate AND {1} >= @EndDate THEN {2} * DATEDIFF(Day,@StartDate,@EndDate) " +
-                        " WHEN {0} >= @StartDate AND {1} >= @EndDate THEN {2} * DATEDIFF(Day,{0},@EndDate) " +
-                        " WHEN {0} <= @StartDate AND {1} <= @EndDate THEN {2} * DATEDIFF(Day,@StartDate,{1}) " +
-                        " WHEN {0} >= @StartDate AND {1} <= @EndDate AND {0} < {1} THEN {2} * DATEDIFF(Day,{0},{1}) " +
-                        " END ";
-
-            return string.Format(sql, startDateField, endDateField, priceField);
-        }
-    }
 }

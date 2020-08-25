@@ -995,62 +995,18 @@ namespace MedicalEquipmentHostingSystem.Controllers
 
             try
             {
-                int userID = GetLoginUser().ID;
-                var parameters = this.valuationDao.GetParameter();
+                int userID = GetLoginUser().ID; 
                 var control = this.valuationDao.GetControl(userID);
                 if (forecastQuantity == 0)
                     forecastQuantity = control.Years;
                 if (riskRate == 0)
-                    riskRate = control.RiskRatio;
-                double systemCost = parameters.SystemCost/12d;
-                double labourCost_Forecast = parameters.UnitCost*control.ForecastEngineer;
-                double labourCost_Actual = parameters.UnitCost * control.ForecastEngineer;
-                double smallCost = parameters.SmallConsumableCost;
-                double spareAmount = this.valuationDao.GetSpareAmount(userID);
-                var eqptContractAmount = this.valuationDao.GetValEqptContractAmount(userID);
-                var componentAmout = this.valuationDao.GetValComponentAmout(userID, -1);
-                var qptService = this.valuationDao.GetValEqptService(userID, -1);
-                var consumableAmount_Regular = this.valuationDao.GetValConsumableAmount(userID, ConsumableInfo.ConsumableTypes.RegularConsumable);
-                var consumableAmount_Quantitative = this.valuationDao.GetValConsumableAmount(userID, ConsumableInfo.ConsumableTypes.QuantitativeConsumable);
-
-
-                List<double> contractActualAmountList = new List<double>(), spareActualAmountList = new List<double>(), regularActualAmountList = new List<double>(), quanTityActualAmountList = new List<double>(), smallActualAmountList = new List<double>(), importantComponentActualAmountList = new List<double>(), generalComponentActualAmountList = new List<double>(), componentActualAmountList = new List<double>(), importantRepair3partyActualCostList = new List<double>(),generalRepair3partyActualCostList = new List<double>(), repair3partyActualCostList = new List<double>();
+                    riskRate = control.RiskRatio; 
+                var resultData = this.valuationManager.GetValResultData(userID);
+                 
 
                 double assetsAmount = this.valuationDao.QueryEquipmentList(userID, -1, -1, "", "", "", 0, 0, "", "", "f2.ID", true).Sum(e => e.Equipment.PurchaseAmount), deviationAvg = 0, stdDeviation = 0, length = ValControlInfo.ForecastYears.ForecastYear * 12;
                 double vaR = assetsAmount * assetsAmountRate * 0.01;
-
-                DateTime startDate = control.ContractStartDate.AddYears(-ValControlInfo.ActualYears.ActualYear);
-                DateTime endDate = control.ContractStartDate;
-                while (startDate < endDate)
-                {
-                    if (startDate < DateTime.Now)
-                    {
-                        //维保费
-                        contractActualAmountList.Add(this.valuationDao.GetActualContractAmount(startDate));
-                        //备用机
-                        spareActualAmountList.Add(this.valuationDao.GetActualSpareAmount(startDate));
-                        //耗材定期
-                        regularActualAmountList.Add(this.valuationDao.GetActulConsumableAmount(ConsumableInfo.ConsumableTypes.RegularConsumable, startDate));
-                        //耗材定量
-                        quanTityActualAmountList.Add(this.valuationDao.GetActulConsumableAmount(ConsumableInfo.ConsumableTypes.QuantitativeConsumable, startDate));
-                        //小额成本
-                        smallActualAmountList.Add(this.valuationDao.GetActulConsumableAmount(ConsumableInfo.ConsumableTypes.SmallCostConsumable, startDate));
-                        //重点设备零件
-                        importantComponentActualAmountList.Add(this.valuationDao.GetActulComponentAmount(FujiClass2Info.LKPEquipmentType.Import, startDate));
-                        //一般设备零件
-                        generalComponentActualAmountList.Add(this.valuationDao.GetActulComponentAmount(FujiClass2Info.LKPEquipmentType.General, startDate));
-                        //零件成本
-                        componentActualAmountList.Add(this.valuationDao.GetActulComponentAmount(-1, startDate));
-                        //重点设备服务费
-                        importantRepair3partyActualCostList.Add(this.valuationDao.GetActulServiceAmount(FujiClass2Info.LKPEquipmentType.Import, startDate));
-                        //一般设备服务费
-                        generalRepair3partyActualCostList.Add(this.valuationDao.GetActulServiceAmount(FujiClass2Info.LKPEquipmentType.General, startDate));
-                        //服务费
-                        repair3partyActualCostList.Add(this.valuationDao.GetActulServiceAmount(-1, startDate));
-                    }
-
-                    startDate = startDate.AddMonths(1);
-                }
+                  
 
                 List<double> deviations = new List<double>();
                 List<Dictionary<string, object>> cost = new List<Dictionary<string, object>>();
@@ -1061,44 +1017,45 @@ namespace MedicalEquipmentHostingSystem.Controllers
                     Dictionary<string, object> actualCost;
                     for (int i = 0; i < length; i++)
                     {
+                        bool flag = i < 12;
                         costDetail = new Dictionary<string, object>();
                         forecastCost = new Dictionary<string, object>();
                         actualCost = new Dictionary<string, object>();
+
                         DateTime date = control.ContractStartDate.AddMonths(i);
                         DateTime actualDate = control.ContractStartDate.AddYears(-ValControlInfo.ActualYears.ActualYear).AddMonths(i);
-                        double forecastValue = systemCost + labourCost_Forecast + smallCost + spareAmount
-                            + eqptContractAmount.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.ContractAmount)
-                            + componentAmout.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.Amount)
-                            + qptService.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.Repair3partyCost)
-                            + consumableAmount_Regular.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.Amount)
-                            + consumableAmount_Quantitative.Where(info => info.Year == date.Year && info.Month == date.Month).Sum(info => info.Amount);
-                        double actualValue = i>=12?0:systemCost + labourCost_Actual
-                            + contractActualAmountList[i]
-                            + spareActualAmountList[i]
-                            + regularActualAmountList[i]
-                            + quanTityActualAmountList[i]
-                            + smallActualAmountList[i]
-                            + importantComponentActualAmountList[i]
-                            + generalComponentActualAmountList[i]
-                            + componentActualAmountList[i]
-                            + importantRepair3partyActualCostList[i]
-                            + generalRepair3partyActualCostList[i]
-                            + repair3partyActualCostList[i];
+
+                        var amountForecasts = (List<object>)resultData["AmountForecast"];
+                        int index = i / 12; 
+                        var amountForecast = (Dictionary<string, object>)amountForecasts[index];
+                        var forecastValues = (List<double>)amountForecast["data"];
+                        double forecastValue = SQLUtil.ConvertDouble(forecastValues[i%12]);
+
+                        double actualValue = 0;
+                        if (flag)
+                        {
+                            var amountActuals = (List<object>)resultData["AmountActual"];
+                            int indexActual = i / 12;
+                            var amountActual = (Dictionary<string, object>)amountActuals[indexActual];
+                            var actualValues = (List<double>)amountActual["data"];
+                            actualValue = SQLUtil.ConvertDouble(actualValues[i % 12]);
+                        }
+
                         forecastCost.Add("Year", date.Year);
                         forecastCost.Add("Month", MonthDesc.GetMonthDesc(date.Month));
                         forecastCost.Add("Value", forecastValue);
 
-                        actualCost.Add("Year", i>=12?"":actualDate.Year.ToString());
-                        actualCost.Add("Month", i >= 12 ? "" : MonthDesc.GetMonthDesc(actualDate.Month));
-                        actualCost.Add("Value", i >= 12 ? "-" : actualValue.ToString());
+                        actualCost.Add("Year", flag ? actualDate.Year.ToString() : "");
+                        actualCost.Add("Month", flag ? MonthDesc.GetMonthDesc(actualDate.Month) : "");
+                        actualCost.Add("Value", flag ? actualValue.ToString() : "-");
                         costDetail.Add("ForecastCost", forecastCost);
                         costDetail.Add("ActualCost", actualCost);
-                        costDetail.Add("Deviation", i >= 12 ? "-" : (actualValue - forecastValue).ToString());
-                        if(i < 12 )deviations.Add(actualValue - forecastValue);
+                        costDetail.Add("Deviation", flag ? (actualValue - forecastValue).ToString() : "-");
+                        if (flag) deviations.Add(actualValue - forecastValue);
                         cost.Add(costDetail);
                     }
-                    
-                    deviationAvg = (deviations.Sum()) / 12;
+
+                    deviationAvg = (deviations.Sum()) / deviations.Count;
                     stdDeviation = Statistics.StandardDeviation(deviations);
                     double NORMINV = Normal.InvCDF(0, 1, riskRate * 0.01);
                     double SQRT = Math.Sqrt(forecastQuantity * 12);

@@ -121,7 +121,7 @@
     function OpenEquipmentDialog(num, fujiClass2ID) {
         fujiClass2ID = fujiClass2ID || 0;
         SelectEquipmentDialogVue.EquipmentNum = num;
-        $("#SelectEquipmentDialog").dialog({ title: "添加设备" });
+        $("#SelectEquipmentDialog").dialog({ title: "选择设备" });
         $("#SelectEquipmentDialog").dialog("open");
         InitFilter();
         SelectEquipmentDialogVue.Filter.FujiClass2.ID = fujiClass2ID;

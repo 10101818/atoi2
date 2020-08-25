@@ -19,7 +19,7 @@
 <div id="equipmentDetail" v-cloak v-if="!InResize" class="tblDiv">
     <div><a class="linkFile backPage" href="#" onclick="BackToList()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a></div>
     <div class="title">
-        <p v-if="@ViewBag.ID == 0">添加设备</p>
+        <p v-if="@ViewBag.ID == 0">新增设备</p>
         <p v-else>更新设备</p>
     </div>
     <div class="tblDiv">
@@ -127,7 +127,7 @@
                         <th class="tdrequired" width="15px"><span class="required">*</span></th>
                         <th width="189px">设备厂商</th>
                         <td width="289px">
-                            <input type="text" style="min-width:200px;" v-model="EquipmentInfo.Manufacturer.Name" id="ManufacturerName" v-on:click="OpenSupplierSelection(callbackManufacturer);" />
+                            <input type="text" readonly style="min-width:200px;" v-model="EquipmentInfo.Manufacturer.Name" id="ManufacturerName" v-on:click="OpenSupplierSelection(callbackManufacturer);" />
                             <img style="vertical-align: middle;" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callbackManufacturer);" src="~/Content/img/find.png">
                             <label id="reqManufacturerName" class="required"></label>
                             <input type="hidden" v-model="EquipmentInfo.Manufacturer.ID" />
@@ -300,7 +300,7 @@
                         <th class="tdrequired" width="15px"><span class="required"></span></th>
                         <th width="189px">经销商</th>
                         <td width="289px">
-                            <input type="text" style="min-width:200px;" v-model="EquipmentInfo.Supplier.Name" id="SupplierName" v-on:click="OpenSupplierSelection(callbackSupplier);" />
+                            <input type="text" readonly style="min-width:200px;" v-model="EquipmentInfo.Supplier.Name" id="SupplierName" v-on:click="OpenSupplierSelection(callbackSupplier);" />
                             <img style="vertical-align: middle;" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callbackSupplier);" src="~/Content/img/find.png">
                             <label id="reqSupplierName" class="required"></label>
                             <input type="hidden" v-model="EquipmentInfo.Supplier.ID" />
@@ -709,7 +709,7 @@
 
     function OpenFileDialog() {
         ClearDialogForm();
-        $("#addFile-dialog").dialog({ title: "新增附件" });
+        $("#addFile-dialog").dialog({ title: "添加附件" });
         $("#addFile-dialog").dialog("open");
     }
 

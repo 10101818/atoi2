@@ -171,7 +171,7 @@
     function OpenEditComponent(id) {
         InitComponentDialogForm();
         GetComponentByID(id);
-        $("#ComponentDetail").dialog({ title: "编辑零件" });
+        $("#ComponentDetail").dialog({ title: "更新零件" });
         $("#ComponentDetail").dialog("open");
     }
     //获取富士II类信息
@@ -239,7 +239,7 @@
         var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
 
         if (ComponentDetailVue.Info.Type.ID == '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT') {
-            if ((ComponentDetailVue.Info.TotalSeconds == undefined || ComponentDetailVue.Info.TotalSeconds == 0 ) && ComponentDetailVue.Info.IsIncluded) {
+            if ((ComponentDetailVue.Info.TotalSeconds == undefined || ComponentDetailVue.Info.TotalSeconds == 0) && ComponentDetailVue.Info.IsIncluded == 'true') {
                 $("#reqTotalSeconds").html("CT球管理论寿命秒次不能为空");
                 $("#TotalSeconds").focus();
                 IsValid = true;
@@ -255,7 +255,7 @@
                 IsValid = true;
             }
 
-            if ((ComponentDetailVue.Info.SecondsPer == undefined || ComponentDetailVue.Info.SecondsPer == 0) && ComponentDetailVue.Info.IsIncluded) {
+            if ((ComponentDetailVue.Info.SecondsPer == undefined || ComponentDetailVue.Info.SecondsPer == 0) && ComponentDetailVue.Info.IsIncluded == 'true') {
                 $("#reqSecondsPer").html("秒次/人不能为空");
                 $("#SecondsPer").focus();
                 IsValid = true;

@@ -350,7 +350,7 @@
         InitDialogForm();
         userVue.SelectedUser.VerifyStatus.ID = '@BusinessObjects.Domain.VerifyStatus.Pass'
         $("#dialog-form-Add").dialog({
-            title: "添加用户",
+            title: "新增用户",
             buttons: {
                 "保存": function () { saveUser(userVue.SelectedUser); },
                 "关闭": function () { $("#dialog-form-Add").dialog("close"); },
@@ -497,7 +497,7 @@
         InitDialogForm();
         getUserData(id);
         $("#dialog-form-Add").dialog({
-            title: "修改信息",
+            title: "更新用户",
             buttons: {
                 "保存": function () { saveUser(userVue.SelectedUser); },
                 "关闭": function () { $("#dialog-form-Add").dialog("close"); },
@@ -527,7 +527,7 @@
         userVue.IsApprove = true
         getUserData(id);
         $("#dialog-form-Add").dialog({
-            title: "审批信息",
+            title: "审批用户",
             buttons: {
                 "通过": function () { ApproveUser(id, '@BusinessObjects.Domain.VerifyStatus.Pass'); },
                 "拒绝": function () { ApproveUser(id, '@BusinessObjects.Domain.VerifyStatus.Refused'); }

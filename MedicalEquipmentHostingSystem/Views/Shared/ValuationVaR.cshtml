@@ -52,28 +52,28 @@
     .freezeContent2 {
         left: 108px;
     }
-
+    .small-table td{background-color: #fff !important;}
 </style>
 <!--var-->
 <div id="VaR" class="resultDialog  ui-dialog-content ui-widget-content" style="display:none;"  tabindex="-1" >
     <div style="width:100%;height:100%;overflow: auto;">
         <div class="title freezeContent"><p>VaR</p></div>
-        <table style="text-align:left;margin:0 auto;" v-if="showType == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")'">
+        <table class="tblDetail small-table" cellpadding="0" cellspacing="0" frame="box" rules="all" v-if="showType == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")'">
             <thead>
                 <tr>
-                    <th class="freezeContent" colspan="2" style="background-color: #1b4082; border: none; color: white; white-space: nowrap;">导入期</th>
+                    <td colspan="2" style="font-weight:bold;text-align:left;">导入期</td>
                 </tr>
                 <tr>
                     <th style="white-space:nowrap;" class="freezeContent">指定资产金额比例</th>
-                    <td class="">{{Number(assetsAmountRate).toFixed(1)}}%</td>
+                    <td class="" style="text-align:right;">{{Number(assetsAmountRate).toFixed(1)}}%</td>
                 </tr>
                 <tr>
-                    <th style="white-space:nowrap;" class="freezeContent">资产总金额</th>
-                    <td class="">{{model.AssetsAmount.toFixed(1)}}</td>
+                    <th style="white-space:nowrap;">资产总金额</th>
+                    <td class="" style="text-align:right;">{{model.AssetsAmount.toFixed(1)}}</td>
                 </tr>
                 <tr>
-                    <th style="white-space:nowrap;" class="freezeContent">VaR</th>
-                    <td class="">{{model.VaR.toFixed(1)}}</td>
+                    <th style="white-space:nowrap;">VaR</th>
+                    <td class="" style="text-align:right;">{{model.VaR.toFixed(1)}}</td>
                 </tr>
             </thead>
         </table>
@@ -142,7 +142,7 @@
                 </tr>
                 <tr class="vaRStablePeriod">
                     <td class="tdrequired" width="15px"><span class="required"></span></td>
-                    <td>签约年数</td>
+                    <td>合同年限</td>
                     <td>
                         <input type="text" id="forecastQuantity" maxlength="2" style="width:50%" v-model.number="forecastQuantity" @@keyup=" forecastQuantity = (forecastQuantity +'').replace(/[^0-9\d]/g, '')">
                     </td>
@@ -243,6 +243,12 @@
         })
     }
 
+    function CheckRiskControlRatio() {
+        (VaRVue.riskRate <= 0 || VaRVue.riskRate >= 100) && (
+            jAlert('风险控制度可选范围值为:0< 风险控制度 <100',"提示",function(){$("#Description").focus()})
+        )
+    }
+
     function GetVarData() {
         VaRVue.showType = document.querySelector("#showType").value
         SetPageWaiting(true);
@@ -270,29 +276,24 @@
         let IsValid = false;
         if (document.querySelector("#showType").value == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")') {
             if (!Number(VaRVue.assetsAmountRate)) {
-                jAlert("VaR资产金额比例不能为空", "提示", function () { });
-                $("#assetsAmountRate").focus();
+                jAlert("VaR资产金额比例不能为空", "提示", function () { $("#assetsAmountRate").focus(); });
                 IsValid = true;
             }
             else if (VaRVue.assetsAmountRate > 999.99) {
-                jAlert("VaR资产金额比例最大为999.99", "提示", function () { });
-                $("#assetsAmountRate").focus();
+                jAlert("VaR资产金额比例最大为999.99", "提示", function () { $("#assetsAmountRate").focus(); });
                 IsValid = true;
             }
         } else {
             if (!Number(VaRVue.forecastQuantity)) {
-                jAlert("签约年数不能为空", "提示", function () { });
-                $("#forecastQuantity").focus();
+                jAlert("签约年数不能为空", "提示", function () { $("#forecastQuantity").focus(); });
                 IsValid = true;
             }
             if (!Number(VaRVue.riskRate)) {
-                jAlert("风险控制度不能为空", "提示", function () { });
-                $("#riskRate").focus();
+                jAlert("风险控制度不能为空", "提示", function () { $("#riskRate").focus(); });
                 IsValid = true;
-            }
-            else if (VaRVue.riskRate > 999.99) {
-                jAlert("风险控制度最大为999.99", "提示", function () { });
-                $("#riskRate").focus();
+            } 
+            else if (VaRVue.riskRate <= 0 || VaRVue.riskRate >= 100) {
+                jAlert('风险控制度可选范围值为:<br/>   0< 风险控制度 <100', "提示", function () { $("#Description").focus() })
                 IsValid = true;
             }
         }

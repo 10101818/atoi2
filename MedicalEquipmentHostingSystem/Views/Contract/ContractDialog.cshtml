@@ -312,13 +312,13 @@
     function OpenAddComponent() {
         InitAddDialog(AddComponentVue);
         AddComponentVue.EquipmentList = contractDetailVue.Contract.Equipments;
-        $("#AddComponent").dialog({ title: "新增零件" });
+        $("#AddComponent").dialog({ title: "添加零件" });
         $("#AddComponent").dialog("open");
     }
     function OpenAddConsumable() {
         InitAddDialog(AddConsumableVue);
         AddConsumableVue.EquipmentList = contractDetailVue.Contract.Equipments;
-        $("#AddConsumable").dialog({ title: "新增耗材" });
+        $("#AddConsumable").dialog({ title: "添加耗材" });
         $("#AddConsumable").dialog("open");
     }
     function OpenSelectComponent() {
@@ -327,7 +327,7 @@
         else {
             InitSelectDialog(SelectComponentVue);
             GetComponentByFujiClass2();
-            $("#SelectComponent").dialog({ title: "添加零件" });
+            $("#SelectComponent").dialog({ title: "选择零件" });
             $("#SelectComponent").dialog("open");
         }
     }
@@ -337,7 +337,7 @@
         else {
             InitSelectDialog(SelectConsumableVue);
             GetConsumableByFujiClass2();
-            $("#SelectConsumable").dialog({ title: "添加耗材" });
+            $("#SelectConsumable").dialog({ title: "选择耗材" });
             $("#SelectConsumable").dialog("open");
         }
     }

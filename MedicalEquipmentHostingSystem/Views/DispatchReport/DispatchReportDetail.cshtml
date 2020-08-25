@@ -1452,7 +1452,7 @@
                     <td class="tdrequired" width="15px"><span class="required">*</span></td>
                     <td>新装序列号</td>
                     <td>
-                        <input type="text" id="NewSerialCode" style="width:150px;" v-model="Accessory.ReportComponentInfo.NewComponent.SerialCode" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.InStock,SelectedNewComponent);" />
+                        <input type="text" id="NewSerialCode" style="width:150px;" readonly v-model="Accessory.ReportComponentInfo.NewComponent.SerialCode" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.InStock,SelectedNewComponent);" />
                         <img style="vertical-align: middle;" id="AddNewSerialCodeBtn" class="icon-sm cursor" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.InStock,SelectedNewComponent);" src="~/Content/img/find.png">
                         <label id="reqNewSerialCode" class="tips required"></label>
                     </td>
@@ -1472,7 +1472,7 @@
                     <td class="tdrequired" width="15px"><span class="required">*</span></td>
                     <td>拆下序列号</td>
                     <td>
-                        <input type="text" id="OldSerialCode" style="width:150px;" v-model="Accessory.ReportComponentInfo.OldComponent.SerialCode" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.Used,SelectedOldComponent);" />
+                        <input type="text" id="OldSerialCode" style="width:150px;" readonly v-model="Accessory.ReportComponentInfo.OldComponent.SerialCode" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.Used,SelectedOldComponent);" />
                         <img style="vertical-align: middle;" id="AddOldSerialCodeBtn" class="icon-sm cursor" v-on:click="OpenSelectInvComponentDialog(Dispatch.Request.Equipment.ID,@BusinessObjects.Domain.InvComponentInfo.ComponentStatus.Used,SelectedOldComponent);" src="~/Content/img/find.png">
                         <label id="reqOldSerialCode" class="tips required"></label>
                     </td>

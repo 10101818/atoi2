@@ -261,7 +261,7 @@
     function btnAddDepartment() {
         InitDialogForm();
 
-        $("#dialog-form-Add").dialog({ title: "添加科室信息" });
+        $("#dialog-form-Add").dialog({ title: "新增科室" });
         $("#dialog-form-Add").dialog("open");
     }
 
@@ -269,7 +269,7 @@
     function btnEditDepartment(id) {
         InitDialogForm();
         getDepartment(id);
-        $("#dialog-form-Add").dialog({ title: "修改科室信息" });
+        $("#dialog-form-Add").dialog({ title: "更新科室" });
         $("#dialog-form-Add").dialog("open");
     }
     /*添加/修改保存科室信息*/

@@ -115,7 +115,7 @@
                     <th class="tdrequired" width="15px"><span class="required">*</span></th>
                     <th width="189px">供应商</th>
                     <td width="289px">
-                        <input type="text" id="supplier" v-model="Contract.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
+                        <input type="text" id="supplier" readonly v-model="Contract.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
                         <img style="vertical-align: middle;" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" src="~/Content/img/find.png">
                         <label class="required tips" id="reqSupplier"></label>
                     </td>

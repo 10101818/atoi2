@@ -492,7 +492,7 @@ namespace BusinessObjects.Manager
                 {
                     amount = 0;
                     currentSeconds += Math.Round(valComponentInfo.Usage * valComponentInfo.Component.SecondsPer * DateTime.DaysInMonth(curDate.Year,curDate.Month), 2);
-                    var rate = Math.Floor(currentSeconds / valComponentInfo.Component.TotalSeconds);
+                    var rate = valComponentInfo.Component.TotalSeconds == 0 ? 0 : Math.Floor(currentSeconds / valComponentInfo.Component.TotalSeconds);
                     if (currentSeconds > valComponentInfo.Component.TotalSeconds)
                     {
                         if (!contractFlag || 

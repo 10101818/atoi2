@@ -659,7 +659,7 @@ namespace BusinessObjects.DataAccess
         {
             sqlStr = "INSERT INTO tblValComponent(UserID,InSystem,EquipmentID,ComponentID,Qty,Usage,Seconds,IncludeContract, UsageRefere) " +
                     " (SELECT @UserID as UserID,ve.InSystem,ve.EquipmentID,c.ID as ComponentID,1 as Qty, c.Usage * {0} as Usage, " +
-                    " (case when c.TypeID <> @CT OR ve.InSystem = 0 then 0 else (case when r.CloseDate is null then DATEDIFF(mm,ISNULL(e.UseageDate,e.InstalDate),GETDATE()) * c.SecondsPer*c.Usage* {0} + e.CTUsedSeconds else DATEDIFF(mm,r.CloseDate, GETDATE()) * c.SecondsPer*c.Usage* {0} END ) END) as Seconds, " +
+                    " (case when c.TypeID <> @CT OR ve.InSystem = 0 then 0 else (case when r.CloseDate is null then DATEDIFF(dd,ISNULL(e.UseageDate,e.InstalDate),GETDATE()) * c.SecondsPer*c.Usage* {0} + e.CTUsedSeconds else DATEDIFF(dd,r.CloseDate, GETDATE()) * c.SecondsPer*c.Usage* {0} END ) END) as Seconds, " +
                     " c.IncludeContract, c.Usage * {0} as UsageRefere " +
                     " FROM tblValEquipment ve " +
                     " LEFT JOIN tblEquipment e ON e.ID = ve.EquipmentID AND ve.InSystem = 1" +
@@ -667,10 +667,7 @@ namespace BusinessObjects.DataAccess
                     " INNER JOIN tblFujiClass2 f2 ON ve.FujiClass2ID = f2.ID " +
                     " INNER JOIN tblValControl v ON v.UserID = ve.UserID " +
                     " LEFT JOIN tblValParameter vp ON 1=1 " +
-                    " LEFT JOIN tblReportComponent rc ON c.ID = rc.ComponentID " +
-                    " LEFT JOIN tblDispatchReport dr ON dr.ID = rc.DispatchReportID " +
-                    " LEFT JOIN tblDispatch d ON d.ID = dr.ID " +
-                    " LEFT JOIN tblRequest r ON d.RequestID = r.ID " +
+                    " LEFT JOIN (select rc.ComponentID,MAX(CASE WHEN r.CloseDate is NULL then GETDATE() else r.CloseDate END) as CloseDate from tblReportComponent rc LEFT JOIN tblDispatchReport dr ON rc.DispatchReportID = dr.ID LEFT JOIN tblDispatch d ON dr.DispatchID = d.ID LEFT JOIN tblRequest r ON d.RequestID=r.ID group BY rc.ComponentID) as r ON r.ComponentID = c.ID " +
                     " WHERE 1=1 AND f2.IncludeRepair = 1 and c.IsActive = 1 AND c.IsIncluded =1 AND ve.UserID = @UserID " +
                     " AND (ve.EquipmentID NOT IN (SELECT EquipmentID FROM tblValComponent WHERE UserID = @UserID) OR ve.InSystem = 0 ) " +
                     " ) UNION ALL " +
@@ -748,17 +745,14 @@ namespace BusinessObjects.DataAccess
         public List<ValComponentInfo> QueryComponentList(int userID, int componentType, int equipmentType, string filterField, string filterText, bool wholeMachineonly = false, int curRowNum = 0, int pageSize = 0)
         {
             sqlStr = "SELECT vc.*,ve.*, c.Name as ComponentName,c.Usage as ComponentUsage, f2.Name as FujiClass2Name,f2.EquipmentType,c.TypeID,c.SecondsPer,c.TotalSeconds,u.Name as UserName, " +
-                    " (case when c.TypeID <> @CT OR ve.InSystem = 0 then 0 else (case when r.CloseDate is null then DATEDIFF(mm,ISNULL(e.UseageDate,e.InstalDate),GETDATE()) * c.SecondsPer*c.Usage* {0} + e.CTUsedSeconds else DATEDIFF(mm,r.CloseDate, GETDATE()) * c.SecondsPer*c.Usage* {0} END ) END) as UsedSeconds, " +
+                    " (case when c.TypeID <> @CT OR ve.InSystem = 0 then 0 else (case when r.CloseDate is null then DATEDIFF(dd,ISNULL(e.UseageDate,e.InstalDate),GETDATE()) * c.SecondsPer*c.Usage* {0} + e.CTUsedSeconds else DATEDIFF(dd,r.CloseDate, GETDATE()) * c.SecondsPer*c.Usage* {0} END ) END) as UsedSeconds, " +
                     " ISNULL(mh.Price,c.StdPrice) as StdPrice, ISNULL(mh.UsedDate,e.UseageDate) UsageDate" +
                     " FROM tblValComponent vc " +
                     " LEFT JOIN tblComponent c ON vc.ComponentID = c.ID " +
                     " INNER JOIN tblValEquipment ve ON vc.EquipmentID = ve.EquipmentID AND vc.UserID = ve.UserID " +
                     " LEFT JOIN tblEquipment e ON e.ID = ve.EquipmentID  AND ve.InSystem = 1 " +
                     " LEFT JOIN tblFujiClass2 f2 ON ve.FujiClass2ID = f2.ID " +
-                    " LEFT JOIN tblReportComponent rc on c.ID = rc.ComponentID " +
-                    " LEFT JOIN tblDispatchReport dr on dr.ID = rc.DispatchReportID " +
-                    " LEFT JOIN tblDispatch  d on d.ID = dr.ID " +
-                    " LEFT JOIN tblRequest r on d.RequestID = r.ID " +
+                    " LEFT JOIN (select rc.ComponentID,MAX(CASE WHEN r.CloseDate is NULL then GETDATE() else r.CloseDate END) as CloseDate from tblReportComponent rc LEFT JOIN tblDispatchReport dr ON rc.DispatchReportID = dr.ID LEFT JOIN tblDispatch d ON dr.DispatchID = d.ID LEFT JOIN tblRequest r ON d.RequestID=r.ID group BY rc.ComponentID) as r ON r.ComponentID = c.ID " +
                     " INNER JOIN tblValControl v ON v.UserID = vc.UserID " +
                     " LEFT JOIN tblValParameter vp ON 1=1 " + 
                     " LEFT JOIN tblUser u ON u.ID = vc.UserID " +
@@ -1320,15 +1314,12 @@ namespace BusinessObjects.DataAccess
         #region 实绩
         public double GetActualContractAmount(DateTime startDate)
         {
-            sqlStr = "SELECT ISNULL(ROUND(SUM({0}),2),0) " +
+            sqlStr = "SELECT ISNULL(ROUND(SUM(c.Amount/DATEdIFF(mm,c.StartDate,c.EndDate)),2),0) " +
                     " FROM tblContract c " +
-                    " WHERE c.StartDate <@EndDate AND c.EndDate > @StartDate";
-
-            sqlStr = string.Format(sqlStr, ActualSql.GetMonthActualAmount("c.StartDate", "c.EndDate", "c.Amount/DATEDIFF(Day,c.StartDate,c.EndDate)"));
+                    " WHERE c.StartDate < @EndDate AND c.EndDate > @EndDate";
 
             using (SqlCommand command = ConnectionUtil.GetCommand(sqlStr))
             {
-                command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = startDate;
                 command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = startDate.AddMonths(1);
 
                 return GetDouble(command);
@@ -1337,11 +1328,9 @@ namespace BusinessObjects.DataAccess
 
         public double GetActualSpareAmount(DateTime startDate)
         {
-            sqlStr = "SELECT ISNULL(ROUND(SUM({0}),2),0) " +
+            sqlStr = "SELECT ISNULL(ROUND(SUM(s.Price/DATEdIFF(mm,s.StartDate,s.EndDate)),2),0) " +
                     " FROM tblInvSpare s " +
-                    " WHERE s.StartDate < @EndDate AND s.EndDate > @StartDate";
-
-            sqlStr = string.Format(sqlStr, ActualSql.GetMonthActualAmount("s.StartDate", "s.EndDate", "s.Price/DATEDIFF(Day,@StartDate,@EndDate)"));
+                    " WHERE s.StartDate < @EndDate AND s.EndDate > @EndDate";
 
             using (SqlCommand command = ConnectionUtil.GetCommand(sqlStr))
             {
@@ -1406,16 +1395,14 @@ namespace BusinessObjects.DataAccess
 
         public double GetActulServiceAmount(int eqptType, DateTime startDate)
         {
-            sqlStr = "SELECT ISNULL(ROUND(SUM({0}),2),0) " +
+            sqlStr = "SELECT ISNULL(ROUND(SUM(ins.Price/DATEdIFF(mm,ins.StartDate,ins.EndDate)),2),0) " +
                     " FROM tblInvService ins " +
                     " LEFT JOIN tblFujiClass2 f2 ON ins.FujiClass2ID = f2.ID " +
-                    " WHERE ins.StartDate < @EndDate AND ins.EndDate > @StartDate";
+                    " WHERE ins.StartDate < @EndDate AND ins.EndDate > @EndDate";
             if (eqptType == FujiClass2Info.LKPEquipmentType.Import)
                 sqlStr += " AND f2.EquipmentType = @EqptType ";
             else if (eqptType == FujiClass2Info.LKPEquipmentType.General)
                 sqlStr += " AND f2.EquipmentType <> @EqptType ";
-
-            sqlStr = string.Format(sqlStr, ActualSql.GetMonthActualAmount("ins.StartDate", "ins.EndDate", "ins.Price/DATEDIFF(Day,@StartDate,@EndDate)"));
 
             using (SqlCommand command = ConnectionUtil.GetCommand(sqlStr))
             {
