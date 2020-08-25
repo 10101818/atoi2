@@ -1,0 +1,1468 @@
+﻿@{
+    ViewBag.Title = "Valuation";
+    var equipmentTypes = BusinessObjects.Manager.LookupManager.GetEquipmentType();
+    var amountTypes = BusinessObjects.Domain.UIFilterEquipmentAmount.GetAmountList();
+    var scopeTypes = BusinessObjects.Domain.ValEquipmentInfo.ScopeTypes.GetScopeTypes();
+}
+
+<!--设备清单-->
+<div class="ui-dialog-content ui-widget-content" id="ValEquipment" tabindex="-1" style="display:none;">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                设备类型:
+                                <select v-model="Filter.EquipmentType" v-on:change="GetValEquipments()">
+                                    <option value="-1">全部</option>
+                                    @foreach (var item in equipmentTypes)
+                                    {
+                                        <option v-bind:value="@item.ID">@item.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                金额:
+                                <select v-model="Filter.AmountType" v-on:change="GetValEquipments()">
+                                    <option value="-1">不限</option>
+                                    @foreach (var item in amountTypes)
+                                    {
+                                        <option v-bind:value="@item.ID">@item.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                设备名称:
+                                <input type="text" v-model.trim="Filter.EquipmentName" style="width:120px;" onkeydown="DoQueryEquipment()" />
+                            </td>
+                            <td>
+                                设备序列号:
+                                <input type="text" v-model.trim="Filter.SerialCode" style="width:120px;" onkeydown="DoQueryEquipment()" />
+                            </td>
+                            <td>
+                                科室:
+                                <input type="text" id="Department" v-model.trim="Filter.Department.Name" class="shortInput" style="width: 120px;" @@focus="AutoCompleteDepartments(ValEquipmentVue.Filter)" @@keyup.enter="GetValEquipments()" maxlength="100">
+                            </td>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.FujiClass1" v-on:change="GetValEquipments()" style="width:120px;">
+                                    <option value="0">全部</option>
+                                    <option v-for="item in FujiClass1s" v-bind:value="item.ID">{{item.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.FujiClass2" v-on:change="GetValEquipments()" style="width:120px;">
+                                    <option value="0">全部</option>
+                                    <option v-for="item in FujiClass2s" v-bind:value="item.ID">{{item.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.Field">
+                                    <option value="ve.EquipmentID">系统编号</option>
+                                    <option value="ve.AssetCode">资产编号</option>
+                                </select>
+                                <input type="text" style="width:150px" v-model.trim="Filter.Text" onkeydown="DoQueryEquipment()" maxlength="30" />
+                                <img src="~/Content/img/search.png" alt="" class="icon-sm cursor" v-on:click="GetValEquipments()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr style="white-space: nowrap;">
+                <th style="min-width:100px;padding:5px;white-space: normal;">是否在系统中</th>
+                <th style="white-space: normal;min-width:100px;padding:5px;">系统编号</th>
+                <th style="white-space: normal;min-width:100px;max-width:200px;padding:5px;">资产编号</th>
+                <th style="white-space: normal;min-width:100px;padding:5px;">名称</th>
+                <th style="white-space: normal;min-width:100px;padding:5px;">设备序列号</th>
+                <th style="white-space: normal;width:200px;padding:5px;">厂商</th>
+                <th style="white-space: normal;width:150px;padding:5px;">科室</th>
+                <th style="white-space: normal;width:100px;padding:5px;">金额</th>
+                <th style="white-space: normal;width:100px;padding:5px;">设备类型</th>
+                <th style="white-space: normal;width:150px;padding:5px;">富士I类</th>
+                <th style="white-space: normal;width:150px;padding:5px;">富士II类</th>
+                <th style="white-space: normal;width:100px;padding:5px;">目前维保种类</th>
+                <th style="white-space: normal;width:160px;padding:5px;">维保到期日</th>
+                <th style="white-space: normal;width:100px;padding:5px;">下期维保种类</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="EquipmentList == null || EquipmentList.length == 0">
+                <td class="tdListCenter" colspan="22">暂无数据</td>
+            </tr>
+            <tr v-else v-for="info in EquipmentList">
+                <td >{{info.InSystem ? "是" : "否"}}</td>
+                <td style="word-break: break-word;white-space: normal;width:100px;padding:5px;">{{info.Equipment.OID}}</td>
+                <td style="word-break: break-word;white-space: normal;min-width:100px;max-width:200px;padding:5px;">{{info.Equipment.AssetCode}}</td>
+                <td style="word-break: break-word;white-space: normal;min-width:100px;padding:5px;">{{info.Equipment.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;min-width:100px;padding:5px;">{{info.Equipment.SerialCode}}</td>
+                <td style="word-break: break-word;white-space: normal;width:200px;padding:5px;">{{info.Equipment.Manufacturer.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;width:150px;padding:5px;">{{info.Equipment.Department.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;width:100px;padding:5px;">{{info.Equipment.PurchaseAmount}}</td>
+                <td style="word-break: break-word;white-space: normal;width:100px;padding:5px;">{{info.Equipment.FujiClass2.EquipmentType.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;width:150px;padding:5px;">{{info.Equipment.FujiClass2.FujiClass1.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;width:150px;padding:5px;">{{info.Equipment.FujiClass2.Name}}</td>
+                <td style="word-break: break-word;white-space: normal;width:100px;padding:5px;">
+                    <select v-model="info.CurrentScope.ID" @@change="ChangeEquipmentData(ValEquipmentVue,info)">
+                        @foreach (var item in scopeTypes)
+                        {
+                            <option v-bind:value="@item.ID">@item.Name</option>
+                        }
+                    </select>
+                </td>
+                <td style="word-break: break-word;white-space: normal;width:160px;padding:5px;"><input class="equipmentDate" v-model="info.EndDate" type="text" v-bind:id="info.SessionKey+'_EndDate'" @@change="ChangeEquipmentData(ValEquipmentVue,info)"/></td>
+                <td style="word-break: break-word;white-space: normal;width:100px;padding:5px;">
+                    <select v-model="info.NextScope.ID" @@change="ChangeEquipmentData(ValEquipmentVue,info)">
+                        @foreach (var item in scopeTypes)
+                        {
+                            <option v-bind:value="@item.ID">@item.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-info btn-sm" onclick="ImportEquipment()">导入设备</button></td>
+                <td><button class="btn btn-info btn-sm" onclick="ExportEquipment()">导出设备</button></td>
+                <td colspan="20" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerEquipmentDiv">
+                        <div id="pagerEquipment" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--备用机清单-->
+<div class="ui-dialog-content ui-widget-content" id="ValSpare" tabindex="-1" style="display:none;">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><button class="btn btn-info btn-sm" onclick="ShowSpareCount()">计算备用机</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <table class="table table-sm" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th>富士II类</th>
+                <th>月租租金</th>
+                <th>租用台数</th>
+                <th>参考台数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="SpareList == null || SpareList.length == 0">
+                <td class="tdListCenter" colspan="22">暂无数据</td>
+            </tr>
+            <tr v-else v-for="info in SpareList">
+                <td>{{info.FujiClass2.Name}}</td>
+                <td><input type="text" v-model="info.Price" v-bind:id="info.SessionKey+'_Price'"  @@change="ChangeSpareData(ValSpareVue,info)" maxlength="12" @@keyup="info.Price = (info.Price+'').replace(/[^0-9\.\d]/g, '')"/></td>
+                <td><input type="text" v-model="info.QtyEnter" v-bind:id="info.SessionKey+'_QtyEnter'" @@change="ChangeSpareData(ValSpareVue,info)" maxlength="9" @@keyup=" info.QtyEnter = (info.QtyEnter +'').replace(/[^0-9\d]/g, '')" /></td>
+                <td>{{info.QtyEval}}</td>
+            </tr>
+            <tr>
+                <td colspan="20" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerSpareDiv">
+                        <div id="pagerSpare" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<!--维保对耗材的覆盖情况-->
+<div class="ui-dialog-content ui-widget-content" id="ValConsumable" tabindex="-1" style="display:none;" >
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.FujiClass2" v-on:change="GetValConsumables()" style="width:120px;">
+                                    <option value="0">全部</option>
+                                    <option v-for="item in FujiClass2s" v-bind:value="item.ID">{{item.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.Field">
+                                    <option value="c.Name">耗材名称</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.Text" maxlength="50" style="width:150px;" onkeydown="DoQueryConsumable()" />
+                                <img src="~/Content/img/search.png" class="icon-sm " onclick="GetValConsumables()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;max-width:200px;padding:5px;">富士II类</th>
+                <th style="min-width:100px;padding:5px;">耗材</th>
+                <th style="min-width:100px;padding:5px;">是否被维保覆盖</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ConsumableList == null || ConsumableList.length == 0">
+                <td class="tdListCenter" colspan="20">暂无数据</td>
+            </tr>
+            <tr v-else v-for="item in ConsumableList">
+                <td>{{item.Consumable.FujiClass2.Name}}</td>
+                <td>{{item.Consumable.Name}}</td>
+                <td>
+                    <select v-model="item.IncludeContract" @@change="ChangeConsumableData(ValConsumableVue,item)">
+                        <option value="true">是</option>
+                        <option value="false">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerConsumableDiv">
+                        <div id="pagerConsumable" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--使用量-->
+<div class="ui-dialog-content ui-widget-content" id="valComponent" tabindex="-1" style="display:none;" title="估价执行条件: 使用量">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            设备等级:
+                            <select v-model="Filter.EquipmentType" @@change="GetValComponents()">
+                                <option value="0">全部</option>
+                                @foreach (var item in equipmentTypes)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            搜索:
+                            <select v-model="Filter.Field">
+                                <option value="c.Name">零件名称</option>
+                                <option value="ve.AssetCode">设备资产编号</option>
+                                <option value="ve.Name">设备名称</option>
+                            </select>
+                            <input type="text" style="width:150px" v-model.trim="Filter.Text" onkeydown="DoQuery('@BusinessObjects.Domain.ValuationType.Component')" maxlength="30" /><img src="~/Content/img/search.png" alt="" class="icon-sm cursor" @@click="GetValComponents()" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr style="white-space: nowrap;">
+                <th style="min-width: 120px;">设备是否在系统中</th>
+                <th style="min-width: 100px;">零件名称</th>
+                <th style="min-width: 100px;">设备资产编号</th>
+                <th style="min-width: 100px;">设备名称</th>
+                <th style="min-width: 100px;">富士II类</th>
+                <th style="min-width: 70px;">设备等级</th>
+                <th style="min-width: 100px;">数量</th>
+                <th style="min-width: 100px;">使用量</th>
+                <th style="min-width: 100px;">使用量参考值</th>
+                <th style="min-width: 160px;">以后维保是否包含该零件</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ComponentList.length == 0">
+                <td class="tdListCenter" colspan="20">暂无数据</td>
+            </tr>
+            <tr v-else v-for="component in ComponentList">
+                <td>{{component.InSystem ? "是" : "否"}}</td>
+                <td>{{component.Component.Name}}</td>
+                <td>{{component.Equipment.AssetCode}}</td>
+                <td>{{component.Equipment.Name}}</td>
+                <td>{{component.Equipment.FujiClass2.Name}}</td>
+                <td>{{component.EquipmentType.Name}}</td>
+                <td v-if="component.Component.ID != 0"><input type="text" @@change="ChangeComponentData(valComponentVue,component)" v-bind:id="component.SessionKey+'_Qty'" v-model="component.Qty" maxlength="9" @@keyup=" component.Qty = (component.Qty +'').replace(/[^0-9\d]/g, '')" /></td>
+                <td v-else><label style="padding: .1rem .75rem;">{{component.Qty}}</label></td>
+                <td><input type="text" @@change="ChangeComponentData(valComponentVue,component)" v-bind:id="component.SessionKey+'_Usage'" v-model="component.Usage" maxlength="9" @@keyup=" component.Usage = (component.Usage +'').replace(/[^0-9\d]/g, '')" /></td>
+                <td>{{component.UsageRefere}}</td>
+                <td>
+                    <select v-model="component.IncludeContract" @@change="ChangeComponentData(valComponentVue,component)">
+                        <option value="true">是</option>
+                        <option value="false">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerComponentDiv">
+                        <div id="pagerComponent" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--CT球管登记表-->
+<div class="ui-dialog-content ui-widget-content" id="valCTTube" tabindex="-1" style="display:none;" title="估价执行条件: CT球管登记表">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            搜索:
+                            <select v-model="Filter.Field">
+                                <option value="c.Name">名称</option>
+                                <option value="ve.AssetCode">CT机资产编号</option>
+                            </select>
+                            <input type="text" style="width:150px" v-model.trim="Filter.Text" onkeydown="DoQuery('@BusinessObjects.Domain.ValuationType.CTTube')" maxlength="30" /><img src="~/Content/img/search.png" alt="" class="icon-sm cursor" @@click="GetValCTTubes()" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr style="white-space: nowrap;">
+                <th style="min-width: 100px;">名称</th>
+                <th style="min-width: 100px;">对应CT机资产编号</th>
+                <th style="min-width: 100px;">富士II类</th>
+                <th style="min-width: 100px;">CT球管理论寿命秒次</th>
+                <th style="min-width: 100px;">CT日使用人次</th>
+                <th style="min-width: 100px;">日使用人次参考值</th>
+                <th style="min-width: 100px;">CT球管已使用秒次</th>
+                <th style="min-width: 100px;">已使用秒次参考值</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="CTTubeList.length == 0">
+                <td class="tdListCenter" colspan="20">暂无数据</td>
+            </tr>
+            <tr v-else v-for="CTTube in CTTubeList">
+                <td>{{CTTube.Component.Name}}</td>
+                <td>{{CTTube.Equipment.AssetCode}}</td>
+                <td>{{CTTube.Equipment.FujiClass2.Name}}</td>
+                <td>{{CTTube.Component.TotalSeconds}}</td>
+                <td><input type="text" @@change="ChangeComponentData(valCTTubeVue,CTTube)" v-bind:id="CTTube.SessionKey+'_Usage'" v-model="CTTube.Usage" maxlength="9" @@keyup="CTTube.Usage = (CTTube.Usage+'').replace(/[^0-9\d]/g, '')" /></td>
+                <td>{{CTTube.UsageRefere}}</td>
+                <td><input type="text" @@change="ChangeComponentData(valCTTubeVue,CTTube)" v-bind:id="CTTube.SessionKey+'_Seconds'" v-model="CTTube.Seconds"  maxlength="12"/></td>
+                <td>{{CTTube.UsedSeconds}}</td>
+            </tr>
+            <tr>
+                <td colspan="11" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerCTTubeDiv">
+                        <div id="pagerCTTube" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--导入文件-->
+<div class="ui-dialog-content ui-widget-content" id="ImportEquipment" style="display:none;">
+    <table cellpadding="0" cellspacing="5" style="margin:0 auto">
+        <tr>
+            <td><span class="required">*</span>上传文件</td>
+            <td>
+                <input class="importFile" type="file" style="border: none; " id="filePath" accept=".xlsx" value="选择文件" onchange="PreviewUploadFile()" />
+                <input type="hidden" id="UploadPath" />
+            </td>
+        </tr>
+        <tr>
+            <td><label class="required" id="reqUploadPath"></label></td>
+        </tr>
+        <tr id="Progress">
+            <td></td>
+            <td><span><img src="~/Content/img/upload.png" class="icon-sm"/></span> <label>文件正在上传...</label></td>
+        </tr>
+    </table>
+</div>
+<!--计算备用机-->
+<div class="ui-dialog-content ui-widget-content" id="SpareCount" tabindex="-1" style="display:none;">
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            开始日期:
+                            <input type="text" class="datePicker" id="SpareStartDate" style="width:120px;" placeholder="YYYY-MM-DD" />
+                        </td>
+                        <td>
+                            结束日期:
+                            <input type="text" class="datePicker" id="SpareEndDate" style="width:120px;" placeholder="YYYY-MM-DD" />
+                        </td>
+                        <td>
+                            安全率:
+                            <input type="text" id="Rate" v-model="SafeRate" style="width:120px;" autofocus />%
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-sm" onclick="CalculateSpareCount()">开始计算</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>            
+        </tr>
+    </table>
+    <table class="table table-sm" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th>设备分类</th>
+                <th>维修期间（日）</th>
+                <th>备用机台数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in SpareList">
+                <td>{{item.FujiClass2.Name}}</td>
+                <td><input type="text" v-model="item.AdjustRepairDays" style="width:120px;" /></td>
+                <td>{{item.CalculatedCount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var ValEquipmentVue = new Vue({
+        el: "#ValEquipment",
+        data: {
+            EquipmentList: [],
+            PendingUpgrade: [],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Filter: {
+                EquipmentType: -1,
+                AmountType: -1,
+                EquipmentName: '',
+                Department:{},
+                SerialCode: '',
+                FujiClass1: 0,
+                FujiClass2: 0,
+                Field: 've.EquipmentID',
+                Text: '',
+                CurrentPage: 1,
+                PageSize:10,
+                SortObject: {
+                    Field: "f2.ID",
+                    Direction: true
+                }
+            }
+        },
+        watch:{
+            EquipmentList: function(){
+                this.$nextTick(() => {  
+                    $(".equipmentDate").datepicker("destroy")
+                    $(".equipmentDate").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: "yy-mm-dd",
+                        onSelect: function(dateText, inst) {
+                            let _this = this
+                            $(_this).datepicker('setDate', new Date(dateText));
+                            _this.dispatchEvent(new Event('input'))
+                            _this.dispatchEvent(new Event('change'))
+                            _this.blur()
+                        },
+                    })
+                })
+            },
+        },
+    })
+
+    var ValSpareVue = new Vue({
+        el: "#ValSpare",
+        data: {
+            SpareList: [],
+            PendingUpgrade: [],
+            Filter: {
+                FujiClass2: 0,
+                Field: 'c.Name',
+                Text: '',
+                CurrentPage: 1,
+                PageSize:10,
+            }
+        }
+    })
+
+    var ValConsumableVue = new Vue({
+        el: "#ValConsumable",
+        data: {
+            ConsumableList: [],
+            PendingUpgrade: [],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Filter: {
+                FujiClass2: 0,
+                Field: 'c.Name',
+                Text: '',
+                CurrentPage: 1,
+                PageSize:10,
+            }
+        }
+    })
+    var valComponentVue = new Vue({
+        el: "#valComponent",
+        data: {
+            ComponentList: [],
+            PendingUpgrade: [],
+            HospitalFactor:0,
+            Filter: {
+                EquipmentType: 0,
+                Field: 'c.Name',
+                Text: '',
+                CurrentPage: 1,
+                PageSize:10,
+            }
+        }
+    })
+
+    var valCTTubeVue = new Vue({
+        el: "#valCTTube",
+        data: {
+            CTTubeList: [],
+            PendingUpgrade: [],
+            HospitalFactor:0,
+            Filter: {
+                Field: 'c.Name',
+                Text: '',
+                CurrentPage: 1,
+                PageSize:10,
+            }
+        }
+    })
+</script>
+<script>
+    function InitDialog() {
+        $("#ValEquipment").dialog({
+            autoOpen: false,
+            height: 850,
+            width: "92%",
+            modal: true,
+            resizable: false,
+            title: "估价执行条件:设备清单",
+            buttons: {
+                "保存": function () { SaveSession(ValEquipmentVue,'@BusinessObjects.Domain.ValuationType.Equipment'); },
+                "关闭": function () { $("#ValEquipment").dialog("close"); },
+            },
+            close: function (event, ui) {
+                ClearValuationSession(ValEquipmentVue);
+            }
+        });
+
+        $("#ImportEquipment").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 600,
+            modal: true,
+            resizable: false,
+            title: "导入设备",
+            buttons: {
+                "导入": function () { SaveInput(); },
+                "关闭": function () { $("#ImportEquipment").dialog("close"); },
+            }
+        })
+
+        $("#ValSpare").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            modal: true,
+            resizable: false,
+            title: "估价执行条件:备用机清单",
+            buttons: {
+                "保存": function () { SaveSession(ValSpareVue,'@BusinessObjects.Domain.ValuationType.Spare'); },
+                "关闭": function () { $("#ValSpare").dialog("close"); },
+            },
+            close: function (event, ui) {
+                ClearValuationSession(ValSpareVue);
+            }
+        });
+
+        $("#ValConsumable").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 800,
+            modal: true,
+            resizable: false,
+            title: "估价执行条件: 维保对耗材的覆盖情况",
+            buttons: {
+                "保存": function () { SaveSession(ValConsumableVue,'@BusinessObjects.Domain.ValuationType.Consumable'); },
+                "关闭": function () { $("#ValConsumable").dialog("close"); },
+            },
+            close: function (event, ui) {
+                ClearValuationSession(ValConsumableVue);
+            }
+        });
+
+        $("#valComponent").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 1300,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveSession(valComponentVue,'@BusinessObjects.Domain.ValuationType.Component'); },
+                "关闭": function () { $("#valComponent").dialog("close"); },
+            },
+            close: function (event, ui) {
+                ClearValuationSession(valComponentVue);
+            }
+        });
+
+        $("#valCTTube").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveSession(valCTTubeVue,'@BusinessObjects.Domain.ValuationType.CTTube'); },
+                "关闭": function () { $("#valCTTube").dialog("close"); },
+            },
+            close: function (event, ui) {
+                ClearValuationSession(valCTTubeVue);
+            }
+        });
+
+        $("#SpareCount").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 800,
+            modal: true,
+            resizable: false,
+            title: "预测备用机数量",
+            buttons: {
+                "同步": function () { SyncSpareCount(); },
+                "关闭": function () { $("#SpareCount").dialog("close");},
+            },
+        });
+    }
+</script>
+<!--valEquipment-->
+<script>
+    function RefreshEquipment(){
+        ValEquipmentVue.Filter = {
+            EquipmentType: -1,
+            AmountType: -1,
+            EquipmentName: '',
+            Department:{},
+            SerialCode: '',
+            FujiClass1: 0,
+            FujiClass2: 0,
+            Field: 've.EquipmentID',
+            Text: '',
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "f2.ID",
+                Direction: true
+            }
+        }
+    }
+    function OpenValEquipment() {
+        RefreshEquipment();
+        GetValEquipments();
+        GetFujiClass(ValEquipmentVue);
+        $("#ValEquipment").dialog("open");
+    }
+
+    function ImportEquipment(){
+        $("#ImportEquipment").dialog("open");
+        $(".importFile").blur();
+        $("#filePath").val("");
+        $("#reqUploadPath").html("");
+        $("#Progress").hide();
+    }
+
+    function InitQueryEquipmentFilter(){
+        return json={
+            infos: ValEquipmentVue.PendingUpgrade,
+            equipmentType: ValEquipmentVue.Filter.EquipmentType,
+            amountType: ValEquipmentVue.Filter.AmountType,
+            equipmentName: ValEquipmentVue.Filter.EquipmentName,
+            serialCode: ValEquipmentVue.Filter.SerialCode,
+            departmentName: ValEquipmentVue.Filter.Department.Name,
+            class1ID: ValEquipmentVue.Filter.FujiClass1,
+            class2ID: ValEquipmentVue.Filter.FujiClass2,
+            filterField: ValEquipmentVue.Filter.Field,
+            filterText: ValEquipmentVue.Filter.Text,
+            sortField: ValEquipmentVue.Filter.SortObject.Field,
+            sortDirection: ValEquipmentVue.Filter.SortObject.Direction,
+            currentPage: ValEquipmentVue.Filter.CurrentPage,
+            pageSize: ValEquipmentVue.Filter.PageSize,
+        }
+    }
+
+    function PageClickEquipment(pageclickednumber) {
+        ValEquipmentVue.Filter.CurrentPage = pageclickednumber;
+        GetValEquipments();
+    }
+    
+    function changeCurNum_pagerEquipment() {
+        ValEquipmentVue.Filter.PageSize = Number($('#ValEquipment #curNum option:selected').val());//选中的值
+        GetValEquipments();
+    }
+    function DoQueryEquipment(){
+        if (event.keyCode == 13) {
+            GetValEquipments();
+        }
+    }
+
+    function ExportEquipment(){
+        //SetPageWaiting(true);
+        $.fileDownload('@Url.Action("ExportValEquipments", "Valuation")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: InitQueryEquipmentFilter()
+            }
+        );
+    }
+
+    function InitEquipment() {
+        SetPageWaiting(true);
+        return $.post('@Url.Action("InitValEquipments", "Valuation")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+        })
+    }
+
+    function CheckValEquipment(){
+        if(!ValEquipmentVue.PendingUpgrade || !ValEquipmentVue.PendingUpgrade.length )
+            return true
+        return ValEquipmentVue.PendingUpgrade.every(function(equipment){
+            if(!equipment.CurrentScope.ID){
+                jAlert("目前维保种类无效","警告",function(){
+                    $("#"+equipment.SessionKey+"_CurrentScopeID").focus()
+                })
+                return false
+            }
+            if(equipment.CurrentScope.ID != '@BusinessObjects.Domain.ValEquipmentInfo.ScopeTypes.NoneCoverage' && !equipment.EndDate){
+                jAlert("维保到期日无效","警告",function(){
+                    $("#"+equipment.SessionKey+"_EndDate").focus()
+                })
+                return false
+            }
+            return true
+        })
+    }
+
+    function GetValEquipments() {
+        SetPageWaiting(true);
+        if(CheckValEquipment()){
+            return $.post('@Url.Action("QueryValEquipments", "Valuation")',InitQueryEquipmentFilter(), function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    ValEquipmentVue.EquipmentList = response.Data;
+                    ValEquipmentVue.Filter.CurrentPage = SetTotalPage4Pager(ValEquipmentVue.Filter.CurrentPage, response.TotalPages, "pagerEquipment", PageClickEquipment);
+                    $("#ValEquipment #curNum option[value='" + ValEquipmentVue.Filter.PageSize + "']").prop("selected", true);
+                    
+                    ValEquipmentVue.EquipmentList.forEach(function(info) { 
+                        info.EndDate = parseAndFormatJsonDate(info.EndDate);
+                        info.CurrentScope.ID = info.CurrentScope.ID || '@BusinessObjects.Domain.ValEquipmentInfo.ScopeTypes.NoneCoverage'
+                        info.NextScope.ID = info.NextScope.ID || '@BusinessObjects.Domain.ValEquipmentInfo.ScopeTypes.NoneCoverage'
+                    })
+                    ValEquipmentVue.PendingUpgrade = []
+                    
+                }
+            })
+        }else{
+            SetPageWaiting(false);
+            return $.Deferred().resolve()
+        }
+    }
+
+    function ChangeEquipmentData(instanceVue,obj) {
+        let index = instanceVue.PendingUpgrade.findIndex(function (info) {
+            return info.Equipment.ID == obj.Equipment.ID
+        })
+        ChangeData(instanceVue, obj, index);
+    }
+
+    function PreviewUploadFile() {
+        $("#reqUploadPath").html("");
+        if ($("#filePath")[0].files.length == 0) return;
+
+        var uploadFile = document.getElementById("UploadPath");
+        var reader = new FileReader();
+        reader.onload = function (evt) { uploadFile.value = evt.target.result; }
+        reader.readAsDataURL($("#filePath")[0].files[0]);
+    }
+
+    function SaveInput(){
+        if(CheckInput() == false) return;
+        $("#Progress").show();
+
+        SetPageWaiting(true);
+        $.post('@Url.Action("ImportValEquipment", "Valuation")',{
+            base64String: UploadPath.value
+        },function(response){
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+            {
+                processResponseError(response.ResultCode, response.ResultMessage);
+                $("#Progress").hide();
+            }
+            else {
+                RefreshEquipment();
+                GetValEquipments();
+                jAlert("成功导入设备","导入",function(){ $("#ImportEquipment").dialog("close");});
+            }
+        })
+    }
+
+    function CheckInput() {
+        var IsValid = true;
+
+        var filePath = $("#filePath").val();
+        var UploadPath = document.getElementById("UploadPath");
+
+        if (filePath == "") {
+            $("#reqUploadPath").html("请选择文件！");
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+    
+    
+function AutoCompleteDepartments(info) {
+    $("#Department").autocomplete({
+        minLength: 1,
+        delay: 200,//ms
+        source: function (req, add) {
+            $.ajax({
+                type: "get",
+                async: false,
+                secureuri: false,
+                url: getRootPath() + '/Department/QueryDepartment4AutoCompleteVal',
+                data: {
+                    inputText: $.trim(req.term),
+                },
+                dataType: 'json',
+                success: function (response) {
+                    response = JSON.parse(JSON.stringify(response));
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        info.Department.ID = -1;//clear
+                        var infos = response.Data;
+                        add(infos);
+                    }
+                },
+                error: function () { jAlert("连接服务器出错", "错误"); }
+            });
+        },
+        focus: function (event, ui) {
+            info.Department = ui.item;
+            info.Department.Name = ui.item.Description;
+            return false;
+        },
+        select: function (event, ui) {
+            info.Department = ui.item;
+            info.Department.Name = ui.item.Description;
+            return false;
+        }
+    })
+    .data("ui-autocomplete")._renderItem = function (ul, item) {
+        return $("<li>")
+          .append("<a>" + item.Description + "-" + item.Pinyin + "</a>")
+          .appendTo(ul);
+    };
+}
+</script>
+<!--valSpare-->
+<script>
+    function OpenValSpare() {
+        GetValSpares();
+        $("#ValSpare").dialog("open");
+    }
+
+    function PageClickSpare(pageclickednumber) {
+        ValSpareVue.Filter.CurrentPage = pageclickednumber;
+        GetValSpares();
+    }
+    
+    function changeCurNum_pagerSpare() {
+        ValSpareVue.Filter.PageSize = Number($('#ValSpare #curNum option:selected').val());//选中的值
+        GetValSpares();
+    }
+    function DoQuerySpare() {
+        if (event.keyCode == 13) {
+            GetValSpares();
+        }
+    }
+    function InitSpare() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("InitValSpares", "Valuation")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+        })
+    }
+
+    function CheckSpare(){
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        if(!ValSpareVue.PendingUpgrade || !ValSpareVue.PendingUpgrade.length )
+            return true
+        return ValSpareVue.PendingUpgrade.every(function(spare){
+            if(spare.Price > 9999999999.99){
+                jAlert("月租租金最大值为9999999999.99","警告",function(){
+                    $("#"+spare.SessionKey+"_Price").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(spare.Price)){
+                jAlert("月租租金格式不正确","警告",function(){
+                    $("#"+spare.SessionKey+"_Price").focus()
+                })
+                return false
+            }
+            if(spare.QtyEnter > 2147483647){
+                jAlert("租用台数最大值为2147483647","警告",function(){
+                    $("#"+spare.SessionKey+"_QtyEnter").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(spare.QtyEnter)){
+                jAlert("租用台数格式不正确","警告",function(){
+                    $("#"+spare.SessionKey+"_QtyEnter").focus()
+                })
+                return false
+            }
+            return true
+        })
+    }
+
+    function GetValSpares() {
+        SetPageWaiting(true)
+        if(CheckSpare()){
+            return $.post('@Url.Action("QueryValSpares", "Valuation")',{
+                infos:ValSpareVue.PendingUpgrade 
+            }, function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    ValSpareVue.SpareList = response.Data;
+                    //ValSpareVue.Filter.CurrentPage = SetTotalPage4Pager(ValSpareVue.Filter.CurrentPage, response.TotalPages, "pagerConsumable", PageClickSpare);
+                    //$("#ValSpare #curNum option[value='" + ValSpareVue.Filter.PageSize + "']").prop("selected", true);
+                    ValSpareVue.PendingUpgrade = []
+                }
+            })
+        }else{
+            SetPageWaiting(false);
+            return $.Deferred().resolve()
+        }
+    }
+
+    function ChangeSpareData(instanceVue, obj){
+        let index = instanceVue.PendingUpgrade.findIndex(function (info) {
+            return info.FujiClass2.ID == obj.FujiClass2.ID
+        })
+        ChangeData(instanceVue, obj, index);
+    }
+</script>
+<!--valConsumable-->
+<script>
+    function RefreshConsumable(){
+        ValConsumableVue.Filter = {
+            FujiClass2: 0,
+            Field: 'c.Name',
+            Text: '',
+            CurrentPage: 1,
+            PageSize:10,
+        }
+    }
+
+    function OpenValConsumable() {
+        RefreshConsumable();
+        GetValConsumables();
+        GetFujiClass(ValConsumableVue);
+        $("#ValConsumable").dialog("open");
+    }
+
+    function PageClickConsumable(pageclickednumber) {
+        ValConsumableVue.Filter.CurrentPage = pageclickednumber;
+        GetValConsumables();
+    }
+    function changeCurNum_pagerConsumable() {
+        ValConsumableVue.Filter.PageSize = Number($('#ValConsumable #curNum option:selected').val());//选中的值
+        GetValConsumables();
+    }
+    function DoQueryConsumable() {
+        if (event.keyCode == 13) {
+            GetValConsumables();
+        }
+    }
+    function InitConsumable() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("InitValConsumables", "Valuation")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+        })
+    }
+
+    function GetValConsumables() {
+        SetPageWaiting(true)
+        return $.post('@Url.Action("QueryValConsumables", "Valuation")', {
+            infos: ValConsumableVue.PendingUpgrade,
+            class2ID: ValConsumableVue.Filter.FujiClass2,
+            filterField: ValConsumableVue.Filter.Field,
+            filterText: ValConsumableVue.Filter.Text,
+            currentPage: ValConsumableVue.Filter.CurrentPage,
+            pageSize: ValConsumableVue.Filter.PageSize,
+        }, function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                ValConsumableVue.ConsumableList = response.Data;
+                ValConsumableVue.Filter.CurrentPage = SetTotalPage4Pager(ValConsumableVue.Filter.CurrentPage, response.TotalPages, "pagerConsumable", PageClickConsumable);
+                $("#ValConsumable #curNum option[value='" + ValConsumableVue.Filter.PageSize + "']").prop("selected", true);
+                ValConsumableVue.PendingUpgrade = []
+            }
+        })
+    }
+
+    function ChangeConsumableData(instanceVue, obj){
+        let index = instanceVue.PendingUpgrade.findIndex(function (info) { 
+            return info.Consumable.ID == obj.Consumable.ID 
+        })
+        ChangeData(instanceVue, obj, index);
+    }
+</script>
+<!--Component CTTube-->
+<script>
+    function DoQuery(type) {
+        if (event.keyCode == 13) {
+            if (type == '@BusinessObjects.Domain.ValuationType.Component')
+                GetValComponents();
+            else
+                GetValCTTubes()
+        }
+    }
+
+    function InitValComponent() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("InitValComponents", "Valuation")', function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, result.ResultMessage);
+        })
+    }
+
+    function UpdateComponentUsage() {
+        SetPageWaiting(true);
+        $.post('@Url.Action("UpdateComponentUsage", "Valuation")',function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, result.ResultMessage);
+        })
+    }
+
+    function PageClickValComponent(pageclickednumber) {
+        valComponentVue.Filter.CurrentPage = pageclickednumber;
+        GetValComponents();
+    }
+    function changeCurNum_pagerComponent(){
+        valComponentVue.Filter.PageSize = Number($('#valComponent #curNum option:selected').val());//选中的值
+        GetValComponents();
+    }
+
+    function PageClickValCTTube(pageclickednumber) {
+        valCTTubeVue.Filter.CurrentPage = pageclickednumber;
+        GetValCTTubes();
+    }
+
+    function changeCurNum_pagerCTTube(){
+        valCTTubeVue.Filter.PageSize = Number($('#valCTTube #curNum option:selected').val());//选中的值
+        GetValCTTubes();
+    }
+
+    function RefershValComponent(isQuery) {
+        valComponentVue.Filter={
+            EquipmentType: 0,
+            Field: 'c.Name',
+            Text: '',
+            CurrentPage: 1,
+            PageSize:10
+        }
+        if (isQuery)
+            GetValComponents()
+    }
+
+    function RefershValCTTube(isQuery) {
+        valCTTubeVue.Filter = {
+            Field: 'c.Name',
+            Text: '',
+            CurrentPage: 1,
+            PageSize:10
+        }
+        if (isQuery)
+            GetValCTTubes()
+    }
+
+    function OpenValComponent() {
+        RefershValComponent(false)
+        valComponentVue.HospitalFactor = ValuationVue.Control.HospitalFactor;
+        let a = GetValComponents();
+        a.then(function () {
+            $("#valComponent").dialog("open");
+        })
+    }
+
+    function OpenValCTTube() {
+        RefershValCTTube(false);
+        valCTTubeVue.HospitalFactor = ValuationVue.Control.HospitalFactor;
+        GetValCTTubes().then(function () {
+            $("#valCTTube").dialog("open");
+        })
+    }
+
+    function CheckComponents(){
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        if(!valComponentVue.PendingUpgrade || !valComponentVue.PendingUpgrade.length )
+            return true
+        return valComponentVue.PendingUpgrade.every(function(component){
+            if(component.Qty > 2147483647){
+                jAlert("数量最大值为2147483647","警告",function(){
+                    $("#"+component.SessionKey+"_Qty").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(component.Qty)){
+                jAlert("数量格式不正确","警告",function(){
+                    $("#"+component.SessionKey+"_Qty").focus()
+                })
+                return false
+            }
+            if(component.Usage > 2147483647){
+                jAlert("使用量最大值为2147483647","警告",function(){
+                    $("#"+component.SessionKey+"_Usage").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(component.Usage)){
+                jAlert("使用量格式不正确","警告",function(){
+                    $("#"+component.SessionKey+"_Usage").focus()
+                })
+                return false
+            }
+            return true
+        })
+    }
+
+    function GetValComponents() {
+        if(CheckComponents()){
+            SetPageWaiting(true);
+            return $.post('@Url.Action("QueryValComponents", "Valuation")', {
+                infos:valComponentVue.PendingUpgrade,
+                componentType: 0,
+                equipmentType: valComponentVue.Filter.EquipmentType,
+                filterField: valComponentVue.Filter.Field,
+                filterText: valComponentVue.Filter.Text,
+                currentPage: valComponentVue.Filter.CurrentPage,
+                pageSize:valComponentVue.Filter.PageSize
+            }, function (result) {
+                SetPageWaiting(false);
+                if (result.ResultCode != "00")
+                    processResponseError(result.ResultCode, result.ResultMessage);
+                else {
+                    valComponentVue.ComponentList = result.Data;
+                    valComponentVue.Filter.CurrentPage = SetTotalPage4Pager(valComponentVue.Filter.CurrentPage, result.TotalPages, "pagerComponent", PageClickValComponent);
+                    $("#valComponent #curNum option[value='" + valComponentVue.Filter.PageSize + "']").prop("selected", true);
+                    valComponentVue.PendingUpgrade = []
+                }
+            })
+        }else{
+            SetPageWaiting(false);
+            return $.Deferred().resolve()
+        }
+    }
+
+    function CheckCTTubes(){
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        if(!valCTTubeVue.PendingUpgrade || !valCTTubeVue.PendingUpgrade.length )
+            return true
+        return valCTTubeVue.PendingUpgrade.every(function(CTTube){
+            if(CTTube.Usage == undefined){
+                jAlert("CT日使用人次不能为空","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Usage").focus()
+                })
+                return false
+            }
+            else if(CTTube.Usage > 2147483647){
+                jAlert("CT日使用人次最大值为2147483647","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Usage").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(CTTube.Usage)){
+                jAlert("CT日使用人次格式不正确","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Usage").focus()
+                })
+                return false
+            }
+            if(CTTube.Seconds == undefined){
+                jAlert("CT球管已使用秒次不能为空","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Seconds").focus()
+                })
+                return false
+            }
+            else if(CTTube.Seconds>9999999999.99){
+                jAlert("CT球管已使用秒次最大值为9999999999.99","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Seconds").focus()
+                })
+                return false
+            }
+            else if(!patrn.test(CTTube.Seconds)){
+                jAlert("CT球管已使用秒次格式不正确","警告",function(){
+                    $("#"+CTTube.SessionKey+"_Seconds").focus()
+                })
+                return false
+            }
+            return true
+        })
+    }
+
+    function GetValCTTubes() {
+        if(CheckCTTubes()){
+            SetPageWaiting(true)
+            return $.post('@Url.Action("QueryValComponents", "Valuation")',
+                {
+                    infos:valCTTubeVue.PendingUpgrade,
+                    componentType: @BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT,
+                    equipmentType: 0,
+                    filterField: valCTTubeVue.Filter.Field,
+                    filterText: valCTTubeVue.Filter.Text,
+                    currentPage: valCTTubeVue.Filter.CurrentPage,
+                    pageSize: valCTTubeVue.Filter.PageSize
+                }, function (result) {
+                    SetPageWaiting(false)
+                    if (result.ResultCode != "00")
+                        processResponseError(result.ResultCode, result.ResultMessage);
+                    else {
+                        valCTTubeVue.CTTubeList = result.Data;
+                        valCTTubeVue.Filter.CurrentPage = SetTotalPage4Pager(valCTTubeVue.Filter.CurrentPage, result.TotalPages, "pagerCTTube", PageClickValCTTube);
+                        $("#valCTTube #curNum option[value='" + valCTTubeVue.Filter.PageSize + "']").prop("selected", true);
+                        valCTTubeVue.PendingUpgrade = [];
+                    }
+                }
+            )
+        }else{
+            SetPageWaiting(false);
+            return $.Deferred().resolve()
+        }
+    }
+
+    function ChangeComponentData(instanceVue, obj){
+        let index = instanceVue.PendingUpgrade.findIndex(function (info) {
+            return info.Equipment.ID == obj.Equipment.ID && info.Component.ID == obj.Component.ID })
+        ChangeData(instanceVue, obj, index);
+    }
+</script>
+<script>
+    function ClearDialogSession(){
+        ClearValuationSession(ValEquipmentVue);
+        ClearValuationSession(ValSpareVue);
+        ClearValuationSession(ValConsumableVue);
+        ClearValuationSession(valComponentVue);
+        ClearValuationSession(valCTTubeVue);
+    }
+
+    function ChangeData(instanceVue, obj, index) {
+        obj = JSON.parse(JSON.stringify(obj))
+        if (index == -1)
+            instanceVue.PendingUpgrade.push(obj)
+        else
+            instanceVue.PendingUpgrade[index] = obj
+    }
+
+    function ClearValuationSession(instanceVue) {
+        instanceVue.PendingUpgrade =[]
+        SetPageWaiting(true);
+        return $.post('@Url.Action("ClearValuationSession", "Valuation")', function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, response.ResultMessage);
+        })
+    }
+
+    function SaveSession(vue, type)
+    {
+        let temp = type 
+        if((vue.PendingUpgrade == null || vue.PendingUpgrade.length == 0) && temp != '@BusinessObjects.Domain.ValuationType.Equipment')
+        {
+            temp = -1
+        }
+        (function(){
+            if(temp == '@BusinessObjects.Domain.ValuationType.Equipment')
+                return GetValEquipments()
+            else if(temp == '@BusinessObjects.Domain.ValuationType.Spare')
+                return GetValSpares()
+            else if(temp == '@BusinessObjects.Domain.ValuationType.Consumable')
+                return GetValConsumables()
+            else if(temp == '@BusinessObjects.Domain.ValuationType.Component')
+                return GetValComponents()
+            else if(temp == '@BusinessObjects.Domain.ValuationType.CTTube')
+                return GetValCTTubes()
+            else
+                return $.Deferred().resolve(true)
+        })().then(function(result){
+            if(result){
+                SetPageWaiting(true);
+                return $.post('@Url.Action("SaveValuation", "Valuation")', {
+                    type: type
+                }, function (result) {
+                    SetPageWaiting(false)
+                    if (result.ResultCode != "00")
+                        processResponseError(result.ResultCode, result.ResultMessage);
+                    else {
+                        jAlert("保存成功", "保存结果");
+                        vue.PendingUpgrade = [];
+                    }
+                })
+            }
+        })
+    }
+</script>
+<!--计算备用机-->
+<script>
+    var SpareCountVue = new Vue({
+        el:"#SpareCount",
+        data:{
+            SpareList:[],
+            SafeRate:0,
+            Caluated:false,
+        }
+    })
+
+    function InitSpareDate() {
+        var dateFields = $([]).add($("#SpareStartDate")).add($("#SpareEndDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            autoOpen:false,
+            modal:true,
+            open:function(event, ui){ 
+                $(this).parent().focus(); 
+            }
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+
+    function FreshSpareCount(){
+        $("#SpareStartDate").val("");
+        $("#SpareEndDate").val("");
+        SpareCountVue.SafeRate = 0;
+        SpareCountVue.SpareList = [];
+        SpareCountVue.Caluated = false;
+    }
+
+    function ShowSpareCount(){
+        if(ValSpareVue.SpareList.length == 0){
+            jAlert("暂无可计算的富士II类","提示");
+            return;
+        }
+        InitSpareDate();
+        FreshSpareCount();
+        SpareCountVue.SpareList = ValSpareVue.SpareList;
+        $("#SpareCount").dialog("open");
+    }
+
+    function CalculateSpareCount(){
+        if(CheckSpareCount()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("CalculateSpareCount", "Valuation")',{
+            startDate: $("#SpareStartDate").val(),
+            endDate:$("#SpareEndDate").val(),
+            safeRate:SpareCountVue.SafeRate,
+            valSpareList:SpareCountVue.SpareList
+        },function(result){
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, result.ResultMessage);
+            else {
+                jAlert("计算成功","提示");
+                SpareCountVue.SpareList = result.Data;
+                SpareCountVue.Caluated = true;
+            }
+        })
+    }
+
+    function SyncSpareCount(){
+        if (!SpareCountVue.Caluated) {
+            jAlert("请先计算备用机台数","警告");
+            return;
+        }
+        SetPageWaiting(true);
+        $.post('@Url.Action("SyncSpareCount", "Valuation")',{
+            infos: SpareCountVue.SpareList
+        },function(result){
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, result.ResultMessage);
+            else {
+                ValSpareVue.SpareList = result.Data;
+                jAlert("同步成功","提示",function(){ $("#SpareCount").dialog("close");})
+            }
+        })
+    }
+
+    function CheckSpareCount(){
+        if (CheckDatePicker("SpareStartDate", "开始日期") != "") {
+            jAlert(CheckDatePicker("SpareStartDate", "开始日期"),"警告",function(){
+                $("#SpareStartDate").focus();
+            });
+            return true;
+        }
+
+        if (CheckDatePicker("SpareEndDate", "结束日期") != "") {
+            jAlert(CheckDatePicker("SpareEndDate", "结束日期"),"警告",function(){
+                $("#SpareEndDate").focus();            
+            });
+            return true;
+        }
+
+        if((new Date($("#SpareStartDate").val().replace(/-/g,"\/"))) > (new Date($("#SpareEndDate").val().replace(/-/g,"\/")))){
+            jAlert("开始日期必须小于结束日期", "警告");
+            return false;
+        }
+
+        if (SpareCountVue.SafeRate <= 0 || SpareCountVue.SafeRate >= 100) {
+            jAlert("安全率必须大于0且小于100.00","警告",function(){
+                $("#SafeRate").focus();
+            });
+            return true;
+        }
+
+        return false;
+    }
+</script>

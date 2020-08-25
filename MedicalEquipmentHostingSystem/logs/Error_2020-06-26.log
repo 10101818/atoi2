@@ -1,0 +1,241 @@
+2020-06-26 10:05:33.1384 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (LSRM002020900002).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'SaveEquipments', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.SaveEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 284
+2020-06-26 10:05:33.3154 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (LSRM002020900002).
+The statement has been terminated.' happened in Class 'ValuationManager', Method 'SaveValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.SaveEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 288
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 52
+2020-06-26 10:05:49.3301 ERROR Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (LSRM002020900002).
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.SaveEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 288
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 53
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 219
+2020-06-26 14:16:56.5044 ERROR “Sheet1$”不是一个有效名称。请确认它不包含无效的字符或标点，且名称不太长。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\ExportUtil.cs:行号 239
+2020-06-26 14:18:48.8467 ERROR “Sheet1$”不是一个有效名称。请确认它不包含无效的字符或标点，且名称不太长。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:19:32.3985 ERROR Microsoft Access 数据库引擎找不到对象“Table1”。请确保该对象存在，并正确拼写其名称和路径名。如果“Table1”不是本地对象，请检查网络连接或与服务器管理员联系。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:19:49.3730 ERROR “sheet1$”不是一个有效名称。请确认它不包含无效的字符或标点，且名称不太长。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:20:06.3744 ERROR “sheet1$”不是一个有效名称。请确认它不包含无效的字符或标点，且名称不太长。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:20:13.7527 ERROR Microsoft Access 数据库引擎找不到对象“sheet1”。请确保该对象存在，并正确拼写其名称和路径名。如果“sheet1”不是本地对象，请检查网络连接或与服务器管理员联系。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:20:53.7946 ERROR Microsoft Access 数据库引擎找不到对象“sheet1”。请确保该对象存在，并正确拼写其名称和路径名。如果“sheet1”不是本地对象，请检查网络连接或与服务器管理员联系。 
+    在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.Util.ImportUtil.ReadExcelFile(String filePath, DataTable& dt)
+2020-06-26 14:25:59.3373 ERROR Exception: '无法将类型为“BusinessObjects.Domain.DepartmentInfo”的对象强制转换为类型“BusinessObjects.Domain.KeyValueInfo”。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   在 System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 115
+2020-06-26 15:02:32.5248 ERROR Exception: '当传递具有新行的 DataRow 集合时，Update 要求有效的 InsertCommand。' happened in Class 'ValuationDao', Method 'UpdateEquipments', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateEquipments(DataTable dt)
+2020-06-26 15:02:32.7992 ERROR Exception: '当传递具有新行的 DataRow 集合时，Update 要求有效的 InsertCommand。' happened in Class 'ValuationManager', Method 'UpdateValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateEquipments(DataTable dt)
+   在 BusinessObjects.Manager.ValuationManager.UpdateValEquipments(List`1 infos)
+2020-06-26 15:03:11.2907 ERROR 当传递具有新行的 DataRow 集合时，Update 要求有效的 InsertCommand。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateEquipments(DataTable dt)
+   在 BusinessObjects.Manager.ValuationManager.UpdateValEquipments(List`1 infos)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 384
+2020-06-26 15:30:07.6022 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.DispatchController.QueryDispatches(Int32 status, Int32 urgency, Int32 type, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchController.cs:行号 135
+2020-06-26 15:32:56.9409 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'AddEquipments', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 368
+2020-06-26 15:32:56.9989 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1).
+The statement has been terminated.' happened in Class 'ValuationManager', Method 'AddValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 371
+   在 BusinessObjects.Manager.ValuationManager.AddValEquipments(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 61
+2020-06-26 15:33:30.8147 ERROR Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1).
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddEquipments(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 371
+   在 BusinessObjects.Manager.ValuationManager.AddValEquipments(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 62
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 383
+2020-06-26 15:51:40.9973 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 376
+2020-06-26 16:07:37.1530 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 102
+2020-06-26 16:07:39.1737 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 174
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 376
+2020-06-26 16:07:45.1577 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 102
+2020-06-26 16:08:30.7172 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 102
+2020-06-26 16:09:05.4134 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 376
+2020-06-26 16:18:44.7898 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 219
+2020-06-26 16:19:20.2011 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 219
+2020-06-26 16:19:35.6607 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 219
+2020-06-26 16:19:49.6729 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 219
+2020-06-26 16:20:53.8149 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 222
+2020-06-26 16:37:41.2690 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValSpares', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 186
+2020-06-26 16:37:41.4484 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 188
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 802
+2020-06-26 16:37:47.5522 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValSpares', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 186
+2020-06-26 16:37:47.6512 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 188
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 802
+2020-06-26 16:38:05.6659 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValSpares', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 186
+2020-06-26 16:38:05.7638 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValSpareInfo.ConvertValSpareTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 308
+   在 BusinessObjects.Manager.ValuationManager.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 188
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValSpares(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 802
+2020-06-26 16:46:51.3117 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 229

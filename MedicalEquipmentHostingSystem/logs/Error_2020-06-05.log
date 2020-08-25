@@ -1,0 +1,437 @@
+2020-06-05 09:28:07.8303 ERROR Exception: 'Invalid column name 'FujiClass2ID'.
+Invalid column name 'FujiClass2ID'.' happened in Class 'ComponentDao', Method 'QueryComponentCountByEquipmentID', Arguments: Int32 = 3, Int32 = -1, String = c.Name, String =  
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ComponentDao.QueryComponentCountByEquipmentID(Int32 EquipmentID, Int32 statusID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ComponentDao.cs:行号 138
+2020-06-05 09:28:07.9395 ERROR Invalid column name 'FujiClass2ID'.
+Invalid column name 'FujiClass2ID'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ComponentDao.QueryComponentCountByEquipmentID(Int32 EquipmentID, Int32 statusID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ComponentDao.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.ComponentController.QueryComponentsByEquipmentID(Int32 equipmentID, Int32 statusID, String filterField, String filterText, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ComponentController.cs:行号 127
+2020-06-05 11:43:28.1626 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractDao', Method 'AddContractComponent', Arguments: Int32 = 34, Int32 = 0, Int32 = 0 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 356
+2020-06-05 11:43:28.2306 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 358
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 174
+2020-06-05 11:43:28.2975 ERROR Invalid object name 'jctContractComponent'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 358
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 187
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-06-05 11:44:44.2729 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractDao', Method 'AddContractComponent', Arguments: Int32 = 35, Int32 = 3, Int32 = 22 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 356
+2020-06-05 11:44:44.3078 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 358
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 174
+2020-06-05 11:44:53.5027 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 135
+2020-06-05 11:45:27.4258 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 135
+2020-06-05 11:45:27.4897 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 187
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-06-05 11:45:44.9762 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractDao', Method 'AddContractComponent', Arguments: Int32 = 36, Int32 = 3, Int32 = 22 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 356
+2020-06-05 11:45:45.0102 ERROR Exception: 'Invalid object name 'jctContractComponent'.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 358
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 174
+2020-06-05 11:45:45.0781 ERROR Invalid object name 'jctContractComponent'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractComponent(Int32 contractID, Int32 equipmentID, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 358
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 187
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-06-05 11:48:27.2802 ERROR Exception: 'Invalid column name 'ConsumableID'.' happened in Class 'ContractDao', Method 'AddContractConsumable', Arguments: Int32 = 37, Int32 = 3, Int32 = 9 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractConsumable(Int32 contractID, Int32 equipmentID, Int32 consumableID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 409
+2020-06-05 11:48:27.3511 ERROR Exception: 'Invalid column name 'ConsumableID'.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractConsumable(Int32 contractID, Int32 equipmentID, Int32 consumableID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 411
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 182
+2020-06-05 11:49:09.9777 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 135
+2020-06-05 11:49:28.9784 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 187
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-06-05 11:51:51.4448 ERROR Exception: 'Invalid column name 'ConsumableID'.' happened in Class 'ContractDao', Method 'AddContractConsumable', Arguments: Int32 = 38, Int32 = 3, Int32 = 9 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractConsumable(Int32 contractID, Int32 equipmentID, Int32 consumableID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 409
+2020-06-05 11:51:51.4757 ERROR Exception: 'Invalid column name 'ConsumableID'.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractConsumable(Int32 contractID, Int32 equipmentID, Int32 consumableID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 411
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 182
+2020-06-05 11:51:51.5467 ERROR Invalid column name 'ConsumableID'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractConsumable(Int32 contractID, Int32 equipmentID, Int32 consumableID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 411
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 187
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-06-05 12:05:32.6545 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ContractDao', Method 'GetContractComponents', Arguments: Int32 = 39, Int32 = 3 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ComponentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ComponentInfo.cs:行号 45
+   在 BusinessObjects.DataAccess.ContractDao.GetContractComponents(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 390
+2020-06-05 12:05:32.7525 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ContractManager', Method 'GetContract', Arguments: Int32 = 39 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ComponentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ComponentInfo.cs:行号 45
+   在 BusinessObjects.DataAccess.ContractDao.GetContractComponents(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 396
+   在 BusinessObjects.Manager.ContractManager.GetContract(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 102
+2020-06-05 12:05:32.8134 ERROR 列“FujiClass2Name”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ComponentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ComponentInfo.cs:行号 45
+   在 BusinessObjects.DataAccess.ContractDao.GetContractComponents(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 396
+   在 BusinessObjects.Manager.ContractManager.GetContract(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 133
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.GetContractByID(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 127
+2020-06-05 12:07:09.5823 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ContractDao', Method 'GetContractComponents', Arguments: Int32 = 39, Int32 = 3 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ComponentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ComponentInfo.cs:行号 45
+   在 BusinessObjects.DataAccess.ContractDao.GetContractComponents(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 390
+2020-06-05 12:07:09.6782 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ContractManager', Method 'GetContract', Arguments: Int32 = 39 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ComponentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ComponentInfo.cs:行号 45
+   在 BusinessObjects.DataAccess.ContractDao.GetContractComponents(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 396
+   在 BusinessObjects.Manager.ContractManager.GetContract(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 102
+2020-06-05 13:10:20.7876 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'GetContract', Arguments: Int32 = 39 
+    在 BusinessObjects.Manager.ContractManager.GetContract(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 111
+2020-06-05 13:11:20.0641 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'GetContract', Arguments: Int32 = 39 
+    在 BusinessObjects.Manager.ContractManager.GetContract(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 111
+2020-06-05 14:35:59.4135 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'EquipmentDao', Method 'QueryEquipments', Arguments: 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.EquipmentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\EquipmentInfo.cs:行号 549
+   在 BusinessObjects.DataAccess.EquipmentDao.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 135
+2020-06-05 14:35:59.5594 ERROR 列“FujiClass2Name”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.EquipmentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\EquipmentInfo.cs:行号 549
+   在 BusinessObjects.DataAccess.EquipmentDao.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 141
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 168
+2020-06-05 14:36:07.0439 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'EquipmentDao', Method 'QueryEquipments', Arguments: 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.EquipmentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\EquipmentInfo.cs:行号 549
+   在 BusinessObjects.DataAccess.EquipmentDao.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 135
+2020-06-05 14:36:07.1109 ERROR 列“FujiClass2Name”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.EquipmentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\EquipmentInfo.cs:行号 549
+   在 BusinessObjects.DataAccess.EquipmentDao.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 141
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 168
+2020-06-05 14:37:11.2422 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'EquipmentDao', Method 'QueryEquipments', Arguments: 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.EquipmentInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\EquipmentInfo.cs:行号 549
+   在 BusinessObjects.DataAccess.EquipmentDao.QueryEquipments(Int32 status, Int32 warrantyStatus, Int32 departmentID, String filterTextName, String filterTextSerialCode, Boolean useStatus, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 135
+2020-06-05 15:49:32.2697 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32] 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 44
+2020-06-05 15:49:32.3446 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 38
+2020-06-05 15:49:32.4076 ERROR Invalid object name 'tblFaultRate'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 44
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 55
+2020-06-05 15:49:37.2195 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32] 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 44
+2020-06-05 15:49:37.2694 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 38
+2020-06-05 15:49:37.3204 ERROR Invalid object name 'tblFaultRate'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 44
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 55
+2020-06-05 15:51:00.0996 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32] 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 44
+2020-06-05 15:51:00.1536 ERROR Exception: 'Invalid object name 'tblFaultRate'.' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 38
+2020-06-05 15:52:08.8052 ERROR Invalid object name 'tblFaultRate'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 47
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 44
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 55

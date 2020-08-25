@@ -1,0 +1,399 @@
+﻿@{
+    ViewBag.Title = "DispatchList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    int admin = BusinessObjects.Domain.UserRole.Admin;
+    int superadmin = BusinessObjects.Domain.UserRole.SuperAdmin;
+}
+
+
+<div id="DispatchResponseVue" v-cloak class="tblDiv">
+    <div><a class="linkFile backPage" href="#" onclick="BackToList()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a></div>
+    <div class="title"><p>服务工单信息</p></div>
+    <br>
+    <div class="tblDiv">
+        <!-- 设备 -->
+        <div class="radiusOnly" v-if="Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+            <table border="1" class="tblDetail" v-if="Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection && Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Inventory" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">设备基本信息</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">系统编号</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.OID}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">资产编号</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.AssetCode}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">名称</th>
+                    <td class="tdReadOnly linkFile cursor" width="289px" v-on:click="btnTimeLine(Dispatch.Request.Equipment.ID)">{{Dispatch.Request.Equipment.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">使用科室</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.Department.Name}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">型号</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.EquipmentCode}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">安装地点</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.InstalSite}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">序列号</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.SerialCode}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">维保状态</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.WarrantyStatus}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">设备厂商</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.Manufacturer.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">服务范围</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Equipment.ContractScope.Name}}</td>
+                </tr>
+            </table>
+            <table class="tblDetail" border="1" v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection || Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inventory" frame="void">
+                <tr>
+                    <td colspan="11" class="tblName">
+                        设备基本信息
+                    </td>
+                </tr>
+                <tr>
+                    <th width="95px">系统编号</th>
+                    <th style="min-width:50px">资产编号</th>
+                    <th>名称</th>
+                    <th>设备型号</th>
+                    <th>序列号</th>
+                    <th style="min-width:70px;">设备厂商</th>
+                    <th style="min-width:70px;">使用科室</th>
+                    <th style="min-width:70px;">安装地点</th>
+                    <th style="min-width:70px;">维保状态</th>
+                    <th style="min-width:70px;">服务范围</th>
+                </tr>
+                <tr v-for="info in Dispatch.Request.Equipments" style="font-size:10px">
+                    <td>{{info.OID}}</td>
+                    <td>{{info.AssetCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;" class="linkFile cursor" v-on:click="btnTimeLine(info.ID)">{{info.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.EquipmentCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.SerialCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.Manufacturer.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.Department.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.InstalSite}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.WarrantyStatus}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.ContractScope.Name}}</td>
+                </tr>
+                <tr v-if="Dispatch.Request.Equipments.length == 0">
+                    <td colspan="8" style="text-align:center">暂无数据</td>
+                </tr>
+            </table>
+        </div>
+        <br v-if="Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others" />
+        <!-- 请求详情信息 -->
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">请求详细信息</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">服务申请编号</th>
+                    <td class="tdReadOnly" colspan="4">{{Dispatch.Request.OID}}</td>                    
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">类型</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.SourceType}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求人</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.RequestUser.Name}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求状态</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.Status.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求日期</th>
+                    <td class="tdReadOnly" width="289px">{{Dispatch.Request.RequestDate}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">主题</th>
+                    <td width="289px" colspan="4" v-if="Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair &&Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain && Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection && Dispatch.Request.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent">
+                        <label class="tdReadOnly" v-if="Dispatch.Request.Equipments.length == 1">{{Dispatch.Request.Equipment.Name}}--{{Dispatch.Request.RequestType.Name}}</label>
+                        <label class="tdReadOnly" v-else-if="Dispatch.Request.Equipments.length == 0">{{Dispatch.Request.RequestType.Name}}</label>
+                        <label class="tdReadOnly" v-else>多设备--{{Dispatch.Request.RequestType.Name}}</label>
+                    </td>
+                    <td width="289px" v-else>
+                        <label class="tdReadOnly" v-if="Dispatch.Request.Equipments.length == 1">{{Dispatch.Request.Equipment.Name}}--{{Dispatch.Request.RequestType.Name}}</label>
+                        <label class="tdReadOnly" v-else-if="Dispatch.Request.Equipments.length == 0">{{Dispatch.Request.RequestType.Name}}</label>
+                        <label class="tdReadOnly" v-else>多设备--{{Dispatch.Request.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px" v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair"><span class="required"></span></th>
+                    <th v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair" width="189px">机器状态</th>
+                    <td v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair" width="289px"><label class="tdReadOnly">{{Dispatch.Request.MachineStatus.Name}}</label></td>
+                    <th class="tdrequired" width="15px" v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain"><span class="required"></span></th>
+                    <th v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain" width="189px">保养类型</th>
+                    <td v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain" width="289px"><label class="tdReadOnly">{{Dispatch.Request.FaultType.Name}}</label></td>
+                    <th class="tdrequired" width="15px" v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection"><span class="required"></span></th>
+                    <th v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection" width="189px">强检原因</th>
+                    <td v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection" width="289px"><label class="tdReadOnly">{{Dispatch.Request.FaultType.Name}}</label></td>
+                    <th class="tdrequired" width="15px" v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent"><span class="required"></span></th>
+                    <th v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent" width="189px">来源</th>
+                    <td v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent" width="289px"><label class="tdReadOnly">{{Dispatch.Request.FaultType.Name}}</label></td>
+                </tr>
+                <tr v-if="Dispatch.Request.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">是否召回</th>
+                    <td colspan="4" class="tdReadOnly">{{Dispatch.Request.IsRecall?"是":"否"}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求来源</th>
+                    <td class="tdReadOnly" colspan="4">{{Dispatch.Request.Source.Name}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">@BusinessObjects.Domain.RequestInfo.RequestTypes.GetRequestDescTdHead(ViewBag.RequestTypeID)</th>
+                    <td class="tdReadOnly" colspan="4">
+                        <label class="tdReadOnly">{{Dispatch.Request.FaultDesc}}</label>
+                    </td>                    
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">处理方式</th>
+                    <td class="tdReadOnly" colspan="4">{{Dispatch.Request.DealType.Name}}</td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <!-- 派工详情信息 -->
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">派工内容</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">派工单编号</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Dispatch.OID}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">紧急程度</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Dispatch.Urgency.Name}}</label>
+                    </td>
+                </tr>
+                <tr v-if="Dispatch.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">派工类型</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Dispatch.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>机器状态</th>
+                    <td>
+                        <label class="tdReadOnly">{{Dispatch.MachineStatus.Name}}</label>
+                    </td>
+                </tr>
+                <tr v-else>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">派工类型</th>
+                    <td width="289px" colspan="4">
+                        <label class="tdReadOnly">{{Dispatch.RequestType.Name}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">工程师姓名</th>
+                    <td><label class="tdReadOnly">{{Dispatch.Engineer.Name}}</label></td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">出发时间</th>
+                    <td><label class="tdReadOnly">{{Dispatch.ScheduleDate}}</label></td>
+                </tr>
+                <tr>
+                    <th class="tdrequired"><span class="required"></span></th>
+                    <th class="tdHead">派工单状态</th>
+                    <td colspan="4"><label class="tdReadOnly">{{Dispatch.Status.Name}}</label></td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">主管备注</th>
+                    <td colspan="4"><label class="tdReadOnly">{{Dispatch.LeaderComments}}</label></td>
+                </tr>
+                <tr v-if="Dispatch.Status.ID >
+                    @BusinessObjects.Domain.DispatchInfo.Statuses.New">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">服务凭证</th>
+                    <td width="289px">
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                        {
+                            <button v-if="Dispatch.DispatchJournal.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Approved" class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchJournalApprove(Dispatch.ID,Dispatch.DispatchJournal.ID,Dispatch.DispatchReport.ID, Dispatch.RequestType.ID)">服务凭证</button>
+                            <button v-if="Dispatch.DispatchJournal.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Pending" class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchJournalApprove(Dispatch.ID,Dispatch.DispatchJournal.ID,Dispatch.DispatchReport.ID, Dispatch.RequestType.ID)">服务凭证</button>
+                        }
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                        {
+                            <button v-if="Dispatch.DispatchJournal.ID == 0 ||Dispatch.DispatchJournal.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.New" class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchJournalDetail(Dispatch.ID,Dispatch.DispatchJournal.ID,Dispatch.DispatchReport.ID, Dispatch.RequestType.ID)">服务凭证</button>
+                            <button v-else class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchJournalDetail(Dispatch.ID,Dispatch.DispatchJournal.ID,Dispatch.DispatchReport.ID, Dispatch.RequestType.ID)">服务凭证</button>
+
+                        }
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperUser)
+                        {
+                            <button v-if="Dispatch.DispatchJournal.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Approved" class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchJournalDetail(Dispatch.ID,Dispatch.DispatchJournal.ID,Dispatch.DispatchReport.ID, Dispatch.RequestType.ID)">服务凭证</button>
+                        }
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">作业报告</th>
+                    <td width="289px">
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                        {
+                            <button v-if="Dispatch.DispatchReport.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Approved" class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchReportDetail(Dispatch.ID,Dispatch.DispatchReport.ID,Dispatch.DispatchJournal.ID, Dispatch.RequestType.ID)">作业报告</button>
+                            <button v-if="Dispatch.DispatchReport.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Pending" class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchReportDetail(Dispatch.ID,Dispatch.DispatchReport.ID,Dispatch.DispatchJournal.ID, Dispatch.RequestType.ID)">作业报告</button>
+                        }
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                        {
+
+                            <button v-if="Dispatch.DispatchReport.ID ==0 || Dispatch.DispatchReport.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.New" class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchReportDetail(Dispatch.ID,Dispatch.DispatchReport.ID,Dispatch.DispatchJournal.ID, Dispatch.RequestType.ID)">作业报告</button>
+                            <button v-else class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchReportDetail(Dispatch.ID,Dispatch.DispatchReport.ID,Dispatch.DispatchJournal.ID, Dispatch.RequestType.ID)">作业报告</button>
+                        }
+                        @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperUser)
+                        {
+                            <button v-if="Dispatch.DispatchReport.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Approved" class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchReportDetail(Dispatch.ID,Dispatch.DispatchReport.ID,Dispatch.DispatchJournal.ID, Dispatch.RequestType.ID)">作业报告</button>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div><br />
+        <!-- 流程信息 -->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" border="1" frame="void">
+                <tbody>
+                    <tr>
+                        <td class="tblName" colspan="3">审批流程</td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th width="189px">流程信息</th>
+                        <td>
+                            <textarea readonly>{{Dispatch.FormatHistory}}</textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br />
+        <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%;width: 800px;">
+            <tr>
+                @if (user.Role.ID == BusinessObjects.Domain.UserRole.Admin)
+                {
+                    <td align="center" v-if="Dispatch.Status.ID == @BusinessObjects.Domain.DispatchInfo.Statuses.New"><button class="btn btn-info" onclick="ResponseDispatch()">开始作业</button></td>
+                }
+                <td align="center"><button class="btn btn-info" onclick="BackToList()">返回</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    $().ready(function () {
+        setTimeout(GetDispatchByID(),100);
+    })
+    //根据派工单id获取派工单信息
+    function GetDispatchByID(){
+        id = '@ViewBag.ID';
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetDispatchByID", "Dispatch")',{dispatchID:id},
+        function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            }else{
+                dispatchResponseVue.Dispatch = response.Data;
+                dispatchResponseVue.Dispatch.ScheduleDate = parseAndFormatJsonDateTime(dispatchResponseVue.Dispatch.ScheduleDate);
+                dispatchResponseVue.Dispatch.Request.Equipment = dispatchResponseVue.Dispatch.Request.Equipments[0];
+                dispatchResponseVue.Dispatch.Request.RequestDate = parseAndFormatJsonDateTime(dispatchResponseVue.Dispatch.Request.RequestDate);
+            }
+        })
+    }
+
+    //响应服务工单
+    function ResponseDispatch() {
+        SetPageWaiting(true)
+        $.post('@Url.Action("ResponseDispatch", "Dispatch")', {
+            dispatchID:dispatchResponseVue.Dispatch.ID,
+            requestID:dispatchResponseVue.Dispatch.Request.ID,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("开始作业成功", "开始作业", function () {
+                    BackToList();
+                });
+            }
+        })
+    }
+
+    function BackToList() {
+        window.location = '@Url.Action("DispatchList", "Dispatch")';
+    }
+    function GoToDispatchJournalDetail(dispatchID, dispatchJournalID, dispatchReportID, requestType) {
+        window.open("@Url.Action("DispatchJournalDetail", "DispatchJournal")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchJournalID: dispatchJournalID, dispatchReportID: dispatchReportID, requestType: requestType }))
+    }
+    function GoToDispatchJournalApprove(dispatchID, dispatchJournalID, dispatchReportID, requestType) {
+        window.open("@Url.Action("DispatchJournalApproveDetail", "DispatchJournal")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchJournalID: dispatchJournalID, dispatchReportID: dispatchReportID, requestType: requestType }))
+    }
+    function GoToDispatchReportDetail(dispatchID, dispatchReportID, dispatchJournalID, requestType) {
+        window.open("@Url.Action("DispatchReportDetail", "DispatchReport")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchReportID: dispatchReportID, dispatchJournalID: dispatchJournalID, requestType: requestType }))
+    }
+    function btnTimeLine(id) {
+        window.open('@Url.Action("EquipmentTimeLine", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' }));
+    }
+</script>
+
+<script>
+    var dispatchResponseVue = new Vue({
+        el: "#DispatchResponseVue",
+        data: {
+            Dispatch:{
+                OID:"0",
+                Request:{
+                    Source: {},
+                    Equipment: {
+                        AssetLevel: {},
+                        Manufacturer: {},
+                        Department:{},
+                        ContractScope:{}
+                    },
+                    Equipments:[],
+                    RequestType: {Name:''},
+                    FaultType:{ID:-1},
+                    RequestUser: {ID: -1},
+                    RequestFile: {
+                        FileName: '',
+                        FileContent:''
+                    },
+                    Status:{ID:1},
+                    Subject: '',
+                    FaultDesc:'',
+                    DealType:{ID:1},
+                    Priority: { ID: 2 },
+                    IsRecall: false,
+                },
+                RequestType: { ID: 1,Name:'' },
+                Urgency: { ID: 1,Name:'' },
+                MachineStatuses:{ID :1,Name:''},
+                Engineer:{ ID:0 ,Name:''},
+                LeaderComments:"",
+                MachineStatus:{ID:0,Name:''},
+                Status:{},
+            }
+        }
+    })
+</script>

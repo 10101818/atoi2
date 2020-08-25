@@ -1,0 +1,11 @@
+2020-04-27 13:51:47.7580 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'RequestCount', Arguments: Int32 = 3, Int32 = 1, Int32 = 0, Int32 = 0, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.RequestCount(Int32 type, Int32 requestType, Int32 status, Int32 year, Int32 month, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 962
+2020-04-27 13:51:55.6743 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.RequestCount(Int32 type, Int32 requestType, Int32 status, Int32 year, Int32 month, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 970
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.ReportRequestCount(Int32 type, Int32 requestType, Int32 status, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 2054

@@ -1,0 +1,469 @@
+2020-08-11 08:34:48.1335 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValComponent'. Cannot insert duplicate key in object 'dbo.tblValComponent'. The duplicate key value is (1, 3, 84, 25).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitComponents', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 625
+2020-08-11 08:34:48.3195 ERROR Violation of PRIMARY KEY constraint 'PK_tblValComponent'. Cannot insert duplicate key in object 'dbo.tblValComponent'. The duplicate key value is (1, 3, 84, 25).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 627
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.InitValComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 549
+2020-08-11 08:34:56.6985 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValComponent'. Cannot insert duplicate key in object 'dbo.tblValComponent'. The duplicate key value is (1, 3, 84, 25).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitComponents', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 625
+2020-08-11 08:34:56.7425 ERROR Violation of PRIMARY KEY constraint 'PK_tblValComponent'. Cannot insert duplicate key in object 'dbo.tblValComponent'. The duplicate key value is (1, 3, 84, 25).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 627
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.InitValComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 549
+2020-08-11 08:35:23.4901 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValComponent'. Cannot insert duplicate key in object 'dbo.tblValComponent'. The duplicate key value is (1, 3, 84, 25).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitComponents', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitComponents(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 625
+2020-08-11 08:47:22.8484 ERROR Exception: 'The parameterized query '(@UserID int,@InSystem bit,@EquipmentID int,@Year int,@Month int' expects the parameter '@UserID', which was not supplied.' happened in Class 'ValuationDao', Method 'InsertValEquipmentOutput', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.InsertValEquipmentOutput(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1019
+2020-08-11 08:47:22.9123 ERROR Exception: 'The parameterized query '(@UserID int,@InSystem bit,@EquipmentID int,@Year int,@Month int' expects the parameter '@UserID', which was not supplied.' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.InsertValEquipmentOutput(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1023
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 290
+2020-08-11 09:02:06.1065 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 337
+2020-08-11 09:02:06.1805 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 343
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-11 09:02:33.8376 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 337
+2020-08-11 09:02:33.9016 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 343
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-11 09:04:25.7010 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 337
+2020-08-11 09:04:25.7510 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 343
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-11 09:04:25.7930 ERROR 列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 343
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 296
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-11 09:04:41.0886 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 337
+2020-08-11 09:04:41.1495 ERROR Exception: '列“UserID, Insystem, EquipmentID, Year”被约束为是唯一的。值“25, True, 3, 2020”已存在。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.UniqueConstraint.CheckConstraint(DataRow row, DataRowAction action)
+   在 System.Data.DataTable.RaiseRowChanging(DataRowChangeEventArgs args, DataRow eRow, DataRowAction eAction, Boolean fireEvent)
+   在 System.Data.DataTable.SetNewRecordWorker(DataRow row, Int32 proposedRecord, DataRowAction action, Boolean isInMerge, Boolean suppressEnsurePropertyChanged, Int32 position, Boolean fireEvent, Exception& deferredException)
+   在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(Object[] values)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 343
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-11 09:20:42.9061 ERROR Exception: 'Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationDao', Method 'GetValEqptContractAmount', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 973
+2020-08-11 09:20:43.0720 ERROR Exception: 'Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 975
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 695
+2020-08-11 09:20:43.1170 ERROR Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 975
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 930
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 855
+2020-08-11 09:23:42.9103 ERROR Exception: 'Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationDao', Method 'GetValEqptContractAmount', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 973
+2020-08-11 09:23:43.0002 ERROR Exception: 'Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 975
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 695
+2020-08-11 09:26:37.9120 ERROR Column 'tblValEqptOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command)
+   在 BusinessObjects.DataAccess.ValuationDao.GetValEqptContractAmount(Int32 userID)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 855
+2020-08-11 09:29:56.8055 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'ValuationDao', Method 'GetSpareAmount', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetDouble(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 110
+   在 BusinessObjects.DataAccess.ValuationDao.GetSpareAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 952
+2020-08-11 09:29:56.9444 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetDouble(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 110
+   在 BusinessObjects.DataAccess.ValuationDao.GetSpareAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 954
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 717
+2020-08-11 09:30:22.5957 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'ValuationDao', Method 'GetSpareAmount', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetDouble(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 110
+   在 BusinessObjects.DataAccess.ValuationDao.GetSpareAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 952
+2020-08-11 09:30:22.6607 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetDouble(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 110
+   在 BusinessObjects.DataAccess.ValuationDao.GetSpareAmount(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 954
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 717
+2020-08-11 09:32:30.8452 ERROR Exception: 'Column 'tblValConsumableOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationDao', Method 'GetValConsumableAmount', Arguments: Int32 = 25, Int32 = 1 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValConsumableAmount(Int32 userID, Int32 consumableType) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1064
+2020-08-11 09:32:30.9291 ERROR Exception: 'Column 'tblValConsumableOutput.UserID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.ValuationDao.GetValConsumableAmount(Int32 userID, Int32 consumableType) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1066
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 733
+2020-08-11 10:13:45.7949 ERROR Exception: 'An expression of non-boolean type specified in a context where a condition is expected, near '@UserID'.' happened in Class 'ValuationDao', Method 'GetControl', Arguments: Int32 = 27 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataRow(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 86
+   在 BusinessObjects.DataAccess.ValuationDao.GetControl(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 82
+2020-08-11 10:13:46.0391 ERROR Exception: 'An expression of non-boolean type specified in a context where a condition is expected, near '@UserID'.' happened in Class 'ValuationManager', Method 'GetValControlInfo', Arguments: Int32 = 27 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataRow(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 86
+   在 BusinessObjects.DataAccess.ValuationDao.GetControl(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 86
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 50
+2020-08-11 11:34:18.7919 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'PassDispatchReportInternal', Arguments: DispatchReportInfo = BusinessObjects.Domain.DispatchReportInfo, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 663
+2020-08-11 11:34:18.9632 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'UpdateDispatchStatusByJournalAndReport', Arguments: Int32 = 8390, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 679
+   在 BusinessObjects.Manager.DispatchManager.UpdateDispatchStatusByJournalAndReport(Int32 dispatchID, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 209
+2020-08-11 11:34:19.0222 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'PassDispatchReport', Arguments: DispatchReportInfo = BusinessObjects.Domain.DispatchReportInfo, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 679
+   在 BusinessObjects.Manager.DispatchManager.UpdateDispatchStatusByJournalAndReport(Int32 dispatchID, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 252
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReport(DispatchReportInfo info, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 583
+2020-08-11 11:34:19.0931 ERROR 该行已经属于此表。 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 679
+   在 BusinessObjects.Manager.DispatchManager.UpdateDispatchStatusByJournalAndReport(Int32 dispatchID, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 252
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReport(DispatchReportInfo info, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 584
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.PassDispatchReport(DispatchReportInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 272
+2020-08-11 11:35:04.4937 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'PassDispatchReportInternal', Arguments: DispatchReportInfo = BusinessObjects.Domain.DispatchReportInfo, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 663
+2020-08-11 11:35:04.5506 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'UpdateDispatchStatusByJournalAndReport', Arguments: Int32 = 8390, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 679
+   在 BusinessObjects.Manager.DispatchManager.UpdateDispatchStatusByJournalAndReport(Int32 dispatchID, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 209
+2020-08-11 11:35:04.6206 ERROR Exception: '该行已经属于此表。' happened in Class 'DispatchManager', Method 'PassDispatchReport', Arguments: DispatchReportInfo = BusinessObjects.Domain.DispatchReportInfo, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   在 System.Data.DataRowCollection.Add(DataRow row)
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReportInternal(DispatchReportInfo dispatchReportInfo, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 679
+   在 BusinessObjects.Manager.DispatchManager.UpdateDispatchStatusByJournalAndReport(Int32 dispatchID, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 252
+   在 BusinessObjects.Manager.DispatchManager.PassDispatchReport(DispatchReportInfo info, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\DispatchManager.cs:行号 583
+2020-08-11 14:21:49.7639 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 409
+2020-08-11 14:21:49.9802 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 425
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-11 14:22:10.9026 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 409
+2020-08-11 14:22:16.0856 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 425
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-11 15:09:48.4270 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 29 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 427
+2020-08-11 15:09:48.5659 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 432
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-11 15:12:01.7523 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 29 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 427

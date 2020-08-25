@@ -1,0 +1,344 @@
+2020-08-13 08:44:33.0496 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 39).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitEquipments', Arguments: Int32 = 39 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 169
+2020-08-13 08:44:33.2040 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 39).
+The statement has been terminated.' happened in Class 'ValuationManager', Method 'GetValControlInfo', Arguments: Int32 = 39 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 171
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 63
+2020-08-13 08:45:50.3019 ERROR Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 39).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 171
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 70
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 154
+2020-08-13 08:59:04.0709 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 39).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitEquipments', Arguments: Int32 = 39 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID)
+2020-08-13 08:59:04.1129 ERROR Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 39).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID)
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 154
+2020-08-13 09:00:06.9401 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValControl'. Cannot insert duplicate key in object 'dbo.tblValControl'. The duplicate key value is (CTL, 0).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'AddControl', Arguments: ValControlInfo = BusinessObjects.Domain.ValControlInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.ValuationDao.AddControl(ValControlInfo info)
+2020-08-13 09:14:59.9492 ERROR Exception: 'Invalid column name 'UserID'.' happened in Class 'ValuationDao', Method 'UpdateControlStatus', Arguments: Int32 = 39 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateControlStatus(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 167
+2020-08-13 09:15:00.0403 ERROR Exception: 'Invalid column name 'UserID'.' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 39 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateControlStatus(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 169
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 321
+2020-08-13 09:15:00.0932 ERROR Invalid column name 'UserID'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateControlStatus(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 169
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 322
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 855
+2020-08-13 16:08:50.3839 ERROR Exception: 'Incorrect syntax near '0'.' happened in Class 'EquipmentDao', Method 'GetComponentByEpqtID', Arguments: Int32 = 81 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 643
+2020-08-13 16:08:50.6058 ERROR Exception: 'Incorrect syntax near '0'.' happened in Class 'EquipmentManager', Method 'GetEquipment', Arguments: Int32 = 81 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 645
+   在 BusinessObjects.Manager.EquipmentManager.GetEquipment(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 43
+2020-08-13 16:08:50.6657 ERROR Incorrect syntax near '0'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 645
+   在 BusinessObjects.Manager.EquipmentManager.GetEquipment(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 48
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.GetEquipmentByID(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 314
+2020-08-13 16:08:58.8817 ERROR Exception: 'Incorrect syntax near '0'.' happened in Class 'EquipmentDao', Method 'GetComponentByEpqtID', Arguments: Int32 = 81 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 643
+2020-08-13 16:08:59.0935 ERROR Exception: 'Incorrect syntax near '0'.' happened in Class 'EquipmentManager', Method 'GetEquipment', Arguments: Int32 = 81 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 645
+   在 BusinessObjects.Manager.EquipmentManager.GetEquipment(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 43
+2020-08-13 16:08:59.2364 ERROR Incorrect syntax near '0'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 325
+   在 BusinessObjects.DataAccess.EquipmentDao.GetComponentByEpqtID(Int32 eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\EquipmentDao.cs:行号 645
+   在 BusinessObjects.Manager.EquipmentManager.GetEquipment(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 48
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.GetEquipmentByID(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 314
+2020-08-13 16:20:52.0963 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:20:52.1752 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:20:52.2192 ERROR A regression of the requested order requires at least 2 samples. Only 1 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 413
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 522
+2020-08-13 16:20:57.7407 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:20:57.8067 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:21:38.6862 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:21:38.7571 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:23:02.5191 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:23:02.5901 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:23:33.0351 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:23:33.1151 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:24:11.3521 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 19, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:24:11.4001 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 20 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:24:11.4450 ERROR A regression of the requested order requires at least 2 samples. Only 1 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 413
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 522
+2020-08-13 16:24:25.7036 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 29, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:24:25.7905 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 30 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:24:47.6435 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 29, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 429
+2020-08-13 16:24:47.6925 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 30 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:24:47.7425 ERROR A regression of the requested order requires at least 2 samples. Only 1 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 449
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 413
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 522
+2020-08-13 16:29:00.3032 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, ObjectType = Repair, Int32 = 29, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 434
+2020-08-13 16:29:00.3752 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'FujiClassManager', Method 'GetRepairWebData', Arguments: Int32 = -1, Int32 = 30 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 450
+   在 BusinessObjects.Manager.FujiClassManager.GetRepairWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 400
+2020-08-13 16:42:10.7786 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 59, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 431
+2020-08-13 16:42:10.9065 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 60 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 451
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:43:25.7744 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 110, ObjectType = Component, Int32 = 59, Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32], Dictionary`2 = System.Collections.Generic.Dictionary`2[System.Int32,System.Int32] 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 431
+2020-08-13 16:43:25.8524 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetComponentWebData', Arguments: Int32 = -1, Int32 = 110, Int32 = 60 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 451
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 410
+2020-08-13 16:43:41.0057 ERROR A regression of the requested order requires at least 2 samples. Only 1 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 objectID, ObjectType objectType, Int32 months, Dictionary`2 eqptContractCount, Dictionary`2 repairCount) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 451
+   在 BusinessObjects.Manager.FujiClassManager.GetComponentWebData(Int32 fujiClass2ID, Int32 componentID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 413
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months, Int32 componentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 522

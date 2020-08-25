@@ -1,0 +1,198 @@
+﻿@{
+    List<BusinessObjects.Domain.KeyValueInfo> SupplierType = BusinessObjects.Manager.LookupManager.GetSupplierType();
+}
+<div id="supplierVue" style="display:none" class="ui-dialog-content ui-widget-content">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                类型:
+                                <select v-on:change="QuerySupplierList()" v-model="Filter.typeID">
+                                    <option value="0">全部</option>
+                                    @foreach (var item in SupplierType)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.filterField">
+                                    <option value="s.ID">系统编号</option>
+                                    <option value="s.Name">供应商名称</option>
+                                    <option value="s.Address">地址</option>
+                                    <option value="s.Contact">联系人</option>
+                                    <option value="s.ContactMobile">联系人电话</option>
+                                </select>
+                                <input type="text" class="shortInput " id="txtQuery" maxlength="50" v-model.trim="Filter.filterText" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" v-on:click="QuerySupplierList()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" width="120px">系统编号</th>
+                <th scope="col">供应商名称</th>
+                <th scope="col" width="100px">类型</th>
+                <th scope="col" width="100px">省份</th>
+                <th scope="col" width="200px">地址</th>
+                <th scope="col" width="100px">联系人</th>
+                <th scope="col" width="100px">联系人电话</th>
+                <th scope="col" width="50px" style="text-align:center;">选中</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="supplier in SupplierList">
+                <td scope="row">{{supplier.OID}}</td>
+                <td style="white-space:normal;word-break:break-all;">{{supplier.Name}}</td>
+                <td>{{supplier.SupplierType.Name}}</td>
+                <td>{{supplier.Province}}</td>
+                <td style="white-space:normal;word-break:break-all;">{{supplier.Address}}</td>
+                <td>{{supplier.Contact}}</td>
+                <td>{{supplier.ContactMobile}}</td>
+                <td style="text-align:center;"><input type="radio" name="supplier" v-bind:value="supplier.ID" /></td>
+            </tr>
+            <tr v-if="!SupplierList.length">
+                <td colspan="13" class="tdListCenter">暂无数据</td>
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <div class="pagenationDiv" id="pagerSupplierDiv">
+                        <div id="pagerSupplier" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="13" align="center" class="required supplierMSG" style="border:0;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    $(function () {
+        InitSupplierDialog();
+    })
+</script>
+<script>
+    var supplierVue = new Vue({
+        el: "#supplierVue",
+        data: {
+            ProvinceList: [],
+            SelectedSupplier: {
+                SupplierType: {},
+                IsActive: true,
+            },
+            SupplierList: [],
+            Filter: {
+                status: -1,
+                filterField: 's.ID',
+                filterText: '',
+                currentPage: 1,
+                pageSize:10,
+                typeID: 0,
+                sortField: 's.ID',
+                sortDirection: true,
+            },
+        },
+        method: {
+            callback: function () { }
+        }
+    })
+</script>
+<script>
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            QuerySupplierList();
+    }
+
+    function RefreshSupplier() {
+        $(".supplierMSG").html("");
+        supplierVue.SelectedSupplier = {
+            SupplierType: {},
+            IsActive: true,
+        }
+        supplierVue.Filter = {
+            status: 1,
+            filterField: 's.ID',
+            filterText: '',
+            currentPage: 1,
+            pageSize:10,
+            typeID: 0,
+            sortField: 's.ID',
+            sortDirection: true,
+        }
+    }
+
+    function InitSupplierDialog() {
+        RefreshSupplier()
+        var supplierDialog = $("#supplierVue").dialog({
+            autoOpen: false,
+            height: 715,
+            width: 1250,
+            modal: true,
+            stack: false,
+            resizable: false,
+            buttons: {
+                "确定": function () { SaveSupplier(); },
+                "关闭": function () { supplierDialog.dialog("close"); }
+            }
+        })
+    }
+
+    function PageClickSupplier(pageclickednumber) {
+        supplierVue.Filter.currentPage = pageclickednumber;
+        QuerySupplierList();
+    }
+
+    function changeCurNum_pagerSupplier() {
+        supplierVue.Filter.pageSize = Number($('#supplierVue #curNum option:selected').val());//选中的值
+        QuerySupplierList();
+    }
+
+    function OpenSupplierSelection(callback) {
+        RefreshSupplier();
+        $("#supplierVue").dialog({ title: "选择供应商" });
+        $("#supplierVue").dialog("open");
+        supplierVue.callback = callback
+        QuerySupplierList();
+    }
+
+    function SaveSupplier() {
+        $(".supplierMSG").html("")
+        var supplierID = $(":radio[name='supplier']:checked").val()
+        if (supplierID == null) {
+            $(".supplierMSG").html("*请选择供应商")
+            return;
+        }
+        $.each(supplierVue.SupplierList, function (index, item) {
+            if (item.ID == supplierID)
+                supplierVue.SelectedSupplier = item;
+        })
+        supplierVue.callback(supplierVue.SelectedSupplier);
+        $("#supplierVue").dialog("close");
+    }
+
+    function QuerySupplierList() {
+        $(":radio[name='supplier']:checked").attr("checked", false);
+        SetPageWaiting(true);
+        $.post('@Url.Action("QuerySupplierList", "Supplier")', supplierVue.Filter,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    supplierVue.SupplierList = response.Data;
+                    supplierVue.Filter.currentPage = SetTotalPage4Pager(supplierVue.Filter.currentPage, response.TotalPages, "pagerSupplier", PageClickSupplier);
+                    $("#supplierVue #curNum option[value='" + supplierVue.Filter.pageSize + "']").prop("selected", true);
+                }
+            })
+    }
+</script>

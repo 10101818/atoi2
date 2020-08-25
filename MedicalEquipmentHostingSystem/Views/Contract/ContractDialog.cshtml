@@ -1,0 +1,466 @@
+﻿
+@{
+}
+
+<!--新增零件-->
+<div class="ui-dialog-content ui-widget-content" id="AddComponent" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>关联设备</td>
+            <td>
+                <select v-model="Equipment" style="width:200px;" @@change="ChangeComponentByEquipment()">
+                    <option v-for="equipment in EquipmentList" v-bind:value="equipment">{{equipment.Name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="15px"><span class="required"></span></td>
+            <td>设备系统编号</td>
+            <td>{{Equipment == undefined ? "" : Equipment.OID}}</td>
+        </tr>
+        <tr>
+            <td width="15px"><span class="required"></span></td>
+            <td>设备资产编号</td>
+            <td>{{Equipment == undefined ? "" : Equipment.AssetCode}}</td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>零件</td>
+            <td>
+                <input type="text" style="width:200px;" readonly v-model="Infos.map(function(info){return info.Component.Name}).join(';')"  onclick="OpenSelectComponent()"/>
+                <img style="vertical-align: middle;" class="icon-sm cursor" onclick="OpenSelectComponent()" src="~/Content/img/find.png" alt="">
+            </td>
+        </tr>
+    </table>
+</div>
+<!--新增耗材-->
+<div class="ui-dialog-content ui-widget-content" id="AddConsumable" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>关联设备</td>
+            <td>
+                <select v-model="Equipment" style="width:200px;"  @@change="ChangeConsumableByEquipment()">
+                    <option v-for="equipment in EquipmentList" v-bind:value="equipment">{{equipment.Name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="15px"><span class="required"></span></td>
+            <td>设备系统编号</td>
+            <td>{{Equipment == undefined ? "" : Equipment.OID}}</td>
+        </tr>
+        <tr>
+            <td width="15px"><span class="required"></span></td>
+            <td>设备资产编号</td>
+            <td>{{Equipment == undefined ? "" : Equipment.AssetCode}}</td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>耗材</td>
+            <td>
+                <input style="width:200px" type="text" readonly v-model="Infos.map(function(info){return info.Consumable.Name}).join(';')"  onclick="OpenSelectConsumable()"/>
+                <img style="vertical-align: middle;" class="icon-sm cursor" onclick="OpenSelectConsumable()" src="~/Content/img/find.png" alt="">
+            </td>
+        </tr>
+    </table>
+</div>
+<!--选择零件-->
+<div class="ui-dialog-content ui-widget-content" id="SelectComponent" tabindex="-1" style="display:none;">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.Name">简称</option>
+                                    <option value="c.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="100" onkeydown="DoQueryComponent()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" onclick="GetComponentByFujiClass2()" alt=""/>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">简称</th>
+                <th style="min-width:100px;">描述</th>
+                <th style="min-width:70px;">类型</th>
+                <th style="min-width:110px;">标准单价（元）</th>
+                <th style="min-width:95px;">是否参与估值</th>
+                <th style="min-width:100px;">标准使用量</th>
+                <th style="min-width:40px;">选中</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ComponentList.length == 0">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="component in ComponentList" v-else>
+                <td>{{component.Name}}</td>
+                <td>{{component.Description}}</td>
+                <td>{{component.Type.Name}}</td>
+                <td>{{component.StdPrice}}</td>
+                <td>{{component.IsIncluded ? '是' : '否'}}</td>
+                <td>{{component.Usage}}</td>
+                <td class="tdListCenter"><input type="checkbox" name="component" v-model="component.Checked"/></td>
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <div class="pagenationDiv" id="pagerComponentDiv">
+                        <div id="pagerComponent"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+</table>
+</div>
+<!--选择耗材-->
+<div class="ui-dialog-content ui-widget-content" id="SelectConsumable" tabindex="-1" style="display:none;">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.Name">简称</option>
+                                    <option value="c.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQueryConsumable()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" onclick="GetConsumableByFujiClass2()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>                
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">简称</th>
+                <th style="min-width:100px;">描述</th>
+                <th style="min-width:80px;">类型</th>
+                <th style="min-width:110px;">标准单价(元)</th>
+                <th style="min-width:95px;">是否参与估值</th>
+                <th style="min-width:120px;">更换频率(次/年)</th>
+                <th style="min-width:150px;">单次保养耗材成本(元)</th>
+                <th style="min-width:40px;">选中</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ConsumableList.length == 0">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="consumable in ConsumableList" v-else>
+                <td style="white-space:normal;">{{consumable.Name}}</td>
+                <td style="white-space:normal;">{{consumable.Description}}</td>
+                <td>{{consumable.Type.Name}}</td>
+                <td>{{consumable.StdPrice}}</td>
+                <td>{{consumable.IsIncluded ? '是' : '否'}}</td>
+                <td>{{consumable.ReplaceTimes}}</td>
+                <td>{{consumable.CostPer}}</td>
+                <td class="tdListCenter"><input type="checkbox" name="consumable" v-model="consumable.Checked" /></td>
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <div class="pagenationDiv" id="pagerConsumableDiv">
+                        <div id="pagerConsumable"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var AddComponentVue = new Vue({
+        el: "#AddComponent",
+        data: {
+            EquipmentList: [],
+            Equipment: { },
+            Infos:[],
+        }
+    })
+
+    var AddConsumableVue = new Vue({
+        el: "#AddConsumable",
+        data: {
+            EquipmentList: [],
+            Equipment: {},
+            Infos:[],
+        }
+    })
+    var SelectComponentVue = new Vue({
+        el: "#SelectComponent",
+        data: {
+            ComponentList: [],
+            Filter: {
+                StatusID: -1,
+                FilterField: "c.Name",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+            }
+
+        }
+    })
+    var SelectConsumableVue = new Vue({
+        el: "#SelectConsumable",
+        data: {
+            ConsumableList: [],
+            Filter: {
+                StatusID: -1,
+                FilterField: "c.Name",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+            }
+        }
+    })
+</script>
+<script>
+    function DoQueryComponent(){
+        if (event.keyCode == 13)// Entry event
+            GetComponentByFujiClass2();
+    }
+    function DoQueryConsumable() {
+        if (event.keyCode == 13)// Entry event
+            GetConsumableByFujiClass2();
+    }
+
+</script>
+<script>
+    //规定弹窗的格式
+    function InitDialog() {
+        $("#AddComponent").dialog({
+            autoOpen: false,
+            height: 350,
+            width: 500,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveComponent(); },
+                "关闭": function () { $("#AddComponent").dialog("close"); }
+            }
+        });
+
+        $("#AddConsumable").dialog({
+            autoOpen: false,
+            height: 350,
+            width: 500,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveConsumable(); },
+                "关闭": function () { $("#AddConsumable").dialog("close"); }
+            }
+        });
+
+        $("#SelectComponent").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 1000,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SelectedComponent(); },
+                "关闭": function () { $("#SelectComponent").dialog("close"); }
+            }
+        })
+
+        $("#SelectConsumable").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 1000,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SelectedConsumable(); },
+                "关闭": function () { $("#SelectConsumable").dialog("close"); }
+            }
+        })
+    }
+    //格式化弹窗中的数据
+    function InitAddDialog(vue) {
+        $("label.required").html("");
+        vue.Infos = []
+        vue.Equipment = {}
+    }
+    function InitSelectDialog(vue) {
+        vue.Filter = {
+            StatusID: -1,
+            FilterField: "c.Name",
+            FilterText: "",
+        }
+    }
+    //打开添加弹窗
+    function OpenAddComponent() {
+        InitAddDialog(AddComponentVue);
+        AddComponentVue.EquipmentList = contractDetailVue.Contract.Equipments;
+        $("#AddComponent").dialog({ title: "新增零件" });
+        $("#AddComponent").dialog("open");
+    }
+    function OpenAddConsumable() {
+        InitAddDialog(AddConsumableVue);
+        AddConsumableVue.EquipmentList = contractDetailVue.Contract.Equipments;
+        $("#AddConsumable").dialog({ title: "新增耗材" });
+        $("#AddConsumable").dialog("open");
+    }
+    function OpenSelectComponent() {
+        if (!AddComponentVue.Equipment || !AddComponentVue.Equipment.ID)
+            jAlert("请选择设备", "提示", function () {  })
+        else {
+            InitSelectDialog(SelectComponentVue);
+            GetComponentByFujiClass2();
+            $("#SelectComponent").dialog({ title: "添加零件" });
+            $("#SelectComponent").dialog("open");
+        }
+    }
+    function OpenSelectConsumable() {
+        if (!AddConsumableVue.Equipment || !AddConsumableVue.Equipment.ID)
+            jAlert("请选择设备", "提示", function () {  })
+        else {
+            InitSelectDialog(SelectConsumableVue);
+            GetConsumableByFujiClass2();
+            $("#SelectConsumable").dialog({ title: "添加耗材" });
+            $("#SelectConsumable").dialog("open");
+        }
+    }
+</script>
+<!--component-->
+<script>
+    function ChangeComponentByEquipment(){
+        (AddComponentVue.Equipment && AddComponentVue.Equipment.ID) &&(
+            AddComponentVue.Infos = contractDetailVue.Contract.Components.filter(function(component){return component.Equipment.ID == AddComponentVue.Equipment.ID})||[]
+        )
+    }
+    function GetComponentByFujiClass2()
+    {
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryComponentsByFujiClass2ID", "Component")', {
+            fujiClass2ID: AddComponentVue.Equipment.FujiClass2.ID,
+            filterField: SelectComponentVue.Filter.FilterField,
+            filterText: SelectComponentVue.Filter.FilterText,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                SelectComponentVue.ComponentList = response.Data;
+                AddComponentVue.Infos.forEach(function(info){
+                    let index = SelectComponentVue.ComponentList.findIndex(function(component){return component.ID == info.Component.ID})
+                    index!=-1 && (SelectComponentVue.ComponentList[index].Checked=true)
+                })
+            }
+        })
+    }
+
+    function SelectedComponent() { 
+        let components = SelectComponentVue.ComponentList.filter(function(component){return component.Checked == true})
+        if(components == null || components.length==0)
+        {
+            jAlert("请选择零件", "提示")
+        }else{
+            AddComponentVue.Infos = components.map(function(component){
+                return {Component:JSON.parse(JSON.stringify(component)),Equipment:AddComponentVue.Equipment,ContractID:contractDetailVue.Contract.ID}
+            })
+            $("#SelectComponent").dialog("close")
+        }        
+    }
+
+    function SaveComponent() {
+        if (!AddComponentVue.Infos || !AddComponentVue.Infos.length)
+        {
+            jAlert("请选择零件", "提示");
+        } else { 
+            //  exclude
+            contractDetailVue.Contract.Components.filter(function(component){return component.Equipment.ID == AddComponentVue.Equipment.ID}).forEach(function(component){
+                let index = AddComponentVue.Infos.findIndex(function(info){return component.Component.ID == info.Component.ID});
+                (index ==-1) && contractDetailVue.Contract.Components.splice(contractDetailVue.Contract.Components.indexOf(component),1)
+            })
+            // include
+            AddComponentVue.Infos.forEach(function(info){
+                let index= contractDetailVue.Contract.Components.findIndex(function(component){return component.Component.ID == info.Component.ID && component.Equipment.ID == AddComponentVue.Equipment.ID}); 
+                (index ==-1) && contractDetailVue.Contract.Components.push(info)
+            })
+            $("#AddComponent").dialog("close");
+        }
+    }
+    
+</script>
+<!--consumable-->
+<script>
+    function ChangeConsumableByEquipment(){
+        (AddConsumableVue.Equipment && AddConsumableVue.Equipment.ID) &&(
+            AddConsumableVue.Infos = contractDetailVue.Contract.Consumables.filter(function(consumable){return consumable.Equipment.ID == AddConsumableVue.Equipment.ID})||[]
+        )
+    }
+    
+    function GetConsumableByFujiClass2() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryConsumablesByFujiClass2ID", "Consumable")', {
+            fujiClass2ID: AddConsumableVue.Equipment.FujiClass2.ID,
+            filterField: SelectConsumableVue.Filter.FilterField,
+            filterText: SelectConsumableVue.Filter.FilterText,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                SelectConsumableVue.ConsumableList = response.Data;
+                AddConsumableVue.Infos.forEach(function(info){
+                    let index = SelectConsumableVue.ConsumableList.findIndex(function(consumable){return consumable.ID == info.Consumable.ID})
+                    index!=-1 && (SelectConsumableVue.ConsumableList[index].Checked=true)
+                })
+            }
+        })
+    }
+
+    function SelectedConsumable() {
+        let consumables = SelectConsumableVue.ConsumableList.filter(function(consumable){return consumable.Checked == true})
+        if(consumables == null || consumables.length==0)
+        {
+            jAlert("请选择耗材", "提示")
+        }else{
+            AddConsumableVue.Infos = consumables.map(function(consumable){
+                return {Consumable:JSON.parse(JSON.stringify(consumable)),Equipment:AddConsumableVue.Equipment,ContractID:contractDetailVue.Contract.ID}
+            })
+            $("#SelectConsumable").dialog("close")
+        }  
+    }
+
+    function SaveConsumable() {
+        if (!AddConsumableVue.Infos || !AddConsumableVue.Infos.length)
+        {
+            jAlert("请选择耗材", "提示");
+        } else { 
+            //  exclude
+            contractDetailVue.Contract.Consumables.filter(function(consumable){return consumable.Equipment.ID == AddConsumableVue.Equipment.ID}).forEach(function(consumable){
+                let index = AddConsumableVue.Infos.findIndex(function(info){return consumable.Consumable.ID == info.Consumable.ID});
+                (index ==-1) && contractDetailVue.Contract.Consumables.splice(contractDetailVue.Contract.Consumables.indexOf(consumable),1)
+            })
+            //  include
+            AddConsumableVue.Infos.forEach(function(info){
+                let index= contractDetailVue.Contract.Consumables.findIndex(function(consumable){return consumable.Consumable.ID == info.Consumable.ID && consumable.Equipment.ID == AddConsumableVue.Equipment.ID}); 
+                (index ==-1) && contractDetailVue.Contract.Consumables.push(info)
+            })
+            $("#AddConsumable").dialog("close");
+        }
+    }
+</script>
+

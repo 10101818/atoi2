@@ -1,0 +1,67 @@
+2020-08-18 10:20:09.0446 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:20:09.1817 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:20:14.7457 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-18 10:21:07.7761 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:21:07.8217 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:21:11.4101 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-18 10:21:51.1564 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:21:51.2044 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:21:54.7990 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-18 10:22:52.1330 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:22:52.2025 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:24:14.0866 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:24:14.1555 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:25:54.5430 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-18 10:26:25.0096 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-18 10:26:25.0546 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-18 10:26:29.5777 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869

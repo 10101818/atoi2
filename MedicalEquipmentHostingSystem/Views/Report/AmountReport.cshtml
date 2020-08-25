@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = ViewBag.ActionName;
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> dimecsion = BusinessObjects.Domain.ReportDimension.GetDimensionList();
+
+}
+<div id="EquipmentAmountReport">
+    <div style="width:1400px;margin:auto;text-align:left;padding-bottom:1%;">
+        <a class="linkFile backPage" href="@Url.Action(@ViewBag.ActionName, "Report")">
+            &lt; &lt; @BusinessObjects.Domain.Constants.BACKLIST
+        </a>
+    </div>
+    <div class="card border-secondary bg-light tblDiv" style="width:1400px;">
+        <div class="card-header title">
+            <p style="padding-bottom:0;margin:0 auto;">@ViewBag.ReportName</p>
+        </div>
+        <div class="card-body" style="height:35px;">
+            <div class="justify-content-start">
+                <div class="form-row justify-content-start">
+                    <label>维度 </label>
+                    <div style="width:140px;padding:0 5px;">
+                        <select id="type" onchange="changeType(this[selectedIndex])" v-model="searchType.ID">
+                            @foreach (var temp in dimecsion)
+                            {
+                                <option value="@temp.ID">@temp.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div v-show="searchType.ID == @BusinessObjects.Domain.ReportDimension.AcceptanceMonth" id="year" class="form-row justify-content-start" style="display:none;">
+                        <label>年 </label>
+                        <div style="padding:0 5px;">
+                            <select id="myYear" v-on:change="ReportEquipmentCount()" v-model="Year" style="width:90px" /></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float:right;margin-top:-30px;">
+                <table class="toolsTable" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="Print()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin-top:20px;display:-webkit-inline-box">
+            <div style="width:1000px;">
+                <div id="chartDiv" style="width:1000px;"></div>
+                <div id="sliderDiv" style="width:1000px;display:inline;bottom:10px;"></div>
+            </div>
+            <div style="width:330px;">
+                <table class="table table-primary rounded tblDetail" style="width:330px;margin :0 auto;">
+                    <h5 align="center">数据列表</h5>
+                    <thead>
+                        <tr>
+                            <td scope="col" class="colNormal">{{searchType.Name}}</td>
+                            <td scope="col" class="math" style="width:60px;">@ViewBag.YName</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in EquipmentCount">
+                            <td scope="row" class="colNormal" style="width:150px;white-space: normal; word-break: break-all">{{item.key}}</td>
+                            <td class="math">{{item.value}}</td>
+                        </tr>
+                        <tr v-if="EquipmentCount.length == 0">
+                            <td colspan="2" style="text-align:center">无数据</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var myDate = new Date();
+    var chart;
+
+    var EquipmentAmountReportVue = new Vue({
+        el: "#EquipmentAmountReport",
+        data: {
+            EquipmentCount: [],
+            searchType: {
+                ID: '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth',
+            },
+            Year: 0,
+        }
+    })
+
+</script>
+<script>
+    $().ready(function () {
+        InitForm();
+        ReportEquipmentCount();
+    });
+
+    function ShowTime() {
+        //设置年份的选择
+        SelectYears();
+        EquipmentAmountReportVue.Year = myDate.getFullYear();
+    }
+    function InitForm() {
+        EquipmentAmountReportVue.EquipmentCount = [];
+        EquipmentAmountReportVue.searchType.ID = '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth';
+        EquipmentAmountReportVue.searchType.Name = '@BusinessObjects.Domain.ReportDimension.GetDimensionDesc(@BusinessObjects.Domain.ReportDimension.AcceptanceMonth)';
+        EquipmentAmountReportVue.Year = myDate.getFullYear();
+        ShowTime();
+    }
+    function Refresh() {
+        InitForm();
+        ReportEquipmentCount();
+    }
+
+    function Print() {
+        PrintChart(chart, '@ViewBag.ReportName')
+    }
+
+    function ExportToExcel() {
+        $.fileDownload('@Url.Action("Export" + @ViewBag.Inter, "Report")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "get",
+                data: {
+                    type: EquipmentAmountReportVue.searchType.ID,
+                    year: EquipmentAmountReportVue.searchType.ID == '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth' ? EquipmentAmountReportVue.Year : 0,
+                    yName: '@ViewBag.YName',
+                    reportName: '@ViewBag.ReportName'
+                }
+            });
+    }
+
+    function changeType(info) {
+        InitForm();
+        EquipmentAmountReportVue.searchType.ID = info.value
+        EquipmentAmountReportVue.searchType.Name = info.text
+        ReportEquipmentCount();
+    }
+    function ReportEquipmentCount() {
+        $.get('@Url.Action(@ViewBag.Inter, "Report")',
+            {
+                type: EquipmentAmountReportVue.searchType.ID,
+                year: EquipmentAmountReportVue.searchType.ID == '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth' ? EquipmentAmountReportVue.Year : 0,
+            },
+            function (response) {
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    EquipmentAmountReportVue.EquipmentCount = [];
+                    console.log(response.Data)
+                    for (var item in response.Data) {
+                        let ele = {
+                            "key": response.Data[item].Item1,
+                            "value": Number(response.Data[item].Item2.toFixed(1)),
+                        };
+                        EquipmentAmountReportVue.EquipmentCount.push(ele);
+                    }
+                    barChart(EquipmentAmountReportVue.searchType.ID);
+                }
+            })
+    }
+</script>
+<script>
+    function barChart(typeID) {
+        var chart = CreateChart();
+
+        var barView = BoundSlide2Chart(chart, 1000, EquipmentAmountReportVue.EquipmentCount, '@ViewBag.YName', typeID);
+
+        SetChartStyle(barView, '@ViewBag.YName');
+
+        barView.interval().position('key*value').opacity(1).label("value");
+
+        chart.render();
+    }
+</script>

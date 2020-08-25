@@ -1,0 +1,47 @@
+2020-07-28 11:39:52.0619 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 11 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 899
+2020-07-28 11:39:52.1942 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 903
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 814
+2020-07-28 11:39:52.2452 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 903
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 849
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778
+2020-07-28 11:41:22.0655 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 11 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 899
+2020-07-28 11:41:22.1325 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 903
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 814
+2020-07-28 11:42:26.5707 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 11 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 899
+2020-07-28 11:42:26.6187 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 903
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 814
+2020-07-28 11:42:26.6627 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 903
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 849
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778

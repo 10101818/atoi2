@@ -1,0 +1,630 @@
+﻿@{
+    ViewBag.Title = "RequestList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+
+    List<BusinessObjects.Domain.KeyValueInfo> FaultTypes = BusinessObjects.Manager.LookupManager.GetFaultType();
+    List<BusinessObjects.Domain.KeyValueInfo> RequestTypes = BusinessObjects.Manager.LookupManager.GetRequestTypes();
+    List<BusinessObjects.Domain.KeyValueInfo> DealTypes = BusinessObjects.Manager.LookupManager.GetDealType();
+    List<BusinessObjects.Domain.KeyValueInfo> Urgencys = BusinessObjects.Manager.LookupManager.GetUrgency();
+    List<BusinessObjects.Domain.KeyValueInfo> MachineStatuses = BusinessObjects.Domain.MachineStatuses.GetMachineStatuses();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    List<BusinessObjects.Domain.KeyValueInfo> MaintainType = BusinessObjects.Domain.RequestInfo.MaintainType.GetMaintainType();
+    List<BusinessObjects.Domain.KeyValueInfo> InspectionType = BusinessObjects.Domain.RequestInfo.InspectionType.GetInspectionType();
+    List<BusinessObjects.Domain.KeyValueInfo> AdverseEventType = BusinessObjects.Domain.RequestInfo.AdverseEventType.GetAdverseEventType();
+
+}
+
+<div id="RequestDispatchVue" v-cloak class="tblDiv">
+    <div><a class="linkFile backPage" href="#" onclick="BackToList()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a></div>
+    <div class="title"><p>分配请求</p></div>
+    <div class="tblDiv">
+        <!--设备基本信息-->
+        <div class="radiusOnly" v-if="@ViewBag.RequestTypeID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+            <table border="1" class="tblDetail" v-if="@ViewBag.RequestTypeID != @BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection && @ViewBag.RequestTypeID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others && @ViewBag.RequestTypeID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Inventory" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">设备基本信息</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">系统编号</th>
+                    <td class="tdReadOnly" width="289px">{{SelectRequest.Equipment.OID}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">资产编号</th>
+                    <td class="tdReadOnly" width="289px">{{SelectRequest.Equipment.AssetCode}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>名称</th>
+                    <td class="tdReadOnly linkFile cursor" v-on:click="btnTimeLine(SelectRequest.Equipment.ID)">{{SelectRequest.Equipment.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>使用科室</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.Department.Name}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>型号</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.EquipmentCode}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>安装地点</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.InstalSite}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>序列号</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.SerialCode}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>维保状态</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.WarrantyStatus}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>设备厂商</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.Manufacturer.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>服务范围</th>
+                    <td class="tdReadOnly">{{SelectRequest.Equipment.ContractScope.Name}}</td>
+                </tr>
+            </table>
+            <table class="tblDetail" border="1" v-if="@ViewBag.RequestTypeID == @BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection || @ViewBag.RequestTypeID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inventory" frame="void">
+                <tr>
+                    <td colspan="10" class="tblName">设备基本信息</td>
+                </tr>
+                <tr>
+                    <th width="95px">系统编号</th>
+                    <th style="min-width:50px;">资产编号</th>
+                    <th>名称</th>
+                    <th>设备型号</th>
+                    <th>序列号</th>
+                    <th style="min-width:70px;">设备厂商</th>
+                    <th style="min-width:70px;">资产等级</th>
+                    <th style="min-width:70px;">使用科室</th>
+                    <th style="min-width:70px;">安装地点</th>
+                    <th style="min-width:70px;">维保状态</th>
+                    <th style="min-width:70px;">服务范围</th>
+                </tr>
+                <tr v-for="info in SelectRequest.Equipments" style="font-size:10px">
+                    <td>{{info.OID}}</td>
+                    <td>{{info.AssetCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;" class="linkFile cursor" v-on:click="btnTimeLine(info.ID)">{{info.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.EquipmentCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.SerialCode}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.Manufacturer.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.Department.Name}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.InstalSite}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.WarrantyStatus}}</td>
+                    <td style="white-space:normal;word-break:break-all;">{{info.ContractScope.Name}}</td>
+                </tr>
+                <tr v-if="SelectRequest.Equipments.length == 0">
+                    <td colspan="11" style="text-align:center">暂无数据</td>
+                </tr>
+            </table>
+        </div>
+        <br v-if="@ViewBag.RequestTypeID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others" />
+        <!--请求详情-->
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">请求内容</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th style="width:189px">类型</th>
+                    <td class="tdReadOnly" style="width:289px">{{SelectRequest.SourceType}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th style="width:189px">请求人</th>
+                    <td class="tdReadOnly" style="width:289px">{{SelectRequest.RequestUser.Name}}</td>
+                </tr>
+                <tr v-show="SelectRequest.ID != 0">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求状态</th>
+                    <td class="tdReadOnly" width="289px">{{SelectRequest.Status.Name}}</td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求日期</th>
+                    <td class="tdReadOnly" width="289px">{{SelectRequest.RequestDate}}</td>
+                </tr>
+                <tr v-if="SelectRequest.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>主题</th>
+                    <td>
+                       <label class="tdReadOnly">{{SelectRequest.Equipment.Name}}--{{SelectRequest.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>机器状态</th>
+                    <td>
+                        <select v-model="SelectRequest.MachineStatus.ID">
+                            @foreach (var item in MachineStatuses)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqRequestTypeID"></label>
+                    </td>
+                </tr>
+                <tr v-else-if="SelectRequest.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>主题</th>
+                    <td>
+                        <label class="tdReadOnly">{{SelectRequest.Equipment.Name}}--{{SelectRequest.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required" v-if="@ViewBag.ID == 0">*</span></th>
+                    <th>保养类型</th>
+                    <td>
+                        <select v-model="SelectRequest.FaultType.ID">
+                            @foreach (var item in MaintainType)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqRequestTypeID"></label>
+                    </td>
+                </tr>
+                <tr v-else-if="SelectRequest.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>主题</th>
+                    <td>
+                        <label class="tdReadOnly">{{SelectRequest.Equipment.Name}}--{{SelectRequest.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required" v-if="@ViewBag.ID == 0">*</span></th>
+                    <th>强检原因</th>
+                    <td>
+                        <select v-model="SelectRequest.FaultType.ID">
+                            @foreach (var item in InspectionType)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqRequestTypeID"></label>
+                    </td>
+                </tr>
+                <tr v-else-if="SelectRequest.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>主题</th>
+                    <td>
+                        <label class="tdReadOnly">{{SelectRequest.Equipment.Name}}--{{SelectRequest.RequestType.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required" v-if="@ViewBag.ID == 0">*</span></th>
+                    <th>来源</th>
+                    <td>
+                        <select v-model="SelectRequest.FaultType.ID">
+                            @foreach (var item in AdverseEventType)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqRequestTypeID"></label>
+                    </td>
+                </tr>
+                <tr v-else>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>主题</th>
+                    <td colspan="4">
+                        <label class="tdReadOnly" v-if="@ViewBag.RequestTypeID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">{{SelectRequest.RequestType.Name}}</label>
+                        <label class="tdReadOnly" v-else>{{SelectRequest.EquipmentName}}--{{SelectRequest.RequestType.Name}}</label>
+                    </td>
+                </tr>
+                <tr v-if="@ViewBag.RequestTypeID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>是否召回</th>
+                        <td colspan="4" class="tdReadOnly">{{SelectRequest.IsRecall ? "是":"否"}}</td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">@BusinessObjects.Domain.RequestInfo.RequestTypes.GetRequestDescTdHead(ViewBag.RequestTypeID)</th>
+                    <td colspan="4">
+                        <textarea maxlength="200" v-model="SelectRequest.FaultDesc"></textarea>
+                        <label class="required" id="reqFaultDesc"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">上传附件</th>
+                    <td colspan="4" style="padding: 0;">
+                        <table class="tblDetail" border="1" cellpadding="0" cellspacing="0" style="margin: 0; width: 100%; border-collapse: collapse;border-width:0px; border-style:hidden;">
+                            <tr v-for="item in SelectRequest.Files">
+                                <td>
+                                    <input type="text" style="border:none; width:640px;" readonly class="linkFile cursor" v-on:click="OpenLocalFile(item.ID)" :value="item.FileName" />
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="FileRequestID" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">处理方式</th>
+                    <td colspan="4">
+                        <select v-model="SelectRequest.DealType.ID">
+                            @foreach (var item in DealTypes)
+                            {
+                            <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqDealTypeID"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <!--派工内容-->
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" frame="void">
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">派工内容<span style="color:dimgrey;float: right;">{{Dispatch.OID == "0" ? "派工编号系统自动生成" : Dispatch.OID}}</span></td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th style="width:189px">派工类型</th>
+                    <td style="width:289px">
+                        <select v-model="Dispatch.RequestType.ID">
+                            @foreach (var item in RequestTypes)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th style="width:189px">紧急程度</th>
+                    <td style="width:289px">
+                        <select id="Urgency" v-model="Dispatch.Urgency.ID">
+                            @foreach (var temp in Urgencys)
+                            {
+                                <option value="@temp.ID">@temp.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqUrgencyID"></label>
+                    </td>
+                </tr>
+                <tr v-if="Dispatch.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th style="width:189px">机器状态</th>
+                    <td style="width:289px">
+                        <select v-model="Dispatch.MachineStatus.ID">
+                            @foreach (var item in MachineStatuses)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                        <label class="required" id="reqMachineStatuses"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th style="width:189px">出发时间</th>
+                    <td>
+                        <input type="text" class="datePicker" id="ScheduleDate" value="@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" placeholder="YYYY-MM-DD" style="width:110px;" />
+                        <input type="text" class="timepicker" id="ScheduleTime" value="@DateTime.Now.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATETIMEPICKER)" placeholder="HH:MM" style="width:70px;text-align:center" />
+                        <label class="required" id="reqScheduleDate"></label>
+                    </td>
+                </tr>
+                <tr v-if="Dispatch.RequestType.ID != @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">工程师姓名</th>
+                    <td colspan="4">
+                        <select id="Engineer" v-model="Dispatch.Engineer.ID">
+                            <option value="0" hidden>--请选择--</option>
+                            <option v-for="option in AdminList" v-bind:id="'Engineer' + option.ID" v-bind:value="option.ID">{{ option.Name }}</option>
+                        </select>
+                        <label class="required" id="reqEngineerID"></label>
+                    </td>
+                </tr>
+                <tr v-if="Dispatch.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Others">
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">工程师姓名</th>
+                    <td>
+                        <select id="Engineer" v-model="Dispatch.Engineer.ID">
+                            <option value="0" hidden>--请选择--</option>
+                            <option v-for="option in AdminList" v-bind:id="'Engineer' + option.ID" v-bind:value="option.ID">{{ option.Name }}</option>
+                        </select>
+                        <label class="required" id="reqEngineerID"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th style="width:189px">出发时间</th>
+                    <td>
+                        <input type="text" class="datePicker" id="ScheduleDate" value="@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" placeholder="YYYY-MM-DD" style="width:110px;" />
+                        <input type="text" class="timepicker" id="ScheduleTime" value="@DateTime.Now.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATETIMEPICKER)" placeholder="HH:MM" style="width:70px;text-align:center" />
+                        <label class="required" id="reqScheduleDate"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">主管备注</th>
+                    <td colspan="4"><textarea type="text" maxlength="200" v-model="Dispatch.LeaderComments"></textarea></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <!--审批流程-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" border="1" frame="void">
+                <tbody>
+                    <tr>
+                        <td class="tblName" colspan="3">审批流程</td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th width="189px">流程信息</th>
+                        <td>
+                            <textarea readonly>{{SelectRequest.FormatHistory}}</textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br />
+        <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%;width: 800px;">
+            <tr>
+                <td align="center"><button class="btn btn-info" onclick="DispatchRequest()">确认派工</button></td>
+                <td align="center"><button class="btn btn-info" onclick="CancelRequest()">终止请求</button></td>
+                <td align="center"><button class="btn btn-info" onclick="BackToList()">返回</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="~/Content/Css/jquery.timepicker.min.css" />
+<script src="~/Content/Scripts/jquery.timepicker.min.js"></script>
+<script>
+    $().ready(function () {
+        setTimeout(LoadRequest(), 100);
+        InitAdminSelect();
+        RequestDispatchVue.Dispatch.ScheduleTime = '@DateTime.Now.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATETIMEPICKER)';
+    })
+
+    function InitForm() {
+        var dateFields = $([]).add($("#ScheduleDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+
+        $(".timepicker").timepicker({
+            timeFormat: 'HH:mm',
+            minTime: '00:00',
+            minHour: 0,
+            startHour: 0,
+            change: function (time) {
+                var element = $(this), text;
+                RequestDispatchVue.Dispatch.ScheduleTime = element[0].value;
+            }
+        })
+    }
+    //工程师列表
+    function InitAdminSelect() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetUsers4Dispatch", "User")', {},
+        function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                RequestDispatchVue.AdminList = response.Data;
+            }
+        })
+    }
+    //作业中的工程师改颜色
+    function ChangeAdminColor() {
+        $.each(RequestDispatchVue.AdminList, function (index, item) {
+            if (item.HasOpenDispatch == true) {
+                $("#Engineer" + item.ID).css("color", "red");
+            }
+        })
+    }
+    //根据请求id获取请求信息
+    function LoadRequest() {
+        id = '@ViewBag.ID';
+        var EquipmentID = 0;
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryRequestByID", "Request")', { id: id },
+        function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                RequestDispatchVue.SelectRequest = response.Data;
+                RequestDispatchVue.SelectRequest.RequestDate = parseAndFormatJsonDateTime(RequestDispatchVue.SelectRequest.RequestDate);
+                RequestDispatchVue.SelectRequest.Equipment = RequestDispatchVue.SelectRequest.Equipments[0];
+                RequestDispatchVue.Dispatch.RequestType.ID = RequestDispatchVue.SelectRequest.RequestType.ID
+                RequestDispatchVue.Dispatch.MachineStatus.ID = RequestDispatchVue.SelectRequest.RequestType.ID == '@BusinessObjects.Domain.RequestInfo.RequestTypes.Repair' ? RequestDispatchVue.SelectRequest.MachineStatus.ID : 1
+            }
+        })
+    }
+    //判断是否有其它作业中的派工单
+    function CheckMultiplyDispatch() {
+        var IsExisted = false;
+        id = '@ViewBag.ID';
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckOpenDispatchesExist", "Request")',
+            data: {
+                id: id
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data == true)
+                        IsExisted = true;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    //派工前判断是否派过工
+    function DispatchRequest() {
+        RequestDispatchVue.Dispatch.ScheduleDate = $('#ScheduleDate').val() + ' ' + RequestDispatchVue.Dispatch.ScheduleTime;
+        if (CheckDispatchRequest() == false) return;
+        if (CheckMultiplyDispatch() == true) {
+            jConfirm("已派过工,是否继续派工?", "派工", function (result) {
+                if (result) {
+                    Dispatch();
+                }
+            });
+        }
+        else {
+            Dispatch();
+        }
+
+    }
+    //确认派工
+    function Dispatch() {
+        RequestDispatchVue.Dispatch.MachineStatus.ID = RequestDispatchVue.Dispatch.RequestType.ID != '@BusinessObjects.Domain.RequestInfo.RequestTypes.Others' ? RequestDispatchVue.Dispatch.MachineStatus.ID : 1;
+        RequestDispatchVue.Dispatch.Request.ID = RequestDispatchVue.SelectRequest.ID;
+        RequestDispatchVue.Dispatch.ScheduleDate = $('#ScheduleDate').val() + ' ' + RequestDispatchVue.Dispatch.ScheduleTime;
+        SetPageWaiting(true)
+        $.post('@Url.Action("DispatchRequest", "Request")', {
+            requestInfo: RequestDispatchVue.SelectRequest,
+            dispatchInfo: RequestDispatchVue.Dispatch,
+        },
+        function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("派工成功", "派工", function () {
+                    BackToList();
+                });
+            }
+        })
+    }
+    //判断字段是否已填及格式
+    function CheckDispatchRequest() {
+        $("label.required").html("");
+        var IsValid = true
+
+        if (RequestDispatchVue.SelectRequest.FaultDesc.trim() == "") {
+            $("#reqFaultDesc").html("请输入" + '@BusinessObjects.Domain.RequestInfo.RequestTypes.GetRequestDescTdHead(ViewBag.RequestTypeID)');
+            IsValid = false;
+        }
+        var scheduleDate = new Date($('#ScheduleDate').val()).getTime();
+        var curDateTime = new Date('@DateTime.Now.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)').getTime();
+        if (CheckDatePicker("ScheduleDate", "出发时间") != "") {
+            $("#reqScheduleDate").html(CheckDatePicker("ScheduleDate", "出发时间"))
+            IsValid = false;
+        } else if (scheduleDate < curDateTime) {
+            $("#reqScheduleDate").html("出发时间需大于当前时间")
+            IsValid = false;
+        }
+        if (RequestDispatchVue.Dispatch.Engineer.ID == 0) {
+            $("#reqEngineerID").html("请选择工程师")
+            IsValid = false;
+        }
+        if (RequestDispatchVue.Dispatch.Urgency.ID <= 0) {
+            $("#reqUrgencyID").html("请选择紧急程度")
+            IsValid = false;
+        }
+        if (RequestDispatchVue.SelectRequest.DealType.ID <= 0) {
+            $("#reqDealTypeID").html("请选择处理方式")
+            IsValid = false;
+        }
+        if (RequestDispatchVue.SelectRequest.Priority.ID <= 0) {
+            $("#reqPriorityID").html("请选择紧急程度")
+            IsValid = false;
+        }
+
+        if ('@ViewBag.RequestTypeID' == '@BusinessObjects.Domain.RequestInfo.RequestTypes.Others' && RequestDispatchVue.Dispatch.RequestType.ID != '@BusinessObjects.Domain.RequestInfo.RequestTypes.Others') {
+            jAlert('当前请求类型不可转换派工类型', '警告');
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+    //取消派工
+    function CancelRequest() {
+        if (CheckMultiplyDispatch() == true) {
+            jAlert("有未完成的派工单,无法终止", "提示");
+            return;
+        };
+        jConfirm("请确认是否终止请求?", "关闭", function (result) {
+            if (result) {
+                SetPageWaiting(true)
+                $.post('@Url.Action("CancelRequest", "Request")', {
+                    requestInfo: RequestDispatchVue.SelectRequest
+                },
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        jAlert("终止成功", "关闭", function () {
+                            BackToList();
+                        });
+                    }
+                })
+            }
+        });
+
+    }
+
+    function OpenLocalFile(id) {
+        DownloadFile('@BusinessObjects.Domain.ObjectTypes.Request', id);
+    }
+
+    function BackToList() {
+        window.location = '@Url.Action(ViewBag.ActionName, "Request")';
+    }
+    function btnTimeLine(id) {
+        window.open('@Url.Action("EquipmentTimeLine", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' }));
+    }
+</script>
+
+<script>
+    var RequestDispatchVue = new Vue({
+        el: "#RequestDispatchVue",
+        data: {
+            SelectRequest: {
+                Source: { ID: 1 },
+                Equipments: [
+                    {
+                        OID: '',
+                        ID: '',
+                        AssetLevel: { Name: '' },
+                        Manufacturer: {},
+                        Department: {},
+                        ContractScope: {},
+                        EquipmentStatus: ''
+                    },
+                ],
+                Equipment: {
+                    AssetLevel: {},
+                    Department: {},
+                    Manufacturer: {},
+                    ContractScope: {},
+                },
+                FaultType: { ID: 1 },
+                RequestType: { ID: 1 },
+                RequestUser: { ID: 1 },
+                DealType: { ID: 1 },
+                Priority: {},
+                Files: [{
+                    FileName: '',
+                    FileContent: ''
+                },
+                ],
+                MachineStatus: {},
+                Status: { ID: 1 },
+                Subject: '',
+                FaultDesc: '',
+                IsRecall: false
+            },
+            Dispatch: {
+                OID: "0",
+                Request: {},
+                RequestType: { ID: 1 },
+                Urgency: { ID: 1 },
+                MachineStatus: { ID: 1 },
+                Engineer: { ID: 0 },
+                LeaderComments: "",
+            },
+            AdminList: [],
+            AdminIDList: [],
+        },
+        updated: function () {
+            InitForm();
+            ChangeAdminColor();
+        }
+    })
+</script>

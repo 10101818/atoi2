@@ -1,0 +1,747 @@
+﻿<!DOCTYPE html>
+@{BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];}
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>@Html.Raw(BusinessObjects.Domain.Constants.SYSTEM_NAME)</title>
+        <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Css/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Css/jquery.alerts.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Css/jquery.pager.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/css/iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Css/style.css" />
+
+        <script src="~/Content/Scripts/polyfill.min.js"></script>
+        <script src="~/Content/Scripts/jquery-1.11.0.js"></script>
+        <script src="~/Content/Scripts/bootstrap.min.js"></script>
+        <script src="~/Content/Scripts/jquery-ui.js"></script>
+        <script src="~/Content/Scripts/jquery.alerts.js"></script>
+        <script src="~/Content/Scripts/jquery.pager.js"></script>
+        <script src="~/Content/Scripts/jquery.blockUI.min.js"></script>
+        <script src="~/Content/Scripts/common.js"></script>
+        <script src="~/Content/Scripts/Site.js"></script>
+        <script src="~/Content/Scripts/js.DateTime.js"></script>
+        <script src="~/Content/scripts/vue.min.js"></script>
+        <script src="~/Content/scripts/g2.min.js"></script>
+        <script src="~/Content/scripts/data-set.js"></script>
+        <script src="~/Content/Scripts/jquery.fileDownload.js"></script>
+        <script src="~/Content/Scripts/scrollTo.js"></script>
+        <script type="text/javascript">
+            //禁止页面后退
+            javascript: window.history.forward(1);
+        </script>
+    </head>
+    <body>
+        <div class="main flex flex-column">
+            <div class="main-header printHide flex flex-row justify-content-space-between">
+                <div class="header-logo flex justify-content-center align-items-center">
+                    <img class="header-logo-img" src="~/Content/img/logo.png" alt="@Html.Raw(BusinessObjects.Domain.Constants.SYSTEM_NAME)" />
+                </div>
+                <div class="header-content flex flex-row justify-content-space-between">
+                    <div class="header-content-name flex justify-content-flex-start align-items-center">
+                        <span id="systemName">@MedicalEquipmentHostingSystem.App_Start.WebConfig.SYSTEM_NAME</span>
+                    </div>
+                    <div class="header-content-marquee flex justify-content-center align-items-center">
+                        <div class="main-content-marquee">
+                            <div class="content-marquee-text">
+                                <div class="wrap" id="VueMarquee" v-cloak>
+                                    <div id="box">
+                                        <div id="marquee" class="marqueeText">{{text}}</div>
+                                        <div id="copy" class="marqueeText"></div>
+                                    </div>
+                                    <div id="node" class="marqueeText">{{text}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-user flex flex-column justify-content-space-evenly align-items-flex-end">
+                    <div class="header-user-info flex flex-row align-items-center justify-content-flex-end">
+                        <div class="user-top-left">欢迎：@user.Role.Name—@user.Name</div>
+                        <div class="user-top-right"><a class="linkFile" href="#" onclick="OpenDialogUpdatePWDForm()">修改密码</a></div>
+                    </div>
+                    <div class="header-user-bottom flex flex-row align-items-center justify-content-flex-end">
+                        <div class="header-user-time user-bottom-left">
+                            <div id="times"></div>
+                        </div>
+                        <div class="user-bottom-right"><a class="linkFile" href="@Url.Action("Login","Home")">退出</a></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="main-body flex flex-row justify-content-space-between">
+                <div class="main-body-left flex justify-content-center align-items-center" id="VueMenu" v-cloak>
+                    <div class="body-left-menu list-group list-group-flush">
+                        <div v-for="items in menus">
+                            <a class="mainLeftMaster list-group-item list-group-item-action" v-bind:data-menu="items.title" style="border:none" v-bind:href="items.href" onclick="CollapseMenu(this)"><span v-bind:class="items.icon"></span>&nbsp;{{items.name}}<span v-if="items.subMenus.length > 0" class="badge ">></span></a>
+                            <ul class="list-group list-group-flush mainLeftSubMenuList">
+                                <span v-for="item in items.subMenus">
+                                    <a class="mainLeftSub list-group-item list-group-item-action" v-bind:data-menu="item.title" style="border:none" v-bind:href="item.href" onclick="CollapseMenu(this)"><span v-bind:class="item.icon"></span>&nbsp;{{item.name}}<span v-if="item.subMenus != null && item.subMenus.length > 0 " class="badge ">></span></a>
+                                    <ul class="list-group list-group-flush mainLeftSubMenuList">
+                                        <span v-for="subMenu in item.subMenus">
+                                            <a class="mainLeftSub list-group-item list-group-item-action" v-bind:data-menu="subMenu.title" v-bind:data-level="3" v-bind:href="subMenu.href"><span v-bind:class="subMenu.icon"></span>&nbsp;{{subMenu.name}}</a>
+                                        </span>
+                                    </ul>
+                                </span>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+                <div class="main-body-right" id="DivPrint">@RenderBody()</div>
+            </div>
+            <div class="main-footer flex flex-row justify-content-space-between">
+                <div class="footer-left flex justify-content-center align-items-center"></div>
+                <div class="footer-middle flex justify-content-center align-items-center">Powered By - 上海起略信息技术有限公司</div>
+                <div class="footer-right flex justify-content-flex-end align-items-center">&nbsp;&nbsp;&nbsp;版本号： <span style="font-size: 15px;" id="Version"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            </div>
+            <!-- EditPasswordDialog -->
+            <div id="editUserPassword-dialog" style="display:none">
+                <div>
+                    <table class="table">
+                        <tr>
+                            <td width="100px">用户ID</td>
+                            <td width="350px">
+                                <label>@user.LoginID</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户名</td>
+                            <td>
+                                <label>@user.Name</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>新密码</td>
+                            <td>
+                                <input type="text" maxlength="20" class="input" v-model="newPassword" id="newPassword" style="width:250px;display:block;margin-top:5px;" />
+                                <label class="required password-message " id="responseMsg"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    $(function () {
+        InitDialogUpdatePWDForm();
+        if ('@user.Role.ID' == '@BusinessObjects.Domain.UserRole.SuperAdmin') vueMenu.menus = GetSuperAdminMenu();
+        else if ('@user.Role.ID' == '@BusinessObjects.Domain.UserRole.Admin') vueMenu.menus = GetAdminMenu();
+        else if ('@user.Role.ID' == '@BusinessObjects.Domain.UserRole.SuperUser') vueMenu.menus = GetSuperUserMenu();
+        else if ('@user.Role.ID' == '@BusinessObjects.Domain.UserRole.SystemAdmin') vueMenu.menus = GetSuperAdminMenu();
+
+        vueMarquee.move();
+
+        $("#Version").html(getVersion());
+
+        let times = function () { document.getElementById("times").innerHTML = new Date().format("yyyy/MM/dd hh:mm"); }
+        setInterval(times(), 1000);
+    });
+</script>
+<script>
+    function InitDialogUpdatePWDForm(){
+        var editUserPassword=$("#editUserPassword-dialog").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 500,
+            modal: true,
+            title:"修改密码",
+            buttons: {
+                "保存": function () { updatePassword(); },
+                "关闭": function () { $("#editUserPassword-dialog").dialog("close");}
+            }
+        })
+    }
+    
+
+</script>
+<script>
+    function OpenDialogUpdatePWDForm() {
+        $(".required").html("");
+        vuePassword.newPassword = "";
+        $("#editUserPassword-dialog").dialog("open");
+    }
+
+    var vuePassword = new Vue({
+        el: "#editUserPassword-dialog",
+        data: {
+            newPassword: ""
+        }
+    });
+
+    function PasswordKeydown() {
+        if (event.keyCode == 13) {
+            updatePassword();
+        }
+    }
+    function updatePassword() {
+        $("#responseMsg").html('');
+        if (vuePassword.newPassword == "") {
+            $("#responseMsg").html('新密码不能为空');
+            return;
+        }
+        SetPageWaiting(true);
+        $.post('@Url.Action("UpdatePassword", "User")', {
+            loginPwd: vuePassword.newPassword
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("修改成功", "修改结果", function () {
+                    $("#editUserPassword-dialog").dialog("close");
+                });
+            }
+            return;
+        }
+        );
+    }
+</script>
+<script>
+    var vueMarquee = new Vue({
+        el: '#VueMarquee',
+        data: {
+            text: '',
+        },
+        methods: {
+            move: function () {
+                SetPageWaiting(true);
+                $.get('@Url.Action("GetCurrentLoopNotice","System")',function(response){
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        if (response.Data != null)
+                            vueMarquee.text = response.Data.Content
+                    }
+                })
+            }
+        },
+        updated: function () {
+            // 获取文字text 的计算后宽度  （由于overflow的存在，直接获取不到，需要独立的node计算）
+            let width = document.getElementById('node').getBoundingClientRect().width
+            let box = document.getElementById('box')
+            let copy = document.getElementById('copy')
+            copy.innerText = this.text // 文字副本填充
+            let distance = 0 // 位移距离
+            //设置位移
+            setInterval(function () {
+                distance = distance - 1
+                // 如果位移超过文字宽度，则回到起点
+                if (-distance >= width) {
+                    distance = 600
+                }
+                box.style.transform = 'translateX(' + distance + 'px)'
+            }, 20)
+        }
+    });
+</script>
+
+<script>
+    var vueMenu = new Vue({
+        el: '#VueMenu',
+        data: {
+            menus: []
+        },
+
+        updated: function () {
+            HighLightActiveMenu();
+        }
+    })
+
+    function HighLightActiveMenu() {
+        var menus = $('.list-group-item')
+        for (var i = 0; i < menus.length; i++) {
+            var self = menus[i];
+            var temp = $(self);
+            if (self.dataset.menu == '@ViewBag.Title') {
+                temp.addClass("activeMenu");
+                if (self.dataset.menu != '@MedicalEquipmentHostingSystem.App_Start.ConstDefinition.HOME_CONTROLLER') {
+                    temp.parent().parent().slideToggle("normal");
+                    temp.parent().parent().prev().children(".badge").html((temp.parent().prev(".badge").html() == "∨") ? ">" : "∨");
+                    temp.parent().parent().prev().addClass("activeMenu");
+                    if (self.dataset.level == 3) {
+                        temp.parent().parent().parent().parent().slideToggle("normal");
+                        temp.parent().parent().parent().parent().prev().children(".badge").html((temp.parent().prev(".badge").html() == "∨") ? ">" : "∨");
+                        temp.parent().parent().parent().parent().prev().addClass("activeMenu");
+                    }
+                }
+            }
+        }
+    }
+
+    function CollapseMenu(obj) {
+        var temp = $(obj);
+        $(".mainLeftMaster,.mainLeftSub").removeClass("activeMenu");
+        temp.addClass("activeMenu");
+        temp.parent("ul").prev().addClass("activeMenu");
+        temp.next().slideToggle("normal", function () {
+            temp.children(".badge").html((temp.children(".badge").html() == "∨") ? ">" : "∨");
+        });
+    }
+
+    function GetSuperAdminMenu() {
+        var menus = [
+            {
+                href: "@Url.Action("Home", "Home")",
+                icon: "iconfont icon-shouye",
+                name: "首页",
+                title: "Home",
+                subMenus: []
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-zichanguanli",
+                name: "资产管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("EquipmentList", "Equipment")",
+                        icon: "iconfont icon-shebeiguanli",
+                        name: "设备",
+                        title: "EquipmentList",
+                    },
+                    {
+                        href: "@Url.Action("ContractList", "Contract")",
+                        icon: "iconfont icon-hetong",
+                        name: "合同",
+                        title: "ContractList"
+                    },
+                    {
+                        href: "@Url.Action("SupplierList", "Supplier")",
+                        icon: "iconfont icon-supplier",
+                        name: "供应商",
+                        title: "SupplierList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon--yunweifuwujilu",
+                name: "运维管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("RequestList","Request")",
+                        icon: "iconfont icon-baoxiu",
+                        name: "客户请求",
+                        title: "RequestList"
+                    },
+                    {
+                        href: "@Url.Action("DispatchList", "Dispatch")",
+                        icon: "iconfont icon-gongdanliebiao",
+                        name: "派工单",
+                        title: "DispatchList"
+                    },
+                    {
+                        href: "@Url.Action("DispatchJournalList", "Dispatch")",
+                        icon: "iconfont icon-pingzheng",
+                        name: "服务凭证",
+                        title: "DispatchJournalList"
+                    },
+                    {
+                        href: "@Url.Action("DispatchReportList", "Dispatch")",
+                        icon: "iconfont icon-zuoyebaogao",
+                        name: "作业报告",
+                        title: "DispatchReportList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-report",
+                name: "报表管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("EquipmentReportList","Report")",
+                        icon: "iconfont icon-report",
+                        name: "设备绩效报表",
+                        title: "EquipmentReportList"
+                    },
+                    {
+                        href: "@Url.Action("RequestReportList", "Report")",
+                        icon: "iconfont icon-report",
+                        name: "服务绩效报表",
+                        title: "RequestReportList"
+                    },
+                    {
+                        href: "@Url.Action("CustomReport", "CustomReport")",
+                        icon: "iconfont icon-report",
+                        name: "自定义报表",
+                        title: "CustomReport"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-kucunguanli",
+                name: "库存管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("InvComponentList", "InvComponent")",
+                        icon: "iconfont icon-lingjiankucun",
+                        name: "零件库",
+                        title: "InvComponentList"
+                    },
+                    {
+                        href: "@Url.Action("InvConsumableList", "InvConsumable")",
+                        icon: "iconfont icon-kucun",
+                        name: "耗材库",
+                        title: "InvConsumableList"
+                    },
+                    {
+                        href: "@Url.Action("InvServiceList", "InvService")",
+                        icon: "iconfont icon-xiuli1",
+                        name: "服务库",
+                        title: "InvServiceList"
+                    },
+
+                    {
+                        href: "@Url.Action("InvSpareList", "InvSpare")",
+                        icon: "iconfont icon-beiyongjikucun",
+                        name: "备用机库",
+                        title: "InvSpareList"
+                    },
+                    {
+                        href: "#",
+                        icon: "iconfont icon-kucunpandian",
+                        name: "库存盘点",
+                        title: ""
+                    },
+                    {
+                        href: "@Url.Action("PurchaseOrderList", "PurchaseOrder")",
+                        icon: "iconfont icon-caigou",
+                        name: "采购单",
+                        title: "PurchaseOrderList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-gujia",
+                name: "估价模块",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("Actual", "Valuation")",
+                        icon: "iconfont icon-fenlei2",
+                        name: "运营实绩",
+                        title:"Actual"
+                    },
+                    {
+                        href: "@Url.Action("Valuation", "Valuation")",
+                        icon: "iconfont icon-gujiazhixing",
+                        name: "估价执行",
+                        title: "Valuation"
+                    },
+                    {
+                        href: "@Url.Action("Parameter", "Valuation")",
+                        icon: "iconfont icon-gujiacanshu",
+                        name: "估价参数",
+                        title: "Parameter"
+                    },
+                    {
+                        href: "#",
+                        icon: "iconfont icon-shujuzidingyishezhi",
+                        name: "数据定义",
+                        title: "",
+                        subMenus: [
+                            {
+                                href: "@Url.Action("ComponentList", "Component")",
+                                icon: "iconfont icon-lingjian",
+                                name: "零件定义",
+                                title: "ComponentList"
+                            },
+                            {
+                                href: "@Url.Action("ConsumableList", "Consumable")",
+                                icon: "iconfont icon-haocaidingyi",
+                                name: "耗材定义",
+                                title: "ConsumableList"
+                            },
+                            {
+                                href: "@Url.Action("FujiClassList", "FujiClass1")",
+                                icon: "iconfont icon-FFI",
+                                name: "富士类别",
+                                title: "FujiClassList"
+                            },
+                            {
+                                href: "@Url.Action("FujiClass2List", "FujiClass2")",
+                                icon: "iconfont icon-FF2lei",
+                                name: "富士II类",
+                                title: "FujiClass2List"
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-yonghuguanli",
+                name: "用户管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("UserList","User")",
+                        icon: "iconfont icon-yonghu",
+                        name: "用户",
+                        title: "UserList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-shezhi",
+                name: "系统设置",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("Sms","System")",
+                        icon: "iconfont icon-duanxin",
+                        name: "短信",
+                        title: "Sms"
+                    },
+                    {
+                        href: "@Url.Action("SmptEmail", "System")",
+                        icon: "iconfont icon-youxiang",
+                        name: "邮件",
+                        title: "SmptEmail"
+                    },
+                    {
+                        href: "@Url.Action("ErrorMessageEdit", "System")",
+                        icon: "iconfont icon-yichang",
+                        name: "异常设置",
+                        title: "ErrorMessageEdit"
+                    },
+                    {
+                        href: "@Url.Action("WarningTimeEdit", "System")",
+                        icon: "iconfont icon-early-warn",
+                        name: "预警时间",
+                        title: "WarningTimeEdit"
+                    },
+                    {
+                        href: "@Url.Action("App","System")",
+                        icon: "iconfont icon-app3",
+                        name: "App最低版本",
+                        title: "App"
+                    },
+                    {
+                        href: "@Url.Action("DepartmentList", "Department")",
+                        icon: "iconfont icon-keshi",
+                        name: "科室管理",
+                        title: "DepartmentList"
+                    },
+                    {
+                        href: "@Url.Action("NoticeList","System")",
+                        icon: "iconfont icon-guangbogonggao",
+                        name: "广播",
+                        title: "NoticeList"
+                    },
+                    {
+                        href: "@Url.Action("SysAuditLogList", "Audit")",
+                        icon: "iconfont icon-rizhiguanli",
+                        name: "系统日志",
+                        title: "SysAuditLogList"
+                    },
+                ]
+            }
+        ]; 
+        return menus;
+    }
+
+    function GetAdminMenu() {
+        var menus = [
+            {
+                href: "@Url.Action("Home", "Home")",
+                icon: "iconfont icon-shouye",
+                name: "首页",
+                title: "Home",
+                subMenus: []
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-zichanguanli",
+                name: "资产管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("EquipmentList", "Equipment")",
+                        icon: "iconfont icon-shebeiguanli",
+                        name: "设备",
+                        title: "EquipmentList"
+                    },
+                    {
+                        href: "@Url.Action("ContractList", "Contract")",
+                        icon: "iconfont icon-hetong",
+                        name: "合同",
+                        title: "ContractList"
+                    },
+                    {
+                        href: "@Url.Action("SupplierList", "Supplier")",
+                        icon: "iconfont icon-supplier",
+                        name: "供应商",
+                        title: "SupplierList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon--yunweifuwujilu",
+                name: "运维管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("RequestList","Request")",
+                        icon: "iconfont icon-baoxiu",
+                        name: "客户请求",
+                        title: "RequestList"
+                    },
+                    {
+                        href: "@Url.Action("DispatchList", "Dispatch")",
+                        icon: "iconfont icon-gongdanliebiao",
+                        name: "派工单",
+                        title: "DispatchList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-report",
+                name: "报表管理",
+                title: "",
+                subMenus: [
+                    {
+                        href: "@Url.Action("EquipmentReportList","Report")",
+                        icon: "iconfont icon-report",
+                        name: "设备绩效报表",
+                        title: "EquipmentReportList"
+                    },
+                    {
+                        href: "@Url.Action("RequestReportList", "Report")",
+                        icon: "iconfont icon-report",
+                        name: "服务绩效报表",
+                        title: "RequestReportList"
+                    }
+                ]
+            },
+            {
+                href: "#",
+                icon: "iconfont icon-yonghuguanli",
+                name: "用户管理",
+                title: "",
+                subMenus: [
+                {
+                    href: '@Url.Action("UserList","User")',
+                    icon: "iconfont icon-yonghu",
+                    name: "用户",
+                    title: "UserList"
+                }
+                ]
+            }
+        ];
+
+        return menus;
+    }
+
+    function GetSuperUserMenu() {
+        var menus = [
+                {
+                    href: "@Url.Action("Home", "Home")",
+                    icon: "iconfont icon-shouye",
+                    name: "首页",
+                    title: "Home",
+                    subMenus: []
+                },
+                {
+                    href: "#",
+                    icon: "iconfont icon-zichanguanli",
+                    name: "资产管理",
+                    title: "",
+                    subMenus: [
+                        {
+                            href: "@Url.Action("EquipmentList", "Equipment")",
+                            icon: "iconfont icon-shebeiguanli",
+                            name: "设备",
+                            title: "EquipmentList"
+                        },
+                        {
+                            href: "@Url.Action("ContractList", "Contract")",
+                            icon: "iconfont icon-hetong",
+                            name: "合同",
+                            title: "ContractList"
+                        },
+                        {
+                            href: "@Url.Action("SupplierList", "Supplier")",
+                            icon: "iconfont icon-supplier",
+                            name: "供应商",
+                            title: "SupplierList"
+                        }
+                    ]
+                },
+                {
+                    href: "#",
+                    icon: "iconfont icon--yunweifuwujilu",
+                    name: "运维管理",
+                    title: "",
+                    subMenus: [
+                        {
+                            href: "@Url.Action("RequestList","Request")",
+                            icon: "iconfont icon-baoxiu",
+                            name: "客户请求",
+                            title: "RequestList"
+                        },
+                        {
+                            href: "@Url.Action("DispatchList","Dispatch")",
+                            icon: "iconfont icon-gongdanliebiao",
+                            name: "派工单",
+                            title: "DispatchList"
+                        }
+                    ]
+                },
+                {
+                    href: "#",
+                    icon: "iconfont icon-report",
+                    name: "报表管理",
+                    title: "",
+                    subMenus: [
+                    {
+                        href: "@Url.Action("EquipmentReportList","Report")",
+                        icon: "iconfont icon-report",
+                        name: "设备绩效报表",
+                        title: "EquipmentReportList"
+                    },
+                    {
+                        href: "@Url.Action("RequestReportList", "Report")",
+                        icon: "iconfont icon-report",
+                        name: "服务绩效报表",
+                        title: "RequestReportList"
+                    }
+                    ]
+                }
+        ];
+
+        return menus;
+    }
+</script>
+@*拷贝数据*@
+<script>
+    function cloneObj(obj) {
+        var str, newobj = obj.constructor === Array ? [] : {};
+        if (typeof obj !== 'object') {
+            return;
+        } else if (window.JSON) {
+            str = JSON.stringify(obj), //系列化对象
+            newobj = JSON.parse(str); //还原
+        } else {
+            for (var i in obj) {
+                newobj[i] = typeof obj[i] === 'object' ?
+                cloneObj(obj[i]) : obj[i];
+            }
+        }
+        return newobj;
+    };
+</script>

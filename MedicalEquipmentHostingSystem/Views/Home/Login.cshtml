@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@Html.Raw(BusinessObjects.Domain.Constants.SYSTEM_NAME)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="~/Content/img/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/iconfont.css">
+    <script src="~/Content/Scripts/jquery-1.11.0.js"></script>
+    <script src="~/Content/Scripts/vue.min.js"></script>
+</head>
+<body>
+    <div class="limiter" id="login" v-cloak>
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form validate-form">
+                    <span class="login100-form-logo">
+                        <img src="~/Content/img/logo_horizon.png" style="width: 100%;" />
+                    </span>
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        @Html.Raw(BusinessObjects.Domain.Constants.SYSTEM_NAME)
+                    </span>
+
+                    <div class="wrap-input100">
+                        <input class="input100" type="text" name="username" v-model="loginID" id="loginID" maxlength="20" placeholder="用户名">
+                        <span class="focus-input100 iconfont icon-login"></span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <input class="input100" type="password" name="pass" id="loginPwd" v-model="loginPwd" maxlength="20" onkeydown="PasswordKeydown()" placeholder="密码">
+                        <span class="focus-input100 iconfont icon-pwd"></span>
+                    </div>
+
+                    <span style="color:#FF5722" id="reqErrorMsg"></span>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" onclick="DoLogin()">
+                            登录
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-10">
+                        <a class="txt1" href="#" onclick="ForgetPassword()">
+                            忘记密码?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var loginVue = new Vue({
+        el: '#login',
+        data: {
+            loginID: '',
+            loginPwd: '',
+        }
+    })
+
+    $().ready(function () {
+        $("#loginID").focus();
+    });
+
+    function PasswordKeydown() {
+        if (event.keyCode == 13) {
+            DoLogin();
+        }
+    }
+
+    function DoLogin() {
+        $("#reqErrorMsg").html("");
+
+        if (loginVue.loginID == "") {
+            $("#reqErrorMsg").html("用户名不能为空");
+            $("#loginID").focus();
+            return;
+        }
+
+        $.post('@Url.Action("Login", "Home")', {
+            loginID: loginVue.loginID,
+            loginPwd: loginVue.loginPwd
+        }, function (response) {
+            if (response.ResultCode != "00") {
+                $("#reqErrorMsg").html(response.ResultMessage);
+            } else {
+                window.location = '@Url.Action("Home", "Home")';
+            }
+        });
+    }
+
+    function ForgetPassword() {
+        $("#reqErrorMsg").html("");
+
+        if (loginVue.loginID == "") {
+            $("#reqErrorMsg").html("用户名不能为空");
+            $("#loginID").focus();
+            return;
+        }
+
+        $.post('@Url.Action("ForgetPassword", "Home")', {
+            loginID: loginVue.loginID
+        }, function (response) {
+            if (response.ResultCode != "00") {
+                $("#reqErrorMsg").html(response.ResultMessage);
+            } else {
+                $("#reqErrorMsg").html("密码已发送至邮箱");
+            }
+        });
+    }
+
+    </script>
+</body>
+</html>

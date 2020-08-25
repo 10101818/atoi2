@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "EquipmentReportList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<style>
+    .ifram {
+        width: 80%;
+        margin: 20px 0 20px 10px;
+    }
+
+    .div {
+        display: inline-block;
+        text-align: center;
+        margin: 20px 20px;
+        width: 130px;
+    }
+
+        .div b {
+            margin: 10px auto;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+    .img img {
+        width: 50px;
+        height: 50px;
+        /* background-color: aqua; */
+    }
+
+    .img {
+        width: 50px;
+        height: 50px;
+        /* border-radius: 50px; */
+        margin: 0 auto;
+    }
+</style>
+<div id="EquipmentReportList" class="radiusOnly" style="width:1400px;margin:20px auto 3%; ">
+    <table style="color: black; border-top:none;border-bottom:none;border-left:none;" width="1400" border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">设备数量报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToAmountReport('设备数量统计', 'EquipmentCountReport', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备数量统计</b>
+                </div>
+
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备数量增长率', 'EquipmentRatioReport','当年数量','去年数量','增长率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备数量增长率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">设备故障报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestTime('设备故障时间（天）', 'EquipmentRepairTimeDayReport', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备故障时间（天）</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('设备故障时间（小时）', 'EquipmentRepairTimeHourReport', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备故障时间（小时）</b>
+                </div>
+                <div class="div cursor" onclick="GoToRatioReport('设备故障率', 'EquipmentRapirRatioReport', '故障率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备故障率</b>
+                </div>
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备故障率同比', 'FailureRatioReport','当年故障率','去年故障率', '同比(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备故障率同比</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">设备开机报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRatioReport('开机率', 'EquipmentBootRatioReport', '开机率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备开机率</b>
+                </div>
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备开机率同比', 'BootRatioReport', '当年开机率', '去年开机率', '同比(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备开机率同比</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">设备资产报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestTime('设备采购价格', 'EquipmentPurchase','设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备采购价格</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('服务合同金额', 'ContractAmount', '合同数量(条)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>服务合同金额</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('服务合同年限', 'ContractYears', '合同数量(条)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>服务合同年限</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('设备折旧剩余年限', 'DepreciationYears', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备折旧剩余年限</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('设备折旧率', 'DepreciationRate', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备折旧率</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>设备折旧费用</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>设备资产价值</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">设备检查报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToAmountReport('设备检查人次', 'ServiceCountReport','人次(次)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备检查人次</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>关键设备检查收入</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestTime('设备检查收入', 'EquipmentSumIncome', '设备数量(台)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备检查收入</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">支出报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToAmountReport('设备零配件花费总额', 'PartExpenditureReport','金额(元)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备零配件花费总额</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>设备备件花费总额</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>设备服务人工费用总额</b>
+                </div>
+                <div class="div cursor">
+                    <div class="img"><img src="~/Content/img/Report-1.png"></div>
+                    <b>设备总支出</b>
+                </div>
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备总支出同比', 'ExpenditureRatioReport', '当年支出', '去年支出', '同比(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备总支出同比</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">收入报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToAmountReport('设备总收入', 'EquipmentIncomeReport','金额(元)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备总收入</b>
+                </div>
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备总收入同比', 'EquipmentIncomeRatioReport', '当年收入', '去年收入', '同比(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备总收入同比</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">收支报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToEqptRatioReport('设备总收支比', 'IncomeRatioExpenditureReport', '收入', '支出', '收支比(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备总收支比</b>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function GoToAmountReport(reportName, inter, yName) {
+        window.location.href = '@Url.Action("AmountReport", "Report")' + '?' + $.param({ reportName: reportName, inter: inter, yName: yName, actionName: "EquipmentReportList" });
+    }
+    function GoToRatioReport(reportName, inter, yName) {
+        window.location.href = '@Url.Action("RatioReport", "Report")' + '?' + $.param({ reportName: reportName, inter: inter, yName: yName, actionName: "EquipmentReportList" });
+    }
+    function GoToRequestTime(reportName, inter, yName) {
+        window.location.href = '@Url.Action("RepairTimeReport", "Report")' + '?' + $.param({ reportName: reportName, inter: inter, yName: yName, actionName: "EquipmentReportList" });
+    }
+    function GoToEqptRatioReport(reportName, inter,curName,lastName, yName) {
+        window.location.href = '@Url.Action("EqptRatio", "Report")' + '?' + $.param({ reportName: reportName, inter: inter,curName:curName,lastName:lastName, yName: yName, actionName: "EquipmentReportList" });
+    }
+</script>

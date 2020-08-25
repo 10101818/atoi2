@@ -1,0 +1,1211 @@
+﻿@{
+    List<BusinessObjects.Domain.KeyValueInfo> componentTypes = BusinessObjects.Manager.LookupManager.GetComponentType();
+    List<BusinessObjects.Domain.KeyValueInfo> consumableTypes = BusinessObjects.Manager.LookupManager.GetConsumableType();
+
+}
+
+@{ Html.RenderPartial("SelectEquipmentDialog"); }
+
+<!--添加零件-->
+<div class="ui-dialog-content ui-widget-content" id="AddComponent" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>关联设备</td>
+            <td>
+                <input type="text" id="ComponentEquipmentName" v-model.trim="Info.Equipment.Name" readonly onclick="OpenSelectEquipmentDialog()" />
+                <img src="~/Content/img/find.png" class="icon-sm cursor" onclick="OpenSelectEquipmentDialog()" />
+                <label class="required" id="reqComponentEquipmentName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>选择零件</td>
+            <td>
+                <select v-model.trim="Info.Component" style="width:200px;" id="ComponentID">
+                    <option v-for="Component in ComponentList" v-bind:value="Component">{{Component.Name}}</option>
+                </select>
+                <img src="~/Content/img/add.png" class="icon-sm cursor" onclick="OpenNewComponent()" />
+                <label class="required" id="reqComponentID"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">规格</td>
+            <td>
+                <input class="input" type="text" id="ComponentSpecification" maxlength="50" style="width:300px;" v-model.trim="Info.Specification" />
+                <label class="required" id="reqComponentSpecification"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">型号</td>
+            <td>
+                <input class="input" type="text" id="ComponentModel" maxlength="50" style="width:300px;" v-model.trim="Info.Model" />
+                <label class="required" id="reqComponentModel"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">单价(元)</td>
+            <td>
+                <input class="input" type="text" id="ComponentPrice" maxlength="13" style="width:300px;" v-model.trim="Info.Price" />
+                <label class="required" id="reqComponentPrice"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">数量</td>
+            <td>
+                <input class="input" type="text" id="ComponentQty" maxlength="9" style="width:300px;" v-model.trim="Info.Qty" />
+                <label class="required" id="reqComponentQty"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--根据富士二类新增零件-->
+<div class="ui-dialog-content ui-widget-content" id="NewComponent" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                {{AddComponentVue.Info.Equipment.FujiClass2 == null ? "" : AddComponentVue.Info.Equipment.FujiClass2.Name}}
+            </td>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">简称</td>
+            <td>
+                <input class="input" type="text" maxlength="50" id="NewComponentName" v-model.trim="NewComponent.Name" style="width:300px;" />
+                <label class="required" id="reqNewComponentName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">描述</td>
+            <td>
+                <input class="input" type="text" maxlength="200" id="NewComponentDescription" v-model.trim="NewComponent.Description" style="width:300px;" />
+                <label class="required" id="reqNewComponentDescription"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>类型</td>
+            <td>
+                <select class="input" id="ComponentType" v-model.trim="NewComponent.Type.ID" style="width:130px;">
+                    @foreach (var item in componentTypes)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+                <label class="required" id="reqComponentType"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">标准单价(元)</td>
+            <td>
+                <input class="input" type="text" maxlength="13" id="NewComponentStdPrice" v-model.trim="NewComponent.StdPrice" style="width:300px;" />
+                <label class="required" id="reqNewComponentStdPrice"></label>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<!--添加耗材-->
+<div class="ui-dialog-content ui-widget-content" id="AddConsumable" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>选择耗材</td>
+            <td>
+                <input type="text" id="ConsumableName" v-model.trim="Consumable.Consumable.Name" readonly onclick="OpenSelectConsumable()" style="width:300px;">
+                <img src="~/Content/img/find.png" class="icon-sm cursor" onclick="OpenSelectConsumable()" />
+                <label class="required" id="reqConsumableName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">规格</td>
+            <td>
+                <input class="input" type="text" id="ConsumableSpecification" maxlength="50" style="width:300px;" v-model.trim="Consumable.Specification" />
+                <label class="required" id="reqConsumableSpecification"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">型号</td>
+            <td>
+                <input class="input" type="text" id="ConsumableModel" maxlength="50" style="width:300px;" v-model.trim="Consumable.Model" />
+                <label class="required" id="reqConsumableModel"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">单价(元)</td>
+            <td>
+                <input class="input" type="text" id="ConsumablePrice" maxlength="13" style="width:300px;" v-model.trim="Consumable.Price" />
+                <label class="required" id="reqConsumablePrice"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">数量</td>
+            <td>
+                <input class="input" type="text" id="ConsumableQty" maxlength="13" style="width:300px;" v-model.trim="Consumable.Qty" />
+                <label class="required" id="reqConsumableQty"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--选择耗材-->
+<div class="ui-dialog-content ui-widget-content" id="SelectConsumable" tabindex="-1" style="display:none;">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.Name">简称</option>
+                                    <option value="c.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQueryConsumable()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" onclick="QueryConsumableList()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">富士II类</th>
+                <th style="min-width:100px;">简称</th>
+                <th style="min-width:100px;">描述</th>
+                <th style="min-width:80px;">类型</th>
+                <th style="min-width:120px;">更换频率(次/年)</th>
+                <th style="min-width:150px;">单次保养耗材成本(元)</th>
+                <th style="min-width:110px;">标准单价(元)</th>
+                <th style="min-width:95px;">是否参与估值</th>
+                <th style="min-width:40px;">选中</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ConsumableList.length == 0">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="consumable in ConsumableList" v-else>
+                <td style="white-space:normal;">{{consumable.FujiClass2.Name}}</td>
+                <td style="white-space:normal;">{{consumable.Name}}</td>
+                <td style="white-space:normal;">{{consumable.Description}}</td>
+                <td>{{consumable.Type.Name}}</td>
+                <td>{{consumable.ReplaceTimes}}</td>
+                <td>{{consumable.CostPer}}</td>
+                <td>{{consumable.StdPrice}}</td>
+                <td>{{consumable.IsIncluded ? '是' : '否'}}</td>
+                <td class="tdListCenter"><input type="radio" name="consumable" v-bind:value="consumable.ID" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" onclick="OpenNewConsumable()">新增耗材</button>
+                    </div>
+                </td>
+                <td colspan="12">
+                    <div class="pagenationDiv" id="pagerConsumableDiv">
+                        <div id="pagerConsumable" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="13" align="center" class="required consumableMSG" style="border:0;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--新增耗材-->
+<div class="ui-dialog-content ui-widget-content" id="NewConsumable" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <select v-model.trim="NewConsumable.FujiClass2" style="width:200px;" id="NewConsumableFujiClass2">
+                    <option v-for="temp in FujiClass2Filter" v-bind:value="temp">{{temp.Name}}</option>
+                </select>
+                <label class="required" id="reqNewConsumableFujiClass2"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">简称</td>
+            <td>
+                <input class="input" type="text" maxlength="50" id="NewConsumableName " style=" width:300px;" v-model.trim="NewConsumable.Name" />
+                <label class="required" id="reqNewConsumableName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">描述</td>
+            <td>
+                <input class="input" type="text" maxlength="50" id="NewConsumableDescription " style=" width:300px;" v-model.trim="NewConsumable.Description" />
+                <label class="required" id="reqNewConsumableDescription"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>类型</td>
+            <td>
+                <select class="input" id="NewConsumableType" v-model.trim="NewConsumable.Type.ID" style="width:130px;">
+                    @foreach (var item in consumableTypes)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+                <label class="required" id="reqNewConsumableType"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">标准单价</td>
+            <td>
+                <input class="input" type="text" maxlength="13" id="NewConsumableStdPrice" style=" width:300px;" v-model.trim="NewConsumable.StdPrice" />
+                <label class="required" id="reqNewConsumableStdPrice"></label>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<!--添加服务-->
+<div class="ui-dialog-content ui-widget-content" id="AddService" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <select v-model.trim="Service.FujiClass2" style="width:200px;" id="ServiceFujiClass2">
+                    <option v-for="temp in FujiClass2Filter" v-bind:value="temp">{{temp.Name}}</option>
+                </select>
+                <label class="required" id="reqServiceFujiClass2"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">服务名称</td>
+            <td>
+                <input class="input" type="text" maxlength="50" id="ServiceName" style=" width:300px;" v-model.trim="Service.Name" />
+                <label class="required" id="reqServiceName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">金额</td>
+            <td>
+                <input class="input" type="text" maxlength="13" id="ServicePrice" style="width:300px;" v-model.trim="Service.Price" />
+                <label class="required" id="reqServicePrice"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">开始时间</td>
+            <td width="250px">
+                <input type="text" class="datePicker" id="StartDate" v-model.trim="Service.StartDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqStartDate"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">结束时间</td>
+            <td width="250px">
+                <input type="text" class="datePicker" id="EndDate" v-model.trim="Service.EndDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqEndDate"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">服务次数</td>
+            <td width="250px">
+                <input type="text" id="TotalTimes" maxlength="9" v-model.trim="Service.TotalTimes" style="width:200px  ;" />
+                <label class="required" id="reqTotalTimes"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<!--VUE-->
+<script>
+    var AddComponentVue = new Vue({
+        el: "#AddComponent",
+        data: {
+            ComponentList:[],
+            Info: {
+                ID:0,
+                Equipment: {},
+                Component: {},
+                Specification: '',
+                Model: '',
+                Price: '',
+                Qty:'',
+                InboundQty:0,
+                index: -1
+            },
+        }
+    })
+
+    var NewComponentVue = new Vue({
+        el: "#NewComponent",
+        data: {
+            NewComponent: {
+                ID: 0,
+                FujiClass2: { ID: 0 },
+                Name: '',
+                Description: '',
+                Type: {},
+                StdPrice:0,
+                IsActive:true,
+            },
+        }
+    })
+
+    var AddConsumableVue = new Vue({
+        el: "#AddConsumable",
+        data: {
+            Consumable: {
+                Consumable:{},
+                Specification: '',
+                Model: '',
+                Price: '',
+                Qty:'',
+                InboundQty:0,
+                index:-1
+            },
+        }
+    })
+
+    var SelectConsumableVue = new Vue({
+        el: "#SelectConsumable",
+        data: {
+            ConsumableList: [],
+            SelectedConsumable:{
+
+                IsActive: true,
+            },
+            Filter: {
+                StatusID: -1,
+                FilterField: "c.Name",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+            }
+        },
+
+    })
+
+    var NewConsumableVue = new Vue({
+        el: "#NewConsumable",
+        data: {
+            FujiClass2Filter: [],
+            NewConsumable: {
+                ID:0,
+                FujiClass2: {},
+                Name: '',
+                Description: '',
+                Type: { ID: 0 },
+                StdPrice: 0,
+                IsIncluded: false,
+                ReplaceTimes: 0,
+                CostPer:0,
+                IsActive:true,
+            }
+        }
+    })
+
+    var AddServiceVue = new Vue({
+        el: "#AddService",
+        data: {
+            FujiClass2Filter: [],
+            Service: {
+                FujiClass2:{},
+                Name: '',
+                Price: '',
+                StartDate: '',
+                EndDate: '',
+                TotalTimes: '',
+                index: -1
+            },
+        }
+    })
+
+</script>
+
+<!--初始化-->
+<script>
+    //规定弹窗的格式
+    function InitDialog() {
+        $("#AddComponent").dialog({
+            autoOpen: false,
+            height: 450,
+            width: 550,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveComponent(); },
+                "关闭": function () { $("#AddComponent").dialog("close"); }
+            }
+        });
+
+        $("#NewComponent").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 600,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveNewComponent(); },
+                "关闭": function () { $("#NewComponent").dialog("close"); }
+            }
+        });
+
+        $("#AddConsumable").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 600,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveAddConsumable(); },
+                "关闭": function () { $("#AddConsumable").dialog("close"); }
+            }
+        });
+
+        $("#SelectConsumable").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SelectedConsumable(); },
+                "关闭": function () { $("#SelectConsumable").dialog("close"); }
+            }
+        })
+
+        $("#NewConsumable").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 700,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveNewConsumable(); },
+                "关闭": function () { $("#NewConsumable").dialog("close"); }
+            }
+        })
+
+        $("#AddService").dialog({
+            autoOpen: false,
+            height: 450,
+            width: 600,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveService(); },
+                "关闭": function () { $("#AddService").dialog("close"); }
+            }
+        });
+
+    }
+    //格式化弹窗中的数据
+    function InitAddComponentForm() {
+        $("label.required").html("");
+        AddComponentVue.Info = {
+            ID: 0,
+            Equipment: {
+            },
+            Component: {},
+            Specification: '',
+            Model: '',
+            Price: '',
+            Qty: '',
+            InboundQty:0,
+            index: -1
+        }
+        AddComponentVue.ComponentList = [];
+    }
+    function InitNewComponentForm() {
+        $("label.required").html("");
+        NewComponentVue.NewComponent = {
+            ID: 0,
+            FujiClass2: { ID: 0 },
+            Name: '',
+            Description: '',
+            Type: {},
+            StdPrice:0,
+            IsActive: true,
+        }
+        NewComponentVue.FujiClass2Filter = [];
+
+    }
+    function InitAddConsumableForm() {
+        $("label.required").html("");
+        AddConsumableVue.Consumable = {
+            Consumable: {},
+            Specification: '',
+            Model: '',
+            Price: '',
+            Qty:'',
+            InboundQty:0,
+            index: -1
+        }
+
+    }
+    function InitSelectConsumableForm() {
+        $(".consumableMSG").html("");
+        SelectConsumableVue.Filter = {
+            StatusID: -1,
+            FilterField: "c.Name",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+        }
+        SelectConsumableVue.ConsumableList = [];
+    }
+    function InitNewConsumableForm() {
+        $("label.required").html("");
+        NewConsumableVue.NewConsumable = {
+            ID:0,
+            FujiClass2: {},
+            Name: '',
+            Description: '',
+            Type: { ID: 0 },
+            StdPrice: 0,
+            IsIncluded: false,
+            ReplaceTimes: 0,
+            CostPer: 0,
+            IsActive: true,
+        }
+        NewConsumableVue.FujiClass2Filter = [];
+
+    }
+    function InitAddServiceForm() {
+        $("label.required").html("");
+        AddServiceVue.Service = {
+            FujiClass2: {},
+            Name: '',
+            Price: '',
+            StartDate: '',
+            EndDate: '',
+            TotalTimes: '',
+            index: -1
+        }
+        AddServiceVue.FujiClass2Filter = [];
+    }
+    //刷新设备
+    function RefreshEquipment() {
+        SelectEquipmentDialogVue.Equipments = [];
+        SelectEquipmentDialogVue.checkval = [];
+    }
+    //打开添加弹窗
+    function OpenAddComponent() {
+        InitAddComponentForm();
+        InitNewComponentForm();
+        RefreshEquipment();
+        $("#AddComponent").dialog({ title: "添加零件" });
+        $("#AddComponent").dialog("open");
+    }
+    function OpenNewComponent() {
+        if (!AddComponentVue.Info.Equipment || !AddComponentVue.Info.Equipment.ID)
+            jAlert("请选择设备", "提示", function () { })
+        else {
+            InitNewComponentForm();
+            $("#NewComponent").dialog({ title: "新增零件" });
+            $("#NewComponent").dialog("open");
+        }
+    }
+    function OpenAddConsumable() {
+        InitAddConsumableForm();
+        $("#AddConsumable").dialog({ title: "添加耗材" });
+        $("#AddConsumable").dialog("open");
+    }
+    function OpenSelectConsumable() {
+        InitSelectConsumableForm();
+
+        QueryConsumableList();
+        $("#SelectConsumable").dialog({ title: "选择耗材" });
+        $("#SelectConsumable").dialog("open");
+
+    }
+    function OpenNewConsumable() {
+        InitNewConsumableForm();
+        GetFujiClass2s();
+        $("#NewConsumable").dialog({ title: "新增耗材" });
+        $("#NewConsumable").dialog("open");
+    }
+    function OpenAddService() {
+        InitAddServiceForm();
+        GetFujiClass2s();
+        $("#AddService").dialog({ title: "添加服务" });
+        $("#AddService").dialog("open");
+    }
+
+    //编辑
+    function OpenEditComponent(component, index) {
+        InitAddComponentForm();
+        AddComponentVue.Info = cloneObj(component);
+        AddComponentVue.Info.index = index;
+        GetComponentByFujiClass2();
+
+      
+        RefreshEquipment();
+        $("#AddComponent").dialog({ title: "编辑零件" });
+        $("#AddComponent").dialog("open");
+    }
+    function OpenEditConsumable(consumable, index) {
+        InitAddConsumableForm();
+        AddConsumableVue.Consumable = cloneObj(consumable);
+        AddConsumableVue.Consumable.index = index;
+        $("#AddConsumable").dialog({ title: "编辑耗材" });
+        $("#AddConsumable").dialog("open");
+    }
+    function OpenEditService(service, index) {
+        InitAddServiceForm();
+        AddServiceVue.Service = cloneObj(service);
+        AddServiceVue.Service.index = index;
+        GetFujiClass2s();
+        $("#AddService").dialog({ title: "编辑服务" });
+        $("#AddService").dialog("open");
+    }
+
+
+</script>
+
+<!--零件-->
+<script>
+    //打开选择设备弹窗
+    function OpenSelectEquipmentDialog() {
+        InitSelectEquipmentDialogForm();
+        OpenEquipmentDialog(1);
+    }
+    //添加到弹窗
+    function SaveEquipments() {
+        var Equipments = CheckSaveSelectEquipment()
+        if (Equipments == undefined) return;
+        else {
+            AddComponentVue.Info.Equipment = Equipments;
+            AddComponentVue.$forceUpdate();
+        }
+        GetComponentByFujiClass2(true);
+    }
+    //选择零件
+    function GetComponentByFujiClass2(reset) {
+        reset = reset || false;
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryComponentsByFujiClass2ID", "Component")', {
+            fujiClass2ID: AddComponentVue.Info.Equipment.FujiClass2.ID,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                AddComponentVue.ComponentList = response.Data;
+                if (reset) {
+                    AddComponentVue.Info.Component.ID = 0;
+                }
+                $.each(AddComponentVue.ComponentList, function (index, item) {
+                    if ((item.ID == AddComponentVue.Info.Component.ID)) {
+                        AddComponentVue.Info.Component = item
+                    }
+
+                })
+            }
+        })
+    }
+    //保存新零件
+    function SaveNewComponent() {
+        NewComponentVue.NewComponent.FujiClass2.ID = AddComponentVue.Info.Equipment.FujiClass2.ID;
+        if (!CheckNewComponent()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveComponent", "Component")', NewComponentVue.NewComponent, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                jAlert("保存成功", "保存", function () {
+                    GetComponentByFujiClass2();
+                    $("#NewComponent").dialog("close");
+                });
+            }
+        })
+    }
+    //保存零件
+    function SaveComponent() {
+        if (!CheckComponent()) return;
+        if (AddComponentVue.Info.index >= 0) {
+            PurchaseOrderDetailVue.PurchaseOrder.Components[AddComponentVue.Info.index] = cloneObj(AddComponentVue.Info);
+            PurchaseOrderDetailVue.$forceUpdate();
+        }
+        else {
+            PurchaseOrderDetailVue.PurchaseOrder.Components.push(AddComponentVue.Info);
+        }
+        $("#AddComponent").dialog("close");
+        }
+</script>
+
+<!--耗材-->
+<script>
+    //获取耗材
+    function QueryConsumableList() {
+        $(":radio[name='consumable']:checked").attr("checked", false);
+        SetPageWaiting(true);
+        $.post('@Url.Action("QueryConsumableList", "Consumable")', SelectConsumableVue.Filter,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    SelectConsumableVue.ConsumableList = response.Data;
+                    SelectConsumableVue.Filter.CurrentPage = SetTotalPage4Pager(SelectConsumableVue.Filter.CurrentPage, response.TotalPages, "pagerConsumable", PageClickConsumable);
+                    $("#SelectConsumable #curNum option[value='" + SelectConsumableVue.Filter.PageSize + "']").prop("selected", true);
+                }
+            })
+    }
+
+    //页码
+    function PageClickConsumable(pageclickednumber) {
+        SelectConsumableVue.Filter.CurrentPage = pageclickednumber;
+        QueryConsumableList();
+    }
+    function changeCurNum_pagerConsumable() {
+        SelectConsumableVue.Filter.PageSize = Number($('#SelectConsumable #curNum option:selected').val());//选中的值
+        QueryConsumableList();
+    }
+
+    //搜索
+    function DoQueryConsumable() {
+        if (event.keyCode == 13)// Entry event
+            QueryConsumableList();
+    }
+    //保存新耗材
+    function SaveNewConsumable() {
+        if (!CheckNewConsumable()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveConsumable", "Consumable")', NewConsumableVue.NewConsumable, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                jAlert("保存成功", "保存", function () {
+                    QueryConsumableList();
+                    $("#NewConsumable").dialog("close");
+                });
+            }
+        })
+    }
+
+    //保存选择耗材
+    function SelectedConsumable() {
+        $(".consumableMSG").html("")
+        var consumableID = $(":radio[name='consumable']:checked").val()
+        if (consumableID == null) {
+            $(".consumableMSG").html("*请选择耗材")
+            return;
+        }
+        $.each(SelectConsumableVue.ConsumableList, function (index, item) {
+            if (item.ID == consumableID)
+                AddConsumableVue.Consumable.Consumable = item;
+        })
+        $("#SelectConsumable").dialog("close");
+    }
+    //保存耗材信息到列表
+    function SaveAddConsumable() {
+        if (!CheckConsumable()) return;
+        if (AddConsumableVue.Consumable.index >= 0) {
+            PurchaseOrderDetailVue.PurchaseOrder.Consumables[AddConsumableVue.Consumable.index] = cloneObj(AddConsumableVue.Consumable);
+            PurchaseOrderDetailVue.$forceUpdate();
+        }
+        else {
+            PurchaseOrderDetailVue.PurchaseOrder.Consumables.push(AddConsumableVue.Consumable);
+        }
+        $("#AddConsumable").dialog("close");
+    }
+
+
+</script>
+
+<!--服务-->
+<script>
+    //获取富士二类
+    function GetFujiClass2s() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', {},
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    AddServiceVue.FujiClass2Filter = response.Data;
+                    NewConsumableVue.FujiClass2Filter = response.Data;
+
+                }
+            })
+    }
+
+    //保存服务
+    function SaveService() {
+        if (!CheckService()) return;
+        if (AddServiceVue.Service.index >= 0) {
+            PurchaseOrderDetailVue.PurchaseOrder.Services[AddServiceVue.Service.index] = cloneObj(AddServiceVue.Service);
+            PurchaseOrderDetailVue.$forceUpdate();
+        }
+        else {
+            PurchaseOrderDetailVue.PurchaseOrder.Services.push(AddServiceVue.Service);
+        }
+
+
+        $("#AddService").dialog("close");
+    }
+
+</script>
+
+<!--判断条件-->
+<script>
+    //零件
+    function CheckComponent() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var integer = /^\d+$/;
+        var IsValid = true;
+
+        if (!AddComponentVue.Info.Equipment.Name) {
+            $("#reqComponentEquipmentName").html("关联设备不能为空");
+            $("#ComponentEquipmentName").focus();
+            IsValid = false;
+        }
+        if (!AddComponentVue.Info.Component.ID) {
+            $("#reqComponentID").html("零件不能为空");
+            $("#ComponentID").focus();
+            IsValid = false;
+        }
+        if (!AddComponentVue.Info.Specification) {
+            $("#reqComponentSpecification").html("规格不能为空");
+            $("#ComponentSpecification").focus();
+            IsValid = false;
+        }
+        if (!AddComponentVue.Info.Model) {
+            $("#reqComponentModel").html("型号不能为空");
+            $("#ComponentModel").focus();
+            IsValid = false;
+        }
+        if (AddComponentVue.Info.Price > 9999999999.99) {
+            $("#reqComponentPrice").html("单价最大为9999999999.99");
+            $("#ComponentPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddComponentVue.Info.Price)) {
+            $("#reqComponentPrice").html("单价格式有误");
+            $("#ComponentPrice").focus();
+            IsValid = false;
+        }
+        if (AddComponentVue.Info.Qty == 0) {
+            $("#reqComponentQty").html("数量不能为空");
+            $("#ComponentQty").focus();
+            IsValid = false;
+        }
+        else if (!integer.test(AddComponentVue.Info.Qty)) {
+            $("#reqComponentQty").html("数量格式有误");
+            $("#ComponentQty").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+    //新零件
+    function CheckNewComponent() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var IsValid = true;
+
+        if (!NewComponentVue.NewComponent.Name) {
+            $("#reqNewComponentName").html("简称不能为空");
+            $("#NewComponentName").focus();
+            IsValid = false;
+        }
+        else if (CheckComponentExisted()==true) {
+            $("#reqNewComponentName").html("简称已存在");
+            $("#NewComponentName").focus();
+            IsValid = false;
+        }
+
+        if (!NewComponentVue.NewComponent.Description) {
+            $("#reqNewComponentDescription").html("描述不能为空");
+            $("#NewComponentDescription").focus();
+            IsValid = false;
+        }
+        if (!NewComponentVue.NewComponent.Type.ID) {
+            $("#reqComponentType").html("类型不能为空");
+            $("#ComponentType").focus();
+            IsValid = false;
+        }
+        if (NewComponentVue.NewComponent.StdPrice > 9999999999.99) {
+            $("#reqNewComponentStdPrice").html("标准单价最大为9999999999.99");
+            $("#NewComponentStdPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(NewComponentVue.NewComponent.StdPrice)) {
+            $("#reqNewComponentStdPrice").html("标准单价格式有误");
+            $("#NewComponentStdPrice").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+    //判断零件名称是否已存在
+    function CheckComponentExisted() {
+        var IsExisted = false;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckComponentName","Component")',
+            data: {
+                id: NewComponentVue.NewComponent.ID,
+                name: NewComponentVue.NewComponent.Name,
+                fujiClass2ID: NewComponentVue.NewComponent.FujiClass2.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+    //耗材
+    function CheckConsumable() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var IsValid = true;
+
+        if (!AddConsumableVue.Consumable.Consumable.Name) {
+            $("#reqConsumableName").html("耗材不能为空");
+            $("#ConsumableName").focus();
+            IsValid = false;
+        }
+
+        if (!AddConsumableVue.Consumable.Specification) {
+            $("#reqConsumableSpecification").html("规格不能为空");
+            $("#ConsumableSpecification").focus();
+            IsValid = false;
+        }
+
+        if (!AddConsumableVue.Consumable.Model) {
+            $("#reqConsumableModel").html("型号不能为空");
+            $("#ConsumableModel").focus();
+            IsValid = false;
+        }
+
+        if (AddConsumableVue.Consumable.Price > 9999999999.99) {
+            $("#reqConsumablePrice").html("单价最大为9999999999.99");
+            $("#ConsumablePrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddConsumableVue.Consumable.Price)) {
+            $("#reqConsumablePrice").html("单价格式有误");
+            $("#ConsumablePrice").focus();
+            IsValid = false;
+        }
+
+        if (AddConsumableVue.Consumable.Qty == 0) {
+            $("#reqConsumableQty").html("数量不能为空");
+            $("#ConsumableQty").focus();
+            IsValid = false;
+        }
+        else if (AddConsumableVue.Consumable.Qty > 9999999999.99) {
+            $("#reqConsumableQty").html("数量最大为9999999999.99");
+            $("#ConsumableQty").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddConsumableVue.Consumable.Qty)) {
+            $("#reqConsumableQty").html("数量格式有误");
+            $("#ConsumableQty").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+
+    //新耗材
+    function CheckNewConsumable() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var IsValid = true;
+
+        if (!NewConsumableVue.NewConsumable.FujiClass2.Name) {
+            $("#reqNewConsumableFujiClass2").html("富士II类不能为空");
+            $("#NewConsumableFujiClass2").focus();
+            IsValid = false;
+        }
+
+        if (!NewConsumableVue.NewConsumable.Name) {
+            $("#reqNewConsumableName").html("简称不能为空");
+            $("#NewConsumableName").focus();
+            IsValid = false;
+        }
+        else if (CheckConsumableExisted() == true) {
+            $("#reqNewConsumableName").html("简称已存在");
+            $("#NewConsumableName").focus();
+            IsValid = false;
+        }
+
+        if (!NewConsumableVue.NewConsumable.Description) {
+            $("#reqNewConsumableDescription").html("描述不能为空");
+            $("#NewConsumableDescription").focus();
+            IsValid = false;
+        }
+        if (!NewConsumableVue.NewConsumable.Type.ID) {
+            $("#reqNewConsumableType").html("类型不能为空");
+            $("#NewConsumableType").focus();
+            IsValid = false;
+        }
+        if (NewConsumableVue.NewConsumable.StdPrice > 9999999999.99) {
+            $("#reqNewConsumableStdPrice").html("单价最大为9999999999.99");
+            $("#NewConsumableStdPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(NewConsumableVue.NewConsumable.StdPrice)) {
+            $("#reqNewConsumableStdPrice").html("单价格式有误");
+            $("#NewConsumableStdPrice").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+
+    //判断耗材是否存在
+    function CheckConsumableExisted() {
+        var IsExisted = false;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckConsumableName","Consumable")',
+            data: {
+                id: NewConsumableVue.NewConsumable.ID,
+                name: NewConsumableVue.NewConsumable.Name,
+                fujiClass2ID: NewConsumableVue.NewConsumable.FujiClass2.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    //服务
+    function CheckService() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var integer = /^\d+$/;
+        var IsValid = true;
+
+        //富士II类
+        if (!AddServiceVue.Service.FujiClass2.ID) {
+            $("#reqServiceFujiClass2").html("富士II类不能为空");
+            $("#ServiceFujiClass2").focus();
+            IsValid = false;
+        }
+
+        //服务名称
+        if (!AddServiceVue.Service.Name) {
+            $("#reqServiceName").html('服务名称不能为空');
+            $("#ServiceName").focus();
+            IsValid = false;
+        }
+        else if (CheckServiceName() == true) {
+             $("#reqServiceName").html("服务名称重复");
+             $("#ServiceName").focus();
+            IsValid = false;
+        }
+        // //金额
+        if (AddServiceVue.Service.Price > 9999999999.99) {
+            $("#reqServicePrice").html("金额最大为9999999999.99");
+            $("#ServicePrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddServiceVue.Service.Price)) {
+            $("#reqServicePrice").html("金额格式有误");
+            $("#ServicePrice").focus();
+            IsValid = false;
+        }
+
+        //服务次数
+        if (AddServiceVue.Service.TotalTimes == 0) {
+            $("#reqTotalTimes").html('服务次数不能为空');
+            $("#TotalTimes").focus();
+            IsValid = false;
+        }
+        else if (!integer.test(AddServiceVue.Service.TotalTimes)) {
+            $("#reqTotalTimes").html("服务次数格式有误");
+            $("#TotalTimes").focus();
+            IsValid = false;
+        }
+
+        //时间
+        if (CheckDatePicker("StartDate", "开始日期") != "") {
+            $("#reqStartDate").html(CheckDatePicker("StartDate", "开始日期"));
+            IsValid = false;
+        }
+        if (CheckDatePicker("EndDate", "结束时间") != false) {
+            $("#reqEndDate").html(CheckDatePicker("EndDate", "结束时间"));
+            IsValid = false;
+        }
+        if ((new Date($("#StartDate").val().replace(/-/g, "\/"))) > (new Date($("#EndDate").val().replace(/-/g, "\/")))) {
+            $("#reqEndDate").html("结束日期必须大于开始日期");
+            IsValid = false;
+        }
+        return IsValid;
+
+    }
+    //检查服务名称
+    function CheckServiceName() {
+        var IsValid = false;
+        if (AddServiceVue.Service.index == -1) {
+            $.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, service) {
+                if (service.FujiClass2.ID == AddServiceVue.Service.FujiClass2.ID && service.Name == AddServiceVue.Service.Name) {
+                    IsValid = true;
+                    return;
+                }
+            })
+        }
+        else {
+            $.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, service) {
+                if (index != AddServiceVue.Service.index && service.FujiClass2.ID == AddServiceVue.Service.FujiClass2.ID && service.Name == AddServiceVue.Service.Name) {
+                    IsValid = true;
+                    return;
+                }
+            })
+        }
+        return IsValid;
+    }
+
+</script>

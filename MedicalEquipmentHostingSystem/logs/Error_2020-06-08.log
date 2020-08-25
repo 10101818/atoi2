@@ -1,0 +1,351 @@
+2020-06-08 10:15:41.2471 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ConsumableDao', Method 'QueryConsumablesByFujiClass2ID', Arguments: Int32 = 3 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ConsumableInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ConsumableInfo.cs:行号 43
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ConsumableDao.cs:行号 135
+2020-06-08 10:15:41.3311 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ConsumableInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ConsumableInfo.cs:行号 43
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ConsumableDao.cs:行号 141
+   在 BusinessObjects.Manager.FujiClass2Manager.<>c__DisplayClass3.<GetFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 45
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 40
+2020-06-08 10:18:36.5529 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'ConsumableDao', Method 'QueryConsumablesByFujiClass2ID', Arguments: Int32 = 3 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ConsumableInfo..ctor(DataRow dr)
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID)
+2020-06-08 10:18:36.6269 ERROR Exception: '列“FujiClass2Name”不属于表 。' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ConsumableInfo..ctor(DataRow dr)
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID)
+   在 BusinessObjects.Manager.FujiClass2Manager.<>c__DisplayClass3.<GetFujiClass2s>b__1(FujiClass2Info info)
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection)
+2020-06-08 10:19:31.0297 ERROR Exception: 'The multi-part identifier "f.Name" could not be bound.' happened in Class 'ConsumableDao', Method 'QueryConsumablesByFujiClass2ID', Arguments: Int32 = 3 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 70
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ConsumableDao.cs:行号 132
+2020-06-08 10:19:31.1047 ERROR Exception: 'The multi-part identifier "f.Name" could not be bound.' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 70
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ConsumableDao.cs:行号 142
+   在 BusinessObjects.Manager.FujiClass2Manager.<>c__DisplayClass3.<GetFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 45
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClass2Manager.cs:行号 40
+2020-06-08 10:19:55.7776 ERROR Exception: 'The multi-part identifier "f.Name" could not be bound.' happened in Class 'ConsumableDao', Method 'QueryConsumablesByFujiClass2ID', Arguments: Int32 = 3 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName)
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID)
+2020-06-08 10:19:55.8456 ERROR Exception: 'The multi-part identifier "f.Name" could not be bound.' happened in Class 'FujiClass2Manager', Method 'GetFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName)
+   在 BusinessObjects.DataAccess.ConsumableDao.QueryConsumablesByFujiClass2ID(Int32 fujiClass2ID)
+   在 BusinessObjects.Manager.FujiClass2Manager.<>c__DisplayClass3.<GetFujiClass2s>b__1(FujiClass2Info info)
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClass2Manager.GetFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection)
+2020-06-08 14:26:09.0412 ERROR Exception: '列“EquipmentType1ID”不属于表 。' happened in Class 'FujiClass1Dao', Method 'GetFujiClass1s', Arguments: None 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.FujiClass1Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass1Info.cs:行号 32
+   在 BusinessObjects.DataAccess.FujiClass1Dao.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClass1Dao.cs:行号 85
+2020-06-08 14:26:09.1232 ERROR 列“EquipmentType1ID”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.FujiClass1Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass1Info.cs:行号 32
+   在 BusinessObjects.DataAccess.FujiClass1Dao.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClass1Dao.cs:行号 91
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass1Controller.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass1Controller.cs:行号 65
+2020-06-08 14:26:58.7497 ERROR Exception: '列“EquipmentType1ID”不属于表 。' happened in Class 'FujiClass1Dao', Method 'GetFujiClass1s', Arguments: None 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.FujiClass1Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass1Info.cs:行号 32
+   在 BusinessObjects.DataAccess.FujiClass1Dao.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClass1Dao.cs:行号 85
+2020-06-08 14:26:58.8106 ERROR 列“EquipmentType1ID”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.FujiClass1Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass1Info.cs:行号 32
+   在 BusinessObjects.DataAccess.FujiClass1Dao.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClass1Dao.cs:行号 91
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass1Controller.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass1Controller.cs:行号 65
+2020-06-08 14:27:29.2247 ERROR Exception: '列“EquipmentType1ID”不属于表 。' happened in Class 'FujiClass1Dao', Method 'GetFujiClass1s', Arguments: None 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.FujiClass1Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass1Info.cs:行号 32
+   在 BusinessObjects.DataAccess.FujiClass1Dao.GetFujiClass1s() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClass1Dao.cs:行号 85
+2020-06-08 15:28:09.4347 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32], ObjectType = Repair 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 53
+2020-06-08 15:28:09.5166 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 56
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 41
+2020-06-08 15:28:09.5606 ERROR Incorrect syntax near the keyword 'AND'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 56
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 56
+2020-06-08 15:28:41.1557 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32], ObjectType = Repair 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 53
+2020-06-08 15:28:41.2217 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 303
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 56
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 41
+2020-06-08 15:30:38.7071 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FaultRateDao', Method 'GetFaultRateByObject', Arguments: List`1 = System.Collections.Generic.List`1[System.Int32], ObjectType = Repair 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command)
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type)
+2020-06-08 15:30:38.7580 ERROR Exception: 'Incorrect syntax near the keyword 'AND'.' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command)
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection)
+2020-06-08 15:30:38.8020 ERROR Incorrect syntax near the keyword 'AND'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command)
+   在 BusinessObjects.DataAccess.FaultRateDao.GetFaultRateByObject(List`1 objectIDs, ObjectType type)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection)
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 56
+2020-06-08 15:31:38.3870 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'SetFujiClass2Rate', Arguments: FujiClass2Info = BusinessObjects.Domain.FujiClass2Info 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 85
+2020-06-08 15:31:38.4669 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 91
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass3.<QueryFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 46
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 42
+2020-06-08 15:33:33.8528 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'SetFujiClass2Rate', Arguments: FujiClass2Info = BusinessObjects.Domain.FujiClass2Info 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 85
+2020-06-08 15:33:33.9258 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 91
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass3.<QueryFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 46
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 42
+2020-06-08 15:33:33.9718 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 91
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass3.<QueryFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 46
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 56
+2020-06-08 15:33:42.2379 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'SetFujiClass2Rate', Arguments: FujiClass2Info = BusinessObjects.Domain.FujiClass2Info 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 85
+2020-06-08 15:33:42.2859 ERROR Exception: '给定关键字不在字典中。' happened in Class 'FujiClassManager', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = , String = , String = f2.ID, Boolean = True 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 91
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass3.<QueryFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 46
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 42
+2020-06-08 15:33:42.3319 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass8.<SetFujiClass2Rate>b__6(ComponentInfo component) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 87
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.SetFujiClass2Rate(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 91
+   在 BusinessObjects.Manager.FujiClassManager.<>c__DisplayClass3.<QueryFujiClass2s>b__1(FujiClass2Info info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 46
+   在 System.Collections.Generic.List`1.ForEach(Action`1 action)
+   在 BusinessObjects.Manager.FujiClassManager.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 56

@@ -1,0 +1,509 @@
+2020-05-18 08:24:40.6987 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_jctContractEqpt'. Cannot insert duplicate key in object 'dbo.jctContractEqpt'. The duplicate key value is (2, 1440).
+The statement has been terminated.' happened in Class 'ContractDao', Method 'AddContractEqpt', Arguments: Int32 = 2, Int32 = 1440 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractEqpt(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 272
+2020-05-18 08:24:40.8076 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_jctContractEqpt'. Cannot insert duplicate key in object 'dbo.jctContractEqpt'. The duplicate key value is (2, 1440).
+The statement has been terminated.' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ContractDao.AddContractEqpt(Int32 contractID, Int32 equipmentID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ContractDao.cs:行号 274
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 158
+2020-05-18 08:33:00.1101 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 6201, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 84
+2020-05-18 08:33:00.1741 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 73, Int32 = 3, Int32 = 3071, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 40
+2020-05-18 08:33:00.2160 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'SupplierManager', Method 'SaveSupplier', Arguments: SupplierInfo = BusinessObjects.Domain.SupplierInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.SupplierManager.SaveSupplier(SupplierInfo supplier, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\SupplierManager.cs:行号 65
+2020-05-18 08:33:00.2990 ERROR Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.SupplierManager.SaveSupplier(SupplierInfo supplier, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\SupplierManager.cs:行号 79
+   在 MedicalEquipmentHostingSystem.Controllers.SupplierController.SaveSupplier(SupplierInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\SupplierController.cs:行号 218
+2020-05-18 08:36:04.3578 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 6202, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 84
+2020-05-18 08:36:04.4217 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 73, Int32 = 3, Int32 = 3071, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 40
+2020-05-18 08:36:04.4847 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB_Test.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'SupplierManager', Method 'SaveSupplier', Arguments: SupplierInfo = BusinessObjects.Domain.SupplierInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.SupplierManager.SaveSupplier(SupplierInfo supplier, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\SupplierManager.cs:行号 65
+2020-05-18 09:09:37.7422 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Contract(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 96
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-05-18 09:29:39.8423 ERROR 列“TypeDesc”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.set_Item(String columnName, Object value)
+   在 BusinessObjects.Manager.CustomReportManager.GetContractDesc(DataRow dr, List`1 fieldsInRpt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Contract(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-05-18 10:25:58.8018 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:29:16.2248 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:31:54.6025 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:37:52.0133 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:44:27.0225 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:48:40.5560 ERROR Exception: 'Incorrect syntax near ''.' happened in Class 'CustomReportDao', Method 'QueryCustRpt4Dispatch', Arguments: String = r.RequestDate, DateTime = 2020/5/18 0:00:00, DateTime = 2020/5/19 0:00:00 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 203
+2020-05-18 10:48:54.2708 ERROR Incorrect syntax near ''. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 205
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 130
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:50:39.9091 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 163
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 140
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:54:27.2002 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:57:02.1203 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:58:30.5451 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 10:59:58.1798 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 11:02:06.6348 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 11:02:15.1952 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 11:03:12.6119 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 221
+2020-05-18 14:18:36.6450 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2354, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 84
+2020-05-18 14:18:36.7443 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2431, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 40
+2020-05-18 14:18:36.7763 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 126
+2020-05-18 14:20:08.8409 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2355, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 84
+2020-05-18 14:20:08.8929 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2431, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 40
+2020-05-18 14:20:08.9429 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 126
+2020-05-18 14:20:30.9261 ERROR Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 14:23:14.9214 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2356, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-18 14:23:14.9554 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2431, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-18 14:23:14.9904 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+2020-05-18 14:24:33.2128 ERROR Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 14:50:41.4484 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2357, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 84
+2020-05-18 14:50:41.4884 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2431, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 40
+2020-05-18 14:50:41.5224 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 87
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 41
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\EquipmentManager.cs:行号 126
+2020-05-18 15:11:30.8554 ERROR Exception: '连接已断开，且无法恢复。服务器已将该连接标记为不可恢复。未尝试恢复访连接。' happened in Class 'EquipmentDao', Method 'UpdateEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlConnection.ValidateAndReconnect(Action beforeDisconnect, Int32 timeout)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.EquipmentDao.UpdateEquipment(EquipmentInfo info, UserInfo user)
+2020-05-18 15:11:30.8874 ERROR Exception: '连接已断开，且无法恢复。服务器已将该连接标记为不可恢复。未尝试恢复访连接。' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlConnection.ValidateAndReconnect(Action beforeDisconnect, Int32 timeout)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.EquipmentDao.UpdateEquipment(EquipmentInfo info, UserInfo user)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+2020-05-18 15:11:33.7229 ERROR 此 SqlTransaction 已完成；它再也无法使用。 
+    在 System.Data.SqlClient.SqlTransaction.ZombieCheck()
+   在 System.Data.SqlClient.SqlTransaction.Rollback()
+   在 BusinessObjects.Util.ConnectionUtil.RollbackTransaction()
+   在 BusinessObjects.Aspect.TransactionAspect.OnException(MethodExecutionArgs args)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 15:23:35.5711 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2359, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-18 15:23:35.6021 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2431, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-18 15:23:35.6330 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+2020-05-18 15:23:45.9326 ERROR Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 15:58:43.2184 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2363, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-18 15:58:43.2524 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 2432, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-18 15:58:43.2843 ERROR Exception: 'Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+2020-05-18 15:58:55.8665 ERROR Cannot insert the value NULL into column 'NewValue', table 'MEHS_DB.dbo.tblAuditDetail'; column does not allow nulls. INSERT fails.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 16:13:39.3436 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2365, EquipmentClass1Name).
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2365, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-18 16:13:39.3846 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2365, EquipmentClass1Name).
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 1, Int32 = 429, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-18 16:13:39.4236 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2365, EquipmentClass1Name).
+The statement has been terminated.' happened in Class 'EquipmentManager', Method 'SaveEquipment', Arguments: EquipmentInfo = BusinessObjects.Domain.EquipmentInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+2020-05-18 16:13:50.4391 ERROR Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2365, EquipmentClass1Name).
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.EquipmentManager.SaveEquipment(EquipmentInfo info, List`1 files, UserInfo user)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.SaveEquipmentInfo(EquipmentInfo equipmentInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 360
+2020-05-18 16:28:37.8466 ERROR Exception: '[C:\Users\April\AppData\Local\Temp\Temporary ASP.NET Files\root\f68e5ad2\7b8e97bc\assembly\dl3\6e7985b8\e61df526_ed2cd601\BusinessObjects.dll] 没有与标记关联的字符串。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)
+2020-05-18 16:29:30.4395 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:30:19.9176 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 164
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-05-18 16:30:36.7337 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:30:56.7900 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:31:20.8433 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:31:48.0508 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 363
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 286
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:32:41.6441 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Util.SQLUtil.GetStringListFromObjectList(IList objects, String valueFeildName, Boolean includeEmpty)
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-05-18 16:51:41.1376 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 BusinessObjects.Domain.ContractInfo.GetStringFromObjectList(List`1 data, String field) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 349
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ContractInfo.cs:行号 285
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ContractManager.cs:行号 132
+2020-05-18 16:52:26.3836 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ContractInfo.GetStringFromObjectList(List`1 data, String field)
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-05-18 16:52:36.9380 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ContractManager', Method 'SaveContract', Arguments: ContractInfo = BusinessObjects.Domain.ContractInfo, List`1 = NULL, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ContractInfo.GetStringFromObjectList(List`1 data, String field)
+   在 BusinessObjects.Domain.ContractInfo.GetChangedFields(ContractInfo newInfo)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)

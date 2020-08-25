@@ -1,0 +1,105 @@
+2020-05-19 08:23:18.0517 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2371, ContractEndDate).
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2371, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-19 08:23:18.0887 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2371, ContractEndDate).
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 2, Int32 = 33, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-19 08:23:18.1227 ERROR Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2371, ContractEndDate).
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-05-19 08:25:38.2573 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2373, ContractEndDate).
+The statement has been terminated.' happened in Class 'AuditDao', Method 'AddAuditDetail', Arguments: Int32 = 2373, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+2020-05-19 08:25:38.3203 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2373, ContractEndDate).
+The statement has been terminated.' happened in Class 'AuditManager', Method 'AddAuditLog', Arguments: Int32 = 5, Int32 = 2, Int32 = 33, DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+2020-05-19 08:25:38.3622 ERROR Violation of PRIMARY KEY constraint 'PK_tblEqptAuditDetail'. Cannot insert duplicate key in object 'dbo.tblAuditDetail'. The duplicate key value is (2373, ContractEndDate).
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.AuditDao.AddAuditDetail(Int32 auditID, DataTable dt)
+   在 BusinessObjects.Manager.AuditManager.AddAuditLog(Int32 userID, Int32 objectTypeID, Int32 objectID, DataTable dt)
+   在 BusinessObjects.Manager.ContractManager.SaveContract(ContractInfo contract, List`1 files, UserInfo userInfo)
+   在 MedicalEquipmentHostingSystem.Controllers.ContractController.SaveContract(ContractInfo contract) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ContractController.cs:行号 177
+2020-05-19 15:33:49.2823 ERROR Exception: '要解密的数据的长度无效。' happened in Class 'UserManager', Method 'GetUser', Arguments: Int32 = 28 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 48
+2020-05-19 15:33:49.4172 ERROR 要解密的数据的长度无效。 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.UserController.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UserController.cs:行号 103
+2020-05-19 15:33:55.9345 ERROR Exception: '要解密的数据的长度无效。' happened in Class 'UserManager', Method 'GetUser', Arguments: Int32 = 28 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 48
+2020-05-19 15:33:56.0045 ERROR 要解密的数据的长度无效。 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.UserController.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UserController.cs:行号 103
+2020-05-19 15:34:27.8641 ERROR Exception: '要解密的数据的长度无效。' happened in Class 'UserManager', Method 'GetUser', Arguments: Int32 = 28 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 48
+2020-05-19 15:34:27.9351 ERROR 要解密的数据的长度无效。 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.UserController.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UserController.cs:行号 103
+2020-05-19 15:35:21.4265 ERROR Exception: '要解密的数据的长度无效。' happened in Class 'UserManager', Method 'GetUser', Arguments: Int32 = 28 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 48
+2020-05-19 15:35:44.7215 ERROR Exception: '要解密的数据的长度无效。' happened in Class 'UserManager', Method 'GetUser', Arguments: Int32 = 28 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 48
+2020-05-19 15:35:44.7675 ERROR 要解密的数据的长度无效。 
+    在 System.Security.Cryptography.CryptoAPITransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+   在 System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+   在 BusinessObjects.Util.EncryptionUtil.Decrypt(String pToDecrypt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\EncryptionUtil.cs:行号 65
+   在 BusinessObjects.Manager.UserManager.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 50
+   在 MedicalEquipmentHostingSystem.Controllers.UserController.GetUser(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UserController.cs:行号 103

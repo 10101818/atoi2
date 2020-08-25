@@ -1,0 +1,120 @@
+2020-08-06 14:12:52.7974 ERROR Exception: '将参数值从 String 转换到 Int32 失败。' happened in Class 'DispatchReportDao', Method 'CheckComponent', Arguments: String = 199-1, Int32 = 1 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 286
+2020-08-06 14:12:52.9464 ERROR 将参数值从 String 转换到 Int32 失败。 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 288
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:12:53.1612 ERROR Exception: '将参数值从 String 转换到 Int32 失败。' happened in Class 'DispatchReportDao', Method 'CheckComponent', Arguments: String = 199-5, Int32 = 2 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 286
+2020-08-06 14:12:53.2262 ERROR 将参数值从 String 转换到 Int32 失败。 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 288
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:13:42.7587 ERROR 将参数值从 String 转换到 Int32 失败。 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type)
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:13:45.7972 ERROR ExecuteScalar: Connection 属性尚未初始化。 
+    在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type)
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:15:18.2741 ERROR Exception: '将参数值从 String 转换到 Int32 失败。' happened in Class 'DispatchReportDao', Method 'CheckComponent', Arguments: String = 199-1, Int32 = 1 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 286
+2020-08-06 14:15:18.4111 ERROR 将参数值从 String 转换到 Int32 失败。 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 288
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:15:18.5879 ERROR Exception: '将参数值从 String 转换到 Int32 失败。' happened in Class 'DispatchReportDao', Method 'CheckComponent', Arguments: String = 199-3, Int32 = 2 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 286
+2020-08-06 14:15:18.6399 ERROR 将参数值从 String 转换到 Int32 失败。 
+    在 System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   在 System.Data.SqlClient.SqlParameter.GetCoercedValue()
+   在 System.Data.SqlClient.SqlParameter.Validate(Int32 index, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.BuildParamList(TdsParser parser, SqlParameterCollection parameters, Boolean includeReturnValue)
+   在 System.Data.SqlClient.SqlCommand.BuildExecuteSql(CommandBehavior behavior, String commandText, SqlParameterCollection parameters, _SqlRPC& rpc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\DispatchReportDao.cs:行号 288
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 14:15:57.2934 ERROR ExecuteScalar: Connection 属性尚未初始化。 
+    在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.DispatchReportDao.CheckComponent(String serialCode, Int32 type)
+   在 MedicalEquipmentHostingSystem.Controllers.DispatchReportController.CheckComponent(String serialCode, Int32 type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchReportController.cs:行号 453
+2020-08-06 15:23:47.0668 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.UploadFileController.DownloadUploadFile(Int32 objectTypeId, Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UploadFileController.cs:行号 91

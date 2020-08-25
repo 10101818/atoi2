@@ -1,0 +1,42 @@
+2019-12-23 08:10:03.1783 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 08:25:22.8946 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 08:38:19.7562 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 09:38:19.6156 INFO DoTimerCallback run start at 2019/12/23 9:38:19 
+ 
+2019-12-23 09:38:19.7238 INFO DoTimerCallback run end at 2019/12/23 9:38:19 
+ 
+2019-12-23 09:50:18.8537 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 10:50:18.7254 INFO DoTimerCallback run start at 2019/12/23 10:50:18 
+ 
+2019-12-23 10:50:18.7954 INFO DoTimerCallback run end at 2019/12/23 10:50:18 
+ 
+2019-12-23 11:36:12.8827 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 12:36:12.8187 INFO DoTimerCallback run start at 2019/12/23 12:36:12 
+ 
+2019-12-23 12:36:12.8738 INFO DoTimerCallback run end at 2019/12/23 12:36:12 
+ 
+2019-12-23 13:36:24.2758 INFO DoTimerCallback run start at 2019/12/23 13:36:24 
+ 
+2019-12-23 13:36:24.3158 INFO DoTimerCallback run end at 2019/12/23 13:36:24 
+ 
+2019-12-23 13:55:12.1753 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 14:05:19.3174 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 14:22:45.2299 INFO {"msg_id":"67554032065838220","error":{"code":1011,"message":"cannot find user by this audience"}} 
+ 
+2019-12-23 14:25:32.3634 INFO {"msg_id":"20266241147970917","error":{"code":1011,"message":"cannot find user by this audience"}} 
+ 
+2019-12-23 14:52:44.5519 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 16:15:46.4424 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 16:30:43.9562 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-23 16:48:01.5684 INFO Create event timer with Period: 60 Minute(s). 
+ 

@@ -1,0 +1,59 @@
+2020-08-07 14:13:44.1570 ERROR Exception: '偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 791
+2020-08-07 14:13:44.2909 ERROR 偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 916
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-07 14:14:45.3309 ERROR Exception: '偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 791
+2020-08-07 14:15:09.6547 ERROR 偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 916
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-07 14:35:29.2325 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 1 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:35:29.3674 ERROR A regression of the requested order requires at least 2 samples. Only 1 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 422
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-07 14:37:26.0716 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:38:16.9789 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:39:55.1786 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 422
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-07 14:40:15.6294 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:40:24.5182 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:40:24.5681 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 422
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-07 14:40:51.3966 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 14:40:51.4456 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 422
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518
+2020-08-07 15:12:13.7987 ERROR Exception: 'A regression of the requested order requires at least 2 samples. Only 0 samples have been provided. ' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = -1, Int32 = 0 
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 407
+2020-08-07 15:12:13.8906 ERROR A regression of the requested order requires at least 2 samples. Only 0 samples have been provided.  
+    在 MathNet.Numerics.LinearRegression.SimpleRegression.Fit(Double[] x, Double[] y)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 422
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 518

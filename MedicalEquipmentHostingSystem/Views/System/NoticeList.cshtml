@@ -1,0 +1,327 @@
+﻿
+@{
+    ViewBag.Title = "NoticeList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+
+<div id="Notice" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">广播列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            搜索:
+                            <select id="SelectedQuery" v-model="Filter.FilterField">
+                                <option value="ID">广播编号</option>
+                                <option value="Name">广播名称</option>
+                            </select>
+                            <input type="text" id="txtQuery" v-model.trim="Filter.FilterText" onkeydown="DoQuery()" style="height:23px;width:150px;" maxlength="20" /><img src="~/Content/img/search.png" class="icon-sm cursor" v-on:click="QueryNoticeList()">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table id="tableContent" class="table" cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:120px">广播编号</th>
+                <th style="min-width:200px">广播名称</th>
+                <th style="min-width:120px">添加时间</th>
+                <th style="min-width:200px">广播内容</th>
+                <th style="min-width:200px">备注</th>
+                <th style="min-width:100px">是否轮播</th>
+                <th style="min-width:80px" class="tdListCenter">操作</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr v-for="item in NoticeList">
+                <td>{{item.OID}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{parseAndFormatJsonDate(item.CreatedDate)}}</td>
+                <td>{{item.Content}}</td>
+                <td>{{item.Comments}}</td>
+                <td class="tdListCenter">
+                    <button v-if="item.IsLoop" class="Loop-yes Loop-no cursor" v-on:click="showNotice(item.ID)">是</button>
+                    <button v-else class="Loop-no cursor" v-on:click="showNotice(item.ID)">否</button>
+                </td>
+                <td class="tdListCenter"><img src="~/Content/img/edit.png" class="icon-sm cursor" v-on:click="btnEditNotice(item.ID)"></td>
+            </tr>
+            <tr v-if="NoticeList.length == 0">
+                <td colspan="8" style="text-align:center">暂无数据</td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" style="float: left;" onclick="btnAddNoticeClick()">新增广播</button>
+                    </div>
+                </td>
+                <td colspan="8" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- 新增广播 -->
+    <div class="ui-dialog-content ui-widget-content" id="dialog-form-Add" tabindex="-1" style="display:none">
+        <table class="table">
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>广播名称</td>
+                <td>
+                    <input type="text" id="Name" maxlength="20" v-model="SelectNotice.Name" style="width:350px" />
+                    <label id="reqName" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>广播内容</td>
+                <td>
+                    <textarea type="text" id="Content" maxlength="500" v-model="SelectNotice.Content" style="width:350px;height:100px;margin-top: 5px;" cols="5"></textarea>
+                    <label id="reqContent" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required"></span></td>
+                <td>备注</td>
+                <td>
+                    <textarea maxlength="500" v-model="SelectNotice.Comments" style="width:350px;margin-top: 5px;" cols="5"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>是否轮播</td>
+                <td>
+                    <input type="radio" value="true" v-model="SelectNotice.IsLoop" />是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" value="false" v-model="SelectNotice.IsLoop" />否
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    //NoticeList导出
+    function ExportToExcel() {
+        $.fileDownload('@Url.Action("ExportNoticesList", "System")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: {
+                    filterField: NoticeVue.Filter.FilterField,
+                    filterText: NoticeVue.Filter.FilterText,
+                }
+            });
+    }
+
+    //刷新NoticeList
+    function Refresh() {
+        NoticeVue.Filter = {
+            FilterField: 'ID',
+            FilterText: '',
+            CurrentPage: 1,
+            PageSize:10,
+            }
+        NoticeVue.QueryNoticeList();
+    }
+</script>
+<script>
+    //Notice分页
+    function PageClick(pageclickednumber) {
+        NoticeVue.Filter.CurrentPage = pageclickednumber;
+        NoticeVue.QueryNoticeList();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            NoticeVue.QueryNoticeList();
+    }
+    function changeCurNum_pager() {
+        NoticeVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        NoticeVue.QueryNoticeList();
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitForm()
+        setTimeout(NoticeVue.QueryNoticeList(), 100);
+    })
+
+    /*btn添加Notice*/
+    function btnAddNoticeClick() {
+        InitDialogForm();
+        $("#dialog-form-Add").dialog({ title: "添加广播" });
+        $("#dialog-form-Add").dialog("open");
+    }
+
+    /*SelectNotice弹框*/
+    function InitForm() {
+        var dialog = $("#dialog-form-Add").dialog({
+            autoOpen: false,
+            height: 420,
+            width: 620,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { saveNotice(); },
+                "关闭": function () { dialog.dialog("close"); }
+            }
+        });
+    }
+
+    /*SelectNotice清空Form*/
+    function InitDialogForm() {
+        $("label.required").html("");
+        NoticeVue.SelectNotice = {
+            Name: '',
+            Content: '',
+            Comments: '',
+            IsLoop:false
+        }
+    }
+
+    function saveNotice() {
+        if (CheckAddForm() == false) return;
+        var jsonData = NoticeVue.SelectNotice;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveNotice", "System")', jsonData, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存", function () {
+                    $("#dialog-form-Add").dialog("close")
+                    NoticeVue.QueryNoticeList();
+                });
+
+            }
+
+        })
+    }
+    /*验证Notice弹框必填项是否已填*/
+    function CheckAddForm() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var content = NoticeVue.SelectNotice.Content;
+        if (content == "") {
+            $("#Content").focus();
+            $("#reqContent").html("广播内容不能为空");
+            IsValid = false;
+        }
+
+        var Name = NoticeVue.SelectNotice.Name;
+        if (Name == "") {
+            $("#Name").focus();
+            $("#reqName").html("广播名称不能为空");
+            IsValid = false;
+        }
+        return IsValid;
+    }
+
+</script>
+<script>
+    var NoticeVue = new Vue({
+        el: "#Notice",
+        data: {
+            NoticeList: [],
+            SelectNotice: {
+                IsLoop: true
+            },
+            Filter: {
+                FilterField: 'ID',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize:10,
+            },
+        },
+        methods: {
+            btnEditNotice: function (id) {
+                InitDialogForm();
+                NoticeVue.SelectNotice.ID = id;
+                SetPageWaiting(true);
+                $.post('@Url.Action("GetNoticeByID", "System")', {
+                    id: id
+                }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        var info = response.Data;
+                        NoticeVue.SelectNotice.Name = info.Name;
+                        NoticeVue.SelectNotice.Content = info.Content;
+                        NoticeVue.SelectNotice.Comments = info.Comments;
+                        NoticeVue.SelectNotice.IsLoop = info.IsLoop;
+                    }
+                });
+                $("#dialog-form-Add").dialog({ title: "修改信息" });
+                $("#dialog-form-Add").dialog("open");
+
+            },
+            //获取数据
+            QueryNoticeList: function () {
+                SetPageWaiting(true);
+                $.get('@Url.Action("QueryNoticeList", "System")', {
+                    filterField: NoticeVue.Filter.FilterField,
+                    filterText: NoticeVue.Filter.FilterText,
+                    currentPage: NoticeVue.Filter.CurrentPage,
+                    pageSize: NoticeVue.Filter.PageSize
+                }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        NoticeVue.NoticeList = response.Data;
+                        NoticeVue.Filter.CurrentPage = SetTotalPage4Pager(NoticeVue.Filter.CurrentPage, response.TotalPages);
+                        $("#curNum option[value='" + NoticeVue.Filter.PageSize + "']").prop("selected", true);
+                    }
+                })
+            },
+            showNotice: function (id) {
+                SetPageWaiting(true);
+                $.post('@Url.Action("SetLoop","System")', { id: id }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    }
+                })
+                this.QueryNoticeList();
+            },
+
+        }
+    })
+</script>

@@ -1,0 +1,599 @@
+﻿@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    int status = ViewBag.Status;
+
+    List<BusinessObjects.Domain.KeyValueInfo> Roles = BusinessObjects.Manager.LookupManager.GetRoles();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    List<BusinessObjects.Domain.KeyValueInfo> Verifies = BusinessObjects.Domain.VerifyStatus.GetVerifyStatus();
+    List<BusinessObjects.Domain.DepartmentInfo> Departments = BusinessObjects.Manager.LookupManager.GetDepartments();
+}
+<div id="userList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">用户列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table style="width:800px;">
+                    <tr>
+                        <td>
+                            状态:
+                            <select id="SelectedStatus" v-on:change="QueryUserList()" v-model="Filter.Status">
+                                <option value="-1">全部</option>
+                                <option value="1">启用</option>
+                                <option value="0">停用</option>
+                            </select>
+                        </td>
+                        <td>
+                            角色:
+                            <select v-model="Filter.RoleIds" v-on:change="QueryUserList()">
+                                <option value="-1">全部</option>
+                                @foreach (var temp in Roles)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            审批状态:
+                            <select v-model="Filter.VerifyStatusID" v-on:change="QueryUserList()">
+                                <option value="0">全部</option>
+                                @foreach (var temp in Verifies)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            搜索:
+                            <select id="SelectedQuery" v-model="Filter.FilterField">
+                                <option value="u.Name">姓名</option>
+                                <option value="u.Mobile">电话</option>
+                            </select>
+                            <input type="text" id="txtQuery" v-model.trim="Filter.FilterText" onkeydown="DoQuery()" style="height: 23px;width:150px;" maxlength="50" /><img src="~/Content/img/search.png" class="icon-sm cursor" v-on:click="QueryUserList()">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table id="tableContent" class="table" cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:150px" class="sortColumn" id="u.LoginID" onclick="sortUserList(this)">用户名</th>
+                <th style="min-width:150px" class="sortColumn" id="u.RoleID" onclick="sortUserList(this)">角色</th>
+                <th style="min-width:150px" id="u.Name">姓名</th>
+                <th style="min-width:150px" id="u.Mobile">电话</th>
+                <th style="min-width:150px" id="u.Email">邮箱</th>
+                <th style="min-width:200px" id="u.Address">地址</th>
+                <th style="min-width:120px" class="sortColumn tdListCenter" id="u.CreatedDate" onclick="sortUserList(this)">添加日期</th>
+                <th style="min-width:80px" class="tdListCenter" id="u.IsActive">状态</th>
+                <th style="min-width:80px" class="tdListCenter" id="u.VerifyStatus">审批状态</th>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="min-width:80px" class="tdListCenter">操作</th>
+                }
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr v-for="item in UserDataList">
+                <td>{{item.LoginID}}</td>
+                <td>{{item.Role.Name}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.Mobile}}</td>
+                <td>{{item.Email}}</td>
+                <td>{{item.Address}}</td>
+                <td class="tdListCenter">{{parseAndFormatJsonDate(item.CreatedDate)}}</td>
+                <td class="tdListCenter">{{item.IsActive?"启用":"停用"}}</td>
+                <td class="tdListCenter">{{item.VerifyStatus.Name}}</td>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td class="tdListCenter" v-if="item.VerifyStatus.ID == @BusinessObjects.Domain.VerifyStatus.Pass"><img src="~/Content/img/edit.png" class="icon-sm cursor" v-on:click="btnEditUserClick(item.ID)"></td>
+                    <td class="tdListCenter" v-else-if="item.VerifyStatus.ID == @BusinessObjects.Domain.VerifyStatus.Pending"><button v-on:click="ApproveUserBtn(item.ID)" class="btn btn-outline-info btn-sm">审批</button></td>
+                    <td class="tdListCenter" v-else><button v-on:click="UpdateApprove(item.ID)" class="btn btn-outline-info btn-sm">更新</button></td>
+                }
+            </tr>
+            <tr v-if="UserDataList.length == 0">
+                <td colspan="11" style="text-align:center">暂无数据</td>
+            </tr>
+            <tr>
+                <td>
+                    @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || @user.Role.ID == @BusinessObjects.Domain.UserRole.SystemAdmin)
+                    {
+                        <div>
+                            <button class="btn btn-info btn-sm " id="addUserBtn" data-toggle="modal" style="float: left;" onclick="btnAddUserClick()">新增用户</button>
+                        </div>
+                    }
+                </td>
+                <td colspan="11" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- 新增/编辑用户 -->
+    <div class="ui-dialog-content ui-widget-content" id="dialog-form-Add" tabindex="-1" style="display:none">
+        <table class="table">
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td width="75px">用户名</td>
+                <td width="">
+                    <input type="text" maxlength="20" id="LoginID" v-model="SelectedUser.LoginID" style="width:300px" />
+                    <label id="reqLoginID" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>密码</td>
+                <td>
+                    <input type="text" maxlength="20" class="input" id="LoginPwd" v-model="SelectedUser.LoginPwd" style="width:300px" />
+                    <label id="reqLoginPwd" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>角色</td>
+                <td>
+                    <select class="input" id="Role" v-model="SelectedUser.Role.ID" style="width:300px">
+                        @foreach (var temp in Roles)
+                        {
+                            <option value="@temp.ID">@temp.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr v-if="SelectedUser.Role.ID == @BusinessObjects.Domain.UserRole.User">
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>科室</td>
+                <td>
+                    <input type="text" id="Department" maxlength="100" class="input" v-model="SelectedUser.Department.Name" onfocus="autoCompleteDepartments(userVue.SelectedUser)" style="width:300px" />
+                    <label class="required" id="reqDepartment"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>姓名</td>
+                <td>
+                    <input type="text" maxlength="20" class="input" v-model="SelectedUser.Name" style="width:300px" />
+                    <label id="reqName" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required"></span></td>
+                <td>电话</td>
+                <td>
+                    <input type="text" maxlength="20" class="input" id="Mobile" v-model="SelectedUser.Mobile" style="width:300px" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required"></span></td>
+                <td>邮箱</td>
+                <td>
+                    <input type="text" maxlength="50" class="input" id="Email" v-model="SelectedUser.Email" style="width:300px" />
+                    <label id="reqEmail" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required"></span></td>
+                <td>地址</td>
+                <td><input type="text" maxlength="50" class="input" id="Address" v-model="SelectedUser.Address" style="width:300px" /></td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>状态</td>
+                <td>
+                    <input type="radio" name="IsActive" value="true" v-model="SelectedUser.IsActive" />启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="IsActive" value="false" v-model="SelectedUser.IsActive" />停用
+                </td>
+            </tr>
+            <tr v-if="SelectedUser.VerifyStatus.ID == @BusinessObjects.Domain.VerifyStatus.Pending || SelectedUser.VerifyStatus.ID == @BusinessObjects.Domain.VerifyStatus.Refused">
+                <td class="tdrequired" width="15px"><span class="required"></span></td>
+                <td>审批备注</td>
+                <td>
+                    <input type="text" maxlength="500" class="input" id="Comments" v-model="SelectedUser.Comments" style="width:300px" />
+                    <label id="reqComments" class="required"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    //UserList导出
+    function ExportToExcel() {
+        $.fileDownload('@Url.Action("ExportUsersList", "User")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: {
+                    status: userVue.Filter.Status,
+                    roleId: userVue.Filter.RoleIds,
+                    verifyStatusID:userVue.Filter.VerifyStatusID,
+                    filterField: userVue.Filter.FilterField,
+                    filterText: userVue.Filter.FilterText,
+                    field: userVue.Filter.SortObject.Field,
+                    direction:userVue.Filter.SortObject.Direction
+                }
+            });
+    }
+
+    //刷新userList
+    function Refresh() {
+        userVue.Filter={
+                Status: 1,
+                RoleIds: -1,
+                VerifyStatusID: 0,
+                FilterField: 'u.Name',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize:10,
+                SortObject:{
+                    Field: 'u.LoginID',
+                    Direction: true,
+                }
+        }
+        DisplaySortIcon(userVue.Filter.SortObject);
+        QueryUserList();
+    }
+</script>
+<script>
+    //UserList排序
+    function sortUserList(item) {
+        UpdateSortIcon(item, userVue.Filter.SortObject)
+        QueryUserList();
+    }
+    
+    //UserList分页
+    function PageClick(pageclickednumber) {
+        userVue.Filter.CurrentPage = pageclickednumber;
+        QueryUserList();
+    }
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            QueryUserList();
+    }
+    function changeCurNum_pager() {
+        userVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryUserList();
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitForm();
+        DisplaySortIcon(userVue.Filter.SortObject);
+        setTimeout(QueryUserList(), 100);
+    })
+    //获取数据
+    function QueryUserList() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryUserList", "User")', {
+            status: userVue.Filter.Status,
+            roleId: userVue.Filter.RoleIds,
+            verifyStatusID: userVue.Filter.VerifyStatusID,
+            filterField: userVue.Filter.FilterField,
+            filterText: userVue.Filter.FilterText,
+            currentPage: userVue.Filter.CurrentPage,
+            field: userVue.Filter.SortObject.Field,
+            direction: userVue.Filter.SortObject.Direction,
+            pageSize: userVue.Filter.PageSize
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                userVue.UserDataList = response.Data;
+                userVue.Filter.CurrentPage = SetTotalPage4Pager(userVue.Filter.CurrentPage, response.TotalPages);
+                $("#curNum option[value='" + userVue.Filter.PageSize + "']").prop("selected", true);
+            }
+        })
+    }
+
+    /*selectedUser弹框*/
+    function InitForm() {
+        var dialog = $("#dialog-form-Add").dialog({
+            autoOpen: false,
+            height: 580,
+            width: 630,
+            modal: true,
+            resizable: false,
+        });
+    }
+
+    /*selectedUser清空Form*/
+    function InitDialogForm() {
+        $("label.required").html("");
+        userVue.SelectedUser = {
+            Email: '',
+            LoginPwd: '',
+            Name: '',
+            LoginID: '',
+            Role: { ID: 1, },
+            IsActive: true,
+            Department: { ID: 0 },
+            VerifyStatus: { ID: 0 },
+            ID: 0
+        }
+        userVue.IsApprove = false
+    }
+
+    /*btn添加User*/
+    function btnAddUserClick() {
+        InitDialogForm();
+        userVue.SelectedUser.VerifyStatus.ID = '@BusinessObjects.Domain.VerifyStatus.Pass'
+        $("#dialog-form-Add").dialog({
+            title: "添加用户",
+            buttons: {
+                "保存": function () { saveUser(userVue.SelectedUser); },
+                "关闭": function () { $("#dialog-form-Add").dialog("close"); },
+            }
+        });
+        $("#dialog-form-Add").dialog("open");
+    }
+
+    /*添加/修改保存用户*/
+    function saveUser(jsonData) {
+        if (jsonData.Role.ID != '@BusinessObjects.Domain.UserRole.User') jsonData.Department.ID = 0
+        //非审批时保存数据
+        if (userVue.IsApprove == false)
+            if (CheckAddForm() == false) return;
+        SetPageWaiting(true)
+
+        $.post('@Url.Action("SaveUser", "User")', jsonData, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                if (userVue.IsApprove == false) {
+                    jAlert("保存成功", "保存", function () {
+                        $("#dialog-form-Add").dialog("close")
+                        QueryUserList();
+                    });
+                } else {
+                    jAlert("审批成功", "审批", function () {
+                        $("#dialog-form-Add").dialog("close")
+                        QueryUserList();
+                    });
+                }
+            }
+        })
+    }
+
+    /*验证用户编辑弹框必填项是否已填*/
+    function CheckAddForm() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var Email = userVue.SelectedUser.Email.trim();
+        if (Email != "" && !(/^[\w\-\.]+[@@]{1}[\w\-\.]+(\.\w+)+$/.test(Email))) {
+            $("#Email").focus();
+            $("#reqEmail").html("不是有效的电子邮件格式");
+            IsValid = false;
+        }
+
+        var LoginPwd = userVue.SelectedUser.LoginPwd.trim();
+        if (LoginPwd == "") {
+            $("#LoginPwd").focus();
+            $("#reqLoginPwd").html("密码不能为空");
+            IsValid = false;
+        }
+        else if (checkVarchar(LoginPwd) == true) {
+            $("#LoginPwd").focus();
+            $("#reqLoginPwd").html("密码不能有汉字");
+            IsValid = false;
+        }
+
+        if (userVue.SelectedUser.Role.ID == '@BusinessObjects.Domain.UserRole.User') {
+            var Department = userVue.SelectedUser.Department.Name;
+            if (Department == undefined || Department == "") {
+                $("#Department").focus();
+                $("#reqDepartment").html("请选择科室");
+                IsValid = false;
+            }
+            else if(userVue.SelectedUser.Department.ID < 0){
+                $("#Department").focus();
+                $("#reqDepartment").html("未找到对应科室");
+                IsValid = false;
+            }
+        }
+
+        var name = userVue.SelectedUser.Name.trim();
+        if (name == "") {
+            $("#Name").focus();
+            $("#reqName").html("姓名不能为空");
+            IsValid = false;
+        }
+
+        var LoginID = userVue.SelectedUser.LoginID.trim();
+        if (LoginID == "") {
+            $("#reqLoginID").html("用户名不能为空");
+            $("#LoginID").focus();
+            IsValid = false;
+        } else if (checkVarchar(LoginID) == true) {
+            $("#reqLoginID").html("用户名不能有汉字");
+            $("#LoginID").focus();
+            IsValid = false;
+        }
+        else if (ajaxCheckUserExisted() == true) {
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+
+    function checkVarchar(str) {
+        for (var i = 0; i < str.length; i++) {
+            var c = str.charCodeAt(i);
+            // Shift_JIS: 0x0 ～ 0x80, 0xa0 , 0xa1 ～ 0xdf , 0xfd ～ 0xff
+            // Unicode : 0x0 ～ 0x80, 0xf8f0, 0xff61 ～ 0xff9f, 0xf8f1 ～ 0xf8f3
+            if (!((c >= 0x0 && c < 0x81) || (c == 0xf8f0) || (c >= 0xff61 && c < 0xffa0) || (c >= 0xf8f1 && c < 0xf8f4))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*用户是否存在*/
+    function ajaxCheckUserExisted() {
+        var IsExisted = true;
+        $("#reqLoginID").html("");
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckUserLoginID","User")',
+            data: {
+                loginID: userVue.SelectedUser.LoginID,
+                id: userVue.SelectedUser.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data == true) {
+                        $("#reqLoginID").html("用户名已存在");
+                        $("#LoginID").focus();
+                    } else
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    //编辑btn
+    function btnEditUserClick(id) {
+        InitDialogForm();
+        getUserData(id);
+        $("#dialog-form-Add").dialog({
+            title: "修改信息",
+            buttons: {
+                "保存": function () { saveUser(userVue.SelectedUser); },
+                "关闭": function () { $("#dialog-form-Add").dialog("close"); },
+            }
+        });
+        $("#dialog-form-Add").dialog("open");
+    }
+
+    function getUserData(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetUser", "User")', {
+            id: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                userVue.SelectedUser = response.Data;
+            }
+        });
+    }
+</script>
+<script>
+    //点击审批按钮
+    function ApproveUserBtn(id) {
+        InitDialogForm();
+        userVue.IsApprove = true
+        getUserData(id);
+        $("#dialog-form-Add").dialog({
+            title: "审批信息",
+            buttons: {
+                "通过": function () { ApproveUser(id, '@BusinessObjects.Domain.VerifyStatus.Pass'); },
+                "拒绝": function () { ApproveUser(id, '@BusinessObjects.Domain.VerifyStatus.Refused'); }
+            }
+        });
+        $("#dialog-form-Add").dialog("open");
+    }
+    //审批用户
+    function ApproveUser(id, verifyStatusID) {
+        if (verifyStatusID == '@BusinessObjects.Domain.VerifyStatus.Refused') {
+            userVue.IsApprove = true
+            $("#reqComments").html("");
+            if (userVue.SelectedUser.Comments == undefined || userVue.SelectedUser.Comments.trim() == "") {
+                $("#reqComments").html("备注不能为空");
+                $("#Comments").focus();
+                return;
+            }
+        } else {
+            //审批通过时判断格式
+            if(CheckAddForm() == false) return;
+        }
+        userVue.SelectedUser.VerifyStatus.ID = verifyStatusID
+        saveUser(userVue.SelectedUser);
+    }
+
+    function UpdateApprove(id) {
+        InitDialogForm();
+        getUserData(id);
+        $("#dialog-form-Add").dialog({
+            title: "更新审批信息",
+            buttons: {
+                "通过": function () { ApproveUser(id, '@BusinessObjects.Domain.VerifyStatus.Pass'); },
+                "关闭": function () { $("#dialog-form-Add").dialog("close"); }
+            }
+        });
+        $("#dialog-form-Add").dialog("open");
+    }
+</script>
+<script>
+    var userVue = new Vue({
+        el: '#userList',
+        data: {
+            SelectedUser: {
+                Role: {ID: 1},
+                IsActive: true,
+                Department: {
+                    ID: 0,
+                    Name: '其它'
+                },
+                VerifyStatus:{ID:0}
+            },
+            UserDataList: [],
+            Filter: {
+                Status: 1,
+                RoleIds: -1,
+                VerifyStatusID:'@status',
+                FilterField: 'u.Name',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize:10,
+                SortObject:{
+                    Field: 'u.LoginID',
+                    Direction: true,
+                }
+            },
+            IsApprove: false
+        },
+    })
+</script>

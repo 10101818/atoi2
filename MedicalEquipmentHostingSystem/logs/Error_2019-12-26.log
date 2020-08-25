@@ -1,0 +1,44 @@
+2019-12-26 13:41:25.8396 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:41:56.2800 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:42:55.0367 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:43:15.5571 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:43:52.6651 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:44:42.8458 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:45:08.8723 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:45:27.9869 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:45:54.1092 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 494
+2019-12-26 13:50:43.9557 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Min(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Min[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 496
+2019-12-26 13:51:23.4622 ERROR 序列不包含任何元素 
+    在 System.Linq.Enumerable.Max(IEnumerable`1 source)
+   在 System.Linq.Enumerable.Max[TSource](IEnumerable`1 source, Func`2 selector)
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.RequestFinishedRateReport(Int32 year)

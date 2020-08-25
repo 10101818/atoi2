@@ -1,0 +1,356 @@
+﻿@{
+    List<BusinessObjects.Domain.KeyValueInfo> componentTypes = BusinessObjects.Manager.LookupManager.GetComponentType();
+}
+<div class="ui-dialog-content ui-widget-content" id="ComponentDetail" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr v-if="Info.ID == 0 && FujiClass2ID == 0">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <select v-model="Info.FujiClass2.ID" style="width: 300px;">
+                    <option v-for="fujiClass2 in FujiClass2List" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td style="white-space:normal;">{{Info.FujiClass2.Name}}</td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">简称</td>
+            <td>
+                <input class="input" type="text" maxlength="50" id="ComponentName" v-model="Info.Name" style="width:300px;" />
+                <label class="required" id="reqComponentName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">描述</td>
+            <td>
+                <input class="input" type="text" maxlength="200" id="ComponentDescription" v-model="Info.Description" style="width:300px;" />
+                <label class="required" id="reqComponentDescription"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td>类型</td>
+            <td>
+                <select class="input" id="ComponentType" v-model="Info.Type.ID" style="width:130px;">
+                    @foreach (var item in componentTypes)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">标准单价(元)</td>
+            <td>
+                <input class="input" type="text" maxlength="12" id="ComponentStdPrice" v-model="Info.StdPrice" style="width:130px;" />
+                <label class="required" id="reqComponentStdPrice"></label>
+            </td>
+        </tr>
+        <tr v-if="FujiClass2ID == 0">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">是否参与估值</td>
+            <td>
+                <input type="radio" name="ComponentIsIncluded" value="true" v-model="Info.IsIncluded" /> 是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="ComponentIsIncluded" value="false" v-model="Info.IsIncluded" /> 否
+            </td>
+        </tr>
+        <tr v-if="Info.IsIncluded == 'true'">
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">标准使用量</td>
+            <td>
+                <input class="input" type="text" maxlength="9" id="Usage" v-model="Info.Usage" @@keyup="Info.Usage = Info.Usage.replace(/[^0-9\d]/g, '')" style="width:130px;" />
+                <label class="required" id="reqUsage"></label>
+            </td>
+        </tr>
+        <tr v-if="Info.IsIncluded == 'true' && Info.Type.ID == @BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">CT球管理论寿命秒次</td>
+            <td>
+                <input class="input" type="text" maxlength="9" id="TotalSeconds" v-model="Info.TotalSeconds" @@keyup="Info.TotalSeconds = Info.TotalSeconds.replace(/[^0-9\d]/g, '')" style="width:130px;" />
+                <label class="required" id="reqTotalSeconds"></label>
+            </td>
+        </tr>
+        <tr v-if="Info.IsIncluded == 'true' && Info.Type.ID == @BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">秒次/人</td>
+            <td>
+                <input class="input" type="text" maxlength="12" id="SecondsPer" v-model="Info.SecondsPer" style="width:130px;" />
+                <label class="required" id="reqSecondsPer"></label>
+            </td>
+        </tr>
+        <tr v-if="Info.ID != 0">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">状态</td>
+            <td>
+                <input type="radio" name="ComponentIsActive" value="true" v-model="Info.IsActive" /> 启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="ComponentIsActive" value="false" v-model="Info.IsActive" /> 停用
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var callback
+    var ComponentDetailVue = new Vue({
+        el: "#ComponentDetail",
+        data: {
+            FujiClass2ID: 0,
+            FujiClass2List: [],
+            Info: {
+                Name1:"名称",
+                FujiClass2: {
+                    FujiClass1: {},
+                },
+                Type: {},
+                Method: 1,
+                IsIncluded: false,
+                IsActive: true
+            }
+        }
+    })
+
+</script>
+<script>
+    //规定弹窗的格式
+    function InitComponentDialog() {
+        $("#ComponentDetail").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 680,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveComponent(ComponentDetailVue.Info.ID); },
+                "关闭": function () { $("#ComponentDetail").dialog("close"); }
+            }
+        });
+    }
+
+    //格式化弹窗中的数据
+    function InitComponentDialogForm() {
+        $("label.required").html("");
+        ComponentDetailVue.FujiClass2ID = 0;
+        ComponentDetailVue.Info = {
+            ID: 0,
+            TotalSeconds: 0,
+            SecondsPer: 0,
+            Description: '',
+            Name: '',
+            FujiClass2: {
+                FujiClass1: {},
+            },
+            Method: 1,
+            Type: { ID: 1 },
+            IsIncluded: false,
+            IsActive: true
+        }
+    }
+
+    //打开添加零件弹窗
+    function OpenAddComponent(fujiClass2ID, fujiClass2Name, fujiClass1ID, _callback) {
+        callback = _callback
+        InitComponentDialogForm();
+        ComponentDetailVue.FujiClass2ID = fujiClass2ID;
+        ComponentDetailVue.Info.FujiClass2.ID = fujiClass2ID;
+        ComponentDetailVue.Info.FujiClass2.Name = fujiClass2Name;
+        ComponentDetailVue.Info.FujiClass2.FujiClass1.ID = fujiClass1ID;
+        if (fujiClass2ID != 0) ComponentDetailVue.Info.IsIncluded = 'true';
+
+        $("#ComponentDetail").dialog({ title: "新增零件" });
+        $("#ComponentDetail").dialog("open");
+    }
+
+    //打开编辑零件弹窗
+    function OpenEditComponent(id) {
+        InitComponentDialogForm();
+        GetComponentByID(id);
+        $("#ComponentDetail").dialog({ title: "编辑零件" });
+        $("#ComponentDetail").dialog("open");
+    }
+    //获取富士II类信息
+    function GetFujiClass2() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                ComponentDetailVue.FujiClass2List = response.Data;
+            }
+        })
+    }
+
+    //获取零件信息
+    function GetComponentByID(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetComponentByID", "Component")', {
+            componentID: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                ComponentDetailVue.Info = response.Data;
+                ComponentDetailVue.Info.IsIncluded = ComponentDetailVue.Info.IsIncluded ? 'true' : 'false';
+            }
+        })
+    }
+
+    //保存零件信息
+    function SaveComponent(id) {
+        if (CheckComponent()) return;
+
+        if (ComponentDetailVue.Info.Type.ID != '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT' || ComponentDetailVue.Info.IsIncluded == 'false') {
+            ComponentDetailVue.Info.TotalSeconds = 0;
+            ComponentDetailVue.Info.SecondsPer = 0;
+        }
+        if (ComponentDetailVue.Info.IsIncluded == 'false') ComponentDetailVue.Info.Usage = 0
+
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveComponent", "Component")', ComponentDetailVue.Info, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                jAlert("保存成功", "保存", function () {
+                    $("#ComponentDetail").dialog("close");
+                    if (id == 0) GetComponentFujiClass2List(ComponentDetailVue.Info.FujiClass2.FujiClass1.ID);
+                    else QueryComponent();
+                    ComponentDetailVue.Info.ID = response.Data;
+                    if (callback != null)
+                        callback()
+                });
+            }
+        })
+    }
+
+    //判断信息是否已填
+    function CheckComponent() {
+        $("label.required").html("");
+        var IsValid = false;
+
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+
+        if (ComponentDetailVue.Info.Type.ID == '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT') {
+            if ((ComponentDetailVue.Info.TotalSeconds == undefined || ComponentDetailVue.Info.TotalSeconds == 0 ) && ComponentDetailVue.Info.IsIncluded) {
+                $("#reqTotalSeconds").html("CT球管理论寿命秒次不能为空");
+                $("#TotalSeconds").focus();
+                IsValid = true;
+            }
+            else if (ComponentDetailVue.Info.TotalSeconds > 999999999.99) {
+                $("#reqTotalSeconds").html('CT球管理论寿命秒次最大值为999999999.99');
+                $("#TotalSeconds").focus();
+                IsValid = true;
+            }
+            else if (!patrn.test(ComponentDetailVue.Info.TotalSeconds) && ComponentDetailVue.Info.TotalSeconds != 0) {
+                $("#reqTotalSeconds").html('CT球管理论寿命秒次格式不正确');
+                $("#TotalSeconds").focus();
+                IsValid = true;
+            }
+
+            if ((ComponentDetailVue.Info.SecondsPer == undefined || ComponentDetailVue.Info.SecondsPer == 0) && ComponentDetailVue.Info.IsIncluded) {
+                $("#reqSecondsPer").html("秒次/人不能为空");
+                $("#SecondsPer").focus();
+                IsValid = true;
+            }
+            else if (ComponentDetailVue.Info.SecondsPer > 999999999.99) {
+                $("#reqSecondsPer").html('秒次/人最大值为999999999.99');
+                $("#SecondsPer").focus();
+                IsValid = true;
+            }
+            else if (!patrn.test(ComponentDetailVue.Info.SecondsPer) && ComponentDetailVue.Info.SecondsPer != 0) {
+                $("#reqSecondsPer").html('秒次/人格式不正确');
+                $("#SecondsPer").focus();
+                IsValid = true;
+            }
+        }
+        if (ComponentDetailVue.Info.Usage != undefined && ComponentDetailVue.Info.Usage != '' && ComponentDetailVue.Info.Usage != 0) {
+            if (ComponentDetailVue.Info.Usage > 2147483647) {
+                $("#reqUsage").html("标准使用量最大值为2147483647");
+                $("#Usage").focus();
+                IsValid = true;
+            }
+            else if (!/^([1-9]\d{0,9})$/.test(ComponentDetailVue.Info.Usage)) {
+                $("#reqUsage").html("标准使用量格式不正确");
+                $("#Usage").focus();
+                IsValid = true;
+            }
+        }
+        if (ComponentDetailVue.Info.StdPrice != undefined && ComponentDetailVue.Info.StdPrice != '') {
+            if (ComponentDetailVue.Info.StdPrice > 999999999.99) {
+                $("#reqComponentStdPrice").html("标准单价(元)最大值为999999999.99");
+                $("#ComponentStdPrice").focus();
+                IsValid = true;
+            }
+            else if (!patrn.test(ComponentDetailVue.Info.StdPrice)) {
+                $("#reqComponentStdPrice").html("标准单价(元)格式不正确");
+                $("#ComponentStdPrice").focus();
+                IsValid = true;
+            }
+        }
+
+        @*if (ComponentDetailVue.Info.Usage == 0) {
+            if (ComponentDetailVue.Info.Type.ID == '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT')
+                $("#reqUsage").html("标准使用量不能为空");
+            else
+                $("#reqUsage").html("CT日使用人次不能为空");
+
+            $("#Usage").focus();
+            IsValid = true;
+        }*@
+
+        if (ComponentDetailVue.Info.Description.trim() == "") {
+            $("#reqComponentDescription").html("描述不能为空");
+            $("#ComponentDescription").focus();
+            IsValid = true;
+        }
+
+        if (ComponentDetailVue.Info.Name.trim() == "") {
+            $("#reqComponentName").html("简称不能为空");
+            $("#ComponentName").focus();
+            IsValid = true;
+        }
+        else if (CheckComponentExisted(ComponentDetailVue.Info)) {
+            $("#reqComponentName").html("名称已存在");
+            $("#ComponentName").focus();
+            IsValid = true;
+        }
+
+        return IsValid;
+    }
+
+    //判断零件名称是否已存在
+    function CheckComponentExisted(component) {
+        var IsExisted = false;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckComponentName","Component")',
+            data: {
+                id: component.ID,
+                name: component.Name.trim(),
+                fujiClass2ID: component.FujiClass2.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+</script>

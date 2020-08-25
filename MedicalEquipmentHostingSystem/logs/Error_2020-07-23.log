@@ -1,0 +1,80 @@
+2020-07-23 11:50:33.1372 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 123456789 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 327
+2020-07-23 11:50:33.2844 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 286
+2020-07-23 11:50:33.3344 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 776
+2020-07-23 11:50:33.4923 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Domain.MonthDesc.GetValForecastDateDescList(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\LookupInfo.cs:行号 814
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetDateList() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 801
+2020-07-23 11:50:54.0280 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Domain.MonthDesc.GetValForecastDateDescList(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\LookupInfo.cs:行号 814
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetDateList() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 801
+2020-07-23 11:50:54.9683 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 123456789 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 327
+2020-07-23 11:50:55.0113 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 286
+2020-07-23 11:50:55.0592 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 776
+2020-07-23 11:53:44.3584 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Domain.MonthDesc.GetValForecastDateDescList(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\LookupInfo.cs:行号 814
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetDateList() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 801
+2020-07-23 11:53:47.2719 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 123456789 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 327
+2020-07-23 11:53:47.3159 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 286
+2020-07-23 11:54:07.6316 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 776
+2020-07-23 11:54:38.8882 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Domain.MonthDesc.GetValForecastDateDescList(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\LookupInfo.cs:行号 814
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetDateList() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 801
+2020-07-23 11:54:41.9988 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'CalculateContractAmountForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 123456789 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 327
+2020-07-23 11:54:42.0457 ERROR Exception: '添加或减去的值产生无法表示的 DateTime。
+参数名: months' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 286
+2020-07-23 11:54:42.0887 ERROR 添加或减去的值产生无法表示的 DateTime。
+参数名: months 
+    在 System.DateTime.AddMonths(Int32 months)
+   在 BusinessObjects.Manager.ValuationManager.CalculateContractAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 338
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 776

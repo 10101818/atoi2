@@ -1,0 +1,300 @@
+2020-08-19 11:05:31.3606 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'InvComponentDao', Method 'QueryComponentCount', Arguments: Int32 = 0, String = c.Name, String = , String =  
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 40
+2020-08-19 11:05:31.5225 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 52
+   在 MedicalEquipmentHostingSystem.Controllers.InvComponentController.QueryComponentList(Int32 statusID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\InvComponentController.cs:行号 70
+2020-08-19 11:06:17.3276 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'InvComponentDao', Method 'QueryComponentCount', Arguments: Int32 = 0, String = c.Name, String = , String =  
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 40
+2020-08-19 11:06:31.4762 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'InvComponentDao', Method 'QueryComponentCount', Arguments: Int32 = 0, String = c.Name, String = , String =  
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 40
+2020-08-19 11:12:12.4261 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'InvComponentDao', Method 'QueryComponentCount', Arguments: Int32 = 0, String = c.Name, String = , String = zc1 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 40
+2020-08-19 11:12:12.5481 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 41
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\InvComponentDao.cs:行号 52
+   在 MedicalEquipmentHostingSystem.Controllers.InvComponentController.QueryComponentList(Int32 statusID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\InvComponentController.cs:行号 70
+2020-08-19 11:14:45.8768 ERROR ExecuteScalar: Connection 属性尚未初始化。 
+    在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command)
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID)
+   在 MedicalEquipmentHostingSystem.Controllers.InvComponentController.QueryComponentList(Int32 statusID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\InvComponentController.cs:行号 70
+2020-08-19 11:15:03.6426 ERROR ExecuteScalar: Connection 属性尚未初始化。 
+    在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command)
+   在 BusinessObjects.DataAccess.InvComponentDao.QueryComponentCount(Int32 statusID, String filterField, String filterText, String eqptID)
+   在 MedicalEquipmentHostingSystem.Controllers.InvComponentController.QueryComponentList(Int32 statusID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize, String eqptID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\InvComponentController.cs:行号 70
+2020-08-19 11:27:58.6176 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationDao', Method 'UpdateConsumables', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 629
+2020-08-19 11:27:58.7334 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationManager', Method 'SaveValConsumables', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValConsumableInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+2020-08-19 11:27:58.8201 ERROR The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract". 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 296
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 280
+2020-08-19 11:29:12.5703 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationDao', Method 'UpdateConsumables', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 629
+2020-08-19 11:29:12.6193 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationManager', Method 'SaveValConsumables', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValConsumableInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+2020-08-19 11:29:12.7010 ERROR The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract". 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 296
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 280
+2020-08-19 14:48:24.7289 ERROR Exception: '执行超时已过期。完成操作之前已超时或服务器未响应。 ' happened in Class 'ValuationDao', Method 'DeleteValEqptOutput', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1118
+2020-08-19 14:48:25.0005 ERROR Exception: '执行超时已过期。完成操作之前已超时或服务器未响应。 ' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1120
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 306
+2020-08-19 14:48:25.0901 ERROR 执行超时已过期。完成操作之前已超时或服务器未响应。  
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1120
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-19 14:59:14.5311 ERROR Exception: '执行超时已过期。完成操作之前已超时或服务器未响应。 ' happened in Class 'ValuationDao', Method 'DeleteValEqptOutput', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1118
+2020-08-19 14:59:14.6730 ERROR Exception: '执行超时已过期。完成操作之前已超时或服务器未响应。 ' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1120
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 306
+2020-08-19 14:59:14.7969 ERROR 执行超时已过期。完成操作之前已超时或服务器未响应。  
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.DeleteValEqptOutput(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 1120
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-19 15:03:11.3001 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:03:11.4101 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:04:10.7786 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:04:10.8423 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:06:11.6501 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:06:11.7250 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:07:09.8191 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:07:09.8820 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:08:38.9758 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:08:39.0387 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:10:54.3797 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:10:54.4467 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:12:21.1027 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-19 15:12:59.6664 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:12:59.7424 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:27:39.2010 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: Int32 = 25, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 475
+2020-08-19 15:27:39.3430 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 25 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 317
+2020-08-19 15:27:44.7080 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 480
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-19 16:49:41.3152 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationDao', Method 'UpdateConsumables', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 629
+2020-08-19 16:49:41.4371 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationManager', Method 'SaveValConsumables', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValConsumableInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+2020-08-19 16:49:41.5296 ERROR The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract". 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 296
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 280
+2020-08-19 16:50:02.2340 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationDao', Method 'UpdateConsumables', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 629
+2020-08-19 16:50:02.2990 ERROR Exception: 'The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract".' happened in Class 'ValuationManager', Method 'SaveValConsumables', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValConsumableInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+2020-08-19 16:51:02.7586 ERROR The variable name '@ConsumableID' has already been declared. Variable names must be unique within a query batch or stored procedure.
+Must declare the scalar variable "@IncludeContract". 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.UpdateConsumables(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 632
+   在 BusinessObjects.Manager.ValuationManager.SaveValConsumables(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 296
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 280

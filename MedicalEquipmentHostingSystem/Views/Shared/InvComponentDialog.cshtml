@@ -1,0 +1,185 @@
+﻿@{
+}
+
+<div id="SelectInvComponent" style="display:none" class="ui-dialog-content ui-widget-content">
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.Name">简称</option>
+                                    <option value="c.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <a href="#"><img src="~/Content/img/search.png" class="icon-sm" onclick="QueryInvComponentList()" /></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">系统编号</th>
+                <th style="min-width:100px;">序列号</th>
+                <th style="min-width:100px;">简称</th>
+                <th style="min-width:100px;">描述</th>
+                <th style="min-width:70px;">类型</th>
+                <th style="min-width:100px;">设备系统编号</th>
+                <th style="min-width:100px;">设备名称</th>
+                <th style="min-width:100px;">供应商</th>
+                <th style="min-width:80px;">单价(元)</th>
+                <th style="min-width:100px;">购入日期</th>
+                <th style="min-width:100px;">采购单号</th>
+                <th style="min-width:50px;text-align:center;">选中</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="InvComponentList.length == 0">
+                <td colspan="13" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="Invcomponent in InvComponentList" v-else>
+                <td>{{Invcomponent.OID}}</td>
+                <td>{{Invcomponent.SerialCode}}</td>
+                <td>{{Invcomponent.Component.Name}}</td>
+                <td>{{Invcomponent.Component.Description}}</td>
+                <td>{{Invcomponent.Component.Type.Name}}</td>
+                <td>{{Invcomponent.Equipment.OID}}</td>
+                <td>{{Invcomponent.Equipment.Name}}</td>
+                <td>{{Invcomponent.Supplier.Name}}</td>
+                <td>{{Invcomponent.Price}}</td>
+                <td>{{parseAndFormatJsonDate(Invcomponent.PurchaseDate)}}</td>
+                <td>{{Invcomponent.Purchase.ID == 0 ? "" : Invcomponent.Purchase.Name}}</td>
+                <td style="text-align:center;"><input type="radio" name="InvComponent" v-bind:value="Invcomponent.ID" /></td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div class="pagenationDiv" id="pagerInvComponentDiv">
+                        <div id="pagerInvComponent" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var SelectInvComponentDialogVue = new Vue({
+        el: "#SelectInvComponent",
+        data: {
+            InvComponentList: [],
+            InvComponent:{},
+            Filter: {
+                StatusID: 0,
+                FilterField: 'c.Name',
+                FilterText: 0,
+                SortField: 'ic.ID',
+                SortDirection: true,
+                CurrentPage: 1,
+                PageSize: 10,
+                EquipmentID:0,
+            }
+        },
+        method: {
+            callback: function () { }
+        }
+    })
+</script>
+<script>
+    //回车搜索
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryInvComponentList();
+        }
+    }
+    //点击页码
+    function PageClickInvComponent(pageclickednumber) {
+        SelectInvComponentDialogVue.Filter.CurrentPage = pageclickednumber;
+        QueryInvComponentList();
+    }
+    function changeCurNum_pagerInvComponent() {
+        SelectInvComponentDialogVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryInvComponentList();
+    }
+</script>
+<script>
+    function OpenSelectInvComponentDialog(equipmentID, statusID, callback) {
+        InitFilter(equipmentID, statusID);
+        $("#SelectInvComponent").dialog({ title: "选择零件" });
+        $("#SelectInvComponent").dialog("open");
+        SelectInvComponentDialogVue.callback = callback
+        QueryInvComponentList();
+    }
+    function InitFilter(equipmentID, statusID) {
+        SelectInvComponentDialogVue.Filter = {
+            StatusID: statusID,
+            FilterField: 'c.Name',
+            FilterText:'',
+            EquipmentID: equipmentID,
+            SortField: 'ic.ID',
+            SortDirection: true,
+            CurrentPage: 1,
+            PageSize: 10,
+        }
+    }
+
+    function InitSelectEquipmentDialogForm() {
+        var dialogInvComponent = $("#SelectInvComponent").dialog({
+            autoOpen: false,
+            height: 680,
+            width: 1200,
+            modal: true,
+            stack: false,
+            resizable: false,
+            buttons: {
+                "确定": function () { SaveInvComponents(); },
+                "关闭": function () { dialogInvComponent.dialog("close"); }
+            }
+        })
+    }
+
+    function QueryInvComponentList() {
+        $(":radio[name='InvComponent']:checked").attr("checked", false);
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryComponentList", "InvComponent")', {
+            currentPage: SelectInvComponentDialogVue.Filter.CurrentPage,
+            statusID: SelectInvComponentDialogVue.Filter.StatusID,
+            filterField: SelectInvComponentDialogVue.Filter.FilterField,
+            filterText: SelectInvComponentDialogVue.Filter.FilterText,
+            sortField: SelectInvComponentDialogVue.Filter.SortField,
+            sortDirection: SelectInvComponentDialogVue.Filter.SortDirection,
+            pageSize: SelectInvComponentDialogVue.Filter.PageSize,
+            eqptID: SelectInvComponentDialogVue.Filter.EquipmentID,
+        },
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    SelectInvComponentDialogVue.InvComponentList = response.Data;
+                    SelectInvComponentDialogVue.Filter.CurrentPage = SetTotalPage4Pager(SelectInvComponentDialogVue.Filter.CurrentPage, response.TotalPages, "pagerInvComponent", PageClickInvComponent);
+                    $("#curNum option[value='" + SelectInvComponentDialogVue.Filter.PageSize + "']").prop("selected", true);
+                }
+            })
+    }
+
+    function SaveInvComponents() {
+        var InvComponentID = $(":radio[name='InvComponent']:checked").val()
+        if (InvComponentID == null) {
+            jAlert("请选择零件", "提示");
+            return;
+        }
+        $.each(SelectInvComponentDialogVue.InvComponentList, function (index, item) {
+            if (item.ID == InvComponentID)
+                SelectInvComponentDialogVue.InvComponent = item;
+        })
+        SelectInvComponentDialogVue.callback(SelectInvComponentDialogVue.InvComponent);
+        $("#SelectInvComponent").dialog("close");
+    }
+</script>

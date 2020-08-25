@@ -1,0 +1,847 @@
+﻿@{
+    ViewBag.Title = "EquipmentList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<div id="equipmentTimeLineVue" v-cloak class="container-timeline  flex flex-column ">
+    <div class="container-title flex justify-content-space-between">
+        <div>
+            <a class="linkFile backPage" href="#" onclick="BackToList()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+        </div>
+        <div >
+            <span style="font-size: 2.8vh;background-color:#16bb0bf5;color: #fff;padding: 5px;border-radius: 5px;">{{detail.status}}</span> 
+            <span style="font-size: 2.8vh;font-weight: bold;">{{'设备名称 : '+(detail.Name || '')+' -'+(detail.model || '')}}</span>
+        </div>
+        <div>
+            <pre>              </pre>
+        </div>
+    </div>
+    <div class="container-body flex flex-row">
+        <div class="body-right flex flex-row">
+            <div class="body-right-left flex flex-column ">
+                <div class="body-right-left-top flex e-appearance">
+                    <div class="right-title">设备外观</div>
+                    <div class="appearance-img">
+                        <img class="img" v-bind:src="getRootPath()+(detail.url ?('/Documents/Equipment/'+detail.url): '/Content/img/appearance.png')" alt="无图片">
+                    </div>
+                </div>
+                <div class="body-right-left-bottom flex flex-row">
+                    <div class="right-title">资产信息</div>
+                    <div class=" flex flex-column justify-content-space-between e-info e-info-label">
+                        <div class="info-row">
+                            <span style="font-weight: bold;">资产编号：</span>
+                        </div>
+                        <div class="info-row">
+                            <span style="font-weight: bold;">型号：</span>
+                        </div>
+                        <div class="info-row">
+                            <span style="font-weight: bold;">序列号：</span>
+                        </div>
+                        <div class="info-row flex">
+                            <span style="font-weight: bold;">当前位置：</span>
+                        </div> 
+                        <div class="info-row flex">
+                            <span style="font-weight: bold;">安装日期：</span>
+                        </div>
+                        <div class="info-row flex">
+                            <span style="font-weight: bold;">维保状态：</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-column justify-content-space-between e-info  e-info-text">
+                        <div class="info-row">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.AssetCode">{{detail.AssetCode}}</span>
+                        </div>
+                        <div class="info-row">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.EquipmentCode">{{detail.EquipmentCode}}</span>
+                        </div>
+                        <div class="info-row">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.seriesNumber">{{detail.seriesNumber}}</span>
+                        </div>
+                        <div class="info-row flex">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.department">{{detail.department}}</span>
+                        </div> 
+                        <div class="info-row flex">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.start_time">{{detail.start_time}}</span>
+                        </div>
+                        <div class="info-row flex">
+                            <span style="color: rgb(55, 65, 74);" v-bind:title="detail.warrantyStatus">{{detail.warrantyStatus}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body-right-right flex flex-column ">
+                <div class="body-right-right-top e-chart  flex flex-column  justify-content-space-between">
+                    <div class="right-title">收支信息</div>
+                    <div class="legend flex flex-row justify-content-space-between">
+                        <div class="legend-left  flex justify-content-flex-end align-items-flex-start">
+                            <div class="chart-legend flex justify-content-flex-start align-items-flex-end">
+                                <div><span class="legend-icon light-blue-border"></span>&nbsp;收入&nbsp;</div>
+                                <div><span class="legend-icon blue-border"></span>&nbsp;支出&nbsp;</div>
+                                <div><span class="legend-icon red-border"></span>&nbsp;亏损&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="legend-right flex justify-content-flex-end ">
+                            <div class="count-list flex align-content-base">
+                                <div class="total">
+                                    <div class=" center-center value">{{numberComma(Math.floor(overView.incomeSum/10000))}}</div>
+                                    <div class=" center-center text">总收入（万元）</div>
+                                </div>
+                                <div v-bind:class="overView.incomeRate>0?'status up green':'status down red'">
+                                    <div class=" center-center value flex align-content-base">
+                                        <span class="rate">{{Math.abs((overView.incomeRate*100).toFixed(1))}}%</span>
+                                        <span class="iconfont icon-shang"></span>
+                                    </div>
+                                    <div class=" center-center text">
+                                        同比
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="count-list flex align-content-base">
+                                <div class="total">
+                                    <div class=" center-center value">{{numberComma(Math.floor(overView.expenseSum/10000))}}</div>
+                                    <div class=" center-center text">总支出（万元）</div>
+                                </div>
+                                <div v-bind:class="overView.expenseRate>0?'status up green':'status down red'">
+                                    <div class=" center-center value  flex align-content-base ">
+                                        <span class="rate">{{Math.abs((overView.expenseRate*100).toFixed(1))}}%</span>
+                                        <span class="iconfont icon-shang"></span>
+                                    </div>
+                                    <div class=" center-center text">
+                                        同比
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legend  flex flex-row justify-content-space-between">
+                        <div class=" flex flex-row justify-content-flex-start">
+                            <div v-show="true" class="chart-dimension ">
+                                <div class="form-row ">
+                                    <label>收支类型 </label>
+                                    <div style="padding:0 10px;">
+                                        <select id="type" @@change="renderOverView" v-model="valueType" style="width:60px;padding:0;">
+                                            <option value="1">收入</option>
+                                            <option value="-1">支出</option>
+                                            <option value="0">收支</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="true" class="chart-dimension ">
+                                <div class="form-row ">
+                                    <label>时间类型 </label>
+                                    <div style="padding:0 10px;">
+                                        <select id="type" @@change="getEquipmentOverView().then(function () { renderOverView()})" v-model="dateType" style="width:40px;padding:0;">
+                                            <option value="@BusinessObjects.Domain.ReportDimension.AcceptanceYear">年</option>
+                                            <option value="@BusinessObjects.Domain.ReportDimension.AcceptanceMonth">月</option>
+                                        </select>
+                                    </div>
+                                    <div v-show="dateType == @BusinessObjects.Domain.ReportDimension.AcceptanceMonth" id="year" class="form-row justify-content-start" style="display:none;">
+                                        <label>年 </label>
+                                        <div style="padding:0 10px;">
+                                            <select id="myYear" @@change="getEquipmentOverView().then(function () { renderOverView()})" v-model="year" style="width:60px;padding:0;"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chartDiv"></div>
+                    <div id="sliderDiv"></div>
+                </div>
+                <div class="body-right-right-bottom e-chart flex justify-content-space-between">
+                    <div class="right-title">运维信息</div>
+                    <div class="radar-legend  flex flex-column  justify-content-space-between align-items-flex-start">
+                        <div class="legend-type" v-for="(type,key) of radar" key="key">
+                            <span style="font-weight: bold;">{{type.item}}</span>
+                            <span>：</span>
+                            <span style="color: rgb(55, 65, 74);" title="type.value" @@click="goToRequest(type.typeId)" class="link">{{type.value}}</span>
+                        </div>
+
+                        <div class="legend-type"  ><pre > </pre></div>
+                    </div>
+                    <div id="radar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="body-left">
+            <div class="right-title">生命周期</div>
+            <div id="timeline" class="flex flex-column ">
+                <div class="timelineCont  active" v-for="info in detail.dispatches">
+                    <div class="row " v-bind:title="parseAndFormatJsonDate(info.EndDate) +' '+  info.TimelineDesc">
+                        <div v-if="info.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Repair || info.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection" class="redC date col-3">
+                            <p>{{parseAndFormatJsonDate(info.EndDate)}}</p>
+                        </div>
+                        <div v-else-if="info.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain || info.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection || info.RequestType.ID == @BusinessObjects.Domain.RequestInfo.RequestTypes.Correcting" class="greenC date col-3">
+                            <p>{{parseAndFormatJsonDate(info.EndDate)}}</p>
+                        </div>
+                        <div v-else class="grayC date col-3">
+                            <p>{{parseAndFormatJsonDate(info.EndDate)}}</p>
+                        </div>
+                        <div class="text col-9 cursor" @@click="goToRequestDetail(info.RequestID,info.RequestType.ID,0)">
+                            <p>{{info.TimelineDesc}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="~/Content/css/timelinev.css"/>
+<script src="~/Content/Scripts/jquery.timelinev.js"></script>
+<script>
+    function BackToList() {
+        window.location = '@Url.Action(ViewBag.ActionName, "Equipment")';
+    }
+</script>
+<script>
+    let now = new Date();
+    var equipmentTimeLineVue = new Vue({
+        el: "#equipmentTimeLineVue",
+        data: {
+            id: '@ViewBag.ID',
+            detail: {},
+            radar: [],
+            overView: {
+                current: [],
+                previous: [],
+                incomeSum: 0,
+                preIncomeSum: 0,
+                incomeRate: 0,
+                expenseSum: 0,
+                preExpenseSum: 0,
+                expenseRate: 0
+            },
+            maxCount: 0,
+            valueType: 0,
+            dateType: '@BusinessObjects.Domain.ReportDimension.AcceptanceYear',
+            year: now.getFullYear(),
+        },
+        created: function () {
+            let _this = this
+            this.initTimeLine();
+            this.showFilter()
+            this.$nextTick(function () {
+                _this.renderAll()
+            })
+            window.addEventListener('resize', function () {
+                var timer;//使用闭包，缓存变量
+                var startTime = new Date();
+                return function () {
+                    var curTime = new Date();
+                    if (curTime - startTime >= 2000) {
+                        timer = setTimeout(function () {
+                            _this.renderAll()
+                            console.log('do somthing')
+                        }, 500);
+                        startTime = curTime;
+                    }
+                }
+            }());
+        },
+        methods: {
+            initTimeLine: function () {
+                $('#timeline').timelinev({
+                    containerDivs: '.timelineCont',
+                    dateDiv: '.date',
+                    textDiv: '.text',
+                    dateHtml: 'h2',
+                    textHtml: 'p',
+                    dateActiveClass: '.active',
+                    issuesDiv: '.timelineCont'
+                });
+            },
+            //收入支出信息
+            getEquipmentOverView: function () {
+                let _this = this 
+                // 获取设备信息中的所有收入支出
+                return $.get('@Url.Action("SingleEquipmentAuditing", "Report")',
+                {
+                    id: _this.id,
+                    type: _this.dateType,
+                    year: _this.year,
+                },
+                function (response) {
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        let test = [
+                                        { Item1: "1", Item2: 100050, Item3: 90015 },
+                                        { Item1: "2", Item2: 200050, Item3: 13875 },
+                                        { Item1: "3", Item2: 207550, Item3: 90015 },
+                                        { Item1: "4", Item2: 0, Item3: 0 },
+                                        { Item1: "5", Item2: 200050, Item3: 1853588 },
+                                        { Item1: "6", Item2: 153268, Item3: 90015 },
+                                        { Item1: "7", Item2: 208050, Item3: 90015 },
+                                        { Item1: "8", Item2: 1530500, Item3: 18387 },
+                                        { Item1: "9", Item2: 200050, Item3: 4831853 },
+                                        { Item1: "10", Item2: 150050, Item3: 48384 },
+                                        { Item1: "11", Item2: 200050, Item3: 48328 },
+                                        { Item1: "12", Item2: 200050, Item3: 163884 },
+                        ]
+                        //response.Data = test
+                        response.Data.sort(function (a, b) { return a.Item1 - b.Item1 })
+                        _this.overView.current = response.Data.map(function (item) { 
+                        return {
+                            key: item.Item1,
+                            '收入': Number(item.Item2.toFixed(1)),
+                            '支出': Number(item.Item3.toFixed(1)),
+                        }
+                    })
+                }
+                })
+
+            },
+            //收入支出信息
+            getEquipmentCurrentOverView: function () {
+                let _this = this 
+                // 获取设备信息中的所有收入支出
+                return $.get('@Url.Action("SingleEquipmentAuditing", "Report")',
+                {
+                    id: _this.id,
+                    type: '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth',
+                    year: (new Date()).getFullYear(),
+                },
+                function (response) {
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        _this.overView.incomeSum = 0
+                        _this.overView.expenseSum = 0
+                        let test = [
+                                        { Item1: "1", Item2: 100050, Item3: 90015 },
+                                        { Item1: "2", Item2: 200050, Item3: 13875 },
+                                        { Item1: "3", Item2: 207550, Item3: 90015 },
+                                        { Item1: "4", Item2: 0, Item3: 0 },
+                                        { Item1: "5", Item2: 200050, Item3: 1853588 },
+                                        { Item1: "6", Item2: 153268, Item3: 90015 },
+                                        { Item1: "7", Item2: 208050, Item3: 90015 },
+                                        { Item1: "8", Item2: 1530500, Item3: 18387 },
+                                        { Item1: "9", Item2: 200050, Item3: 4831853 },
+                                        { Item1: "10", Item2: 150050, Item3: 48384 },
+                                        { Item1: "11", Item2: 200050, Item3: 48328 },
+                                        { Item1: "12", Item2: 200050, Item3: 163884 },
+                        ]
+                        //response.Data = test
+                        response.Data.forEach(function (item) {
+                            _this.overView.incomeSum += Number(item.Item2) || 0 
+                            _this.overView.expenseSum += Number(item.Item3) || 0 
+                        })
+                    }
+                })
+            },
+            getEquipmentPreviousOverView: function () {
+                let _this = this 
+                // 获取设备信息中的所有收入支出
+                return $.get('@Url.Action("SingleEquipmentAuditing", "Report")',
+              {
+                  id:_this.id,
+                  type: '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth',
+                  year: (new Date()).getFullYear()-1,
+              },
+              function (response) {
+                  if (response.ResultCode != "00") {
+                      processResponseError(response.ResultCode, response.ResultMessage);
+                  } else {
+                      _this.overView.preIncomeSum  = 0
+                      _this.overView.preExpenseSum = 0
+                      let test  =[{Item1:"1",Item2:100050,Item3:900150},
+                                    {Item1:"2",Item2:20005,Item3:138750},
+                                    {Item1:"3",Item2:20755,Item3:902650},
+                                    {Item1:"4",Item2:12005,Item3:538150},
+                                    {Item1:"5",Item2:200050,Item3:1853588},
+                                    {Item1:"6",Item2:153118,Item3:56015},
+                                    {Item1:"7",Item2:201115,Item3:110105},
+                                    {Item1:"8",Item2:153110,Item3:183870},
+                                    {Item1:"9",Item2:200010,Item3:48311530},
+                                    {Item1:"10",Item2:150050,Item3:483840},
+                                    {Item1:"11",Item2:20050,Item3:483280},
+                                    {Item1:"12",Item2:200050,Item3:163884},]
+                      //response.Data = test
+                      _this.overView.previous = response.Data
+                      _this.overView.previous.forEach(function(item) {
+                          _this.overView.preIncomeSum += Number(item.Item2) || 0
+                          _this.overView.preExpenseSum += Number(item.Item3) || 0
+                      })
+                  }
+              })
+            },
+            //雷达数据
+            getEquipmentRadar:function() {
+                let _this = this
+                return $.get("@Url.Action("GetRequestCountByID", "Equipment")", { id: this.id, date: new Date().format("yyyy-MM-dd") }
+                    , function (res) {
+                        let radar_data = [{
+                            item: "维修",
+                            typeId: 1,
+                        }, {
+                            item: "保养",
+                            typeId: 2,
+                        }, {
+                            item: "强检",
+                            typeId: 3,
+                        }, {
+                            item: "巡检",
+                            typeId: 4,
+                        }, {
+                            item: "校准",
+                            typeId: 5,
+                        }];
+                        radar_data[0].value = res.Data.Repair || 0;
+                        radar_data[1].value = res.Data.Maintain || 0;
+                        radar_data[2].value = res.Data.Inspection || 0;
+                        radar_data[3].value = res.Data.OnSiteInspection || 0;
+                        radar_data[4].value = res.Data.Correcting || 0;
+                        let max = 0;
+                        for (let i = 0; i < radar_data.length; i++) {
+                            if (max < radar_data[i].value) {
+                                max = radar_data[i].value
+                            }
+                        }
+                        _this.maxCount = max;
+                        _this.maxTickCount = ((max > 5) ? 5 : ((max < 2) ? 2 : max));
+                        _this.radar = radar_data;
+                    })
+            },
+            //携带有 派工单用于展示时间线、设备信息、在雷达区辅助信息(设备信息)
+            getEquipmentDetail: function () {
+                let _this = this
+                return $.get('@Url.Action("GetTimeLine", "Equipment")', { equipmentID: '@ViewBag.ID' }, function (response) {
+                    if (response.ResultCode != "00") {
+                        _this.detail = {
+                            id: 0,
+                            name: "",
+                            brand: "",
+                            model: "",
+                            value: "",
+                            seriesNumber: "",
+                            department: "",
+                            start_time: "",
+                            status: "",
+                            warrantyStatus: "",
+                            dispatches: []
+                        }
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        let info = response.Data
+                        _this.detail = Object.assign(info, {
+                            name: info.Name + ' - ' + info.Manufacturer.Name + ' - ' + info.EquipmentCode,
+                            brand: info.Manufacturer.Name,
+                            model: info.EquipmentCode,
+                            value: Number(info.PurchaseAmount / 10000),
+                            seriesNumber: info.SerialCode,
+                            department: info.Department.Name,
+                            start_time: parseAndFormatJsonDate(info.InstalDate),
+                            status: info.EquipmentStatus.Name,
+                            warrantyStatus: info.WarrantyStatus,
+                            dispatches: info.Dispatches,
+                        })
+                    }
+                })
+            },
+
+            renderOverView: function () {
+                let _this = this;
+                $("#chartDiv").empty()
+                let maxItems = 15;
+                let datas = _this.overView.current
+                let chart = new G2.Chart({
+                    container: 'chartDiv',
+                    forceFit: true,
+                    height: document.querySelector('#chartDiv').clientHeight,
+                    padding: [10, 20, 20, 5],
+                    //padding: [_this.getRem(1.6), 0, 0, 0],
+                    background: {
+                        fill: "#F8F9FA"
+                    }
+                });
+
+                let dv = new DataSet.DataView();
+                let foldField = ['收入', '支出']
+                _this.valueType == 1 && (foldField = ['收入'])
+                _this.valueType == -1 && (foldField = ['支出'])
+                if (datas.length > maxItems) {
+                    let ds = new DataSet({
+                        state: {
+                            from: datas[0].key,
+                            to: datas[maxItems - 1].key
+                        }
+                    })
+                    dv = ds.createView()
+                    dv.source(datas)
+                    .transform({
+                        type: 'map',
+                        callback: function callback(row) {
+                            row['支出'] *= -1;
+                            return row;
+                        }
+                    }).transform({
+                        type: 'fold',
+                        fields: foldField,
+                        key: 'opinion',
+                        value: 'value',
+                        retains: ['key']
+                    }).transform({
+                        type: 'filter',
+                        callback: function (obj) {
+                            for (var i = 0; i < datas.length; i++) {
+                                if (datas[i].key == ds.state.from)
+                                    var startIndex = i;
+                                if (datas[i].key == ds.state.to)
+                                    var endIndex = i;
+                                if (datas[i].key == obj.key)
+                                    var index = i;
+                            }
+
+                            return index >= startIndex && index <= endIndex;
+                        }
+                    })
+
+                    chart.interact('slider', {
+                        container: 'sliderDiv',
+                        width: document.querySelector('#chartDiv').clientWidth,
+                        height: 15,
+                        padding: [2, 4, 4, 4],
+                        startRadio: 0,
+                        endRadio: (maxItems - 1) / datas.length,
+                        data: datas,
+                        xAxis: 'key',
+                        yAxis: '收入支出',
+                        fillerStyle: {
+                            fill: '#BDCCED',
+                            fillOpacity: 0.7,//透明度
+                        }, // 滑块选中区域的样式
+
+                        backgroundStyle: {
+                            stroke: '#CCD6EC',
+                            fill: '#CCD6EC',
+                            fillOpacity: 0.2,
+                            lineWidth: 2,//边框宽度
+                        }, // 滑块背景样式
+                        layout: 'horizontal', // 滑块的布局，'horizontal' 或者 'vertical'
+                        onChange: function (text) {
+                            ds.setState('from', text.startText);
+                            ds.setState('to', text.endText);
+                            setTimeout(function () { chart.render(); })
+                        }
+                    })
+                } else {
+                    dv.source(datas).transform({
+                        type: 'map',
+                        callback: function callback(row) {
+                            row['支出'] *= -1;
+                            return row;
+                        }
+                    })
+                    .transform({
+                        type: 'fold',
+                        fields: foldField,
+                        key: 'opinion',
+                        value: 'value',
+                        retains: ['key']
+                    })
+                }
+
+
+                chart.source(dv);
+                //chart.axis(false);
+
+                chart.axis('key', {
+                    label: {
+                        offset: 5,
+                        offsetY: 10,
+                        formatter: function (text, item, index) {
+                            return text + (_this.dateType == "@BusinessObjects.Domain.ReportDimension.AcceptanceMonth" ? "月" : "年")
+                        }
+                    },
+                });
+                chart.axis('value', {
+                    grid: null
+                });
+
+                let colorMap = {
+                    '收入': '#86C7E6',
+                    '支出': '#1B85E7',
+                };
+
+                datas.forEach(function (data, dataIndex) {
+                    if (_this.valueType == 0 && data['支出'] && data['收入'] && data['支出'] > data['收入']) {
+                        // 辅助框
+                        chart.guide().regionFilter({
+                            top: true, // 指定 giude 是否绘制在 canvas 最上层，默认为 false, 即绘制在最下层
+                            start: [dataIndex - .25, -data['收入']], // 辅助框起始位置，值为原始数据值，支持 callback
+                            end: [dataIndex + .25, -data['支出']],// 辅助框结束位置，值为原始数据值，支持 callback
+                            color: '#E2340D',
+                        });
+                    }
+                    chart.guide().line({
+                        top: true,
+                        start: [dataIndex - .25, 0], // 辅助框起始位置，值为原始数据值，支持 callback
+                        end: [dataIndex + .25, 0],// 辅助框结束位置，值为原始数据值，支持 callback
+                        lineStyle: {
+                            stroke: '#3aa0ff',
+                            lineWidth: 1,
+                            lineDash: [2, 2]
+                        },
+                    });
+                });
+
+                chart.tooltip({
+                    inPlot: true,
+                    useHtml: true,
+                    htmlContent: function (title, items) {
+                        let data = {};
+                        _this.overView.current.forEach(function (info) {
+                            if (info.key == title) {
+                                data = info
+                            }
+                        })
+                        return '<div class="g2-tooltip">' +
+                                '<div class="g2-tooltip-title">' + title + (_this.dateType == "@BusinessObjects.Domain.ReportDimension.AcceptanceMonth" ? "月" : "年") + '</div>' +
+                                '<ul class="g2-tooltip-list">' +
+                                  '<li class="g2-tooltip-li">收入：' + _this.numberComma(Math.floor(Number(data.收入))) + '</li>' +
+                                  '<li class="g2-tooltip-li">支出：' + _this.numberComma(Math.floor(Number(data.支出))) + '</li>' +
+                                '</ul>' +
+                              '</div>'
+                    }
+                });
+                chart.coord();
+                chart.intervalStack().position('key*value').color('opinion', function (opinion) {
+                    return colorMap[opinion];
+                }).opacity(1);
+                chart.render();
+            },
+
+            renderRadar: function () {
+                let _this = this
+                $("#radar").empty()
+
+                let chart = new G2.Chart({
+                    container: 'radar',
+                    forceFit: true,
+                    height: document.querySelector('#radar').clientHeight,
+                    padding: [_this.getRem(.5), _this.getRem(.2), 0, _this.getRem(.1)]
+                });
+
+                let dv = new DataSet.View().source(_this.radar);
+                dv.transform({
+                    type: 'fold',
+                    fields: ['value'], // 展开字段集
+                    key: 'user', // key字段
+                    value: 'score' // value字段
+                });
+                chart.source(dv, {
+                    score: {
+                        min: 0,
+                        max: _this.maxCount,
+                        tickCount: _this.maxTickCount  //radar
+                    }
+                });
+                chart.coord('polar', {
+                    radius: 0.6
+                });
+                chart.axis('item', {
+                    line: null,
+                    label: {
+                        textStyle: {
+                            fontSize: _this.getRem(1), // 文本大小
+                            fontWeight: 'bold', // 文本粗细
+                        },
+                    },
+                    tickLine: null,
+                    grid: {
+                        lineStyle: {
+                            lineDash: null
+                        },
+                        hideFirstLine: false
+                    }
+                });
+                chart.axis('score', {
+                    label: null,
+                    line: null,
+                    tickLine: null,
+                    grid: {
+                        type: 'polygon',
+                        lineStyle: {
+                            lineWidth: 1,
+                            lineDash: null
+                        }
+                    }
+                });
+                chart.legend(false)
+                chart.tooltip({
+                    'g2-tooltip': {
+                        'background-color': 'rgba(0, 0, 0, 0.7)',
+                        color: '#ddd',
+                    },
+                    itemTpl: '<li >次数：{value}</li>'
+                });
+                chart.line().position('item*score').color('user').size(_this.getRem(.01));
+                chart.area().position('item*score').color('user');
+
+                chart.on('click', function (ev) {
+                    // 获取逼近的点 point 的原始数据集合
+                    let records = chart.getSnapRecords({
+                        x: ev.x,
+                        y: ev.y
+                    });
+                    const typeId = records[0]._origin.typeId
+                    let item = _this.radar.find(function (val) {
+                        return val.typeId == typeId
+                    })
+                    if (!item || item.id == -1)
+                        return
+                    _this.goToRequest(item.typeId)
+                });
+                chart.render();
+            },
+
+            renderAll: function () {
+                let _this = this;
+
+                _this.getEquipmentDetail()
+                _this.getEquipmentCurrentOverView().then(function () { 
+                    _this.getEquipmentPreviousOverView().then(function () {
+                        _this.overView.preExpenseSum && (_this.overView.expenseRate = (_this.overView.expenseSum - _this.overView.preExpenseSum) / _this.overView.preExpenseSum)
+                        _this.overView.preIncomeSum && (_this.overView.incomeRate = (_this.overView.incomeSum - _this.overView.preIncomeSum) / _this.overView.preIncomeSum)
+                    })
+                })
+                _this.getEquipmentOverView().then(function () {
+                    _this.renderOverView()
+                    _this.getEquipmentRadar().then(function () {
+                        _this.renderRadar()
+                    })
+                })
+
+            },
+            showFilter: function () {
+                SelectYears();
+                this.dateType = '@BusinessObjects.Domain.ReportDimension.AcceptanceMonth'
+                this.year = now.getFullYear();
+            },
+            goToRequest: function (typeId) {
+                window.open('@Url.Action("RequestList", "Request")' + '?' + $.param({ equipmentId: this.id, requestType: typeId }))
+            },
+            goToRequestDetail: function (id, requestType, requestStatus) {
+                (id > 0) && window.open('@Url.Action("RequestDetail", "Request")' + '?' + $.param({ id: id, actionName: 'EquipmentList', requestType: requestType, requestStatus: requestStatus }));
+            },
+            random: function (lower, upper) {
+                return Math.floor(Math.random() * (upper - lower)) + lower;
+            },
+            itemColor: function (type) {
+                switch (type) {
+                    case 1:
+                    case 3:
+                        return '#E64340';
+                        break;
+                    case 4:
+                    case 2:
+                    case 5:
+                        return '#3eaf7c'
+                        break;
+                    default:
+                        return '#f0f0f0'
+                        break;
+                }
+            },
+            numberComma: function (source, length) {
+                length = length || 3
+                source = String(source).split(".");
+                source[0] = source[0].replace(new RegExp('(\\d)(?=(\\d{' + length + '})+$)', 'ig'), "$1,");
+                return source.join(".");
+            },
+            getRem: function (n) {
+                n = n || 1
+                if (isNaN(n)) return
+                n = Number(n);
+                let html = document.querySelector('html');
+                let fontSize = window.getComputedStyle(html).getPropertyValue('font-size');
+                return n * parseFloat(fontSize);
+            }
+        },
+
+    })
+</script>
+<style>
+    /* Main content Style */   
+    .center-center{text-align: center;}  
+    .container-timeline { width: 100%; height: 100%; }
+    .container-title{height:7%;/*padding-bottom:20px;*/}  
+    .container-body{height:93%;width: 100%;}
+
+    .body-left{ height: 100%; width:42%; position: relative;padding-top: 50px;}
+    #timeline{width: 100%;height: 100%;padding-left: 20px;overflow:auto;}
+
+    .body-right{ height: 100%;  width:58%;}
+    .right-title{ position: absolute;font-size: 1.9vh; font-weight: bold; top: 0; left: 10px;/*border-bottom: 2px solid gray;width: 150px;*/}
+    .body-right-left{height:100%; width:34%;}
+    .body-right-left-top{ height: 50%;width:100%; background: #fff; position: relative;padding:20px;position: relative;}  /*.e-appearance*/
+    .appearance-img{  width:100%;height: 100%;padding:5px;padding-top:30px;display:flex;justify-content:center;align-items:center;}
+    .appearance-img .img{max-width: 100%;max-height: 100%;}
+    .body-right-left-bottom{height: 50%;padding:20px;position: relative;}  
+    .e-info{padding-top:30px;height:100%;}
+    .e-info-label{width:30%;}
+    .e-info-text{width:70%;}
+    .info-row{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+    .body-right-right{ height:100%; width:66%;} 
+    .body-right-right-top{height: 50%;padding:20px;position: relative;}
+    .chart-legend { }
+    .legend{ padding-bottom: 5px;}
+    .legend-left{}
+    .legend-right{}
+    .legend-icon{display: inline-block;}
+    .light-blue-border{border: 5px solid #86C7E6;}
+    .blue-border{border: 5px solid #1B85E7;}
+    .red-border{border: 5px solid #f00000;} 
+    .count-list{margin-right: .2rem;}
+    .total{margin-right: .2rem;}
+    .total .value {font-weight: bold;font-size: 1rem;margin-bottom: .1rem;}
+    .total .value .iconfont {font-size: 1rem;}
+    .total .text {color: #000;font-size: 1rem;}
+    .status .value {font-weight: bold;font-size: 1rem;margin-bottom: .1rem;}
+    .status .value .iconfont ,.status .value .rate{font-size: 1rem;}
+    .status .text {color: #000;font-size: 1rem;}
+    .red{color: #E64340;}
+    .green{color: #3eaf7c;} 
+    .down .iconfont {transform: rotate(180deg);}
+    .chart-dimension{}
+    .body-right-right-bottom{height: 50%;padding:20px;position: relative;}  
+    .radar-legend{width:25%;padding-top: 30px;padding-left: 20px;}
+    .legend-type{}
+    .overview{width:100%}
+    #chartDiv{width: 100%; height: 80%; }
+    #radar{ width: 65%; height: 100%; }
+    .e-chart{}
+    #sliderDiv{}
+    pre{margin:0 !important;}
+
+        
+/* Other Style */
+    .g2-tooltip {
+      z-index: 99;
+      position: absolute;
+      background-color: rgba(256, 256, 256, 0.7);
+      border-radius: .16rem;
+      color:  rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+      font-size: .36rem;
+      line-height: 1.2;
+      padding: .24rem .24rem .1rem .24rem;
+      box-shadow: 0 0 .1rem #aeaeae;
+    }
+
+
+    .g2-tooltip-list {
+      padding: 0;
+      list-style-type: none;
+      margin-top: .2rem; 
+    }
+    .g2-tooltip-li {
+        margin: .2rem 0;
+    }
+
+    canvas {
+      background: #fff;
+      width: 100%;
+      height: 100%;
+    }
+</style>

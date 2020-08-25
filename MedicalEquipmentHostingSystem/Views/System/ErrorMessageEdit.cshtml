@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "ErrorMessageEdit";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+
+<div id="VueErrorMessage" v-cloak class="tblDiv">
+    <div class="title"><p>异常信息设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th width="340px">报错信息</th>
+                <td>
+                    <input type="text" id="Message" style="width: 90%;" maxlength="50" v-model="SettingInfo.ErrorMessage">
+                    <label id="reqMessage" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 备注：用<span class="required">*</span>标记的为必填项</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveErrorMessage()">保存</button></p>
+</div>
+<script>
+    var ErrorMessageVue = new Vue({
+        el: "#VueErrorMessage",
+        data: {
+            SettingInfo: {
+                ErrorMessage: ''
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        setTimeout(GetErrorMessageInfo(), 100);
+    });
+    function GetErrorMessageInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSettingInfo", "System")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info != null) {
+                    ErrorMessageVue.SettingInfo = info
+                }
+            }
+        });
+    }
+
+    function SaveErrorMessage() {
+        if (CheckErrorMessage() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveErrorMessage", "System")', {
+            info: ErrorMessageVue.SettingInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存");
+            }
+        });
+    }
+
+    function CheckErrorMessage() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var Message = ErrorMessageVue.SettingInfo.ErrorMessage.trim()
+        if (Message == "") {
+            $("#reqMessage").html("请输入报错信息");
+            $("#Message").focus();
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+
+</script>

@@ -1,0 +1,1117 @@
+﻿
+@{
+    List<BusinessObjects.Util.KeyValueInfo<BusinessObjects.Domain.FujiClass2Info.Method >> methods = BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FujiClass2Info.Method>();
+    List<BusinessObjects.Util.KeyValueInfo<BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection>> yearsOrigin = BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection>();
+    List<BusinessObjects.Util.KeyValueInfo<BusinessObjects.Domain.FaultRateInfo.DateTimeMonth>> monthsOrigin = BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.DateTimeMonth>();
+
+    List<BusinessObjects.Domain.KeyValueInfo> class1 = ViewBag.Class1;
+    List<Tuple<BusinessObjects.Domain.KeyValueInfo, int>> class2 = ViewBag.Class2;
+    var class2s = Html.Raw(Json.Encode(class2));
+    var class1s = Html.Raw(Json.Encode(class1));
+    var subYears = Html.Raw(Json.Encode(BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.FaultRateSubSection>()));
+    var years = Html.Raw(Json.Encode(yearsOrigin));
+    var months = Html.Raw(Json.Encode(monthsOrigin));
+}
+<!--零件List-->
+<div class="ui-dialog-content ui-widget-content" id="FujiClass2Component" tabindex="-1" style="display:none;">
+    <div style="overflow:auto;height:100%;">
+        <table class="searchTable" cellpadding="0" cellspacing="0" v-show="showWhole">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" @@change="Filter.Class2 = 0 ;GetComponentFujiClass2List(Filter.Class1)" style="width:200px;">
+                                    <option v-for="fujiClass1 in FujiClass1s" v-bind:value="fujiClass1.ID">{{fujiClass1.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" @@change="GetComponentFujiClass2List(0)" style="width:200px;">
+                                    <option value="0"></option>
+                                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table id="EquipmentTbl" class="table table-sm" cellspacing="0" cellpadding="0">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:100px;max-width:200px;padding:5px;">富士I类</th>
+                    <th style="min-width:100px;max-width:200px;padding:5px;">富士II类简称</th>
+                    <th style="min-width:80px; padding:5px;" v-show="showWhole">新增/复制</th>
+                    <th style="min-width:140px;padding:5px;">零件名称</th>
+                    <th style="min-width:140px;padding:5px;">零件描述</th>
+                    <th style="min-width:80px; padding:5px;" v-show="showWhole">零件类型</th>
+                    <th style="min-width:80px; padding:5px;" v-show="showWhole">标准使用量</th>
+                    <th style="min-width:80px;padding:5px;" v-show="showWhole">CT球管理论寿命秒次</th>
+                    <th style="min-width:80px; padding:5px;" v-show="showWhole">秒次/人</th>
+                    <th style="min-width:80px; padding:5px;" v-show="showWhole">是否维保</th>
+                    <th style="min-width:120px;padding:5px;">故障率计算方式</th>
+                    <th style="min-width:100px;padding:5px;">韦伯计算</th> 
+                    <th style="min-width:80px; padding:5px;padding-bottom:0;" v-for="year in years">
+                        <table width="100%" frame="void">
+                            <thead>
+                                <tr>
+                                    <td v-bind:colspan="((year.ID<5)?12:(year.ID<10?5:1))" class="tdListCenter" style="border-top:none;padding:0;height:auto;min-width: 80px;">
+                                        <span>{{year.Name}}故障概率</span>
+                                        <img src="~/Content/img/add.png" v-bind:id="'componenticon_'+year.ID" class="icon-sm" data-show="false" v-show="year.ID<10" @@click="ExpandCollapseComponentData($event.currentTarget,year.ID)" />
+                                    </td>
+                                </tr>
+                                <tr v-bind:id="'componentfield_'+year.ID" v-if="year.ID < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))" style="display:none">
+                                    <td class="tdListCenter" style="min-width:60px;padding:0;height:auto;" v-for="month in months">{{month.Name}}</td>
+                                </tr>
+                                <tr v-bind:id="'componentfield_'+year.ID" v-else-if="year.ID < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))" style="display:none">
+                                    <td class="tdListCenter" style="min-width:80px;padding:0;height:auto;" v-for="subYear in subYears">
+                                        <table width="100%" frame="void">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="12" style="border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                                        <span>{{subYear.Name}}</span>
+                                                        <img src="~/Content/img/add.png" v-bind:id="'sub_componenticon_'+subYear.ID" class="icon-sm" data-show="false" @@click="ExpandCollapseComponentData($event.currentTarget,subYear.ID,'sub_')" />
+                                                    </td>
+                                                </tr>
+                                                <tr v-bind:id="'sub_componentfield_'+subYear.ID" style="display:none">
+                                                    <td style="min-width:60px;padding:0;height:auto;" class="tdListCenter" v-for="month in months">{{month.Name}}</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </th>
+                    <th  style="padding: 5px;"  v-show="showWhole">删除</th>
+                </tr>
+            </thead>
+            <tbody v-if="Objects.length==0">
+                <tr>
+                    <td class="tdListCenter" colspan="20">暂无数据</td>
+                </tr>
+            </tbody>
+            <tbody v-else v-for="item in Objects"> 
+                <tr v-if="item.Components.length == 0">
+                    <td style="max-width:200px;">{{item.FujiClass1.Name}}</td>
+                    <td style="max-width:200px;">{{item.Name}}</td>
+                    <td>
+                        <img src="~/Content/img/add.png" class="icon-sm cursor" v-on:click="OpenAddComponent(item.ID, item.Name, item.FujiClass1.ID)" />
+                        <img src="~/Content/img/copy.png" class="icon-sm cursor" v-on:click="OpenCopyComponent(item.ID)" />
+                    </td>
+                    <td colspan="99"></td>
+                </tr>
+                <tr v-else v-for="(component,index) in item.Components">
+                    <td v-if="index==0" v-bind:rowspan="item.Components.length" style="max-width:200px;">{{item.FujiClass1.Name}}</td>
+                    <td v-if="index==0" v-bind:rowspan="item.Components.length" style="max-width:200px;">{{item.Name}}</td>
+                    <td v-if="index==0" v-bind:rowspan="item.Components.length" v-show="showWhole">
+                        <img src="~/Content/img/add.png" class="icon-sm cursor" v-on:click="OpenAddComponent(item.ID, item.Name, item.FujiClass1.ID)" />
+                        <img src="~/Content/img/copy.png" class="icon-sm cursor" v-on:click="OpenCopyComponent(item.ID)" />
+                    </td>
+                    <td>{{component.Name}}</td>
+                    <td>{{component.Description}}</td>
+                    <td v-show="showWhole">{{component.Type.Name}}</td>
+                    <td v-show="showWhole">{{component.Usage}}</td>
+                    <td v-show="showWhole">{{component.TotalSeconds}}</td>
+                    <td v-show="showWhole">{{component.SecondsPer}}</td>
+                    <td v-show="showWhole"><input type="checkbox" v-model="component.IncludeContract" @@change="AddToUpdateList(FujiClass2ComponentVue,component)" /></td>
+                    <td>
+                        <div v-if="component.Type.ID!= '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT'">
+                            @foreach (var method in methods)
+                            {
+                                if (method.ID > 0 && method.ID < BusinessObjects.Domain.FujiClass2Info.Method.Regular)
+                                {
+                                        <input type="radio" value="@method.ID.ToString("d")" v-bind:name="'method_'+component.ID" @@change="AddToUpdateList(FujiClass2ComponentVue,component)" v-model="component.Method" />@method.Name
+                                }
+                            }
+                            <div>
+                                @foreach (var method in methods)
+                                {
+                                    if (method.ID == BusinessObjects.Domain.FujiClass2Info.Method.Regular)
+                                    {
+                                        <input type="radio" value="@method.ID.ToString("d")" v-bind:name="'method_'+component.ID" @@change="AddToUpdateList(FujiClass2ComponentVue,component)" v-model="component.Method" />@method.Name
+                                    }
+                                }
+                                <input type="text" maxlength="2" v-model="component.LifeTime" style="width: 30px; padding: 2px 4px;" />月
+                                <span class="iconfont icon-save-bold" @@click="AvgComponentFormatUpdate(component)" style="cursor:pointer;color:#17A2B8;"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div  v-if="component.Type.ID!= '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT'"> 
+                            <button class="btn btn-outline-info btn-sm" v-on:click="ShowComponentWeb(item.ID,component)">韦伯计算</button><br />
+                        </div>
+                    </td>
+
+                    <td style="padding:0;" v-for="faultRates in component.GroupFaultRates" class="tdListCenter" >
+                        <div v-if="component.Type.ID!= '@BusinessObjects.Domain.ComponentInfo.ComponentTypes.CT'">
+                            <input type="text" maxlength="6" style="width:50%;padding: 2px 4px;" v-model="faultRates.avg" @@keyup="faultRates.avg = faultRates.avg.toString().replace(/[^0-9\.\d]/g, '')" v-bind:class="'componentavg_'+faultRates.year" v-bind:id="item.ID + '_' + component.ID +'_faultAvg_' + faultRates.year" />
+                            <span v-bind:class="'componentavg_'+faultRates.year +' iconfont icon-save-bold'" @@click="AvgComponentUpdate(item.ID + '_' + component.ID +'_faultAvg_' + faultRates.year,component,faultRates)" style="cursor:pointer;color:#17A2B8;"></span>
+                            <table width="100%" frame="void" v-bind:class="'componentdetail_'+faultRates.year" style="display: none" v-if="faultRates.year<(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))">
+                                <tbody>
+                                    <tr>
+                                        <td v-for="faultRate in faultRates.data" style="border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                        <input type="text" maxlength="6" style="padding: 2px 4px;" v-model="faultRate.Rate" v-bind:id="'componentrate_'+faultRate.ObjectID+'_'+faultRate.Year+'_'+faultRate.Month" @@change="CellComponentChange(faultRate,component,faultRates)" @@keyup="faultRate.Rate = faultRate.Rate.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table width="100%" frame="void" v-bind:class="'componentdetail_'+faultRates.year" style="display:none" v-else-if="faultRates.year<(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))">
+                                <tbody>
+                                    <tr>
+                                        <td v-for="subDatas in faultRates.data" style="border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                            <input type="text" maxlength="6" style="width:70%;padding: 2px 4px;" v-model="subDatas.avg" @@keyup="subDatas.avg = subDatas.avg.toString().replace(/[^0-9\.\d]/g, '')" v-bind:class="'sub_componentavg_'+subDatas.year" v-bind:id="item.ID + '_' + component.ID +'_subAvg_'+subDatas.year" />
+                                            <span v-bind:class="'sub_componentavg_'+subDatas.year +' iconfont icon-save-bold'" @@click="AvgComponentUpdate(item.ID + '_' + component.ID +'_subAvg_'+subDatas.year,component,subDatas,faultRates)" style="cursor:pointer;color:#17A2B8;"></span>
+                                            <table width="100%" frame="void" v-bind:class="'sub_componentdetail_'+subDatas.year" style="display:none">
+                                                <tbody>
+                                                    <tr>
+                                                        <td v-for="subFaultRate in subDatas.data" style="min-width:60px;border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                                            <input type="text" maxlength="6" style="padding: 2px 4px;" v-model="subFaultRate.Rate" v-bind:id="'sub_componentrate_'+subFaultRate.ObjectID+'_'+subFaultRate.Year+'_'+subFaultRate.Month" @@change="CellComponentChange(subFaultRate,component,subDatas,faultRates)" @@keyup="subFaultRate.Rate = subFaultRate.Rate.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td  v-show="showWhole"><img src="~/Content/img/delete.png" class="icon-sm cursor" v-on:click="DeleteComponent(component.ID)" /></td>
+                </tr>
+            </tbody>
+            <tr><td colspan="20"></td></tr>
+        </table>
+    </div>
+</div>
+<!--耗材List-->
+<div class="ui-dialog-content ui-widget-content" id="FujiClass2Consumable" tabindex="-1" style="display:none;">
+    <div style="overflow:auto;height:100%;">
+        <table class="searchTable" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" v-on:change="GetFujiClass2s(FujiClass2ConsumableVue,Filter.Class1)" style="width:200px;">
+                                    <option v-for="fujiClass1 in FujiClass1s" v-bind:value="fujiClass1.ID">{{fujiClass1.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" v-on:change="GetFujiClass2s(FujiClass2ConsumableVue,0)" style="width:200px;">
+                                    <option value="0"></option>
+                                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table id="EquipmentTbl" class="table table-sm" cellspacing="0" cellpadding="0">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:100px;max-width:200px;">富士I类</th>
+                    <th style="min-width:100px;max-width:200px;">富士II类简称</th>
+                    <th style="min-width:100px;">新增/复制</th>
+                    <th style="min-width:100px;">耗材名称</th>
+                    <th style="min-width:100px;">耗材描述</th>
+                    <th style="min-width:70px;">耗材类型</th>
+                    <th style="min-width:120px;">更换频率(次/年)</th>
+                    <th style="min-width:150px;">单次保养耗材成本(元)</th>
+                    <th style="min-width:70px;">是否维保</th>
+                    <th style="min-width:40px;">删除</th>
+                </tr>
+            </thead>
+            <tbody v-if="Objects.length==0">
+                <tr>
+                    <td class="tdListCenter" colspan="11">暂无数据</td>
+                </tr>
+            </tbody>
+            <tbody v-else v-for="item in Objects">
+                <tr v-if="item.Consumables.length == 0">
+                    <td style="max-width:200px;">{{item.FujiClass1.Name}}</td>
+                    <td style="max-width:200px;">{{item.Name}}</td>
+                    <td>
+                        <img src="~/Content/img/add.png" class="icon-sm cursor" v-on:click="OpenAddConsumable(item.ID, item.Name, item.FujiClass1.ID)" />
+                        <img src="~/Content/img/copy.png" class="icon-sm cursor" v-on:click="OpenCopyConsumable(item.ID)" />
+                    </td>
+                    <td colspan="99"></td>
+                </tr>
+                <tr v-else v-for="(consumable,index) in item.Consumables">
+                    <td v-if="index==0" v-bind:rowspan="item.Consumables.length" style="max-width:200px;">{{item.FujiClass1.Name}}</td>
+                    <td v-if="index==0" v-bind:rowspan="item.Consumables.length" style="max-width:200px;">{{item.Name}}</td>
+                    <td v-if="index==0" v-bind:rowspan="item.Consumables.length" >
+                        <img src="~/Content/img/add.png" class="icon-sm cursor" v-on:click="OpenAddConsumable(item.ID, item.Name)" />
+                        <img src="~/Content/img/copy.png" class="icon-sm cursor" v-on:click="OpenCopyConsumable(item.ID)" />
+                    </td>
+                    <td>{{consumable.Name}}</td>
+                    <td>{{consumable.Description}}</td>
+                    <td>{{consumable.Type.Name}}</td>
+                    <td>{{consumable.ReplaceTimes}}</td>
+                    <td>{{consumable.CostPer}}</td>
+                    <td><input type="checkbox" v-model="consumable.IncludeContract" @@change="AddToUpdateList(FujiClass2ConsumableVue,consumable)" /></td>
+                    <td><img src="~/Content/img/delete.png" class="icon-sm cursor" v-on:click="DeleteConsumable(consumable.ID)" /></td>
+                </tr>
+            </tbody>
+            <tr><td colspan="20"></td></tr>
+        </table>
+    </div>
+</div>
+<!--复制零件-->
+<div id="CopyComponent" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+    <table>
+        <tr>
+            <td>
+                富士II类:
+                <select v-on:change="GetFujiClass2Component()" v-model="FujiClass2Info.ID" style="width:200px;">                    
+                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">零件名称</th>
+                <th style="min-width:100px;">零件描述</th>
+                <th style="min-width:70px;">零件类型</th>
+                <th style="min-width:40px;">包括</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="Components.length == 0">
+                <td colspan="11" class="tdListCenter">暂无数据</td>
+            </tr>
+            <tr v-else v-for="component in Components">
+                <td>{{component.Name}}</td>
+                <td>{{component.Description}}</td>
+                <td>{{component.Type.Name}}</td>
+                <td><input type="checkbox" name="copyComponent" v-bind:value="component.ID" /></td>
+            </tr>
+            <tr><td colspan="11"></td></tr>
+        </tbody>
+    </table>
+</div>
+<!--复制耗材-->
+<div id="CopyConsumable" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+    <table>
+        <tr>
+            <td>
+                富士II类:
+                <select v-on:change="GetFujiClass2Consumable()" v-model="FujiClass2Info.ID" style="width:200px;">
+                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">耗材名称</th>
+                <th style="min-width:100px;">耗材描述</th>
+                <th style="min-width:70px;">耗材类型</th>
+                <th style="min-width:40px;">包括</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="Consumables.length == 0">
+                <td colspan="11" class="tdListCenter">暂无数据</td>
+            </tr>
+            <tr v-else v-for="consumable in Consumables">
+                <td>{{consumable.Name}}</td>
+                <td>{{consumable.Description}}</td>
+                <td>{{consumable.Type.Name}}</td>
+                <td><input type="checkbox" name="copyConsumable" v-bind:value="consumable.ID" /></td>
+            </tr>
+            <tr><td colspan="11"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+@{ Html.RenderPartial("ComponentDialog");}
+@{ Html.RenderPartial("ConsumableDialog");}
+@{ Html.RenderPartial("WebDialog"); }
+<script>
+    var FujiClass2ComponentVue = new Vue({
+        el: "#FujiClass2Component",
+        data: {
+            PendingUpgrade:[],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Objects: [],
+            Type: '@BusinessObjects.Domain.FujiClass2Info.SectionType.Component',
+            Filter: {
+                Class1: 0,
+                Class2: 0,
+                FilterField: "f2.Name",
+                FilterText: "",
+                CurrentPage: 0, 
+                PageSize:10,
+                SortObject: {
+                    Field: "f1.Name",
+                    Direction: true
+                }
+            },
+            years: @years,
+            months: @months,
+            subYears:@subYears,
+            showWhole: false,
+        },
+        methods: {
+            CellComponentChange:function(cellData, obj, faultRates, parentFaultRates) {
+                cellData.Rate = cellData.Rate || 0
+                AddToUpdateList(this, obj)
+                let avg = eval(faultRates.data.map(function (temp) { return temp.Rate }).join("+")) / faultRates.data.length
+                faultRates.avg = avg.toFixed(1);
+                // Vue.set(faultRates.avg, faultRates.avg, avg.toFixed(1));
+
+                parentFaultRates && (
+                    avg = eval(parentFaultRates.data.map(function (temp) { return temp.avg }).join("+")) / faultRates.data.length,
+                    parentFaultRates.avg = avg.toFixed(1)
+                )
+                this.$forceUpdate()
+            },
+            ChangeAVG:function(obj){
+                SetFaultRate();
+                AddToUpdateList(this, obj)
+                this.$forceUpdate();
+            }
+        }
+    })
+
+    var FujiClass2ConsumableVue = new Vue({
+        el: "#FujiClass2Consumable",
+        data: {
+            PendingUpgrade:[],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Objects: [],
+            Type: '@BusinessObjects.Domain.FujiClass2Info.SectionType.Consumable',
+            Filter: {
+                Class1: 0,
+                Class2: 0,
+                FilterField: "f2.Name",
+                FilterText: "",
+                CurrentPage: 0,
+                PageSize:10,
+                SortObject: {
+                    Field: "f1.Name",
+                    Direction: true
+                }
+            },
+        }
+    })
+
+    var CopyComponentVue = new Vue({
+        el: "#CopyComponent",
+        data: {
+            FujiClass2s: [],
+            FujiClass2List: [],
+            FujiClass2Info: {},
+            FujiClass2: {},
+            Components: []
+        }
+    })
+
+    var CopyConsumableVue = new Vue({
+        el: "#CopyConsumable",
+        data: {
+            FujiClass2s: [],
+            FujiClass2List:[],
+            FujiClass2Info:{},
+            FujiClass2: {},
+            Consumables:[]
+        }
+    })
+</script>
+<script>
+    function InitFujiClass2Dialog()
+    {
+        $("#FujiClass2Component").dialog({
+            autoOpen: false,
+            height: 800,
+            width: "95%",
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveFujiClass2s(FujiClass2ComponentVue); },
+                "关闭": function () { $("#FujiClass2Component").dialog("close"); }
+            },
+            close: function (event, ui) {
+                //CollapseComponentAll()
+            }
+        })
+        $("#FujiClass2Consumable").dialog({
+            autoOpen: false,
+            height: 800,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveFujiClass2s(FujiClass2ConsumableVue); },
+                "关闭": function () { $("#FujiClass2Consumable").dialog("close"); }
+            }
+        })
+        $("#CopyComponent").dialog({
+            autoOpen: false,
+            height: 580,
+            width: 680,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { CopyComponent(); },
+                "关闭": function () { 
+                    $("#CopyComponent").dialog("close");
+                }
+            },
+            close: function (event, ui) {
+                OpenFujiClass2Component(null,FujiClass2ComponentVue.Filter.Class1,FujiClass2ComponentVue.Filter.Class2);
+            }
+        })
+
+        $("#CopyConsumable").dialog({
+            autoOpen: false,
+            height: 580,
+            width: 680,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { CopyConsumable(); },
+                "关闭": function () { 
+                    $("#CopyConsumable").dialog("close");
+                }
+            },
+            close: function (event, ui) {
+                OpenFujiClass2Consumable(FujiClass2ConsumableVue.Filter.Class1,FujiClass2ConsumableVue.Filter.Class2);
+            }
+        })
+    }
+
+    function OpenFujiClass2Component(objs, fujiClass1, fujiClass2) {
+        CollapseComponentAll();
+        FujiClass2ComponentVue.showWhole = !objs
+        if (objs) {
+            FujiClass2ComponentVue.Objects = cloneObj(objs)
+            $("#FujiClass2Component").dialog({ title: objs[0].Name + "-零件故障率" });
+            SetFaultRate()
+        } else {
+            GetFujiClass(FujiClass2ComponentVue, fujiClass1);
+            FujiClass2ComponentVue.Filter.Class1 = fujiClass1
+            GetComponentFujiClass2List(fujiClass1);
+            FujiClass2ComponentVue.Filter.Class2 = fujiClass2
+            $("#FujiClass2Component").dialog({ title: "零件" });
+        }
+
+        $("#FujiClass2Component").dialog("open");
+    }
+
+    function OpenFujiClass2Consumable(fujiClass1, fujiClass2) {
+        GetFujiClass(FujiClass2ConsumableVue,fujiClass1);
+        FujiClass2ConsumableVue.Filter.Class1 = fujiClass1
+        FujiClass2ConsumableVue.Filter.Class2 = fujiClass2
+        GetFujiClass2s(FujiClass2ConsumableVue, fujiClass1);
+
+        $("#FujiClass2Consumable").dialog({ title: "耗材" });
+        $("#FujiClass2Consumable").dialog("open");
+    }
+
+    function OpenCopyComponent(fujiClass2ID) {
+        GetFujiClass(CopyComponentVue);
+        GetComponentSelectFujiClass2(fujiClass2ID);
+        CopyComponentVue.FujiClass2.ID = fujiClass2ID;
+        GetFujiClass2Component();
+
+        $("#CopyComponent").dialog({ title: "复制零件" });
+        $("#CopyComponent").dialog("open");
+    }
+
+    function OpenCopyConsumable(fujiClass2ID) {
+        GetFujiClass(CopyConsumableVue);
+        GetConsumableSelectFujiClass2(fujiClass2ID);
+        CopyConsumableVue.FujiClass2.ID = fujiClass2ID;
+        GetFujiClass2Consumable();
+
+        $("#CopyConsumable").dialog({ title: "复制耗材" });
+        $("#CopyConsumable").dialog("open");
+    }
+
+    function GetComponentSelectFujiClass2(fujiClass2ID){
+        $.each(FujiClass2ComponentVue.Objects, function(index, fujiClass2){
+            if(fujiClass2.ID == fujiClass2ID)
+            {
+                CopyComponentVue.FujiClass2Info = fujiClass2;
+            }
+        })
+    }
+
+    function GetConsumableSelectFujiClass2(fujiClass2ID){
+        $.each(FujiClass2ConsumableVue.Objects, function(index, fujiClass2){
+            if(fujiClass2.ID == fujiClass2ID)
+            {
+                CopyConsumableVue.FujiClass2Info = fujiClass2;
+            }
+        })
+    }
+
+    function GetFujiClass(vue) {
+        RefreshDialogForm(vue);
+        SetPageWaiting(true)
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                vue.FujiClass2s = response.Data;
+            }
+        })
+        SetPageWaiting(true)
+        $.get('@Url.Action("GetFujiClass1s", "FujiClass1")', function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                vue.FujiClass1s = response.Data;
+            }
+        })
+    }
+
+    function SetFujiClass1(vue)
+    {
+        if(vue.Filter.Class2 != 0)
+        {
+            $.each(vue.FujiClass2s,function (index, info)
+            {
+                if(vue.Filter.Class2 == info.ID)
+                    vue.Filter.Class1 = info.FujiClass1.ID
+            })
+        }
+    }
+</script>
+
+<!--component-->
+<script>
+
+    function AvgComponentUpdate(id,obj, faultRates, parentFaultRates) {
+        if (isNaN(faultRates.avg) || !faultRates.avg.trim()) {
+            jAlert("平均值不能为空", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        else if (faultRates.avg > 100) {
+            jAlert("平均值最大值为100.00", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        if (!(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test($.trim(faultRates.avg)))) {
+            jAlert("平均值格式不正确", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        AddToUpdateList(FujiClass2ComponentVue,obj)
+        if (faultRates.data.length > 5) {
+            faultRates.data.forEach(function (data) {
+                data.Rate = faultRates.avg;
+            })
+            parentFaultRates && (
+                avg = eval(parentFaultRates.data.map(function (temp) { return temp.avg }).join("+")) / faultRates.data.length || 0,
+                parentFaultRates.avg = avg.toFixed(1)
+            )
+        } else {
+            faultRates.data.forEach(function (datas) {
+                datas.avg = faultRates.avg
+                datas.data.forEach(function (data) {
+                    data.Rate = faultRates.avg;
+                })
+            })
+        }
+        jAlert("已更新！", "更新结果", function () {
+            //let _this = document.querySelector("#class2icon_" + faultRates.year)
+            //ExpandCollapseFujiClass2Data(_this, faultRates.year)
+        });
+    }
+
+    function AvgComponentFormatUpdate(obj) {
+        if (!obj.LifeTime || !((/^[1-9][0-9]$|^[1-9]$/.test($.trim(obj.LifeTime))))) {
+            jAlert("月数量最大值为99", "更新结果");
+            return
+        }
+        AddToUpdateList(FujiClass2ComponentVue, obj)
+        let avg = (100 / obj.LifeTime).toFixed(1)
+        obj.GroupFaultRates.forEach(function (group) {
+            group.avg = avg
+            if (group.year == (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")) ) {
+                group.data.forEach(function (subGroup) {
+                    subGroup.avg = avg
+                    subGroup.data.forEach(function (subData) { subData.Rate = avg })
+                })
+            } else {
+                group.data.forEach(function (subData) { subData.Rate = avg })
+            }
+        })
+        jAlert("已更新！", "更新结果", function () {
+            //let _this = document.querySelector("#class2icon_" + faultRates.year)
+            //ExpandCollapseFujiClass2Data(_this, faultRates.year)
+        });
+    }
+
+    function CollapseComponentAll() {
+        FujiClass2ComponentVue.years.forEach(function (year) {
+            $("#componentfield_" + year.ID).hide()
+            $(".componentavg_" + year.ID).show()
+            $(".componentdetail_" + year.ID).hide()
+            document.querySelector('#componenticon_' + year.ID).dataset.show = false
+            $('#componenticon_' + year.ID).attr("src", getRootPath() + "/Content/img/add.png") 
+            if (year.ID == (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))) {
+                for (let i = year.ID; i <(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d")); i++) {
+                    $(".sub_componentavg_" + i).show()
+                    $("#sub_componentfield_" + i).hide()
+                    $(".sub_componentdetail_" + i).hide()
+                    document.querySelector('#sub_componenticon_' + i).dataset.show = false
+                    $('#sub_componenticon_' + i).attr("src", getRootPath() + "/Content/img/add.png")
+                }
+            } 
+        })
+    }
+
+    function ExpandCollapseComponentData(_this, year, pre) {
+        pre = pre || ""
+        let flag = JSON.parse(_this.dataset.show)
+        if (flag) {
+            $("#" + pre + "componentfield_" + year).hide()
+            $("." + pre + "componentavg_" + year).show()
+            $("." + pre + "componentdetail_" + year).hide()
+            _this.src = getRootPath() + "/Content/img/add.png"
+        } else {
+            $("#" + pre + "componentfield_" + year).show()
+            $("." + pre + "componentavg_" + year).hide()
+            $("." + pre + "componentdetail_" + year).show()
+            _this.src = getRootPath() + "/Content/img/reduce.png"
+        }
+        _this.dataset.show = !flag
+    }
+
+    function GetComponentFujiClass2List() {
+        CollapseComponentAll();
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("QueryFujiClass2s", "FujiClass2")", {
+                class1: FujiClass2ConsumableVue.Filter.Class1,
+                class2: 0,
+                filterField: '',
+                filterText: '',
+                sortField: "f2.ID",
+                sortDirection: true,
+                currentPage: 0,                
+                pageSize:10,
+        },
+        function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                FujiClass2ComponentVue.FujiClass2List = response.Data;
+                SetFaultRate();
+            }
+        }
+        )
+    }
+
+    function GetComponentFujiClass2List(fujiClass1) {
+        CollapseComponentAll();
+        GetFujiClass2s(FujiClass2ComponentVue, fujiClass1).then(function () {
+            SetFaultRate();
+        })
+    }
+
+    function DeleteComponent(componentID,_callback){
+        if(CheckComponentInUse(componentID)) {
+            jAlert("零件正在被使用，不可删除","提示");
+            return;
+        }
+
+        jConfirm("请确认是否删除零件","提示",function(result)
+        {
+            if (result) {
+                SetPageWaiting(true);
+                $.post('@Url.Action("DeleteComponentByID", "Component")', {
+                    componentID: componentID
+                }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00")
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    else {
+                        jAlert("删除成功", "删除");
+                        GetComponentFujiClass2List(FujiClass2ComponentVue.Filter.Class1);
+                        if (_callback != null)
+                            _callback()
+                    }
+                })
+            }
+        })
+    }
+
+    function CheckComponentInUse(componentID){
+        var IsExisted = false;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckComponentInUse", "Component")',
+            data: {
+                id: componentID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function SetFaultRate() {
+        FujiClass2ComponentVue.Objects.forEach(function (fujiClass2) {
+            fujiClass2.Components.forEach(function (component) {
+                let transformData = []
+                for (let i = 1; i <= 10; i++) {
+                    let rates = component.FaultRates.filter(function (rate) {
+                        return rate.Year == i
+                    })
+                    rates = ComponentDataRepair(component,i,rates)
+                    transformData.push({
+                        year: i,
+                        data: rates,
+                        avg: (eval((rates.map(function (info) { return info.Rate })).join("+")) / rates.length).toFixed(1)
+                    })
+                }
+                let complexData = transformData.splice((@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")) - 1, 5);
+                complexData = {
+                    year: (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")),
+                    data: complexData,
+                    avg: (eval((complexData.map(function (data) { return data.avg })).join("+")) / complexData.length).toFixed(1)
+                }
+                transformData.splice((@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")) - 1, 0, complexData);
+                component.GroupFaultRates = transformData
+            })
+        })
+    }
+
+
+    function ComponentDataRepair(obj, i, rates) {
+        rates.sort(function (a, b) { return a.Month - b.Month })
+        if (!rates.length) {
+            rates = new Array(12).fill({
+                ObjectID: obj.ID,
+                ObjectTypeID: (@BusinessObjects.Domain.FaultRateInfo.ObjectType.Component.ToString("d")),
+                Year: i,
+                Month: 0,
+                Rate: 0.00
+            })
+            rates.forEach(function (rate, index) {
+                rate.Month = index + 1;
+                obj.FaultRates.push(rate)
+            })
+
+        }
+        else if (rates.length < 12) {
+            let iniMonths = new Array(12).fill(0).map(function(v, i){ return i + 1});
+            for (var index = rates.length; index > 0; index--) {
+                iniMonths.splice(rates[index-1].Month-1,1);
+            }
+            iniMonths.forEach(function (month) {
+                let rate ={
+                    ObjectID: obj.ID,
+                    ObjectTypeID: (@BusinessObjects.Domain.FaultRateInfo.ObjectType.Component.ToString("d")),
+                    Year: i,
+                    Month: month,
+                    Rate: 0.00
+                }
+                rates.splice(month - 2, 0, rate)
+                obj.FaultRates.push(rate)
+            })
+        }
+        rates.sort(function (a, b) { return a.Month - b.Month })
+        return rates
+    }
+
+
+    function SaveComponentFaultRate(vue){
+        SetPageWaiting(true);
+        return $.post("@Url.Action("SaveComponents", "Component")",{
+                infos: vue.PendingUpgrade
+            },
+            function (result) {
+                SetPageWaiting(false);
+                if (result.ResultCode != "00") {
+                    processResponseError(result.ResultCode, result.ResultMessage)
+                } else { 
+                    jAlert("保存成功！", "保存结果");
+                    vue.PendingUpgrade=[]
+                }
+            }
+        )
+    }
+
+    function CheckComponentFaultRate(vue){
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !vue.PendingUpgrade.some(function (component){
+            return component.FaultRates.some(function (faulrRate) {
+                var msg = "";
+                if(faulrRate.Rate > 100) msg = "故障率数据最大值为100.00";
+                else if(!str.test(faulrRate.Rate)) msg = "故障率数据格式不正确";
+                if (msg == "")
+                    return false;
+                else {
+                    jAlert(msg, "提示", function () {
+                        if (faulrRate.Year < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))) {
+                            let icon = document.querySelector('#componenticon_' + faulrRate.Year)
+                            if (!JSON.parse(icon.dataset.show))
+                                ExpandCollapseComponentData(icon, faulrRate.Year)
+                            $("#componentrate_" + faulrRate.ObjectID + "_" + faulrRate.Year + "_" + faulrRate.Month).focus()
+                        }
+                        else if (faulrRate.Year < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))) {
+                            let icon = document.querySelector('#componenticon_' + (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")))
+                            let subIcon = document.querySelector('#sub_componenticon_' + faulrRate.Year)
+                            if (!JSON.parse(icon.dataset.show))
+                                ExpandCollapseComponentData(icon, (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")))
+                            if (!JSON.parse(subIcon.dataset.show))
+                                ExpandCollapseComponentData(subIcon, faulrRate.Year,"sub_")
+                            $("#sub_componentrate_" + faulrRate.ObjectID + "_" + faulrRate.Year + "_" + faulrRate.Month).focus()
+                        } 
+                    });
+                    return true
+                }
+            })
+        })
+    }
+
+</script>
+<!--consumable-->
+<script>
+    function DeleteConsumable(consumableID,_callback) {
+        if(CheckConsumableInUse(consumableID)) {
+            jAlert("耗材正在被使用，不可删除","提示");
+            return;
+        }
+
+        jConfirm("请确认是否删除耗材","提示",function(result)
+        {
+            if (result) {
+                SetPageWaiting(true);
+                $.post('@Url.Action("DeleteConsumableByID", "Consumable")', {
+                    consumableID: consumableID
+                }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00")
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    else {
+                        jAlert("删除成功", "删除");
+                        GetFujiClass2s(FujiClass2ConsumableVue, FujiClass2ConsumableVue.Filter.Class1);
+                        if (_callback != null)
+                            _callback()
+                    }
+                })
+            }
+        })
+    }
+
+    function CheckConsumableInUse(consumableID){
+        var IsExisted = false;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckConsumableInUse", "Consumable")',
+            data: {
+                id: consumableID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function SaveFujiConsumables(vue){
+        SetPageWaiting(true);
+        return $.post("@Url.Action("SaveConsumables", "Consumable")",{
+            infos: vue.PendingUpgrade,
+        },
+        function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00") {
+                processResponseError(result.ResultCode, result.ResultMessage)
+            } else {
+                jAlert("保存成功！", "保存结果");
+            }
+        }
+        )
+    }
+
+</script>
+<!--CopyComponent-->
+<script>
+    function GetFujiClass2Component() {
+        SetPageWaiting(true);
+        $("input[name='copyComponent']:checked").attr("checked",false);
+        $.get('@Url.Action("QueryComponentsByFujiClass2ID", "Component")', {
+            fujiClass2ID: CopyComponentVue.FujiClass2Info.ID,
+            isIncluded: true
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                CopyComponentVue.Components = response.Data;
+            }
+        })
+    }
+
+    function CopyComponent() {
+        let copyObjs = $("input[name='copyComponent']:checked")
+        if(!copyObjs || !copyObjs.length){
+            jAlert("未选择零件","警告")
+            return
+        }else{
+            var exsistedComponents = new Array(); 
+
+            copyObjs.each(function (element) {
+                var componentID = $(this).val()
+                $.each(CopyComponentVue.Components, function (index, component)
+                {
+                    if (component.ID == componentID)
+                    {
+                        if(component.FujiClass2.ID == CopyComponentVue.FujiClass2.ID){
+                            exsistedComponents.push(component.Name);
+                            return;
+                        }
+                        else{
+                            component.FujiClass2.ID = CopyComponentVue.FujiClass2.ID;
+                            component.ID = 0;
+                            if(CheckComponentExisted(component)){
+                                exsistedComponents.push(component.Name);
+                                return;
+                            }
+                            SaveCopyComponent(component);
+                        }               
+                    }
+                })
+            })
+            if (exsistedComponents.length > 0){
+                jAlert("零件‘"+ exsistedComponents.join('；') +"’已存在","提示");
+            }
+        }
+    }
+
+    function SaveCopyComponent(component) {
+        if(CheckComponentExisted(component)){
+            jAlert("零件‘"+ component.Name +"’已存在","提示");
+            return;
+        }
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveComponent", "Component")', component, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                component = response.Data;            
+                $("#CopyComponent").dialog("close");
+                GetComponentFujiClass2List(FujiClass2ComponentVue.Filter.Class1);
+            }
+        })
+    }
+</script>
+<!--CopyConsumable-->
+<script>
+    function GetFujiClass2Consumable()
+    {
+        SetPageWaiting(true);
+        $("input[name='copyConsumable']:checked").attr("checked",false);
+        $.get('@Url.Action("QueryConsumablesByFujiClass2ID", "Consumable")', {
+            fujiClass2ID: CopyConsumableVue.FujiClass2Info.ID,
+            isIncluded: true
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                CopyConsumableVue.Consumables = response.Data;
+            }
+        })
+    }
+
+    function CopyConsumable() {
+        let copyObjs = $("input[name='copyConsumable']:checked");
+        if(!copyObjs || !copyObjs.length){
+            jAlert("未选择耗材","警告")
+            return
+        }else{
+            var exsistedConsumables = new Array();
+
+            copyObjs.each(function (element) {
+                var consumableID = $(this).val()
+                $.each(CopyConsumableVue.Consumables, function (index, consumable)
+                {
+                    if (consumable.ID == consumableID)
+                    {
+                        if (consumable.FujiClass2.ID == CopyConsumableVue.FujiClass2.ID)
+                        {
+                            exsistedConsumables.push(consumable.Name);
+                            return;
+                        }
+                        else{
+                            consumable.FujiClass2.ID = CopyConsumableVue.FujiClass2.ID;
+                            consumable.ID = 0;
+                            if(CheckConsumableExisted(consumable)){
+                                exsistedConsumables.push(consumable.Name);
+                                return;
+                            }
+                            SaveCopyConsumable(consumable);
+                        }               
+                    }
+                
+                })
+            })
+            if (exsistedConsumables.length > 0){
+                jAlert("耗材‘"+ exsistedConsumables.join('；') +"’已存在","提示");
+            }
+        }
+    }
+
+    function SaveCopyConsumable(consumable) {
+        if(CheckConsumableExisted(consumable)){
+            jAlert("耗材‘"+ consumable.Name +"’已存在","提示");
+            return;
+        }
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveConsumable", "Consumable")', consumable, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                consumable = response.Data;
+                $("#CopyConsumable").dialog("close");
+                GetFujiClass2s(FujiClass2ConsumableVue,FujiClass2ConsumableVue.Filter.Class1);
+            }
+        })
+    }
+
+</script>

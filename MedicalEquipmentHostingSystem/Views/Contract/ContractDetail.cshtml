@@ -1,0 +1,547 @@
+﻿@{
+    ViewBag.Title = "ContractList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    List<BusinessObjects.Domain.KeyValueInfo> ContractTypes = BusinessObjects.Manager.LookupManager.GetContractType();
+    List<BusinessObjects.Domain.KeyValueInfo> ContractScope = BusinessObjects.Manager.LookupManager.GetContractScope();
+    int ServiceContract = BusinessObjects.Domain.ContractInfo.FileTypes.ServiceContract;
+    int SuperAdmin = BusinessObjects.Domain.UserRole.SuperAdmin;
+    List<BusinessObjects.Domain.KeyValueInfo> statuses = BusinessObjects.Domain.ContractInfo.Statuses.GetStatuses();
+}
+<div id="contractDetailVue" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" onclick="Back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+    </div>
+    <div class="title">
+        <p v-if="@ViewBag.ID != 0">更新合同</p>
+        <p v-else>新增合同</p>
+    </div>
+    <!--设备信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr>
+                    <td colspan="13" class="tblName">
+                        设备基本信息
+                        <img style="vertical-align: middle;" class="icon-sm cursor" src="~/Content/img/add.png" onclick="OpenSelectEquipmentDialog()">
+                        <label class="required tips" id="reqEquipment"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100px">系统编号</th>
+                    <th style="min-width:50px;">资产编号</th>
+                    <th style="min-width:50px;">名称</th>
+                    <th style="min-width:50px;">型号</th>
+                    <th style="min-width:60px;">序列号</th>
+                    <th style="min-width:70px;">设备厂商</th>
+                    <th style="min-width:70px;">使用科室</th>
+                    <th style="min-width:70px;">安装地点</th>
+                    <th width="50px" style="text-align: center; border-right: none;">删除</th>
+                </tr>
+                <tr v-for="info in Contract.Equipments">
+                    <td>{{info.OID}}</td>
+                    <td>{{info.AssetCode}}</td>
+                    <td>{{info.Name}}</td>
+                    <td>{{info.EquipmentCode}}</td>
+                    <td>{{info.SerialCode}}</td>
+                    <td>{{info.Manufacturer.Name}}</td>
+                    <td>{{info.Department.Name}}</td>
+                    <td>{{info.InstalSite}}</td>
+                    <td style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteEquipment(this, info.ID)" /></td>
+                </tr>
+                <tr v-if="Contract.Equipments.length == 0">
+                    <td colspan="11" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--合同详细信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">
+                        合同详细信息
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">系统编号</th>
+                    <td width="298px">
+                        <label class="tdReadOnly" v-if="@ViewBag.ID == 0">由系统自动生成</label>
+                        <label v-else class="tdReadOnly">{{Contract.OID}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">项目编号</th>
+                    <td width="298px">
+                        <input type="text" id="projectNum" maxlength="20" v-model="Contract.ProjectNum"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">合同编号</th>
+                    <td width="298px">
+                        <input type="text" id="contractNum" maxlength="20" v-model="Contract.ContractNum"/>
+                        <label class="required tips" id="reqContractNum"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">金额(元)</th>
+                    <td width="298px">
+                        <input type="text" id="amount" maxlength="13" v-model="Contract.Amount"/>
+                        <label class="required tips" id="reqAmount"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">名称</th>
+                    <td colspan="4">
+                        <input type="text" id="name" maxlength="50" v-model="Contract.Name" style="width:746px  ;"/>
+                        <label class="required tips" id="reqName"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">类型</th>
+                    <td width="289px">
+                        <select id="type" v-model="Contract.Type.ID" style="width:185px;">
+                            @foreach (var temp in ContractTypes)
+                            {
+                                <option value="@temp.ID">@temp.Name</option>
+                            }
+                        </select>
+                        <label class="required tips" id="typeMsg"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">供应商</th>
+                    <td width="289px">
+                        <input type="text" id="supplier" v-model="Contract.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
+                        <img style="vertical-align: middle;" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" src="~/Content/img/find.png">
+                        <label class="required tips" id="reqSupplier"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">起止日期</th>
+                    <td colspan="4">
+                        <input type="text" class="datePicker" id="startDate" placeholder="YYYY-MM-DD" onchange="ChangeDateStatus()" style="width:150px;"/>-<input type="text" class="datePicker" id="endDate" placeholder="YYYY-MM-DD" onchange="ChangeDateStatus()" style="width:150px;"/>
+                        <label class="required tips" id="reqDate"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">服务范围</th>
+                    <td colspan="4">
+                        <select id="scope" v-model="Contract.Scope.ID" style="width: 150px; margin-right: 5px;">
+                            @foreach (var temp in ContractScope)
+                            {
+                                <option value="@temp.ID">@temp.Name</option>
+                            }
+                        </select><input type="text" maxlength="50" v-model="Contract.ScopeComments" v-show="Contract.Scope.ID == @BusinessObjects.Domain.ContractInfo.Scopes.Other" style="width: 150px;"/>
+                        <label class="required tips" id="reqScope"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">备注</th>
+                    <td colspan="4">
+                        <textarea maxlength="500" v-model="Contract.Comments"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">附件</th>
+                    <td colspan="4">
+                        <input type="text" readonly class="linkFile" id="FileContract" onclick="OpenLocalFile('FileContract')" />
+                        <img src="~/Content/img/upload.png" class="cursor icon-upload" onclick="fileFileContract.click()" />
+                        <img src="~/Content/img/delete.png" class="cursor icon-delete" alt="delete" onclick="DeleteUploadFileData('FileContract')" />
+                        <input type="file" id="fileFileContract" style="display:none" onchange="UploadFile(@BusinessObjects.Domain.ContractInfo.FileTypes.ServiceContract,'FileContract')">
+                        <input type="hidden" id="FileContractPath" />
+                        <input type="hidden" id="FileContractID" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--零件详细信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">
+                        零件
+                        <img style="vertical-align: middle;" class="icon-sm cursor" src="~/Content/img/add.png" onclick="OpenAddComponent()">
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:100px;">描述</th>
+                    <th style="min-width:100px;">设备系统编号</th>
+                    <th style="min-width:100px;">设备资产编号</th>
+                    <th style="min-width:100px;">关联设备名称</th>
+                    <th style="min-width:50px; text-align: center; border-right: none;">删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="component in Contract.Components">
+                    <td>{{component.Component.Name}}</td>
+                    <td>{{component.Component.Description}}</td>
+                    <td>{{component.Equipment.OID}}</td>
+                    <td>{{component.Equipment.AssetCode}}</td>
+                    <td>{{component.Equipment.Name}}</td>
+                    <td style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteComponentBtn(this, component.Component.ID, component.Equipment.ID)" /></td>
+                </tr>
+                <tr v-if="Contract.Components.length == 0">
+                    <td colspan="11" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--耗材详细信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">耗材
+                    <img style="vertical-align: middle;" class="icon-sm cursor" src="~/Content/img/add.png" onclick="OpenAddConsumable()">
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:100px;">描述</th>
+                    <th style="min-width:100px;">设备系统编号</th>
+                    <th style="min-width:100px;">设备资产编号</th>
+                    <th style="min-width:100px;">关联设备名称</th>
+                    <th style="min-width:50px; text-align: center; border-right: none;">删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="consumable in Contract.Consumables">
+                    <td>{{consumable.Consumable.Name}}</td>
+                    <td>{{consumable.Consumable.Description}}</td>
+                    <td>{{consumable.Equipment.OID}}</td>
+                    <td>{{consumable.Equipment.AssetCode}}</td>
+                    <td>{{consumable.Equipment.Name}}</td>
+                    <td style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteConsumableBtn(this, consumable.Consumable.ID, consumable.Equipment.ID)" /></td>
+                </tr>
+                <tr v-if="Contract.Consumables.length == 0">
+                    <td colspan="11" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%; width: 800px;">
+        <tr>
+            <td><button class="btn btn-info" onclick="SaveContract()">保存</button></td>
+            <td><button class="btn btn-info" onclick="Back()">返回</button></td>
+        </tr>
+    </table>
+
+</div>
+@{ Html.RenderPartial("Supplier_Selection"); }
+@{ Html.RenderPartial("SelectEquipmentDialog"); }
+@{ Html.RenderPartial("ContractDialog"); }
+
+<!--Vue Init Data-->
+<script>
+    var contractDetailVue = new Vue({
+        el: "#contractDetailVue",
+        data: {
+            Contract: {
+                ID:0,
+                Equipment: {
+                    AssetLevel: {},
+                    Manufacturer: {},
+                    Department: {},
+                    ContractScope: {}
+                },
+                Equipments: [],
+                Type: { ID: '@ContractTypes[0].ID' },
+                Scope: { ID: '@ContractScope[0].ID' },
+                Supplier: {},
+                ContractFile: {
+                    ID: 0,
+                    ObjectID: Number(@ViewBag.ID),
+                    ObjectName: "Contract",
+                    FileName: "",
+                    FileContent: "",
+                    FileType: Number(@ServiceContract)
+                },
+                Components: [],
+                Consumables: [],
+                StartDate: "",
+                EndDate: ""
+            },
+            ReadOnly: ('@user.Role.ID' != '@SuperAdmin')
+        }
+    })
+</script>
+<script>
+    $(function () {
+        InitDateForm();
+        InitDialog();
+        if ('@ViewBag.ID' > 0) {
+            GetContract();
+        }
+    })
+    function InitDateForm() {
+        var dateFields = $([]).add($("#startDate")).add($("#endDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+
+    //获取合同信息
+    function GetContract() {
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("GetContractByID", "Contract")" + "?" + $.param({ ID: Number(@ViewBag.ID) }),
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    contractDetailVue.Contract = response.Data;
+                    $("#FileContract").val(contractDetailVue.Contract.ContractFile.FileName);
+                    $("#FileContractID").val(contractDetailVue.Contract.ContractFile.ID);
+                    $("#startDate").val(parseAndFormatJsonDate(contractDetailVue.Contract.StartDate));
+                    $("#endDate").val(parseAndFormatJsonDate(contractDetailVue.Contract.EndDate));
+                }
+            })
+    }
+
+    //获取设备信息
+    function GetEquipment(id) {
+        SetPageWaiting(true);
+        $.get("@Url.Action("GetEquipmentByID", "Equipment")" + "?" + $.param({ id: id }),
+            function (response) {
+                SetPageWaiting(false);
+                contractDetailVue.Contract.Equipment = response.Data;
+            })
+    }
+
+    function UploadFile(fileType, fileElementId) {
+        PreviewUploadFile('@BusinessObjects.Domain.ObjectTypes.Contract', Number(contractDetailVue.Contract.ID), fileType, '', fileElementId, singleFileUpload);
+    }
+
+    function OpenLocalFile(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DownloadFile('@BusinessObjects.Domain.ObjectTypes.Contract', $("#" + fieldElementId + "ID").val());
+    }
+
+    function DeleteUploadFileData(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DeleteUploadFile('@BusinessObjects.Domain.ObjectTypes.Contract', fieldElementId, $("#" + fieldElementId + "ID").val(), singleFileDelete);
+    }
+
+    function singleFileUpload(fileElementId, id) {
+        $("#" + fileElementId + "ID").val(id);
+    }
+
+    function singleFileDelete(fileElementId) {
+        $("input[id *=" + fileElementId + "]").val("");
+    }
+
+    function callback(objectVue) {
+        contractDetailVue.Contract.Supplier = objectVue
+    }
+
+    //保存时判断信息是否已填/格式是否正确
+    function CheckContract() {
+        $(".tips").html("");
+        var flag = true;
+
+        if (contractDetailVue.Contract.Equipments.length == 0) {
+            $("#reqEquipment").html('请选择设备');
+            flag = false;
+        }
+        if (contractDetailVue.Contract.ContractNum == undefined || contractDetailVue.Contract.ContractNum.trim() == "") {
+            $("#reqContractNum").html('合同编号不能为空');
+            $("#contractNum").focus();
+            flag = false;
+        }
+        if (contractDetailVue.Contract.Amount == undefined) {
+            $("#reqAmount").html('合同金额不能为空');
+            $("#amount").focus();
+            flag = false;
+        }else if (contractDetailVue.Contract.Amount > 9999999999.99) {
+            $("#reqAmount").html('金额最大为9999999999.99');
+            $("#amount").focus();
+            flag = false;
+        } else {
+            var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+            if (!patrn.test(contractDetailVue.Contract.Amount)) {
+                $("#reqAmount").html('请输入正确的格式');
+                $("#amount").focus();
+                flag = false;
+            }
+        }
+        if (contractDetailVue.Contract.Name == undefined || contractDetailVue.Contract.Name.trim() == "") {
+            $("#reqName").html('合同名称不能为空');
+            $("#name").focus();
+            flag = false;
+        }
+
+        if (CheckDatePicker("startDate", "开始日期") != "") {
+            $("#reqDate").html(CheckDatePicker("startDate", "开始日期"));
+            flag = false;
+        }
+        if (CheckDatePicker("endDate", "结束时间") != false) {
+            $("#reqDate").html(CheckDatePicker("endDate", "结束时间"));
+            flag = false;
+        }
+        if ((new Date($("#startDate").val().replace(/-/g, "\/"))) > (new Date($("#endDate").val().replace(/-/g, "\/")))) {
+            $("#reqDate").html("开始时间必须小于结束时间");
+            flag = false;
+        }
+
+        if (contractDetailVue.Contract.Type.ID == 0) {
+            $("#reqtype").html('合同类型不能为空');
+            $("#type").focus();
+            flag = false;
+        }
+        if (contractDetailVue.Contract.Scope.ID == 0) {
+            $("#reqScope").html('服务范围不能为空');
+            $("#scope").focus();
+            flag = false;
+        }
+        if (contractDetailVue.Contract.Supplier.Name == undefined || contractDetailVue.Contract.Supplier.Name.trim() == '') {
+            $("#reqSupplier").html('供应商不能为空');
+            $("#supplier").focus();
+            flag = false;
+        } else if (contractDetailVue.Contract.Supplier == null || contractDetailVue.Contract.Supplier.ID == 0 || contractDetailVue.Contract.Supplier.ID == null) {
+            $("#reqSupplier").html('供应商选择不存在');
+            $("#supplier").focus();
+            flag = false;
+        }
+        return flag;
+    }
+
+    //根据合同起止日期计算合同状态
+    function ChangeDateStatus() {
+        var start = $("#startDate").val();
+        var end = $("#endDate").val();
+        var result = "";
+        if (parseInt((new Date(end) - new Date()) / (1000 * 60 * 60 * 24)) < 0) result = "失效";
+        else if (parseInt((new Date(start) - (new Date())) / (1000 * 60 * 60 * 24)) > 0 || parseInt((new Date(start) - (new Date())) / (1000 * 60 * 60)) > 0) result = "未生效";
+        else if (parseInt((new Date(start) - (new Date())) / (1000 * 60 * 60 * 24)) <= 0 && parseInt((new Date(end) - (new Date())) / (1000 * 60 * 60 * 24)) <= '@BusinessObjects.Manager.ControlManager.GetSettingInfo().WillExpireTime') result = "即将失效";
+        else if (parseInt((new Date(start) - (new Date())) / (1000 * 60 * 60 * 24)) <= 0 && parseInt((new Date(end) - (new Date())) / (1000 * 60 * 60 * 24)) >= 0) result = "生效";
+        else result = "失效";
+        contractDetailVue.Contract.Status = result;
+        $("#contractStatus").html(result);
+    }
+
+    //保存合同信息
+    function SaveContract() {
+        contractDetailVue.Contract.StartDate = $("#startDate").val();
+        contractDetailVue.Contract.EndDate = $("#endDate").val();
+        contractDetailVue.Contract.ContractFile.FileName = $("#FileContract").val();
+        contractDetailVue.Contract.ContractFile.FileContent = $("#FileContractPath").val();
+        if (!CheckContract()) return;
+        SetPageWaiting(true)
+        $.post(
+            '@Url.Action("SaveContract", "Contract")',
+            contractDetailVue.Contract,
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+                else {
+                    contractDetailVue.Contract.ID = response.Data;
+                    jAlert("保存成功", "保存结果", function () {
+                        window.location = "@Url.Action("ContractDetail", "Contract")" + '?' + $.param({ contractID: contractDetailVue.Contract.ID });
+                    });
+                }
+                return;
+            }
+        );
+    }
+
+    function Back() {
+        window.location = "@Url.Action("ContractList", "Contract")";
+    }
+</script>
+<script>
+    //打开选择设备弹窗
+    function OpenSelectEquipmentDialog(){
+        InitSelectEquipmentDialogForm();
+        SelectEquipmentDialogVue.checkval = [];
+        SelectEquipmentDialogVue.Equipments = contractDetailVue.Contract.Equipments;
+        for (var i = 0 ; i < contractDetailVue.Contract.Equipments.length; i++) {
+            SelectEquipmentDialogVue.checkval.push(contractDetailVue.Contract.Equipments[i].ID);
+        }
+        OpenEquipmentDialog(99);
+    }
+
+    //将选择设备信息添加到合同信息中
+    function SaveEquipments() {
+        var Equipments = CheckSaveSelectEquipment()
+        if(Equipments == undefined) return;
+        else contractDetailVue.Contract.Equipments = Equipments;
+    }
+
+    //删除选择的设备
+    function DeleteEquipment(el, id) {
+        if('@ViewBag.ID' > 0){
+            SelectEquipmentDialogVue.checkval = []
+            for (var i = 0; i < contractDetailVue.Contract.Equipments.length ; i++) {
+                SelectEquipmentDialogVue.checkval.push(contractDetailVue.Contract.Equipments[i].ID);
+            }
+        }
+        var index = SelectEquipmentDialogVue.checkval.indexOf(id, 0)
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                if (index != -1) {
+                    SelectEquipmentDialogVue.checkval.splice(index, 1)
+                    contractDetailVue.Contract.Equipments.splice(index, 1);
+                    DeleteComponent(0, id);
+                    DeleteConsumable(0, id);
+                }
+            }
+        });
+    }
+
+    function DeleteComponentBtn(el, componentID, equipmentID) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteComponent(componentID, equipmentID)
+            }
+        });
+    }
+
+    function DeleteComponent(componentID, equipmentID) {
+        var newArr = [];
+        $.each(contractDetailVue.Contract.Components, function (index, item) {
+            if ((item.Component.ID == componentID || componentID == 0) && item.Equipment.ID == equipmentID) { }
+            else newArr.push(item);
+        })
+
+        contractDetailVue.Contract.Components = newArr;
+    }
+
+    function DeleteConsumableBtn(el, consumableID, equipmentID) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteConsumable(consumableID, equipmentID);
+            }
+        });
+    }
+
+    function DeleteConsumable(consumableID, equipmentID) {
+        var newArr = [];
+        $.each(contractDetailVue.Contract.Consumables, function (index, item) {
+            if ((item.Consumable.ID == consumableID || consumableID == 0) && item.Equipment.ID == equipmentID) { }
+            else newArr.push(item);
+        })
+
+        contractDetailVue.Contract.Consumables = newArr;
+    }
+</script>
+
+     

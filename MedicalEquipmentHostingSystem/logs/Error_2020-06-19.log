@@ -1,0 +1,308 @@
+2020-06-19 09:53:46.8714 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'GetEquipmentList', Arguments: 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentList(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 202
+2020-06-19 09:57:38.4735 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 358
+2020-06-19 09:57:38.5214 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 09:57:38.5807 ERROR SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 09:58:07.2060 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 358
+2020-06-19 09:58:07.2360 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 09:58:07.2950 ERROR SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 09:58:31.3228 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 358
+2020-06-19 09:58:31.3641 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 09:58:31.4116 ERROR SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 09:59:59.1390 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 358
+2020-06-19 09:59:59.1710 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 09:59:59.2309 ERROR SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 361
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 10:47:21.0308 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:47:21.0810 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 145
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValEquipment(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 151
+2020-06-19 10:47:37.4542 ERROR Exception: 'Incorrect syntax near the keyword 'CASE'.' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 143
+2020-06-19 10:47:37.5010 ERROR Incorrect syntax near the keyword 'CASE'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 145
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValEquipment(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 151
+2020-06-19 10:51:21.0533 ERROR Exception: 'Incorrect syntax near the keyword 'CASE'.' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 143
+2020-06-19 10:51:21.1158 ERROR Incorrect syntax near the keyword 'CASE'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.BaseDao.GetCount(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 101
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 145
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValEquipment(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 151
+2020-06-19 10:52:39.4977 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:52:54.0986 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:53:00.4346 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:53:38.7014 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:55:07.9146 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationDao', Method 'GetEquipmentCount', Arguments: 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 124
+2020-06-19 10:55:07.9436 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Domain.ValEquipmentInfo.AmountTypes.GetAmountSql(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 153
+   在 BusinessObjects.DataAccess.ValuationDao.GetEquipmentCount(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 145
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValEquipment(Boolean isLastData, Int32 equipmentType, Int32 amountType, String equipmentName, String serialCode, Int32 class1ID, Int32 class2ID, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 151
+2020-06-19 11:05:19.0989 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 360
+2020-06-19 11:05:19.1358 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 363
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 11:05:19.1968 ERROR SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 363
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 11:52:58.1339 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 75
+2020-06-19 11:52:58.2902 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 11:53:08.4271 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 75
+2020-06-19 11:53:08.5422 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 11:53:56.5146 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 75
+2020-06-19 11:53:56.5927 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 11:54:25.4128 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = NULL 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 75
+2020-06-19 11:54:25.4909 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Domain.ValEquipmentInfo.ConvertValEquipmentTable(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ExecuteInfo.cs:行号 182
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 77
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 278
+2020-06-19 13:06:20.1289 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 333
+2020-06-19 13:06:20.2695 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 336
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 13:06:37.8796 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 333
+2020-06-19 13:06:37.9265 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 336
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76
+2020-06-19 13:07:15.3385 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationDao', Method 'AddValEquipment', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 333
+2020-06-19 13:07:15.3854 ERROR Exception: 'SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。' happened in Class 'ValuationManager', Method 'SaveValEquipment', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.ValuationDao.AddValEquipment(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 336
+   在 BusinessObjects.Manager.ValuationManager.SaveValEquipment(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 76

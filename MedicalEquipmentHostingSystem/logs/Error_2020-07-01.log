@@ -1,0 +1,17 @@
+2020-07-01 09:09:11.9905 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 59
+2020-07-01 09:09:12.1618 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 74
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 221
+2020-07-01 09:09:22.4288 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 59
+2020-07-01 09:09:22.5158 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 74
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 221
+2020-07-01 09:09:43.4306 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 59
+2020-07-01 09:09:43.5195 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 74
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.SaveValuation(ValuationType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 221
+2020-07-01 09:11:02.4988 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'SaveValEquipments', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.SaveValEquipments(List`1 updateEquipments, List`1 importEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 59

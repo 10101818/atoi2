@@ -1,0 +1,112 @@
+2020-07-27 09:23:59.4581 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 12 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 796
+2020-07-27 09:23:59.5766 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 800
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 648
+2020-07-27 09:23:59.6315 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 800
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 747
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetDateList() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 800
+2020-07-27 09:24:06.8277 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 12 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 796
+2020-07-27 09:24:06.8726 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 800
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 648
+2020-07-27 09:25:06.2301 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetSubAmount', Arguments: List`1 = System.Collections.Generic.List`1[System.Double], Int32 = 0, Int32 = 12 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 796
+2020-07-27 09:25:06.3030 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.GetSubAmount(List`1 list, Int32 startIndex, Int32 endIndex) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 800
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 648
+2020-07-27 13:32:48.3730 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.DispatchController.QueryDispatches(Int32 status, Int32 urgency, Int32 type, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\DispatchController.cs:行号 136
+2020-07-27 13:33:48.6791 ERROR Exception: '无法将类型为“<SkipIterator>d__31`1[System.Double]”的对象强制转换为类型“System.Collections.Generic.List`1[System.Double]”。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 720
+2020-07-27 13:33:48.7351 ERROR 无法将类型为“<SkipIterator>d__31`1[System.Double]”的对象强制转换为类型“System.Collections.Generic.List`1[System.Double]”。 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 760
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 777
+2020-07-27 13:34:17.4318 ERROR Exception: '无法将类型为“<SkipIterator>d__31`1[System.Double]”的对象强制转换为类型“System.Collections.Generic.List`1[System.Double]”。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 720
+2020-07-27 13:37:38.2572 ERROR 无法将类型为“<SkipIterator>d__31`1[System.Double]”的对象强制转换为类型“System.Collections.Generic.List`1[System.Double]”。 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 760
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 777
+2020-07-27 13:43:59.0614 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 13:43:59.1293 ERROR 目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 764
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 777
+2020-07-27 13:44:21.1969 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 13:45:36.4995 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 13:45:57.6336 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 13:45:57.6836 ERROR 目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 764
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 777
+2020-07-27 13:55:34.3992 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 13:55:34.4564 ERROR 目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 764
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778
+2020-07-27 13:56:54.5431 ERROR Exception: '目标数组的长度不够。请检查 destIndex 和长度以及数组的下限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   在 System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 721
+2020-07-27 15:57:45.6435 ERROR Exception: '索引超出了数组界限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 723
+2020-07-27 15:57:45.7077 ERROR 索引超出了数组界限。 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 784
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778
+2020-07-27 15:58:01.1958 ERROR Exception: '索引超出了数组界限。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 723
+2020-07-27 15:58:14.0120 ERROR 索引超出了数组界限。 
+    在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 784
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778
+2020-07-27 16:00:03.3651 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 748
+2020-07-27 16:00:03.4161 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 784
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 778

@@ -1,0 +1,352 @@
+﻿@{
+    ViewBag.Title = "SupplierList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+
+    List<BusinessObjects.Domain.KeyValueInfo> SupplierType = BusinessObjects.Manager.LookupManager.GetSupplierType();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+
+<div id="supplierVue" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">供应商列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td>
+                            <button id="0" class="btn btn-sm btnFilter activeFilter" onclick="QuerySupplierListByBadge(0,this)"><span class="btnContent">全部</span></button><sup class="btnBadge">{{CountManufacturer + CountAgent + CountDealer + CountOther}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QuerySupplierListByBadge(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Manufacturer,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetSupplierTypeDesc(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Manufacturer)</span></button><sup class="btnBadge">{{CountManufacturer}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QuerySupplierListByBadge(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Agent,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetSupplierTypeDesc(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Agent)</span></button><sup class="btnBadge">{{CountAgent}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QuerySupplierListByBadge(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Dealer,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetSupplierTypeDesc(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Dealer)</span></button><sup class="btnBadge">{{CountDealer}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QuerySupplierListByBadge(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Other,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetSupplierTypeDesc(@BusinessObjects.Domain.SupplierInfo.SupplierTypes.Other)</span></button><sup class="btnBadge">{{CountOther}}</sup>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                类型:
+                                <select id="SelectedType" v-on:change="QuerySupplierList" v-model="Filter.SupplierTypeID">
+                                <option value="0">全部</option>
+                                @foreach (var item in SupplierType)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                                </select>
+                            </td>
+                            <td>
+                                状态:
+                                <select id="SelectedStatus" v-on:change="QuerySupplierList()" v-model="Filter.Status">
+                                    <option value="-1" selected>全部</option>
+                                    <option value="1">启用</option>
+                                    <option value="0">停用</option>
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select id="SelectedQuery" v-model="Filter.FilterField">
+                                    <option value="s.ID">系统编号</option>
+                                    <option value="s.Name">供应商名称</option>
+                                    <option value="s.Address">地址</option>
+                                    <option value="s.Contact">联系人</option>
+                                    <option value="s.ContactMobile">联系人电话</option>
+                                </select>
+                                <input type="text" class="shortInput " id="txtQuery" maxlength="50" v-model.trim="Filter.FilterText" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" v-on:click="QuerySupplierList()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" style="min-width:120px;" class="sortColumn cursor" id="s.ID" onclick="sortSupplierList(this)">系统编号</th>
+                <th scope="col" style="min-width:200px;" id="s.Name">供应商名称</th>
+                <th scope="col" style="min-width:120px;" class="sortColumn cursor" id="s.TypeID" onclick="sortSupplierList(this)">类型</th>
+                <th scope="col" style="min-width:100px;" id="s.Provice">省份</th>
+                <th scope="col" style="min-width:200px;" id="s.Address">地址</th>
+                <th scope="col" style="min-width:100px;" id="s.Contact">联系人</th>
+                <th scope="col" style="min-width:120px;" id="s.ContactMobile">联系人电话</th>
+                <th scope="col" style="min-width:120px;" class="sortColumn cursor" id="s.AddDate" onclick="sortSupplierList(this)">添加日期</th>
+                <th scope="col" style="min-width:100px;" class="sortColumn cursor" id="s.IsActive" onclick="sortSupplierList(this)">状态</th>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="text-align: center; min-width: 80px;">日志</th>
+                    <th scope="col" style="min-width:50px;">编辑</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="supplier in Supplierlist">
+                <td scope="row"><a href="#" class="linkFile" v-on:click="btnSupplierDetail(supplier.ID,true)">{{supplier.OID}}</a></td>
+                <td>{{supplier.Name}}</td>
+                <td>{{supplier.SupplierType.Name}}</td>
+                <td>{{supplier.Province}}</td>
+                <td>{{supplier.Address}}</td>
+                <td>{{supplier.Contact}}</td>
+                <td>{{supplier.ContactMobile}}</td>
+                <td>{{parseAndFormatJsonDate(supplier.AddDate)}}</td>
+                <td>{{supplier.IsActive?"启用":"停用"}}</td>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td style="text-align:center;"><img src="~/Content/img/logs.png" class="icon-sm cursor" v-on:click="GoToAuditDetail(@BusinessObjects.Domain.ObjectTypes.Supplier,supplier.ID)"></td>
+                    <td>
+                        <img src="~/Content/img/edit.png" class="icon-sm btn-editSupplier cursor" style="cursor:pointer" v-on:click="btnSupplierDetail(supplier.ID,false)" />
+                    </td>
+                }
+
+            </tr>
+            <tr v-if="Supplierlist.length == 0">
+                <td colspan="11" style="text-align:center">暂无数据</td>
+            </tr>
+            <tr>
+                <td>
+                    @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                    {
+                        <div><button class="btn btn-info btn-sm btn-newSupplier" onclick="btnSupplierDetail(0,false)">新增供应商</button></div>
+                    }
+                </td>
+                <td colspan="10">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/Content/Scripts/proviceSelect.js"></script>
+<script>
+    var supplierVue = new Vue({
+        el: "#supplierVue",
+        data: {
+            CountManufacturer:0,
+            CountAgent:0,
+            CountDealer:0,
+            CountOther:0,
+            ProvinceList:[],
+            ID: 0,
+            SelectedSupplier: {
+                SupplierType: {ID: '1'},               
+                IsActive: true,
+                SupplierFile:{
+                    FileName:""
+                }, 
+                Province: "北京",
+                Name: "",
+                Contact:"",
+            },
+            Supplierlist: [],
+            Filter: {
+                Status: 1,
+                FilterField: 's.ID',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize:10,
+                SupplierTypeID:0,
+                SortObject: {
+                    Field: 's.ID',
+                    Direction: true,
+                }
+            },
+        },
+        methods: {
+            //获取数据
+            QuerySupplierList: function () {
+                var json = InitQueryFilter();
+                SetPageWaiting(true);
+                $.post('@Url.Action("QuerySupplierList", "Supplier")', json, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        supplierVue.Supplierlist = response.Data;
+                        supplierVue.Filter.CurrentPage = SetTotalPage4Pager(supplierVue.Filter.CurrentPage, response.TotalPages);
+                        $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                        GetSupplierCount();
+                    }
+                })
+            },
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        InitFilterParameters();
+        DisplaySortIcon(supplierVue.Filter.SortObject);
+        setTimeout(supplierVue.QuerySupplierList(), 100);
+    })
+
+    function QuerySupplierListByBadge(TypeID,obj) {
+        supplierVue.Filter = {
+            Status: '-1',
+            FilterField: 's.ID',
+            FilterText: '',
+            CurrentPage: 1,
+            PageSize:10,
+            SupplierTypeID: 0,
+            SortObject: {
+                Field: 's.ID',
+                Direction: true,
+            }
+        }
+        var temp = $(obj);
+        $(".btnFilter").removeClass("activeFilter");
+        temp.addClass("activeFilter");
+        temp.parent("button").prev().addClass("activeFilter");
+
+        supplierVue.Filter.SupplierTypeID = TypeID;
+        supplierVue.QuerySupplierList();
+    }
+
+    function GetSupplierCount(){
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSupplierCount", "Supplier")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                supplierVue.CountManufacturer = response.Data.Manufacturer;
+                supplierVue.CountAgent = response.Data.Agent;
+                supplierVue.CountDealer = response.Data.Dealer;
+                supplierVue.CountOther = response.Data.Other;
+            }
+        });
+    }    
+
+    function btnSupplierDetail(id, isReadOnly) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("SupplierDetail", "Supplier")" + "?" + $.param({ id: id,isReadOnly:isReadOnly })
+    }
+
+    function GoToAuditDetail(objectTypeID, objectID) {
+        window.open('@Url.Action("SysAuditLogList","Audit")' + "?" + $.param({ objectTypeID: objectTypeID, objectID: objectID }))
+    }
+</script>
+<script>
+
+    //SupplierList导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload('@Url.Action("ExportSupplierList", "Supplier")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: json
+            });
+    }
+
+    //刷新SupplierList
+    function Refresh() {
+        supplierVue.Filter = {
+            Status: 1,
+            FilterField: 's.ID',
+            FilterText: '',
+            CurrentPage: 1,
+            PageSize:10,
+            SupplierTypeID: 0,
+            SortObject: {
+                Field: 's.ID',
+                Direction: true,
+            }
+        }
+        DisplaySortIcon(supplierVue.Filter.SortObject);
+        $(".btnFilter").removeClass("activeFilter");
+        $("#0").addClass("activeFilter");
+        supplierVue.QuerySupplierList();
+    }
+</script>
+<script>
+    //SupplierList排序
+    function sortSupplierList(item) {
+        UpdateSortIcon(item, supplierVue.Filter.SortObject)
+        supplierVue.QuerySupplierList();
+    }
+
+    //SupplierList分页
+    function PageClick(pageclickednumber) {
+        supplierVue.Filter.CurrentPage = pageclickednumber;
+        supplierVue.QuerySupplierList();
+    }
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            supplierVue.QuerySupplierList();
+    }
+    function changeCurNum_pager() {
+        supplierVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        supplierVue.QuerySupplierList();
+    }
+</script>
+<script>
+    function InitQueryFilter() {
+        var json = {
+            typeID: supplierVue.Filter.SupplierTypeID,
+            status: supplierVue.Filter.Status,
+            filterField: supplierVue.Filter.FilterField,
+            filterText: supplierVue.Filter.FilterText,
+            currentPage: supplierVue.Filter.CurrentPage,
+            sortField: supplierVue.Filter.SortObject.Field,
+            sortDirection: supplierVue.Filter.SortObject.Direction,
+            pageSize: supplierVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('SupplierList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            supplierVue.Filter.SupplierTypeID = json.typeID;
+            supplierVue.Filter.Status = json.status;
+            supplierVue.Filter.FilterField = json.filterField;
+            supplierVue.Filter.FilterText = json.filterText;
+            supplierVue.Filter.SortObject.Field = json.sortField;
+            supplierVue.Filter.SortObject.Direction = json.sortDirection;
+            supplierVue.Filter.CurrentPage = json.currentPage;
+            supplierVue.Filter.PageSize = json.pageSize;
+
+            localStorage.removeItem('SupplierList_Filter');
+        }
+    }
+
+    function SaveFilterParameters(json) {
+        localStorage.setItem('SupplierList_Filter', JSON.stringify(json));
+    }
+
+</script>

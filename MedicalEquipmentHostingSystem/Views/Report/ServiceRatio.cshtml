@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = ViewBag.ActionName;
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<div id="EquipmentRatioReport">
+    <div style="width:1400px;margin:auto;text-align:left;padding-bottom:1%;">
+        <a class="linkFile backPage" href="@Url.Action(@ViewBag.ActionName, "Report")">
+            &lt; &lt; @BusinessObjects.Domain.Constants.BACKLIST
+        </a>
+    </div>
+    <div class="card border-secondary bg-light tblDiv" style="width:1400px">
+        <div class="card-header title">
+            <p style="padding-bottom:0;margin:0 auto;">@ViewBag.ReportName</p>
+        </div>
+        <div class="card-body">
+            <div class="justify-content-start">
+                <div class="form-row justify-content-start">
+                    <div id="timeType" class="form-row justify-content-start">
+                        <label>时间维度分类 </label>
+                        <div style="width:110px;padding:0 5px;">
+                            <select onchange="changeTimeType(this[selectedIndex].value)" v-model="TimeType" style="width:70px;">
+                                <option value="year">年</option>
+                                <option value="month">月</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="year" v-show="TimeType=='month'" class="form-row justify-content-start">
+                        <label>年份 </label>
+                        <div style="padding:0 5px;">
+                            <select id="myYear" v-on:change="ReportServiceRatioList()" v-model="Year" style="width:90px" /></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float:right;margin-top:-30px;">
+                <table class="toolsTable" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="Print()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="margin-top:20px;display:-webkit-inline-box">
+            <div style="width:950px;">
+                <div id="chartDiv" style="width: 950px;"></div>
+                <div id="sliderDiv" style="width: 950px; display: inline; bottom: 10px;"></div>
+            </div>
+            <div style="width:400px;">
+                <table class="table table-primary rounded" style="max-width:400px;margin :0 auto;">
+                    <h5 align="center">统计表</h5>
+                    <thead>
+                        <tr>
+                            <td scope="col" class="colNormal" style="">类型</td>
+                            <td scope="col" class="colNormal">@ViewBag.CurName</td>
+                            <td scope="col" class="colNormal">@ViewBag.LastName</td>
+                            <td scope="col" class="math" style="width:100px;">@ViewBag.YName</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in ServiceRatioList">
+                            <td scope="row" class="colNormal" style="width:150px;white-space: normal; word-break: break-all">{{item.key}}</td>
+                            <td scope="row" class="math" style="width:80px;white-space: normal; word-break: break-all">{{item.cur}}</td>
+                            <td scope="row" class="math" style="width:80px;white-space: normal; word-break: break-all">{{item.last}}</td>
+                            <td class="math">{{item.value}}%</td>
+                        </tr>
+                        <tr v-if="ServiceRatioList.length == 0">
+                            <td colspan="4" style="text-align:center">无数据</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var myDate = new Date();
+    var chart;
+
+    var ServiceRatioVue = new Vue({
+        el: "#EquipmentRatioReport",
+        data: {
+            ServiceRatioList: [],
+            TimeType: 'month',
+            Year: 0,
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        Refresh();
+    });
+    function InitForm() {
+        SelectYears();
+        ServiceRatioVue.ServiceRatioList = [];
+        ServiceRatioVue.TimeType = 'month';
+        ServiceRatioVue.Year = myDate.getFullYear();
+    }
+
+    function Refresh() {
+        InitForm();
+        ReportServiceRatioList();
+    }
+    function Print() {
+        PrintChart(chart, '@ViewBag.ReportName');
+    }
+
+    function ExportToExcel() {
+        $.fileDownload('@Url.Action("Export" + @ViewBag.Inter, "Report")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "get",
+                data: {
+                    year: ServiceRatioVue.TimeType == 'year' ? 0 : ServiceRatioVue.Year,
+                    reportName: '@ViewBag.ReportName',
+                    curName: '@ViewBag.CurName',
+                    lastName: '@ViewBag.LastName',
+                    yName: '@ViewBag.YName'
+                }
+            });
+    }
+    function changeTimeType(timeType) {
+        ServiceRatioVue.TimeType = timeType;
+        if (timeType == 'month')
+            ServiceRatioVue.Year = myDate.getFullYear();
+        ReportServiceRatioList();
+    }
+
+    function ReportServiceRatioList() {
+        $.get('@Url.Action(@ViewBag.Inter, "Report")',
+            {
+                year: ServiceRatioVue.TimeType == 'year' ? 0 : ServiceRatioVue.Year,
+            },
+            function (response) {
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    ServiceRatioVue.ServiceRatioList = response.Data;
+                    barChart(0);
+                }
+            })
+    }
+</script>
+
+<script>
+    function barChart(typeID) {
+        var chart = CreateChart();
+
+        var barView = BoundSlide2Chart(chart, 1000, ServiceRatioVue.ServiceRatioList, '@ViewBag.YName', typeID);
+
+        SetChartStyle(barView, '@ViewBag.YName');
+
+        chart.scale('value', {
+            alias: '@ViewBag.YName',
+            max: 100,
+            min: 0,
+        })
+        barView.line().position('key*value').color('#fdae6b').opacity(1).size(3).label("value");
+        barView.point().position('key*value').color('#fdae6b').size(3).shape('circle');
+        chart.tooltip(
+            {
+                useHtml: true,
+                htmlContent: function (title, items) {
+                    if (ServiceRatioVue.ServiceRatioList.length > 0) {
+                        var htmlStr = '<div class="custom-tooltip">';
+                        htmlStr += '<div class="custom-tooltip-title">' + title + '</div>';
+                        htmlStr += '<div class="custom-tooltip-value">';
+                        $.each(ServiceRatioVue.ServiceRatioList, function (index, info) {
+                            if (info.key == items[0].title) {
+                                htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#40a9ff;"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.CurName' + '</span><span class="custom-tooltip-temp-value">' + info.cur + '</span></li>';
+                                htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#4CCA73"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.LastName' + '</span><span class="custom-tooltip-temp-value">' + info.last + '</span></li>';
+                                htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#4CCA73"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.YName' + '</span><span class="custom-tooltip-temp-value">' + info.value + '</span></li>';
+                            }
+                        });
+
+                        htmlStr += "</div></div>";
+                        return htmlStr;
+                    }
+                },
+                position: top,
+            }
+        );
+            chart.render();
+        }
+</script>

@@ -1,0 +1,302 @@
+﻿
+@{
+    ViewBag.Title = "ValuationVaR"; 
+}
+@model Tuple<BusinessObjects.Domain.VaRType>
+
+<style>
+    #VaR td {
+        text-align: right;
+        padding: 3px;
+        background-color: #dceff3;
+        height: 35px;
+    }
+
+    .menu1, .menu2, .menu3 {
+        min-width: 20px;
+        height: 25px;
+        white-space: nowrap;
+    }
+
+    .menu1 {
+        background-color: #94cf4b;
+    }
+
+    .menu2 {
+        background-color: #c2e29a;
+    }
+
+    .menu3 {
+        background-color: #e3f2d1;
+    }
+
+    .sub td {
+        border-top: solid 1px;
+        border-bottom: solid 1px;
+    }
+
+
+    .menu1, .menu2, .menu3, .freezeContent, .freezeContent2 {
+        left: 0;
+        position: sticky;
+    }
+
+    .menu2 {
+        left: 20px;
+    }
+
+    .menu3 {
+        left: 40px;
+    }
+
+    .freezeContent2 {
+        left: 108px;
+    }
+
+</style>
+<!--var-->
+<div id="VaR" class="resultDialog  ui-dialog-content ui-widget-content" style="display:none;"  tabindex="-1" >
+    <div style="width:100%;height:100%;overflow: auto;">
+        <div class="title freezeContent"><p>VaR</p></div>
+        <table style="text-align:left;margin:0 auto;" v-if="showType == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")'">
+            <thead>
+                <tr>
+                    <th class="freezeContent" colspan="2" style="background-color: #1b4082; border: none; color: white; white-space: nowrap;">导入期</th>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">指定资产金额比例</th>
+                    <td class="">{{Number(assetsAmountRate).toFixed(1)}}%</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">资产总金额</th>
+                    <td class="">{{model.AssetsAmount.toFixed(1)}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">VaR</th>
+                    <td class="">{{model.VaR.toFixed(1)}}</td>
+                </tr>
+            </thead>
+        </table>
+        <table style="text-align:left;" v-else>
+            <thead>
+                <tr>
+                    <th class="freezeContent" colspan="2" style="background-color: #1b4082; border: none; color: white; white-space: nowrap;">稳定期</th>
+                    <th v-bind:colspan="model.Cost.length" style="background-color: #1b4082; border: none; color: white; white-space: nowrap;"></th>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" rowspan="2" class="freezeContent">预测成本</th>
+                    <td style="height: 20px;color: white; background-color: #4985bf; white-space: nowrap; " v-for="item in model.Cost">{{item.ForecastCost.Month+'-'+item.ForecastCost.Year}}</td>
+                </tr>
+                <tr>
+                    <td v-for="item in model.Cost">{{item.ForecastCost.Value.toFixed(1)}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" rowspan="2" class="freezeContent">实际发生成本</th>
+                    <td style="height: 20px;color: white; background-color: #4985bf; white-space: nowrap; " v-for="item in model.Cost">{{(!item.ActualCost.Month || !item.ActualCost.Year)?'':(item.ActualCost.Month+'-'+item.ActualCost.Year)}}</td>
+                </tr>
+                <tr>
+                    <td v-for="item in model.Cost">{{item.ActualCost.Value}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">预测实际偏差</th>
+                    <td v-for="item in model.Cost">{{item.Deviation}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">预测偏差平均值</th>
+                    <td class="freezeContent2">{{model.DeviationAvg.toFixed(1)}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">预测偏差标准值</th>
+                    <td class="freezeContent2">{{model.StdDeviation.toFixed(1)}}</td>
+                </tr>
+                <tr>
+                    <th style="white-space:nowrap;" class="freezeContent">VaR</th>
+                    <td class="freezeContent2">{{model.VaR.toFixed(1)}}</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="VaRType" class="resultDialog ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+        <table style="text-align:left;" class="table">
+            <tbody>
+                <tr>
+                    <td class="tdrequired" width="15px"><span class="required"></span></td>
+                    <td style="white-space:nowrap;" width="30%">显示类型</td>
+                    <td class="" width="70%">
+                        @Html.EnumDropDownListFor(m => m.Item1, new { id = "showType", @class = "", onchange = "ChangeShowVaRType(this)" })
+                    </td>
+                </tr>
+                <tr class="vaRLeadinPeriod">
+                    <td class="tdrequired" width="15px"><span class="required"></span></td>
+                    <td style="white-space:nowrap;">VaR资产金额比例</td>
+                    <td class="">
+                        <input type="text" id="assetsAmountRate" v-model.number="assetsAmountRate" style="width:50%" maxlength="6" @@keyup="assetsAmountRate = (assetsAmountRate +'').replace(/[^0-9\.\d]/g, '')" />
+                    </td>
+                </tr>
+                <tr class="vaRStablePeriod">
+                    <td class="tdrequired" width="15px"><span class="required"></span></td>
+                    <td>风险控制度</td>
+                    <td>
+                        <input type="text" id="riskRate" maxlength="6" v-model.number="riskRate" style="width:50%" @@keyup="riskRate = (riskRate +'').replace(/[^0-9\.\d]/g, '')" />
+                    </td>
+                </tr>
+                <tr class="vaRStablePeriod">
+                    <td class="tdrequired" width="15px"><span class="required"></span></td>
+                    <td>签约年数</td>
+                    <td>
+                        <input type="text" id="forecastQuantity" maxlength="2" style="width:50%" v-model.number="forecastQuantity" @@keyup=" forecastQuantity = (forecastQuantity +'').replace(/[^0-9\d]/g, '')">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--var-->
+<script>
+    var VaRVue = new Vue({
+        el: "#VaR",
+        data: {
+            model: {
+                AssetsAmount: 0,
+                VaR: 0,
+                Cost: [],
+                DeviationAvg: -10.00,
+                StdDeviation: 6.48,
+            },
+            showType: '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")',
+            assetsAmountRate: 0,
+            riskRate: 0,
+            forecastQuantity: 0,
+        }
+    })
+
+    function InitValVaRDialog() {
+        $("#VaRType").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 500,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "确定": function () { ShowVaRDetail() },
+                "关闭": function () { $("#VaRType").dialog("close"); },
+            },
+            close: function (event, ui) {
+
+            }
+        });
+
+        $("#VaR").dialog({
+            autoOpen: false,
+            height: 600,
+            width: "70%",
+            modal: true,
+            resizable: false,
+            buttons: {
+                //"确定": function () { ShowVaRDetail() },
+                "关闭": function () { $("#VaR").dialog("close"); },
+            },
+            close: function (event, ui) {
+
+            }
+        });
+    }
+
+    function OpenVaRTypeList() {
+        let varAmount = 0,years = 0,riskRatio = 0
+        $.get('@Url.Action("GetValControl", "Valuation")').then(function (response) {  
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else 
+                response.Data != null && (varAmount = response.Data.VarAmount, years = response.Data.Years, riskRatio = response.Data.RiskRatio)
+
+            VaRVue.assetsAmountRate = varAmount
+            VaRVue.forecastQuantity = years
+            VaRVue.riskRate = riskRatio
+        })
+        ChangeShowVaRType(document.querySelector("#showType"))
+        $("#VaRType").dialog("open");
+    }
+
+    function ChangeShowVaRType(obj) {
+        let flag = obj.value == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")'
+        let leadinPeriod_els = document.querySelectorAll(".vaRLeadinPeriod")
+        leadinPeriod_els.forEach(function (el) { el.style.display = flag ? "" : "none" })
+        let stablePeriod_els = document.querySelectorAll(".vaRStablePeriod")
+        stablePeriod_els.forEach(function (el) { el.style.display = flag ? "none" : "" })
+    }
+
+    function ShowVaRDetail() {
+        CheckVaRParameter().then(function (result) {
+            result && GetVarData().then(function () {
+                $("#VaRType").dialog("close");
+                //$(".resultDialog").hide();
+                //$("#VaR").show();
+                if (VaRVue.showType == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")') {
+                    $("#VaR").dialog({ height: 350, width: 350, });
+                    $("#VaR").dialog("open");
+                } else {
+                    $("#VaR").dialog({ height: 550, width: "70%", });
+                    $("#VaR").dialog("open");
+                }
+            })
+        })
+    }
+
+    function GetVarData() {
+        VaRVue.showType = document.querySelector("#showType").value
+        SetPageWaiting(true);
+        return $.get(
+            "@Url.Action("GetVaRData", "Valuation")",
+            {
+                showType: VaRVue.showType,
+                assetsAmountRate: VaRVue.assetsAmountRate,
+                riskRate: VaRVue.riskRate,
+                forecastQuantity: VaRVue.forecastQuantity,
+            },
+            function (result) {
+                SetPageWaiting(false);
+                if (result.ResultCode != "00")
+                    processResponseError(result.ResultCode, result.ResultMessage);
+                else {
+                    VaRVue.model = result.Data;
+                }
+            }
+        )
+    }
+
+    function CheckVaRParameter() {
+        $("label.required").html("");
+        let IsValid = false;
+        if (document.querySelector("#showType").value == '@BusinessObjects.Domain.VaRType.LeadinPeriod.ToString("d")') {
+            if (!Number(VaRVue.assetsAmountRate)) {
+                jAlert("VaR资产金额比例不能为空", "提示", function () { });
+                $("#assetsAmountRate").focus();
+                IsValid = true;
+            }
+            else if (VaRVue.assetsAmountRate > 999.99) {
+                jAlert("VaR资产金额比例最大为999.99", "提示", function () { });
+                $("#assetsAmountRate").focus();
+                IsValid = true;
+            }
+        } else {
+            if (!Number(VaRVue.forecastQuantity)) {
+                jAlert("签约年数不能为空", "提示", function () { });
+                $("#forecastQuantity").focus();
+                IsValid = true;
+            }
+            if (!Number(VaRVue.riskRate)) {
+                jAlert("风险控制度不能为空", "提示", function () { });
+                $("#riskRate").focus();
+                IsValid = true;
+            }
+            else if (VaRVue.riskRate > 999.99) {
+                jAlert("风险控制度最大为999.99", "提示", function () { });
+                $("#riskRate").focus();
+                IsValid = true;
+            }
+        }
+
+        return $.Deferred().resolve(!IsValid);
+    }
+</script>

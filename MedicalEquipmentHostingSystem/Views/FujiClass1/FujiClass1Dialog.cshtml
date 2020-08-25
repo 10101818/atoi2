@@ -1,0 +1,260 @@
+﻿@{
+    List<BusinessObjects.Domain.EquipmentClassInfo> EquipmentClass1 = BusinessObjects.Manager.LookupManager.GetEquipmentClass(1);   
+}
+<div class="ui-dialog-content ui-widget-content" id="FujiClass1Detail" tabindex="-1" style="display:none;" v-cloak>
+    <table class="table">
+        <tr v-if="!IsUpdate">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td style="width:135px;">设备类型I</td>
+            <td>
+                <select style="width:200px" v-model="Info.EquipmentType1.Code" v-on:change="GetEquipmentClass2List(true)" v-bind:disabled="IsUpdate">
+                    @foreach (var temp in EquipmentClass1)
+                    {
+                        <option value="@temp.Code">@temp.Description</option>
+                    }
+                </select>
+                <label class="required" id="reqEquipmentClass1"></label>
+            </td>
+        </tr>
+        <tr v-if="!IsUpdate">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td style="width:135px;">设备类型II</td>
+            <td>
+                <select style="width:200px" v-model="Info.EquipmentType2.Code" v-bind:disabled="IsUpdate">
+                    <option v-for="temp in EquipmentClass2List" v-bind:value="temp.Code">
+                        {{ temp.Description }}
+                    </option>
+                </select>
+                <label class="required" id="reqEquipmentClass2"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td style="width:135px;">富士I类简称</td>
+            <td>
+                <input v-if="!IsUpdate" class="input" type="text" maxlength="50" id="Name" v-model="Info.Name" onkeydown="autoCompleteFujiClass1s(FujiClass1DetailVue.Info)" style="width:200px;" />
+                <input v-else class="input" type="text" maxlength="50" id="Name" v-model="Info.Name" style="width:200px;" />
+                <label class="required" id="reqName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td style="width:135px;">富士I类描述</td>
+            <td>
+                <input class="input" type="text" maxlength="200" id="Description" v-model="Info.Description" style="width:200px;" />
+                <label class="required" id="reqDescription"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var FujiClass1DetailVue = new Vue({
+        el: "#FujiClass1Detail",
+        data: {
+            EquipmentClass2List: [],
+            Info: {
+                ID: 0,
+                EquipmentType1: {},
+                EquipmentType2: {},
+                Description: '',
+                Name: ''
+            },
+            IsUpdate: false,
+        },
+        methods: {
+            GetEquipmentClass2List: function (changeSelect) {
+                SetPageWaiting(true);
+                $.get('@Url.Action("GetEquipmentClass", "Equipment")', {
+                    level: 2,
+                    parentCode: FujiClass1DetailVue.Info.EquipmentType1.Code,
+                }, function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        FujiClass1DetailVue.EquipmentClass2List = response.Data;
+                        if (changeSelect) FujiClass1DetailVue.Info.EquipmentType2.Code = "01";
+                    }
+                });
+            },
+        }
+    })
+</script>
+<script>
+    function OpenAddFujiClass1() {
+        InitDialogForm();
+        $("#FujiClass1Detail").dialog({ title: "新增富士I类" });
+        $("#FujiClass1Detail").dialog("open");
+    }
+
+    function OpenEditFujiClass1(info) {
+        InitDialogForm();
+        FujiClass1DetailVue.Info = {
+            ID: info.FujiClass2.FujiClass1.ID,
+            EquipmentType1: info.EquipmentType1,
+            EquipmentType2: info.EquipmentType2,
+            Description: info.FujiClass2.FujiClass1.Description,
+            Name: info.FujiClass2.FujiClass1.Name
+        };
+        FujiClass1DetailVue.GetEquipmentClass2List(false);
+        FujiClass1DetailVue.IsUpdate = true;
+        $("#FujiClass1Detail").dialog({ title: "编辑富士I类" });
+        $("#FujiClass1Detail").dialog("open");
+    }
+
+    function SaveFujiClass1() {
+        if (CheckFujiClass1()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveFujiClass1", "FujiClass1")', { fujiClass1Info: FujiClass1DetailVue.Info, isUpdate: FujiClass1DetailVue.IsUpdate }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                FujiClass1DetailVue.Info.ID = response.Data;
+                jAlert("保存成功", "保存", function () {
+                    $("#FujiClass1Detail").dialog("close");
+                    QueryFujiClass();
+                });
+            }
+        })
+    }
+
+    function CheckFujiClass1() {
+        $("label.required").html("");
+        var IsValid = false;
+
+        if (FujiClass1DetailVue.Info.EquipmentType1.Code.trim() == "00") {
+            $("#reqEquipmentClass1").html("设备类型I不能为空");
+            IsValid = true;
+        }
+
+        if (FujiClass1DetailVue.Info.EquipmentType2.Code.trim() == "00") {
+            $("#reqEquipmentClass2").html("设备类型II不能为空");
+            IsValid = true;
+        }
+
+        if (!FujiClass1DetailVue.IsUpdate && FujiClass1DetailVue.Info.EquipmentType1.Code.trim() != "00" && FujiClass1DetailVue.Info.EquipmentType2.Code.trim() != "00" && CheckEquipmentClassExisted()) {
+            $("#reqEquipmentClass2").html("设备类型已存在");
+            IsValid = true;
+        }
+
+        if (FujiClass1DetailVue.Info.Description.trim() == "") {
+            $("#reqDescription").html("富士I类描述不能为空");
+            $("#Description").focus();
+            IsValid = true;
+        }
+
+        if (FujiClass1DetailVue.Info.Name.trim() == "") {
+            $("#reqName").html("富士I类简称不能为空");
+            $("#Name").focus();
+            IsValid = true;
+        }
+        else if (CheckFujiClass1Existed()) {
+            $("#reqName").html("名称已存在");
+            $("#Name").focus();
+            IsValid = true;
+        }
+
+        return IsValid;
+    }
+
+    function CheckFujiClass1Existed() {
+        var IsExisted = false;
+        $("#reqName").html("");
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("CheckFujiClass1Name","FujiClass1")',
+            data: {
+                info: FujiClass1DetailVue.Info,
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function CheckEquipmentClassExisted() {
+        var IsExisted = false;
+        $("#reqName").html("");
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("CheckEquipmentClassExisted", "FujiClass1")',
+            data: {
+                info: FujiClass1DetailVue.Info,
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function autoCompleteFujiClass1s(info) {
+        $("#Name").autocomplete({
+            minLength: 1,
+            delay: 200,//ms
+            source: function (req, add) {
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    secureuri: false,
+                    url: '@Url.Action("QueryFujiClass14AutoComplete", "FujiClass1")',
+                    data: {
+                        inputText: $.trim(req.term),
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        response = JSON.parse(JSON.stringify(response));
+                        if (response.ResultCode != "00") {
+                            processResponseError(response.ResultCode, response.ResultMessage);
+                        } else {
+                            if (!FujiClass1DetailVue.IsUpdate) {
+                                info.ID = 0;//clear
+                                var infos = response.Data.slice(0, 5);
+                                add(infos);
+                            }
+                        }
+                    },
+                    error: function () { jAlert("连接服务器出错", "错误"); }
+                });
+            },
+            focus: function (event, ui) {
+                //info.ID = ui.item.ID;
+                //info.Name = ui.item.Name;
+                //info.Description = ui.item.Description;
+                return false;
+            },
+            select: function (event, ui) {
+                info.ID = ui.item.ID;
+                info.Name = ui.item.Name;
+                info.Description = ui.item.Description;
+                return false;
+            }
+        })
+        .data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+              .append("<a>" + item.Name + "</a>")
+              .appendTo(ul);
+        };
+    }
+</script>

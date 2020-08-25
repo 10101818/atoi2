@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Parameter";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.HospitalLevelInfo> hospitalLevels = BusinessObjects.Manager.LookupManager.GetHospitalLevels();
+    var hospitals = Html.Raw(Json.Encode(hospitalLevels));
+}
+<style>
+    input[type='text']{
+        width:200px!important;
+    }
+</style>
+
+<div id="VueParameter" v-cloak class="tblDiv">
+    <div class="title"><p>估价参数设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th width="385px">医院等级</th>
+                <td>
+                    <select v-model="ParameterInfo.HospitalLevel">
+                        <option v-for="item in HospitalLevels" v-bind:value="item">{{item.Description}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr v-for="item in HospitalLevels">
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>{{item.ID}}级医院等级系数</th>
+                <td>
+                    <input type="text" maxlength="6" v-bind:id="'ParaHospitalFactor_' + item.ID">
+                    &nbsp;&nbsp;&nbsp;参考系数 <input type="text" disabled v-bind:value="item.Factor">
+                    <label v-bind:id="'reqFactor'+item.ID" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>信息系统使用费</th>
+                <td>
+                    <input type="text" id="SystemCost" maxlength="13" v-model="ParameterInfo.SystemCost"> 元/年
+                    <label id="reqSystemCost" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>每月工作时长</th>
+                <td>
+                    <input type="text" id="MonthlyHours" maxlength="13" v-model="ParameterInfo.MonthlyHours"> 小时
+                    <label id="reqMonthlyHours" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>单位人工成本</th>
+                <td>
+                    <input type="text" id="UnitCost" maxlength="13" v-model="ParameterInfo.UnitCost"> 元/月
+                    <label id="reqUnitCost" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>小额成本耗材标准年费用</th>
+                <td>
+                    <input type="text" id="SmallConsumableCost" maxlength="13" v-model="ParameterInfo.SmallConsumableCost"> 元/年
+                    <label id="reqSmallConsumableCost" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 备注：用<span class="required">*</span>标记的为必填项</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveParameter()">保存</button></p>
+</div>
+<script>
+    var ParameterVue = new Vue({
+        el: "#VueParameter",
+        data: {
+            HospitalLevels: @hospitals,
+            ParameterInfo: {
+                HospitalLevel: {
+                    ID: 2
+                }
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        setTimeout(GetParameterInfo(), 100);
+    });
+    function GetParameterInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetParameter", "Valuation")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info.HospitalLevel != null) {
+                    ParameterVue.ParameterInfo = info
+                    $("#ParaHospitalFactor_1").val(ParameterVue.ParameterInfo.HospitalFactor1);
+                    $("#ParaHospitalFactor_2").val(ParameterVue.ParameterInfo.HospitalFactor2);
+                    $("#ParaHospitalFactor_3").val(ParameterVue.ParameterInfo.HospitalFactor3);
+                }
+            }
+        });
+    }
+
+    function SaveParameter() {
+        ParameterVue.ParameterInfo.HospitalFactor1 = $("#ParaHospitalFactor_1").val();
+        ParameterVue.ParameterInfo.HospitalFactor2 = $("#ParaHospitalFactor_2").val();
+        ParameterVue.ParameterInfo.HospitalFactor3 = $("#ParaHospitalFactor_3").val();
+        if (CheckParameter() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveParameter", "Valuation")', {
+            info: ParameterVue.ParameterInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存");
+            }
+        });
+    }
+
+    function CheckParameter() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+
+        if (ParameterVue.ParameterInfo.SystemCost == 0) {
+            $("#reqSystemCost").html("信息系统使用费不能为空");
+            $("#SystemCost").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.SystemCost > 9999999999.99){
+            $("#reqSystemCost").html('信息系统使用费最大为9999999999.99');
+            $("#SystemCost").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.SystemCost)) {
+            $("#reqSystemCost").html('请输入正确的格式');
+            $("#SystemCost").focus();
+            IsValid = false;
+        }
+
+        if (ParameterVue.ParameterInfo.MonthlyHours == 0) {
+            $("#reqMonthlyHours").html("每月工作时长不能为空");
+            $("#MonthlyHours").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.MonthlyHours > 9999999999.99){
+            $("#reqMonthlyHours").html('每月工作时长最大为9999999999.99');
+            $("#MonthlyHours").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.MonthlyHours)) {
+            $("#reqMonthlyHours").html('请输入正确的格式');
+            $("#MonthlyHours").focus();
+            IsValid = false;
+        }
+
+        if (ParameterVue.ParameterInfo.UnitCost == 0) {
+            $("#reqUnitCost").html("单位人工成本不能为空");
+            $("#UnitCost").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.UnitCost > 9999999999.99){
+            $("#reqUnitCost").html('单位人工成本最大为9999999999.99');
+            $("#UnitCost").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.UnitCost)) {
+            $("#reqUnitCost").html('请输入正确的格式');
+            $("#UnitCost").focus();
+            IsValid = false;
+        }
+
+        if (ParameterVue.ParameterInfo.SmallConsumableCost == 0) {
+            $("#reqSmallConsumableCost").html("小额成本耗材标准年费用不能为空");
+            $("#SmallConsumableCost").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.SmallConsumableCost > 9999999999.99){
+            $("#reqSmallConsumableCost").html('小额成本耗材标准年费用最大为9999999999.99');
+            $("#SmallConsumableCost").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.SmallConsumableCost)) {
+            $("#reqSmallConsumableCost").html('请输入正确的格式');
+            $("#SmallConsumableCost").focus();
+            IsValid = false;
+        }
+
+        if (ParameterVue.ParameterInfo.HospitalFactor1 == 0) {
+            $("#reqFactor1").html("医院等级系数不能为空");
+            $("#ParaHospitalFactor_1").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.HospitalFactor1 > 999.99){
+            $("#reqFactor1").html('医院等级系数最大为999.99');
+            $("#ParaHospitalFactor_1").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.HospitalFactor1)) {
+            $("#reqFactor1").html('请输入正确的格式');
+            $("#ParaHospitalFactor_1").focus();
+            IsValid = false;
+        }
+
+        
+        if (ParameterVue.ParameterInfo.HospitalFactor2 == 0) {
+            $("#reqFactor2").html("医院等级系数不能为空");
+            $("#ParaHospitalFactor_2").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.HospitalFactor2 > 999.99){
+            $("#reqFactor2").html('医院等级系数最大为999.99');
+            $("#ParaHospitalFactor_2").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.HospitalFactor2)) {
+            $("#reqFactor2").html('请输入正确的格式');
+            $("#ParaHospitalFactor_2").focus();
+            IsValid = false;
+        }
+        
+        if (ParameterVue.ParameterInfo.HospitalFactor3 == 0) {
+            $("#reqFactor3").html("医院等级系数不能为空");
+            $("#ParaHospitalFactor_3").focus();
+            IsValid = false;
+        } else if (ParameterVue.ParameterInfo.HospitalFactor3 > 999.99){
+            $("#reqFactor3").html('医院等级系数最大为999.99');
+            $("#ParaHospitalFactor_3").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(ParameterVue.ParameterInfo.HospitalFactor3)) {
+            $("#reqFactor3").html('请输入正确的格式');
+            $("#ParaHospitalFactor_3").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+
+</script>

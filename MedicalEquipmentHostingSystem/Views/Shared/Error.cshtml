@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<div class="content">
+    @if (Model.ResultCode != @MedicalEquipmentHostingSystem.Models.ResultCodes.Succeed)
+    {
+        <script>
+            jAlert('@Model.ResultMessage', "错误");
+        </script>
+    }
+</div>

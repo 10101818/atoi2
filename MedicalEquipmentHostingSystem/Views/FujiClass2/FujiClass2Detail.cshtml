@@ -1,0 +1,693 @@
+﻿
+@{
+    ViewBag.Title = "FujiClass2List";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    var class1 = ViewBag.Class1;
+    var eqpt1 = ViewBag.Equipment1;
+    var eqpt2 = ViewBag.Equipment2;
+    var equipmentType = BusinessObjects.Manager.LookupManager.GetEquipmentType();
+
+}
+<div id="fujiClass2" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" @@click="Back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+    </div>
+    <div class="title">
+        <p v-if="@ViewBag.ID != 0">更新富士II类</p>
+        <p v-else>新增富士II类</p>
+    </div>
+    <div class="tblDiv">
+        <!--基本信息-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <tbody>
+                    <tr class="headtr">
+                        <td colspan="4" class="tblName">基本信息</td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th width="20%">简称</th>
+                        <td width="30%">
+                             <input type="text" maxlength="50" v-model="linkInfo.FujiClass2.Name" id="Name" width="200"/>
+                            <label class="required tips" id="reqName"></label>
+                        </td>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th width="20%">设备I类</th>
+                        <td width="30%">
+                            @*<select v-model="linkInfo.EquipmentType1.Code" id="EquipmentType1" style="max-width:90%;width:200px;">
+                                    @foreach (var temp in eqpt1)
+                                    {
+                                        <option value="@temp.Code">@temp.Description</option>
+                                    }
+                                </select>
+                                <label class="required tips" id="reqEquipmentType1"></label>*@
+                            {{linkInfo.EquipmentType1.Description}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>富士I类</th>
+                        <td>
+                            @*<select v-model="linkInfo.FujiClass2.FujiClass1.ID" id="FujiClass1" style="max-width:90%;width:200px;">
+                                @foreach (var temp in class1)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>*@
+                            {{linkInfo.FujiClass2.FujiClass1.Name}}
+                            <label class="required tips" id="reqFujiClass1"></label>
+                        </td>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>设备II类</th>
+                        <td>
+                            @*<select v-model="linkInfo.EquipmentType2.Code" id="EquipmentType2" style="max-width:90%;width:200px;">
+                                    @foreach (var temp in eqpt2)
+                                    {
+                                        <option value="@temp.Code">@temp.Description</option>
+                                    }
+                                </select>
+                                <label class="required tips" id="reqEquipmentType2"></label>*@
+                            {{linkInfo.EquipmentType2.Description}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>描述</th>
+                        <td colspan="5">
+                             <input type="text" maxlength="150" v-model="linkInfo.FujiClass2.Description" id="Description" />
+                            <label class="required tips" id="reqDescription"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--人工费-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="tblName">人工费&nbsp;<input type="checkbox" v-model="linkInfo.FujiClass2.IncludeLabour" /></td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">巡检次数（次/年）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="12" class="" v-model="linkInfo.FujiClass2.PatrolTimes" id="PatrolTimes" @@keyup="linkInfo.FujiClass2.PatrolTimes = linkInfo.FujiClass2.PatrolTimes.replace(/[^0-9\.\d]/g, '')" />
+                            <label class="required tips" id="reqPatrolTimes"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">巡检工时（次/时）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="12" class="" v-model="linkInfo.FujiClass2.PatrolHours" id="PatrolHours" @@keyup="linkInfo.FujiClass2.PatrolHours = linkInfo.FujiClass2.PatrolHours.replace(/[^0-9\.\d]/g, '')"/>
+                            <label class="required tips" id="reqPatrolHours"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>保养次数（次/年）</th>
+                        <td>
+                             <input type="text" maxlength="12" class="" v-model="linkInfo.FujiClass2.MaintenanceTimes" id="MaintenanceTimes" @@keyup="linkInfo.FujiClass2.MaintenanceTimes = linkInfo.FujiClass2.MaintenanceTimes.replace(/[^0-9\.\d]/g, '')"/>
+                            <label class="required tips" id="reqMaintenanceTimes"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>保养工时（次/时）</th>
+                        <td>
+                             <input type="text" maxlength="12" class="" v-model="linkInfo.FujiClass2.MaintenanceHours" id="MaintenanceHours" @@keyup="linkInfo.FujiClass2.MaintenanceHours = linkInfo.FujiClass2.MaintenanceHours.replace(/[^0-9\.\d]/g, '')"/>
+                            <label class="required tips" id="reqMaintenanceHours"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>每月维修平均工时（时）</th>
+                        <td colspan="3">
+                             <input type="text" maxlength="12" class="" v-model="linkInfo.FujiClass2.RepairHours" id="RepairHours"  @@keyup="linkInfo.FujiClass2.RepairHours = linkInfo.FujiClass2.RepairHours.replace(/[^0-9\.\d]/g, '')"/>
+                            <label class="required tips" id="reqRepairHours"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--维保服务费-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="tblName">维保服务费&nbsp;<input type="checkbox" v-model="linkInfo.FujiClass2.IncludeContract" /></td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">全保单价占设备金额百分比（%）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="6" @@keyup="linkInfo.FujiClass2.FullCoveragePtg = linkInfo.FujiClass2.FullCoveragePtg.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.FullCoveragePtg" id="FullCoveragePtg" />
+                            <label class="required tips" id="reqFullCoveragePtg"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">技术保单价占设备金额百分比（%）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="6" @@keyup="linkInfo.FujiClass2.TechCoveragePtg = linkInfo.FujiClass2.TechCoveragePtg.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.TechCoveragePtg" id="TechCoveragePtg" />
+                            <label class="required tips" id="reqTechCoveragePtg"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--备用机-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="tblName">备用机成本&nbsp;<input type="checkbox" v-model="linkInfo.FujiClass2.IncludeSpare" /></td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">标准价格（元）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="12" @@keyup="linkInfo.FujiClass2.SparePrice = linkInfo.FujiClass2.SparePrice.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.SparePrice" id="SparePrice" />
+                            <label class="required tips" id="reqSparePrice"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">月租占标准价格的比率（%）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="6" @@keyup="linkInfo.FujiClass2.SpareRentPtg = linkInfo.FujiClass2.SpareRentPtg.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.SpareRentPtg" id="SpareRentPtg" />
+                            <label class="required tips" id="reqSpareRentPtg"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--维保额外维修费-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="tblName">维保额外维修费&nbsp;<input type="checkbox" v-model="linkInfo.FujiClass2.IncludeRepair" /></td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">设备等级</th>
+                        <td width="90%" colspan="4" v-if="linkInfo.FujiClass2.ID > -1">
+                            <select v-model="linkInfo.FujiClass2.EquipmentType.ID" id="EquipmentType">
+                                @foreach (var temp in equipmentType)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                            <label class="required tips" id="reqEquipmentType"></label>
+                        </td>
+                        <td width="90%" colspan="4" v-else><label>{{linkInfo.FujiClass2.EquipmentType.Name}}</label></td>
+                    </tr>
+                    <tr v-show="linkInfo.FujiClass2.EquipmentType.ID == (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">故障成本占设备金额的比例（%）</th>
+                        <td width="30%" >
+                            <input type="text" maxlength="6" @@keyup="linkInfo.FujiClass2.RepairCostRatio = linkInfo.FujiClass2.RepairCostRatio.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.RepairCostRatio" id="RepairCostRatio" style="width:250px;" />
+                            <label class="required tips" id="reqRepairCostRatio"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">默认使用量</th>
+                        <td width="50%" v-if="linkInfo.FujiClass2.EquipmentType.ID == (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                        <input type="text" maxlength="9" @@keyup="linkInfo.FujiClass2.Usage = linkInfo.FujiClass2.Usage.replace(/[^0-9\d]/g, '')" class="" v-model="linkInfo.FujiClass2.Usage" id="RepairUsage" />
+                        <label class="required tips" id="reqRepairUsage"></label>
+                        </td>
+                    </tr>
+                    <tr v-show="linkInfo.FujiClass2.EquipmentType.ID != (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">工程师无法修复概率（%）</th>
+                        <td width="30%">
+                             <input type="text" maxlength="6" @@keyup="linkInfo.FujiClass2.Repair3partyRatio = linkInfo.FujiClass2.Repair3partyRatio.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.Repair3partyRatio" id="Repair3partyRatio" />
+                            <label class="required tips" id="reqRepair3partyRatio"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th width="20%">单次维修平均零件成本（元）</th>
+                        <td width="50%">
+                             <input type="text" maxlength="12" @@keyup="linkInfo.FujiClass2.RepairComponentCost = linkInfo.FujiClass2.RepairComponentCost.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.RepairComponentCost" id="RepairComponentCost" />
+                            <label class="required tips" id="reqRepairComponentCost"></label>
+                        </td>
+                    </tr>
+                    <tr v-show="linkInfo.FujiClass2.EquipmentType.ID != (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>外购维修服务平均成本（元）</th>
+                        <td>
+                             <input type="text" maxlength="12" @@keyup="linkInfo.FujiClass2.Repair3partyCost = linkInfo.FujiClass2.Repair3partyCost.replace(/[^0-9\.\d]/g, '')" class="" v-model="linkInfo.FujiClass2.Repair3partyCost" id="Repair3partyCost" />
+                            <label class="required tips" id="reqRepair3partyCost"></label>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>默认使用量</th>
+                        <td v-if="linkInfo.FujiClass2.EquipmentType.ID != (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                        <input type="text" maxlength="9" @@keyup="linkInfo.FujiClass2.Usage = linkInfo.FujiClass2.Usage.replace(/[^0-9\d]/g, '')" class="" v-model="linkInfo.FujiClass2.Usage" id="RepairUsage" />
+                        <label class="required tips" id="reqRepairUsage"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>故障概率</th>
+                        <td style="padding:0">
+                            <button class="btn btn-outline-info btn-sm" style="margin-left:10px;" @@click="PackageOpenRepair()"><span>详情</span></button>
+                        </td>
+                        <th width="15px" class="tdrequired"><span class="required"></span></th>
+                        <th>调整使用量</th>
+                        <td>{{(linkInfo.FujiClass2.Usage * HospitalFactor).toFixed(0)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--零件-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <thead>
+                    <tr>
+                        <td colspan="6" class="tblName">
+                            <span>零件</span>
+                            <img src="~/Content/img/add.png" @@click="OpenAddComponent(linkInfo.FujiClass2.ID, linkInfo.FujiClass2.Name, linkInfo.FujiClass2.FujiClass1.ID,RefershDetail)" class="icon-sm cursor" style="vertical-align: middle;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="min-width:100px;">名称</th>
+                        <th style="min-width:100px;">描述</th>
+                        <th style="min-width:70px;">类型</th>
+                        <th style="min-width:100px;" class=" tdListCenter">故障率详情</th>
+                        <th style="min-width:40px;" class=" tdListCenter">维保</th>
+                        <th style="min-width:40px;" class=" tdListCenter">删除</th>
+                    </tr>
+                </thead>
+                <tbody v-if="!linkInfo.FujiClass2.Components.length">
+                    <tr>
+                        <td colspan="6" align="center">暂无数据</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr v-for="component of linkInfo.FujiClass2.Components">
+                        <td>{{component.Name}}</td>
+                        <td>{{component.Description}}</td>
+                        <td>{{component.Type.Name}}</td>
+                        <td class=" tdListCenter"><img src="~/Content/img/edit.png" class="icon-sm cursor" @@click="PackageOpenComponent()" /></td>
+                        <td class=" tdListCenter"><input type="checkbox" v-model="component.IncludeContract" value="true" /></td>
+                        <td class=" tdListCenter"><img src="~/Content/img/delete.png" class=" cursor" @@click="DeleteComponent(component.ID,GetFujiLink)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <!--耗材-->
+        <div class="radiusOnly">
+            <table class="tblDetail" width="800" frame="void" rules="all">
+                <thead>
+                    <tr>
+                        <td colspan="5" class="tblName">
+                            <span>耗材</span>
+                            <img src="~/Content/img/add.png" @@click="OpenAddConsumable(linkInfo.FujiClass2.ID, linkInfo.FujiClass2.Name, linkInfo.FujiClass2.FujiClass1.ID,RefershDetail)" class="icon-sm cursor" style="vertical-align: middle;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="min-width:100px;">名称</th>
+                        <th style="min-width:100px;">描述</th>
+                        <th style="min-width:70px;">类型</th>
+                        <th style="min-width:40px;" class=" tdListCenter">维保</th>
+                        <th style="min-width:40px;" class=" tdListCenter">删除</th>
+                    </tr>
+                </thead>
+                <tbody v-if="!linkInfo.FujiClass2.Consumables.length">
+                    <tr>
+                        <td colspan="6" align="center">暂无数据</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr v-for="consumable of linkInfo.FujiClass2.Consumables">
+                        <td>{{consumable.Name}}</td>
+                        <td>{{consumable.Description}}</td>
+                        <td>{{consumable.Type.Name}}</td>
+                        <td class=" tdListCenter"><input type="checkbox" v-model="consumable.IncludeContract" value="true" /></td>
+                        <td class=" tdListCenter"><img src="~/Content/img/delete.png" class=" cursor" @@click="DeleteConsumable(consumable.ID,GetFujiLink)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <table border="0" width="800" class="tblDetail" style="text-align: center; margin: 20px auto 5%; width: 800px;">
+            <tbody>
+                <tr>
+                    <td><button class="btn btn-info " @@click="SaveAll()"><span>保存</span></button></td>
+                    <td><button class="btn btn-info " @@click="Back()"><span>返回</span></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@{ Html.RenderPartial("FujiClass2FaultRateDialog"); }
+@{ Html.RenderPartial("FujiClass2Dialog"); }
+@{ Html.RenderPartial("FujiClass2PartialDialog"); }
+<script>
+    var fujiClass2Vue = new Vue({
+        el: "#fujiClass2",
+        data: {
+            linkInfo: {
+                EquipmentType1: {},
+                EquipmentType2: {},
+                FujiClass2: {
+                    FujiClass1: {
+                        ID: 0
+                    },
+                    EquipmentType: {
+                        ID: 1
+                    },
+                    Repairs: [],
+                    Components: [],
+                    Consumables: []
+                }
+            },
+            HospitalFactor: 0,
+        },
+        methods: {
+            PackageOpenRepair:function() {
+                let _this = this
+                OpenRepair([_this.linkInfo.FujiClass2], 0, 0, function (obj) { _this.linkInfo.FujiClass2 = obj})
+            },
+            PackageOpenComponent:function() {
+                GetComponentsRateByFujiClass2().then(function (result) {
+                    if (result.Data.length != 0){
+                        fujiClass2Vue.linkInfo.FujiClass2.Components = result.Data;
+                        OpenFujiClass2Component([fujiClass2Vue.linkInfo.FujiClass2],0,0, GetFujiLink);
+                    }
+                })
+                
+            }
+        }
+    })
+</script>
+
+
+<script>
+    $(function () {
+        GetFujiLink();
+        InitRepairDialog();
+        InitFujiClass2Dialog()
+        InitComponentDialog();
+        InitConsumableDialog();
+        GetParameterInfo4Component();
+    })
+
+    function RefershDetail() {
+        GetFujiLink()
+        //fujiClass2Vue.$forceUpdate()
+    }
+
+    //获取信息
+    function GetFujiLink() {
+        if ('@ViewBag.ID' != 0) {
+            SetPageWaiting(true);
+            $.get(
+                "@Url.Action("GetFujiLinkByClass2ID", "FujiClass2")",
+                { id: '@ViewBag.ID' },
+                function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        fujiClass2Vue.linkInfo = response.Data;
+                    }
+                }
+            )
+        } else
+            Back()
+    }
+
+    function GetParameterInfo4Component() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetParameter", "Valuation")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                if(response.Data.HospitalLevel.ID == 1)
+                    fujiClass2Vue.HospitalFactor = response.Data.HospitalFactor1
+                else if(response.Data.HospitalLevel.ID == 2)
+                    fujiClass2Vue.HospitalFactor = response.Data.HospitalFactor2
+                else if(response.Data.HospitalLevel.ID == 3)
+                    fujiClass2Vue.HospitalFactor = response.Data.HospitalFactor3
+            }
+        });
+    }
+
+    function GetComponentsRateByFujiClass2(){
+        SetPageWaiting(true);
+        return $.get('@Url.Action("GetComponentsRateByFujiClass2", "Component")',{
+                fujiClass2ID:'@ViewBag.ID',
+            },function(response){
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            })
+    }
+
+    function SaveAll() {
+        if (CheckFujiClass2())
+            return CheckFujiClass2Name().then(function (result) {
+                if (!result.Data)
+                    SaveFujiClass2().then(function (result) { })
+                else {
+                    $("#reqName").html('简称已存在');
+                    $("#Name").focus();
+                }
+            })
+    }
+
+    //保存FujiClass2信息
+    function SaveFujiClass2() {
+        SetPageWaiting(true);
+        return $.post(
+            '@Url.Action("SaveFujiClass2", "FujiClass2")',
+            {
+                info: fujiClass2Vue.linkInfo,
+                isUpdate: true
+            },
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage)
+                }
+                else {
+                    jAlert("保存成功！", "保存结果", function () { })
+                }
+            }
+        );
+    }
+
+    //保存时判断信息是否已填/格式是否正确
+    function CheckFujiClass2() {
+        $(".tips").html("");
+        var flag = true;
+
+        if (!fujiClass2Vue.linkInfo.FujiClass2.Name || !fujiClass2Vue.linkInfo.FujiClass2.Name.trim()) {
+            $("#reqName").html('简称不能为空');
+            $("#Name").focus();
+            flag = false;
+        }
+        if (!fujiClass2Vue.linkInfo.FujiClass2.Description || !fujiClass2Vue.linkInfo.FujiClass2.Description.trim()) {
+            $("#reqDescription").html('描述不能为空');
+            $("#Description").focus();
+            flag = false;
+        }
+        if (!fujiClass2Vue.linkInfo.FujiClass2.FujiClass1 || !fujiClass2Vue.linkInfo.FujiClass2.FujiClass1.ID) {
+            $("#reqFujiClass1").html('富士I类无效');
+            $("#FujiClass1").focus();
+            flag = false;
+        }
+        //if (fujiClass2Vue.linkInfo.FujiClass2.IncludeLabour) {
+            if(fujiClass2Vue.linkInfo.FujiClass2.PatrolTimes > 999999999.99){
+                $("#reqPatrolTimes").html('巡检次数最大值为999999999.99');
+                $("#PatrolTimes").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.PatrolTimes == null || fujiClass2Vue.linkInfo.FujiClass2.PatrolTimes === "" || !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.PatrolTimes))) {
+                $("#reqPatrolTimes").html('巡检次数格式不正确');
+                $("#PatrolTimes").focus();
+                flag = false;
+            } 
+            if(fujiClass2Vue.linkInfo.FujiClass2.PatrolHours > 999999999.99){
+                $("#reqPatrolHours").html('巡检工时最大值为999999999.99');
+                $("#PatrolHours").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.PatrolHours == null || fujiClass2Vue.linkInfo.FujiClass2.PatrolHours === "" || !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.PatrolHours))) {
+                $("#reqPatrolHours").html('巡检工时格式不正确');
+                $("#PatrolHours").focus();
+                flag = false;
+            }
+            if(fujiClass2Vue.linkInfo.FujiClass2.MaintenanceTimes > 999999999.99){
+                $("#reqMaintenanceTimes").html('保养次数最大值为999999999.99');
+                $("#MaintenanceTimes").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.MaintenanceTimes == null || fujiClass2Vue.linkInfo.FujiClass2.MaintenanceTimes === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.MaintenanceTimes))) {
+                $("#reqMaintenanceTimes").html('保养次数格式不正确');
+                $("#MaintenanceTimes").focus();
+                flag = false;
+            }
+            if(fujiClass2Vue.linkInfo.FujiClass2.MaintenanceHours > 999999999.99){
+                $("#reqMaintenanceHours").html('保养工时最大值为999999999.99');
+                $("#MaintenanceHours").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.MaintenanceHours == null || fujiClass2Vue.linkInfo.FujiClass2.MaintenanceHours === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.MaintenanceHours))) {
+                $("#reqMaintenanceHours").html('保养工时格式不正确');
+                $("#MaintenanceHours").focus();
+                flag = false;
+            }
+            if(fujiClass2Vue.linkInfo.FujiClass2.RepairHours > 999999999.99){
+                $("#reqRepairHours").html('每月维修平均工时最大值为999999999.99');
+                $("#RepairHours").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.RepairHours == null || fujiClass2Vue.linkInfo.FujiClass2.RepairHours === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.RepairHours))) {
+                $("#reqRepairHours").html('每月维修平均工时格式不正确');
+                $("#RepairHours").focus();
+                flag = false;
+            }
+        //}
+        //if (fujiClass2Vue.linkInfo.FujiClass2.IncludeContract) {
+            if(fujiClass2Vue.linkInfo.FujiClass2.FullCoveragePtg == null || fujiClass2Vue.linkInfo.FujiClass2.FullCoveragePtg === ""|| fujiClass2Vue.linkInfo.FujiClass2.FullCoveragePtg <= 0){
+                $("#reqFullCoveragePtg").html('全保单价占设备金额百分比必须大于0');
+                $("#FullCoveragePtg").focus();
+                flag = false;
+            }
+            else if(fujiClass2Vue.linkInfo.FujiClass2.FullCoveragePtg > 999.99){
+                $("#reqFullCoveragePtg").html('全保单价占设备金额百分比最大值为999.99');
+                $("#FullCoveragePtg").focus();
+                flag = false;
+            }
+            else if (!(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.FullCoveragePtg))) {
+                $("#reqFullCoveragePtg").html('全保单价占设备金额百分比格式不正确');
+                $("#FullCoveragePtg").focus();
+                flag = false;
+            }
+            if(fujiClass2Vue.linkInfo.FujiClass2.TechCoveragePtg == null || fujiClass2Vue.linkInfo.FujiClass2.TechCoveragePtg === "" || fujiClass2Vue.linkInfo.FujiClass2.TechCoveragePtg <= 0){
+                $("#reqTechCoveragePtg").html('技术保单价占设备金额百分比必须大于0');
+                $("#TechCoveragePtg").focus();
+                flag = false;
+            }
+            else if(fujiClass2Vue.linkInfo.FujiClass2.TechCoveragePtg > 999.99){
+                $("#reqTechCoveragePtg").html('技术保单价占设备金额百分比最大值为999.99');
+                $("#TechCoveragePtg").focus();
+                flag = false;
+            }
+            if (!(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.TechCoveragePtg))) {
+                $("#reqTechCoveragePtg").html('技术保单价占设备金额百分比格式不正确');
+                $("#TechCoveragePtg").focus();
+                flag = false;
+            }
+        //}
+        //if (fujiClass2Vue.linkInfo.FujiClass2.IncludeSpare) {
+            if(fujiClass2Vue.linkInfo.FujiClass2.SparePrice > 999999999.99){
+                $("#reqSparePrice").html('备用机标准价格最大值为999999999.99');
+                $("#SparePrice").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.SparePrice == null || fujiClass2Vue.linkInfo.FujiClass2.SparePrice === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.SparePrice))) {
+                $("#reqSparePrice").html('备用机标准价格格式不正确');
+                $("#SparePrice").focus();
+                flag = false;
+            }
+            if(fujiClass2Vue.linkInfo.FujiClass2.SpareRentPtg > 999.99){
+                $("#reqSpareRentPtg").html('月租占标准价格的比率最大值为999.99');
+                $("#SpareRentPtg").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.SpareRentPtg == null || fujiClass2Vue.linkInfo.FujiClass2.SpareRentPtg === "" || !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.SpareRentPtg))) {
+                $("#reqSpareRentPtg").html('月租占标准价格的比率格式不正确');
+                $("#SpareRentPtg").focus();
+                flag = false;
+            }
+        //}
+        //if (fujiClass2Vue.linkInfo.FujiClass2.IncludeRepair) {
+            if (!fujiClass2Vue.linkInfo.FujiClass2.EquipmentType || !fujiClass2Vue.linkInfo.FujiClass2.EquipmentType.ID) {
+                $("#reqEquipmentType").html('设备等级无效');
+                $("#EquipmentType").focus();
+                flag = false;
+            } 
+            if(fujiClass2Vue.linkInfo.FujiClass2.Usage > 2147483647){
+                $("#reqRepairUsage").html('默认使用量最大值为2147483647');
+                $("#RepairUsage").focus();
+                flag = false;
+            }
+            else if (fujiClass2Vue.linkInfo.FujiClass2.Usage == null || fujiClass2Vue.linkInfo.FujiClass2.Usage === ""|| (!(/^([1-9]\d{0,9})$/.test(fujiClass2Vue.linkInfo.FujiClass2.Usage)) && fujiClass2Vue.linkInfo.FujiClass2.Usage != 0 )) {
+                $("#reqRepairUsage").html('默认使用量格式不正确');
+                $("#RepairUsage").focus();
+                flag = false;
+            }
+            if (fujiClass2Vue.linkInfo.FujiClass2.EquipmentType.ID == (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)) {
+                if(fujiClass2Vue.linkInfo.FujiClass2.RepairCostRatio > 100){
+                    $("#reqRepairCostRatio").html('故障成本占设备金额比例最大值为100.00');
+                    $("#RepairCostRatio").focus();
+                    flag = false;
+                }
+                else if (fujiClass2Vue.linkInfo.FujiClass2.RepairCostRatio == null || fujiClass2Vue.linkInfo.FujiClass2.RepairCostRatio === "" || !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.RepairCostRatio))) {
+                    $("#reqRepairCostRatio").html('故障成本占设备金额比例格式不正确');
+                    $("#RepairCostRatio").focus();
+                    flag = false;
+                }
+            } else {
+                if(fujiClass2Vue.linkInfo.FujiClass2.RepairComponentCost > 999999999.99){
+                    $("#reqRepairComponentCost").html('单次维修平均零件成本最大值为999999999.99');
+                    $("#RepairComponentCost").focus();
+                    flag = false;
+                }
+                else if (fujiClass2Vue.linkInfo.FujiClass2.RepairComponentCost == null || fujiClass2Vue.linkInfo.FujiClass2.RepairComponentCost === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.RepairComponentCost))) {
+                    $("#reqRepairComponentCost").html('单次维修平均零件成本格式不正确');
+                    $("#RepairComponentCost").focus();
+                    flag = false;
+                }
+                if(fujiClass2Vue.linkInfo.FujiClass2.Repair3partyRatio > 100.00){
+                    $("#reqRepair3partyRatio").html('工程师无法修复概率最大值为100.00');
+                    $("#Repair3partyRatio").focus();
+                    flag = false;
+                }
+                else if (fujiClass2Vue.linkInfo.FujiClass2.Repair3partyRatio == null || fujiClass2Vue.linkInfo.FujiClass2.Repair3partyRatio === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.Repair3partyRatio))) {
+                    $("#reqRepair3partyRatio").html('工程师无法修复概率格式不正确');
+                    $("#Repair3partyRatio").focus();
+                    flag = false;
+                }
+                if(fujiClass2Vue.linkInfo.FujiClass2.Repair3partyCost > 999999999.99){
+                    $("#reqRepair3partyCost").html('外购维修服务平均成本最大值为999999999.99');
+                    $("#Repair3partyCost").focus();
+                    flag = false;
+                }
+                else if (fujiClass2Vue.linkInfo.FujiClass2.Repair3partyCost == null || fujiClass2Vue.linkInfo.FujiClass2.Repair3partyCost === ""|| !(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(fujiClass2Vue.linkInfo.FujiClass2.Repair3partyCost))) {
+                    $("#reqRepair3partyCost").html('外购维修服务平均成本格式不正确');
+                    $("#Repair3partyCost").focus();
+                    flag = false;
+                }
+            }
+            if (!fujiClass2Vue.linkInfo.FujiClass2.MethodID) {
+                $("#reqMethodID").html('故障率计算方式格式不正确');
+                $("#MethodID").focus();
+                flag = false;
+            }
+        //}
+        return flag;
+    }
+
+    function CheckFujiClass2Name() {
+        SetPageWaiting(true);
+        return  $.post('@Url.Action("CheckFujiClass2Name", "FujiClass2")',{ info: fujiClass2Vue.linkInfo.FujiClass2 },
+                    function (response) {
+                        SetPageWaiting(false);
+                        if (response.ResultCode != "00") {
+                            processResponseError(response.ResultCode, response.ResultMessage)
+                        }
+                    }
+                )
+    }
+
+    function Back() {
+        window.location = "@Url.Action("FujiClass2List", "FujiClass2")";
+    }
+</script>
+
+

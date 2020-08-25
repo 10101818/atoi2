@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "SmptEmail";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<style>
+    input[type="text"] {
+        width: 30% !important;
+    }
+</style>
+<div id="VueSmptEmail" v-cloak class="tblDiv">
+    <div class="title"><p>邮件设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>管理员邮箱</th>
+                <td>
+                    <input type="text" id="adminEmail" maxlength="50" v-model="SmtpInfo.AdminEmail">
+                    <button class="btn btn-outline-info" style="float:right" onclick="TestEmail()">发送测试邮件</button>
+                    <label id="reqAdminEmail" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>邮件服务器地址:端口</th>
+                <td>
+                    <input type="text" id="host" maxlength="255" v-model="SmtpInfo.Host">&nbsp;:&nbsp;<input type="text" style="width:80px" id="port" v-model="SmtpInfo.Port">
+                    <label id="reqHost" class="required"></label>
+                    <label id="reqPort" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>启用SSL</th>
+                <td><input type="checkbox" v-model="SmtpInfo.UseSsl"></td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>用户名</th>
+                <td>
+                    <input type="text" id="userName" maxlength="50" v-model="SmtpInfo.UserName">
+                    <label id="reqUserName" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>密码</th>
+                <td>
+                    <input type="text" id="pwd" maxlength="20" v-model="SmtpInfo.Pwd">
+                    <label id="reqPwd" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>邮件发送者</th>
+                <td>
+                    <input type="text" id="emailFrom" maxlength="50" v-model="SmtpInfo.EmailFrom">
+                    <label id="reqEmailFrom" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 备注：用<span class="required">*</span>标记的为必填项</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveEmail()">保存</button></p>
+</div>
+<script>
+    var vueSmptEmail = new Vue({
+        el: '#VueSmptEmail',
+        data: {
+            SmtpInfo: {
+                AdminEmail: "",
+                Host: "",
+                Port: "",
+                UseSsl: false,
+                UserName: "",
+                Pwd: "",
+                EmailFrom: "",
+            }
+
+        },
+    });
+    $().ready(function () {
+        setTimeout(GetSmtpInfo(), 100);
+    });
+
+    function GetSmtpInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSmtpInfo", "System")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+
+                if (info != null) {
+                    vueSmptEmail.SmtpInfo = info
+                }
+            }
+        });
+    }
+
+    function SaveEmail() {
+        if (CheckEmail() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveSmtpInfo", "System")', {
+            info: vueSmptEmail.SmtpInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存", function () {
+                    GetSmtpInfo();
+                });
+            }
+        });
+    }
+
+    function TestEmail() {
+        SetPageWaiting(true);
+        $.post('@Url.Action("TestEmail", "System")', {
+            smtpInfo: vueSmptEmail.SmtpInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.Data == "0") {
+                jAlert("发送邮件失败", "失败");
+            }
+            else {
+                jAlert("发送邮件成功", "成功");
+            }
+        })
+    }
+
+    function CheckEmail() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        if (vueSmptEmail.SmtpInfo.EmailFrom == "") {
+            $("#reqEmailFrom").html("请输入邮件发送者");
+            $("#emailFrom").focus();
+            IsValid = false;
+        }
+        if (vueSmptEmail.SmtpInfo.Pwd == "") {
+            $("#reqPwd").html("请输入密码");
+            $("#pwd").focus();
+            IsValid = false;
+        }
+        if (vueSmptEmail.SmtpInfo.UserName == "") {
+            $("#reqUserName").html("请输入用户名");
+            $("#userName").focus();
+            IsValid = false;
+        }
+        if (vueSmptEmail.SmtpInfo.Port == "") {
+            $("#reqPort").html("请输入服务器端口");
+            $("#port").focus();
+            IsValid = false;
+        }
+        if (vueSmptEmail.SmtpInfo.Host == "") {
+            $("#reqHost").html("请输入邮件服务器地址");
+            $("#host").focus();
+            IsValid = false;
+        }
+        if (vueSmptEmail.SmtpInfo.AdminEmail == "") {
+            $("#reqAdminEmail").html("请输入管理员邮箱");
+            $("#adminEmail").focus();
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+
+</script>

@@ -1,0 +1,293 @@
+﻿<div class="ui-dialog-content ui-widget-content" id="FujiClass2Detail" tabindex="-1" style="display:none;" v-cloak>
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">设备类型I</td>
+            <td>
+                <label>{{Info.EquipmentType1.Description}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">设备类型II</td>
+            <td>
+                <label>{{Info.EquipmentType2.Description}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士I类简称</td>
+            <td>
+                <label>{{Info.FujiClass2.FujiClass1.Name}}</label>
+                <label class="required" id="reqFujiClass1"></label>
+            </td>
+        </tr>
+        <tr v-if="IsCopy">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">复制富士II类</td>
+            <td>
+                <select v-model="CopyID" style="width:200px;">
+                    <option v-for="fujiClass2 in FujiClass2List" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                </select>
+                <label class="required" id="reqFujiClass2"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类简称</td>
+            <td>
+                <input v-if="!IsUpdate && !IsCopy" class="input" type="text" maxlength="50" id="FujiClass2Name" v-model="Info.FujiClass2.Name" onkeydown="autoCompleteFujiClass2s(FujiClass2DetailVue.Info)" style="width:200px;" />
+                <input v-else class="input" type="text" maxlength="50" id="FujiClass2Name" v-model="Info.FujiClass2.Name" style="width:200px;" />
+                <label class="required" id="reqFujiClass2Name"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类描述</td>
+            <td>
+                <input class="input" type="text" maxlength="200" id="FujiClass2Description" v-model="Info.FujiClass2.Description" style="width:200px;" />
+                <label class="required" id="reqFujiClass2Description"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var FujiClass2DetailVue = new Vue({
+        el: "#FujiClass2Detail",
+        data: {
+            IsUpdate: false,
+            IsCopy: false,
+            CopyID:0,
+            FujiClass2List:{},
+            Info: {
+                EquipmentType1: {},
+                EquipmentType2: {},
+                FujiClass2: {
+                    ID: 0,
+                    Name: '',
+                    Description: '',
+                    FujiClass1: {},
+                    EquipmentType: { ID: 1 },
+                    MethodID: 1
+                }
+            },
+        }
+    })
+</script>
+<script>
+    function GetFujiClass2ByID(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2ByID", "FujiClass2")', {
+            id: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                FujiClass2DetailVue.Info.FujiClass2 = response.Data;
+            }
+        })
+    }
+    //获取富士II类信息
+    function GetFujiClass2() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                FujiClass2DetailVue.FujiClass2List = response.Data;
+            }
+        })
+    }
+
+    function InitFujiClass2Vue(info) {
+        FujiClass2DetailVue.Info.EquipmentType1 = info.EquipmentType1;
+        FujiClass2DetailVue.Info.EquipmentType2 = info.EquipmentType2;
+        FujiClass2DetailVue.Info.FujiClass2.FujiClass1 = info.FujiClass2.FujiClass1;
+    }
+
+    function OpenAddFujiClass2(info) {
+        InitDialogForm();
+        InitFujiClass2Vue(info);
+
+        $("#FujiClass2Detail").dialog({ title: "新增富士II类", height: 420 });
+        $("#FujiClass2Detail").dialog("open");
+    }
+
+    function OpenCopyFujiClass2(info) {
+        InitDialogForm();
+        InitFujiClass2Vue(info);
+        setTimeout(GetFujiClass2(), 100);
+        FujiClass2DetailVue.IsCopy = true;
+
+        $("#FujiClass2Detail").dialog({ title: "复制富士II类", height: 450 });
+        $("#FujiClass2Detail").dialog("open");
+    }
+
+    function OpenEditFujiClass2(info) {
+        InitDialogForm();
+        GetFujiClass2ByID(info.FujiClass2.ID);
+        InitFujiClass2Vue(info);
+        FujiClass2DetailVue.IsUpdate = true;
+
+        $("#FujiClass2Detail").dialog({ title: "编辑富士II类", height: 420 });
+        $("#FujiClass2Detail").dialog("open");
+    }
+
+    function SaveFujiClass2() {
+        if (CheckFujiClass2()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveFujiClass2", "FujiClass2")', {
+            info: FujiClass2DetailVue.Info,
+            isUpdate: FujiClass2DetailVue.IsUpdate,
+            copyID: FujiClass2DetailVue.CopyID
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                FujiClass2DetailVue.Info.FujiClass2.ID = response.Data;
+                jAlert("保存成功", "保存", function () {
+                    $("#FujiClass2Detail").dialog("close");
+                    QueryFujiClass();
+                });
+            }
+        })
+    }
+
+    function CheckFujiClass2() {
+        $("label.required").html("");
+        var IsValid = false;
+
+        if (FujiClass2DetailVue.IsCopy && FujiClass2DetailVue.CopyID == 0) {
+            $("#reqFujiClass2").html("复制富士II类不能为空");
+            IsValid = true;
+        }
+
+        if (FujiClass2DetailVue.Info.FujiClass2.Description.trim() == "") {
+            $("#reqFujiClass2Description").html("富士II类描述不能为空");
+            $("#FujiClass2Description").focus();
+            IsValid = true;
+        }
+
+        if (FujiClass2DetailVue.Info.FujiClass2.Name.trim() == "") {
+            $("#reqFujiClass2Name").html("富士II类简称不能为空");
+            $("#FujiClass2Name").focus();
+            IsValid = true;
+        }
+        else if (!FujiClass2DetailVue.IsUpdate && CheckFujiClass2EqpExisted()) {
+            $("#reqFujiClass2Name").html("该II类已存在");
+            $("#FujiClass2Name").focus();
+            IsValid = true;
+        }
+        else if (CheckFujiClass2Existed()) {
+            $("#reqFujiClass2Name").html("名称已存在");
+            $("#FujiClass2Name").focus();
+            IsValid = true;
+        }
+
+        return IsValid;
+    }
+
+    function CheckFujiClass2Existed() {
+        var IsExisted = false;
+        $("#reqFujiClass2Name").html("");
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("CheckFujiClass2Name","FujiClass2")',
+            data: {
+                info: FujiClass2DetailVue.Info.FujiClass2,
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function CheckFujiClass2EqpExisted() {
+        var IsExisted = false;
+        $("#reqFujiClass2Name").html("");
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("CheckFujiClass2EqpExisted", "FujiClass2")',
+            data: {
+                info: FujiClass2DetailVue.Info,
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    IsExisted = response.Data;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function autoCompleteFujiClass2s(info) {
+        $("#FujiClass2Name").autocomplete({
+            minLength: 1,
+            delay: 200,//ms
+            source: function (req, add) {
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    secureuri: false,
+                    url: '@Url.Action("QueryFujiClass24AutoComplete", "FujiClass2")',
+                    data: {
+                        inputText: $.trim(req.term),
+                        fujiClass1ID: FujiClass2DetailVue.Info.FujiClass2.FujiClass1.ID
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        response = JSON.parse(JSON.stringify(response));
+                        if (response.ResultCode != "00") {
+                            processResponseError(response.ResultCode, response.ResultMessage);
+                        } else {
+                            if (!FujiClass2DetailVue.IsUpdate && !FujiClass2DetailVue.IsCopy) {
+                                info.FujiClass2.ID = 0;//clear
+                                var infos = response.Data.slice(0, 5);
+                                add(infos);
+                            }
+                        }
+                    },
+                    error: function () { jAlert("连接服务器出错", "错误"); }
+                });
+            },
+            focus: function (event, ui) {
+                //info.FujiClass2.ID = ui.item.ID;
+                //info.FujiClass2.Name = ui.item.Name;
+                //info.FujiClass2.Description = ui.item.Description;
+                return false;
+            },
+            select: function (event, ui) {
+                info.FujiClass2.ID = ui.item.ID;
+                info.FujiClass2.Name = ui.item.Name;
+                info.FujiClass2.Description = ui.item.Description;
+                return false;
+            }
+        })
+        .data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+              .append("<a>" + item.Name + "</a>")
+              .appendTo(ul);
+        };
+    }
+</script>

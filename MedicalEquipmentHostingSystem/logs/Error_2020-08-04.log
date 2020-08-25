@@ -1,0 +1,189 @@
+2020-08-04 09:31:07.5710 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:31:07.6841 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:31:07.7321 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:31:11.8048 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:31:11.8567 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:31:11.9137 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:31:33.2611 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:31:33.3224 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:31:41.7606 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:31:49.0583 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:31:49.1052 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:31:55.0849 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:31:59.1699 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:31:59.2168 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:32:02.7552 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:32:13.2230 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:32:13.2911 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:32:21.1350 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:32:21.1975 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:34:08.3756 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: DateTime = 2020/7/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 377
+2020-08-04 09:34:08.4285 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 287
+2020-08-04 09:34:08.4722 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 396
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 295
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 853
+2020-08-04 09:35:53.6442 ERROR Exception: 'Invalid column name 'HospitalFactor1'.
+Invalid column name 'HospitalFactor2'.
+Invalid column name 'HospitalFactor3'.' happened in Class 'ValuationDao', Method 'GetControl', Arguments: None 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataRow(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 86
+   在 BusinessObjects.DataAccess.ValuationDao.GetControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 79
+2020-08-04 09:35:53.7501 ERROR Invalid column name 'HospitalFactor1'.
+Invalid column name 'HospitalFactor2'.
+Invalid column name 'HospitalFactor3'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataRow(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 86
+   在 BusinessObjects.DataAccess.ValuationDao.GetControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 83
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 154
+2020-08-04 09:35:54.3717 ERROR Exception: '列“HospitalFactor1”不属于表 。' happened in Class 'ValuationDao', Method 'GetParameter', Arguments: None 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ValParameterInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 71
+   在 BusinessObjects.DataAccess.ValuationDao.GetParameter() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 38
+2020-08-04 09:35:54.4714 ERROR 列“HospitalFactor1”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.ValParameterInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ValuationInfo.cs:行号 71
+   在 BusinessObjects.DataAccess.ValuationDao.GetParameter() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 40
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetParameter() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 93
+2020-08-04 10:35:08.0436 ERROR Exception: '要求非负数。
+参数名: count' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 647
+2020-08-04 10:35:08.1867 ERROR 要求非负数。
+参数名: count 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 834
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-04 11:03:51.4810 ERROR Exception: '要求非负数。
+参数名: count' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 647
+2020-08-04 11:03:51.6027 ERROR 要求非负数。
+参数名: count 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 834
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-04 14:22:52.7251 ERROR Exception: '偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 697
+2020-08-04 14:22:52.8505 ERROR 偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 916
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-04 14:25:28.7528 ERROR Exception: '偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 697
+2020-08-04 14:25:28.8167 ERROR 偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 916
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854
+2020-08-04 14:26:52.6424 ERROR Exception: '偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。' happened in Class 'ValuationManager', Method 'GetValResultData', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 697
+2020-08-04 14:26:52.6903 ERROR 偏移量和长度超出数组的界限，或者计数大于从索引到源集合结尾处的元素数量。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.GetRange(Int32 index, Int32 count)
+   在 BusinessObjects.Manager.ValuationManager.GetValResultData() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 916
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 854

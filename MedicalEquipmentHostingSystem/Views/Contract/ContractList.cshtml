@@ -1,0 +1,330 @@
+﻿
+@{
+    ViewBag.Title = "ContractList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> statuses = BusinessObjects.Domain.ContractInfo.Statuses.GetStatuses();
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    
+}
+<div id="contractVue" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">合同列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td>
+                            <button id="0" class="btn btn-sm btnFilter activeFilter" onclick="ChangeStatusQuery(0,this)"><span class="btnContent">全部</span></button><sup class="btnBadge">{{Expired+Active+Pending}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="ChangeStatusQuery(@statuses[3].ID,this)"><span class="btnContent">@statuses[3].Name</span></button><sup class="btnBadge">{{WillExpire}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="ChangeStatusQuery(@statuses[0].ID,this)"><span class="btnContent">@statuses[0].Name</span></button><sup class="btnBadge">{{Expired}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="ChangeStatusQuery(@statuses[1].ID,this)"><span class="btnContent">@statuses[1].Name</span></button><sup class="btnBadge">{{Active}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="ChangeStatusQuery(@statuses[2].ID,this)"><span class="btnContent">@statuses[2].Name</span></button><sup class="btnBadge">{{Pending}}</sup>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model="Filter.Status" v-on:change="QueryContracts()" >
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in statuses)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.ID">系统编号</option>
+                                    <option value="c.ContractNum">合同编号</option>
+                                    <option value="e.SerialCode">设备序列号</option>
+                                    <option value="e.ID">设备编号</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor " onclick="QueryContracts()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:120px;" class="sortColumn" id="c.ID" onclick="SortContracts(this)">系统编号</th>
+                <th style="min-width:120px;" class="sortColumn" id="c.ContractNum" onclick="SortContracts(this)">合同编号</th>
+                <th style="min-width:120px;" id="c.EquipmentID">设备编号</th>
+                <th style="min-width:120px;" id="e.SerialCode">设备序列号</th>
+                <th style="min-width:180px;" class="sortColumn" id="c.Name" onclick="SortContracts(this)">合同名称</th>
+                <th style="min-width:160px;" class="sortColumn" id="c.TypeID" onclick="SortContracts(this)">合同类型</th>
+                <th style="min-width:180px;">供应商</th>
+                <th style="min-width:120px;" class="sortColumn tdListCenter" id="c.StartDate" onclick="SortContracts(this)">开始时间</th>
+                <th style="min-width:120px;" class="sortColumn tdListCenter" id="c.EndDate" onclick="SortContracts(this)">结束时间</th>
+                <th style="min-width:120px;" class=" tdListCenter">状态</th>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="text-align: center; min-width: 80px;">日志</th>
+                    <th style="min-width:80px;">编辑</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ContractList.length == 0 ">
+                <td colspan="12" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="(contract,index) in ContractList" v-else>
+                <td><a href="#" v-on:click="GotoContractDetailView(contract.ID)" class="linkFile">{{contract.OID}}</a></td>
+                <td>{{contract.ContractNum}}</td>
+                <td>{{contract.EquipmentOID}}</td>
+                <td>{{contract.EquipmentSerialCode}}</td>
+                <td>{{contract.Name}}</td>
+                <td>{{contract.Type.Name}}</td>
+                <td>{{contract.Supplier.Name}}</td>
+                <td class="tdListCenter">{{parseAndFormatJsonDate(contract.StartDate)}}</td>
+                <td class="tdListCenter">{{parseAndFormatJsonDate(contract.EndDate)}}</td>
+                <td class="tdListCenter">{{contract.Status}}</td>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td style="text-align:center;"><img src="~/Content/img/logs.png" class="icon-sm cursor" v-on:click="GoToAuditDetail(@BusinessObjects.Domain.ObjectTypes.Contract,contract.ID)"></td>
+                    <td class="cursor" v-on:click="GotoContractDetail(contract.ID)"><img src="~/Content/img/edit.png" class="icon-sm"></td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                        {<button class="btn btn-info btn-sm" onclick="GotoContractDetail(0)">新增合同</button>}
+                    </div>
+                </td>
+                <td colspan="11">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var contractVue = new Vue({
+        el: "#contractVue",
+        data: {
+            ContractList:[],
+            Filter: {
+                Status: 0,
+                FilterField: "c.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: "c.ID",
+                    Direction:true
+                }
+            },
+            Expired:0,
+            Active:0,
+            Pending:0,
+            WillExpire:0
+        }
+    })
+</script>
+<script>
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportContracts", "Contract")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+
+    function Refresh() {
+        contractVue.Filter ={
+            Status: 0,
+            FilterField: "c.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "c.ID",
+                Direction:true
+            }
+        }
+        DisplaySortIcon(contractVue.Filter.SortObject);
+        $(".btnFilter").removeClass("activeFilter");
+        $("#0").addClass("activeFilter");
+        QueryContracts();
+    }
+</script>
+<script>
+    function SortContracts(item) {
+        UpdateSortIcon(item, contractVue.Filter.SortObject);
+        QueryContracts();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryContracts();
+        }
+    }
+
+    function PageClick(pageclickednumber) {
+        contractVue.Filter.CurrentPage = pageclickednumber;
+        QueryContracts();
+    }
+    function changeCurNum_pager() {
+        contractVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryContracts();
+    }
+</script>
+<!-- localStorage -->
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: contractVue.Filter.CurrentPage,
+            status: contractVue.Filter.Status,
+            filterField: contractVue.Filter.FilterField,
+            filterText: contractVue.Filter.FilterText,
+            sortField: contractVue.Filter.SortObject.Field,
+            sortDirection: contractVue.Filter.SortObject.Direction,
+            pageSize: contractVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('ContractList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            contractVue.Filter.Status = json.status;
+            contractVue.Filter.FilterField = json.filterField;
+            contractVue.Filter.FilterText = json.filterText;
+            contractVue.Filter.SortObject.Field = json.sortField;
+            contractVue.Filter.SortObject.Direction = json.sortDirection;
+            contractVue.Filter.CurrentPage = json.currentPage;
+            contractVue.Filter.PageSize = json.pageSize;
+            localStorage.removeItem('ContractList_Filter');
+        }
+    }
+
+    //保存筛选条件至缓存中
+    function SaveFilterParameters(json) {
+        localStorage.setItem('ContractList_Filter', JSON.stringify(json));
+    }
+</script>
+<script>
+    $(function () {
+        InitFilterParameters();
+        DisplaySortIcon(contractVue.Filter.SortObject);
+        if ('@ViewBag.EquipmentId' != 0)
+        {
+            contractVue.Filter.FilterField = "e.ID";
+            contractVue.Filter.FilterText = '@ViewBag.EquipmentId';
+        }
+        setTimeout(QueryContracts(), 100);
+    })
+    
+    //状态button的点击事件
+    function ChangeStatusQuery(status,obj) {
+        contractVue.Filter.FilterText = "";
+        contractVue.Filter.Status = status;
+        var temp = $(obj);
+        $(".btnFilter").removeClass("activeFilter");
+        temp.addClass("activeFilter");
+        temp.parent("button").prev().addClass("activeFilter");
+
+        QueryContracts();
+    }
+
+    //获取各状态下的合同数量
+    function GetContractCount() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetContractCount", "Contract")'
+        , function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                contractVue.Expired = response.Data.Expired;
+                contractVue.Active = response.Data.Active;
+                contractVue.Pending = response.Data.Pending;
+                contractVue.WillExpire = response.Data.WillExpire;
+            }
+        });
+    }
+    
+    //获取合同信息
+    function QueryContracts() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("QueryContract", "Contract")", json ,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    contractVue.ContractList = response.Data;
+                    contractVue.Filter.CurrentPage = SetTotalPage4Pager(contractVue.Filter.CurrentPage, response.TotalPages);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                    GetContractCount();
+                }
+            }
+        )
+    }
+
+    //合同新增/编辑页面
+    function GotoContractDetail(contractID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("ContractDetail", "Contract")" + "?" + $.param({ contractID: contractID })
+    }
+    //合同查看页面
+    function GotoContractDetailView(contractID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("ContractDetailView", "Contract")" + "?" + $.param({ contractID: contractID })
+    }
+    function GoToAuditDetail(objectTypeID, objectID) {
+        window.open('@Url.Action("SysAuditLogList","Audit")' + "?" + $.param({ objectTypeID: objectTypeID, objectID: objectID }))
+    }
+</script>
+
+

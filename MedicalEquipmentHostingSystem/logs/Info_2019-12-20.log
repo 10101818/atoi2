@@ -1,0 +1,8 @@
+2019-12-20 14:21:28.7310 INFO Create event timer with Period: 60 Minute(s). 
+ 
+2019-12-20 15:21:27.6747 INFO DoTimerCallback run start at 2019/12/20 15:21:27 
+ 
+2019-12-20 15:21:27.7712 INFO DoTimerCallback run end at 2019/12/20 15:21:27 
+ 
+2019-12-20 15:50:51.8498 INFO Create event timer with Period: 60 Minute(s). 
+ 

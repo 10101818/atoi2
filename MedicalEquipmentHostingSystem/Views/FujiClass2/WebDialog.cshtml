@@ -1,0 +1,343 @@
+﻿
+@{
+    Layout = null;
+}
+<!--韦伯计算-->
+<div id="Webb" title="韦伯计算" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+    <button class="btn btn-outline-info btn-sm" onclick="GetWebData()">韦伯计算</button>
+    <table class="table" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th class="tdDetailHead" style="min-width: 110px;">月份</th>
+                <th class="tdDetailHead" style="min-width: 80px;">同步1月</th>
+                <th class="tdDetailHead">1月</th>
+                <th class="tdDetailHead">2月</th>
+                <th class="tdDetailHead">3月</th>
+                <th class="tdDetailHead">4月</th>
+                <th class="tdDetailHead">5月</th>
+                <th class="tdDetailHead">6月</th>
+                <th class="tdDetailHead">7月</th>
+                <th class="tdDetailHead">8月</th>
+                <th class="tdDetailHead">9月</th>
+                <th class="tdDetailHead">10月</th>
+                <th class="tdDetailHead">11月</th>
+                <th class="tdDetailHead">12月</th>
+            </tr>
+        </thead>
+        <tbody id="WebContent"></tbody>
+    </table>
+</div>
+<div id="WebChart" title="韦伯计算" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+    <div>
+        <div id="chartDiv"></div>
+        <div id="sliderDiv" style="display:inline;bottom:10px;"></div>
+    </div>
+</div>
+<div id="Divide" title="韦伯计算" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="100px">是否需要分段</td>
+            <td width="">
+                <input type="radio" name="IsDivided" id="Divided" value="true" checked />是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="IsDivided" value="false" />否
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="100px">请填写分段月</td>
+            <td width="">
+                <input type="text" class="input" id="Month" v-model="Month" style="width:200px;" />
+                <label class="tips required" id="reqMonth"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    var WebVue = new Vue({
+        el: "#Webb",
+        data: {
+            WebList: [],
+            WebData: {},
+            FujiClass2ID: 0,
+            ComponentID:0,
+            Obj: {},
+            ObjType:0
+        }
+    })
+
+    var DivideMonthVue = new Vue({
+        el: "#Divide",
+        data: {
+            IsDivided: false,
+            Month: 0
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        InitWebDialog();
+    })
+
+    function InitWebDialog() {
+        $("#Webb").dialog({
+            autoOpen: false,
+            height: 700,
+            width: "80%",
+            modal: true,
+            resizable: false,
+            buttons: {
+                "导入": function () { ImportFromWeb(); },
+                "关闭": function () { $("#Webb").dialog("close"); }
+            }
+        });
+        $("#WebChart").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 800,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "应用": function () { ApplyWebData(); },
+                "关闭": function () { $("#WebChart").dialog("close"); }
+            }
+        });
+        $("#Divide").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 500,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "确定": function () { CalucateWebData(); },
+                "关闭": function () { $("#Divide").dialog("close"); }
+            }
+        })
+    }
+    function RefreshWebDataDialog() {
+        $("#Divide #Month").val("");
+        $("#Divided").prop('checked', 'true');
+        $("#Divide .tips").html("");
+    }
+
+    function RefreshData() {
+        WebVue.WebList = [];
+        WebVue.WebData = {};
+        WebVue.FujiClass2ID = 0;
+        WebVue.ComponentID = 0;
+        WebVue.Obj = {};
+        WebVue.ObjType = 0;
+    }
+
+    function ShowRepairWeb(obj) {
+        RefreshData();
+        WebVue.Obj = obj;
+        WebVue.ObjType = '@BusinessObjects.Domain.FaultRateInfo.ObjectType.Repair';
+        WebVue.WebList = obj.Repairs;
+        WebVue.FujiClass2ID = obj.ID;
+        WebHTML();
+        $("#Webb").dialog("open");
+    }
+
+    function ShowComponentWeb(fujiClass2ID, obj) {
+        RefreshData();
+        WebVue.Obj = obj;
+        WebVue.ObjType = '@BusinessObjects.Domain.FaultRateInfo.ObjectType.Component';
+        WebVue.WebList = obj.FaultRates;
+        WebVue.ComponentID = obj.ID;
+        WebVue.FujiClass2ID = fujiClass2ID;
+        WebHTML();
+        $("#Webb").dialog("open");
+    }
+
+    function GetWebData() {
+        $("#Divide").dialog("open");
+        RefreshWebDataDialog();
+    }
+
+    function WebHTML() {
+        $("#WebContent").html("");
+        var str = "";
+        $.each(WebVue.WebList, function (index, item) {
+            if (item.Month == 1) {
+                if (str != "") {
+                    str += '</tr>';
+                }
+                str += '<tr>';
+                str += '<th>第' + item.Year + '年故障概率</th>';
+                str += '<td><button class="btn btn-outline-info btn-sm" onclick="SyncRate(' + item.Year + ')">同步</button></td>';
+            }
+            str += '<td><input type="text" value="' + item.Rate + '" onchange="CellWebData(' + item.Year + ',' + item.Month + ',this.value)" /></td>';
+        })
+        $("#WebContent").html(str);
+    }
+
+    function CalucateWebData() {
+        $(".tips").html("");
+        var check = $("input[name='IsDivided']:checked").val();
+        var month = Number($("#Month").val());
+        if (check == 'true' && (month == 0 || month > 120))
+        {
+            $("#reqMonth").html("月份必须大于0且小于120");
+            $("#Month").focus();
+            return;
+        }
+        $.post('@Url.Action("GetWebData", "FujiClass2")', { 
+            fujiClass2ID: WebVue.FujiClass2ID,
+            months: check == 'true' ? month : 0,
+            componentID: WebVue.ComponentID
+        }, function (result) {
+            if (result.ResultCode != "00") {
+                processResponseError(result.ResultCode, result.ResultMessage)
+            } else {
+                WebVue.WebData = result.Data;
+                $("#WebChart").dialog("open");
+                $("#Divide").dialog("close");
+                barChart();
+            }
+        })
+    }
+
+    function CellWebData(year, month, rate) {
+        $.each(WebVue.WebList, function (index, item) {
+            if (item.Year == year && item.Month == month) {
+                item.Rate = Number(rate)
+            }
+        })
+    }
+
+    function ImportFromWeb() {
+        if (WebVue.ObjType == '@BusinessObjects.Domain.FaultRateInfo.ObjectType.Repair')
+            ImportRepairFromWeb();
+        else
+            ImportComponentFromWeb();
+    }
+
+    function ImportRepairFromWeb() {
+        $.each(repairVue.Objects, function (index, item) {
+            if (item.ID == WebVue.Obj.ID) {
+                item.Repairs = WebVue.WebList;
+                repairVue.ChangeAVG(item);
+                jAlert("导入成功", "提示", function () {
+                    $("#Webb").dialog("close");
+                });
+            }
+        })
+        
+    }
+
+    function ImportComponentFromWeb() {
+        $.each(FujiClass2ComponentVue.Objects, function (index, item) {
+            if (item.ID == WebVue.FujiClass2ID) {
+                $.each(item.Components, function (index, com) {
+                    if (com.ID == WebVue.Obj.ID) {
+                        com.FaultRates = WebVue.WebList;
+
+                        FujiClass2ComponentVue.ChangeAVG(com);
+                        //repairVue.ChangeAVG(item);
+                        jAlert("导入成功", "提示", function () {
+                            $("#Webb").dialog("close");
+                        });
+                    }
+                })
+            }
+        })
+
+    }
+
+    function SyncRate(year) {
+        var rate = 0;
+        $.each(WebVue.WebList, function (index, item) {
+            if (item.Year == year) {
+                if (item.Month == 1)
+                    rate = item.Rate;
+                else
+                    item.Rate = rate;
+            }
+        })
+        WebHTML();
+    }
+
+    function ApplyWebData() {
+        WebVue.WebList = WebVue.WebData.ForecastRateList;
+        $("#WebChart").dialog("close");
+        WebHTML();
+    }
+</script>
+
+<script>
+    function barChart() {
+        $("#chartDiv").empty();
+
+        var chart = new G2.Chart({
+            container:'chartDiv',
+            width:600,
+            height:500,
+        });
+
+        const dv = new DataSet.DataView().source(WebVue.WebData.ForecastRateList);
+        dv.transform({
+            type: 'map',
+            callback : function (row) {
+                row.RateMonth = (row.Year - 1) * 12 + row.Month; // 为每条记录新添加一个 z 字段
+                row.State = '预测故障率'
+                return row;
+            }
+        })
+
+        const state = new DataSet.DataView().source(WebVue.WebData.RateList);
+        state.transform({
+            type: 'map',
+            callback: function (row) {
+                row.RateMonth = (row.Year - 1) * 12 + row.Month; // 为每条记录新添加一个 z 字段
+                row.State = '实际故障率 '
+                return row;
+            }
+        })
+
+        const state1 = new DataSet.DataView().source(WebVue.WebData.RateList1);
+        state1.transform({
+            type: 'map',
+            callback: function (row) {
+                row.RateMonth = (row.Year - 1) * 12 + row.Month; // 为每条记录新添加一个 z 字段
+                row.State = '实际故障率'
+                return row;
+            }
+        })
+
+        dv.rows = dv.rows.concat(state.rows);
+        dv.rows = dv.rows.concat(state1.rows);
+        
+        chart.source(dv);
+
+        chart.tooltip({
+            showCrosshairs: true,
+            shared: true,
+        });
+
+        chart.axis('Rate', {
+            label: {
+                formatter: function (val) {
+                    return val +' %';
+                }
+            },
+            title: {
+                textStyle: {
+                    fill: '#17A2B8',
+                    rotate: 270,
+                }
+            },
+        })
+        chart.scale('Rate', {
+            alias: '故障率',
+            min:0
+        })
+
+        chart.legend(false);
+        
+        chart.line().position('RateMonth*Rate').color('State').size(-1);
+        chart.point().position('RateMonth*Rate').color('State').size(2).shape('circle');
+
+        chart.render();
+    }
+</script>

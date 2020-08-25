@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Sms";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+
+<div id="VueSms" v-cloak class="tblDiv">
+    <div class="title"><p>短信设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>短信平台</th>
+                <td>
+                    <select v-model="SmtpInfo.MessageEnabled">
+                        <option value="true">开启</option>
+                        <option value="false">关闭</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>短信APPKEY</th>
+                <td>
+                    <input type="text" id="MessageKey" maxlength="50" v-model="SmtpInfo.MessageKey">
+                    <label id="reqMessageKey" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>接收提醒手机</th>
+                <td>
+                    <input type="text" id="MobilePhone" maxlength="50" v-model="SmtpInfo.MobilePhone">
+                    <label id="reqMobilePhone" class="required"></label>
+                    <button class="btn btn-outline-info" style="float:right" onclick="TestSms()">测试发送</button>
+                    <br />
+                    <label>请先提交保存设置后再测试短信发送</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 备注：用<span class="required">*</span>标记的为必填项</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveSms()">保存</button></p>
+</div>
+<script>
+    var SmsVue = new Vue({
+        el: "#VueSms",
+        data: {
+            SmtpInfo: {
+                MessageEnabled: true,
+                MessageKey: '',
+                MobilePhone: ''
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        setTimeout(GetSmsInfo(), 100);
+    });
+    function GetSmsInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSmtpInfo", "System")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info != null) {
+                    SmsVue.SmtpInfo = info
+                }
+            }
+        });
+    }
+
+    function SaveSms() {
+        if (CheckSms() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SavesmtpInfo", "System")', {
+            info: SmsVue.SmtpInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存");
+            }
+        });
+    }
+
+    function TestSms() {
+        SetPageWaiting(true);
+        $.post('@Url.Action("TestSms", "System")', {
+            mobilePhone: SmsVue.SmtpInfo.MobilePhone
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.Data == "0") {
+                jAlert("发送短信失败", "失败");
+            }
+            else {
+                jAlert("发送短信成功", "成功");
+            }
+        })
+    }
+
+    function CheckSms() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var MobilePhone = $("#MobilePhone").val().trim()
+        if (MobilePhone == "") {
+            $("#reqMobilePhone").html("请输入接收手机号");
+            $("#MobilePhone").focus();
+            IsValid = false;
+        }
+
+        var MessageKey = SmsVue.SmtpInfo.MessageKey.trim()
+        if (MessageKey == "") {
+            $("#reqMessageKey").html("请输入短信APPKEY");
+            $("#MessageKey").focus();
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+
+</script>

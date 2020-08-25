@@ -1,0 +1,404 @@
+﻿@{
+    ViewBag.Title = "DepartmentList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+
+    List<BusinessObjects.Domain.KeyValueInfo> DepartmentTypes = BusinessObjects.Manager.LookupManager.GetDepartmentTypes();
+    List<BusinessObjects.Domain.DepartmentInfo> Departments = BusinessObjects.Manager.LookupManager.GetDepartments();
+}
+<div id="departmentList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">科室列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            科室分类:
+                            <select v-model="Filter.DepartmentTypeID" v-on:change="QueryDepartments()">
+                                <option value="0">全部</option>
+                                @foreach (var temp in DepartmentTypes)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            搜索:
+                            <select v-model="Filter.FilterField">
+                                <option value="d.Description">科室名称</option>
+                                <option value="d.Seq">科室排序</option>
+                            </select>
+                            <input type="text" v-model.trim="Filter.FilterText" maxlength="100" onkeydown="DoQuery()" style="width:150px;" />
+                            <img src="~/Content/img/search.png" class="icon-sm cursor " onclick="QueryDepartments()" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table id="tableContent" class="table" cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:150px" class="sortColumn" id="d.ID" onclick="sortDepartmentList(this)">科室系统编号</th>
+                <th style="min-width:150px" class="sortColumn" id="d.Seq" onclick="sortDepartmentList(this)">科室排序</th>
+                <th style="min-width:150px">科室名称</th>
+                <th style="min-width:150px">科室拼音简称</th>
+                <th style="min-width:150px">科室分类</th>
+                <th style="min-width:80px" class="tdListCenter">编辑</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr v-for="item in DepartmentList">
+                <td>{{item.OID}}</td>
+                <td>{{item.Seq}}</td>
+                <td>{{item.Description}}</td>
+                <td>{{item.Pinyin}}</td>
+                <td>{{item.DepartmentType.Name}}</td>
+                <td class="tdListCenter"><img src="~/Content/img/edit.png" class="icon-sm cursor" v-on:click="btnEditDepartment(item.ID)"></td>
+            </tr>
+            <tr v-if="DepartmentList.length == 0">
+                <td colspan="11" style="text-align:center">暂无数据</td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" style="float: left;" onclick="btnAddDepartment()">新增科室</button>
+                    </div>
+                </td>
+                <td colspan="11">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- 新增/编辑科室 -->
+    <div class="ui-dialog-content ui-widget-content" id="dialog-form-Add" tabindex="-1" style="display:none">
+        <table class="table">
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td width="75px">科室名称</td>
+                <td width="">
+                    <input type="text" maxlength="20" id="Description" v-model="DepartmentInfo.Description" style="width:300px" />
+                    <label id="reqDescription" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+                <td width="75px">科室拼音简称</td>
+                <td width="">
+                    <input type="text" maxlength="100" id="Pinyin" v-model="DepartmentInfo.Pinyin" style="width:300px" />
+                    <label id="reqPinyin" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>排序位置</td>
+                <td>
+                    <input type="text" maxlength="9" id="Seq" v-model="DepartmentInfo.Seq" style="width:300px" />
+                    <label id="reqSeq" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdrequired" width="15px"><span class="required">*</span></td>
+                <td>科室分类</td>
+                <td>
+                    <select class="input" id="DepartmentTypeID" v-model="DepartmentInfo.DepartmentType.ID" style="width:300px" v-on:change="ChangeDepartment()">
+                        @foreach (var temp in DepartmentTypes)
+                        {
+                            <option value="@temp.ID">@temp.Name</option>
+                        }
+                    </select>
+                    <label id="reqDepartmentTypeID" class="required"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    //DepartmentList导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload('@Url.Action("ExportDepartmentList", "Department")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: json
+            });
+    }
+
+    //刷新DepartmentList
+    function Refresh() {
+        departmentVue.Filter = {
+            DepartmentTypeID: 0,
+            FilterField: 'd.Description',
+            FilterText: '',
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: 'd.Seq',
+                Direction: true,
+            }
+        }
+        DisplaySortIcon(departmentVue.Filter.SortObject);
+        QueryDepartments();
+    }
+</script>
+<script>
+    //DepartmentList排序
+    function sortDepartmentList(item) {
+        UpdateSortIcon(item, departmentVue.Filter.SortObject)
+        QueryDepartments();
+    }
+    function PageClick(pageclickednumber) {
+        departmentVue.Filter.CurrentPage = pageclickednumber;
+        QueryDepartments();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            QueryDepartments();
+    }
+    function changeCurNum_pager() {
+        departmentVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryDepartments();
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitForm();
+        DisplaySortIcon(departmentVue.Filter.SortObject);
+        setTimeout(QueryDepartments(), 100);
+    })
+
+    function InitQueryFilter() {
+        var json = {
+            departmentTypeID: departmentVue.Filter.DepartmentTypeID,
+            filterField: departmentVue.Filter.FilterField,
+            filterText: departmentVue.Filter.FilterText,
+            currentPage: departmentVue.Filter.CurrentPage,
+            field: departmentVue.Filter.SortObject.Field,
+            direction: departmentVue.Filter.SortObject.Direction,
+            pageSize: departmentVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    //获取数据
+    function QueryDepartments() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryDepartmentList", "Department")', json, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                departmentVue.DepartmentList = cloneObj(response.Data);
+                departmentVue.Filter.CurrentPage = SetTotalPage4Pager(departmentVue.Filter.CurrentPage, response.TotalPages);
+                $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+            }
+        })
+    }
+
+
+    /*弹框*/
+    function InitForm() {
+        var dialog = $("#dialog-form-Add").dialog({
+            autoOpen: false,
+            height: 420,
+            width: 620,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveDepartment(departmentVue.DepartmentInfo); },
+                "关闭": function () { $("#dialog-form-Add").dialog("close"); },
+            }
+        });
+    }
+
+    /*清空Form*/
+    function InitDialogForm() {
+        $("label.required").html("");
+        departmentVue.DepartmentInfo = {
+            ID: 0,
+            Seq: 0,
+            Description: "",
+            DepartmentType: { ID: 1 },
+        }
+    }
+
+    /*btn添加科室*/
+    function btnAddDepartment() {
+        InitDialogForm();
+
+        $("#dialog-form-Add").dialog({ title: "添加科室信息" });
+        $("#dialog-form-Add").dialog("open");
+    }
+
+    //编辑btn
+    function btnEditDepartment(id) {
+        InitDialogForm();
+        getDepartment(id);
+        $("#dialog-form-Add").dialog({ title: "修改科室信息" });
+        $("#dialog-form-Add").dialog("open");
+    }
+    /*添加/修改保存科室信息*/
+    function SaveDepartment(jsonData) {
+        if (CheckAddForm() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveDepartment", "Department")', jsonData, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存", function () {
+                    $("#dialog-form-Add").dialog("close")
+                    QueryDepartments();
+                });
+            }
+        })
+    }
+    /*验证科室信息编辑弹框必填项是否已填*/
+    function CheckAddForm() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var DepartmentType = departmentVue.DepartmentInfo.DepartmentType.ID;
+        if (DepartmentType == undefined || DepartmentType == 0) {
+            $("#DepartmentType").focus();
+            $("#reqDepartmentType").html("请选择科室分类");
+            IsValid = false;
+        }
+        var patrn = /^([1-9]\d{0,9}|0)$/;
+        var Seq = departmentVue.DepartmentInfo.Seq;
+        if (!patrn.test(Seq)) {
+            $("#Seq").focus();
+            $("#reqSeq").html("排序位置格式有误");
+            IsValid = false;
+        }else if (Seq <= 0) {
+            $("#Seq").focus();
+            $("#reqSeq").html("请输入正确排序位置");
+            IsValid = false;
+        } else if (Seq > 999999999) {
+            $("#Seq").focus();
+            $("#reqSeq").html("排序位置不得大于999999999");
+            IsValid = false;
+        }
+
+        var name = departmentVue.DepartmentInfo.Description.trim();
+        if (name == "") {
+            $("#Description").focus();
+            $("#reqDescription").html("科室名不能为空");
+            IsValid = false;
+        } else if (CheckDepartmentName() == true) {
+            IsValid = false;
+        }
+
+        var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+        var pinyin = departmentVue.DepartmentInfo.Pinyin.trim()
+        if (pinyin != "" && reg.test(pinyin))
+        {
+            $("#Pinyin").focus();
+            $("#reqPinyin").html("科室拼音简称不能包含汉字");
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+    /*科室信息是否存在*/
+    function CheckDepartmentName() {
+        var IsExisted = true;
+        $("#reqLoginID").html("");
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckDepartmentName", "Department")',
+            data: {
+                id: departmentVue.DepartmentInfo.ID,
+                departmentName: departmentVue.DepartmentInfo.Description
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data == true) {
+                        $("#reqDescription").html("科室名已存在");
+                        $("#Description").focus();
+                    } else
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+
+    function getDepartment(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetDepartmentByID", "Department")', {
+            id: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                departmentVue.DepartmentInfo = response.Data;
+            }
+        });
+    }
+</script>
+<script>
+    var departmentVue = new Vue({
+        el: '#departmentList',
+        data: {
+            DepartmentInfo: {
+                DepartmentType: { ID: 0 },
+            },
+            DepartmentList: [],
+            Filter: {
+                DepartmentTypeID: 0,
+                FilterField: 'd.Description',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: 'd.Seq',
+                    Direction: true,
+                }
+            },
+        },
+    })
+</script>

@@ -1,0 +1,376 @@
+2020-07-16 09:01:48.5072 ERROR Exception: 'Arithmetic overflow error converting numeric to data type numeric.
+The statement has been terminated.' happened in Class 'FujiClassDao', Method 'UpdateFujiClass2Labour', Arguments: DataTable =  
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.FujiClassDao.UpdateFujiClass2Labour(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 486
+2020-07-16 09:01:48.6397 ERROR Exception: 'Arithmetic overflow error converting numeric to data type numeric.
+The statement has been terminated.' happened in Class 'FujiClassManager', Method 'SaveFujiClass2s', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FujiClass2Info], SectionType = Labour, UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.FujiClassDao.UpdateFujiClass2Labour(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 489
+   在 BusinessObjects.Manager.FujiClassManager.SaveFujiClass2s(List`1 infos, SectionType type, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 243
+2020-07-16 09:01:48.7137 ERROR Arithmetic overflow error converting numeric to data type numeric.
+The statement has been terminated. 
+    在 System.Data.Common.DbDataAdapter.UpdatedRowStatusErrors(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.UpdatedRowStatus(RowUpdatedEventArgs rowUpdatedEvent, BatchCommandInfo[] batchCommands, Int32 commandCount)
+   在 System.Data.Common.DbDataAdapter.Update(DataRow[] dataRows, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.UpdateFromDataTable(DataTable dataTable, DataTableMapping tableMapping)
+   在 System.Data.Common.DbDataAdapter.Update(DataTable dataTable)
+   在 BusinessObjects.DataAccess.FujiClassDao.UpdateFujiClass2Labour(DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 489
+   在 BusinessObjects.Manager.FujiClassManager.SaveFujiClass2s(List`1 infos, SectionType type, UserInfo userInfo) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 279
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.SaveFujiClass2s(List`1 infos, SectionType type) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 371
+2020-07-16 10:58:09.6462 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:58:09.7172 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:58:09.7721 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:58:09.8261 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:58:09.8771 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 10:58:12.2966 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:58:12.3536 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:58:12.4025 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:58:12.4515 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:58:12.5015 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 10:58:24.4794 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:58:24.5264 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:58:24.5693 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:58:24.6123 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:58:24.6533 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 10:58:45.5683 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:58:45.6123 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:58:45.6592 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:58:45.7022 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:59:08.2154 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:59:08.2614 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:59:08.3044 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:59:08.3713 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:59:14.9799 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:59:15.0269 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:59:15.0748 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:59:15.1188 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:59:15.1668 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 10:59:26.6503 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 10:59:26.6982 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 10:59:26.7452 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 10:59:26.7892 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 10:59:26.8322 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 11:00:18.5144 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 11:00:18.5583 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 11:00:18.6483 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 11:00:18.7143 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 11:01:11.6156 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 11:01:11.6945 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 11:01:11.7725 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 11:01:11.8384 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 11:02:56.6683 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 11:02:56.7373 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 11:02:56.8182 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 11:02:56.8842 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 11:02:59.1122 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798
+2020-07-16 11:05:03.1172 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateAmountByFaultRate', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo], Double = 0, Int32 = -4, Double = 2, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 589
+2020-07-16 11:05:03.1652 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentAmountForcast2', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1, DataTable = , ValEquipmentInfo = BusinessObjects.Domain.ValEquipmentInfo, FujiClass2Info = BusinessObjects.Domain.FujiClass2Info, ValComponentInfo = BusinessObjects.Domain.ValComponentInfo, List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.FaultRateInfo] 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 507
+2020-07-16 11:05:03.2072 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'CalculateComponentsAmountForcast', Arguments: DateTime = 2020/1/1 0:00:00, Int32 = 1 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 416
+2020-07-16 11:05:03.2512 ERROR Exception: '索引超出范围。必须为非负值并小于集合大小。
+参数名: index' happened in Class 'ValuationManager', Method 'RunVal', Arguments: None 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 278
+2020-07-16 11:05:03.2921 ERROR 索引超出范围。必须为非负值并小于集合大小。
+参数名: index 
+    在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BusinessObjects.Manager.ValuationManager.CalculateAmountByFaultRate(List`1 faultRates, Double baseAmount, Int32 monthPassed, Double usageRate, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 590
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentAmountForcast2(DateTime startDate, Int32 years, DataTable dt, ValEquipmentInfo valEquip, FujiClass2Info fujiClass2, ValComponentInfo valComponentInfo, List`1 faultRates) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 512
+   在 BusinessObjects.Manager.ValuationManager.CalculateComponentsAmountForcast(DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 430
+   在 BusinessObjects.Manager.ValuationManager.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 282
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 798

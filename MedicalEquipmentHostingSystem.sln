@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{E769E398-6F37-4883-BD52-90EE3A69626A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalEquipmentHostingSystem", "MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem.csproj", "{5B1310BE-783D-45D2-868F-606F139C49AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E769E398-6F37-4883-BD52-90EE3A69626A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E769E398-6F37-4883-BD52-90EE3A69626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E769E398-6F37-4883-BD52-90EE3A69626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E769E398-6F37-4883-BD52-90EE3A69626A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1310BE-783D-45D2-868F-606F139C49AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1310BE-783D-45D2-868F-606F139C49AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1310BE-783D-45D2-868F-606F139C49AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1310BE-783D-45D2-868F-606F139C49AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

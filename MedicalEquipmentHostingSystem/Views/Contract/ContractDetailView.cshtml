@@ -1,0 +1,312 @@
+﻿@{
+    ViewBag.Title = "ContractList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    List<BusinessObjects.Domain.KeyValueInfo> ContractTypes = BusinessObjects.Manager.LookupManager.GetContractType();
+    List<BusinessObjects.Domain.KeyValueInfo> ContractScope = BusinessObjects.Manager.LookupManager.GetContractScope();
+    int ServiceContract = BusinessObjects.Domain.ContractInfo.FileTypes.ServiceContract;
+    int SuperAdmin = BusinessObjects.Domain.UserRole.SuperAdmin;
+    List<BusinessObjects.Domain.KeyValueInfo> statuses = BusinessObjects.Domain.ContractInfo.Statuses.GetStatuses();
+}
+<div id="contractVue" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" onclick="Back()">
+            &lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST
+        </a>
+    </div>
+    <div class="title">
+        <p>合同信息</p>
+    </div>
+    <!-- 设备 -->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr class="headtr">
+                    <td colspan="13" class="tblName">
+                        设备基本信息
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100px">系统编号</th>
+                    <th style="min-width:50px;">资产编号</th>
+                    <th style="min-width:50px;">名称</th>
+                    <th style="min-width:50px;">型号</th>
+                    <th style="min-width:60px;">序列号</th>
+                    <th style="min-width:70px;">设备厂商</th>
+                    <th style="min-width:70px;">使用科室</th>
+                    <th style="min-width:70px;border-right:none;">安装地点</th>
+                </tr>
+                <tr v-for="info in Contract.Equipments" style="font-size:10px">
+                    <td>{{info.OID}}</td>
+                    <td>{{info.AssetCode}}</td>
+                    <td>{{info.Name}}</td>
+                    <td>{{info.EquipmentCode}}</td>
+                    <td>{{info.SerialCode}}</td>
+                    <td>{{info.Manufacturer.Name}}</td>
+                    <td>{{info.Department.Name}}</td>
+                    <td style="border-right:none;">{{info.InstalSite}}</td>
+                </tr>
+                <tr v-if="Contract.Equipments.length == 0">
+                    <td colspan="11" style="text-align:center;border-right:none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!-- 合同 -->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">
+                        合同详细信息
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">系统编号</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.OID}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">项目编号</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.ProjectNum}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th  width="189px">合同编号</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.ContractNum}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">金额(元)</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.Amount}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">名称</th>
+                    <td colspan="4">
+                        <label class="tdReadOnly">{{Contract.Name}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">类型</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.Type.Name}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">供应商</th>
+                    <td width="289px">
+                        <label class="tdReadOnly">{{Contract.Supplier.Name}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">起止日期</th>
+                    <td colspan="4">
+                        <label class="tdReadOnly">{{parseAndFormatJsonDate(Contract.StartDate)}}</label>-<label class="tdReadOnly">{{parseAndFormatJsonDate(Contract.EndDate)}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">服务范围</th>
+                    <td colspan="4">
+                        <label class="tdReadOnly">{{Contract.Scope.Name}}<label v-show="Contract.Scope.ID==@BusinessObjects.Domain.ContractInfo.Scopes.Other">——{{Contract.ScopeComments}}</label></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">备注</th>
+                    <td colspan="4">
+                        <label class="tdReadOnly">{{Contract.Comments}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">附件</th>
+                    <td colspan="4">
+                        <input type="text" readonly class="linkFile" id="FileContract" onclick="OpenLocalFile('FileContract')" />
+                        <input type="hidden" id="FileContractID" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+    <!--零件详细信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">
+                        零件
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:100px;">描述</th>
+                    <th style="min-width:100px;">设备系统编号</th>
+                    <th style="min-width:100px;">设备资产编号</th>
+                    <th style="min-width:100px;">关联设备名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="component in Contract.Components">
+                    <td>{{component.Component.Name}}</td>
+                    <td>{{component.Component.Description}}</td>
+                    <td>{{component.Equipment.OID}}</td>
+                    <td>{{component.Equipment.AssetCode}}</td>
+                    <td>{{component.Equipment.Name}}</td>
+                </tr>
+                <tr v-if="Contract.Components.length == 0">
+                    <td colspan="11" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--耗材详细信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="6" class="tblName">
+                        耗材
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:100px;">描述</th>
+                    <th style="min-width:100px;">设备系统编号</th>
+                    <th style="min-width:100px;">设备资产编号</th>
+                    <th style="min-width:100px;">关联设备名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="consumable in Contract.Consumables">
+                    <td>{{consumable.Consumable.Name}}</td>
+                    <td>{{consumable.Consumable.Description}}</td>
+                    <td>{{consumable.Equipment.OID}}</td>
+                    <td>{{consumable.Equipment.AssetCode}}</td>
+                    <td>{{consumable.Equipment.Name}}</td>
+                </tr>
+                <tr v-if="Contract.Consumables.length == 0">
+                    <td colspan="11" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%;width: 800px;">
+        <tr>
+            <td><button class="btn btn-info" onclick="Back()"><span>返回</span></button></td>
+        </tr>
+    </table>
+</div>
+@{ Html.RenderPartial("Supplier_Selection"); }
+@{ Html.RenderPartial("SelectEquipmentDialog"); }
+<script>
+    var contractVue = new Vue({
+        el: "#contractVue",
+        data: {
+            Contract: {
+                Equipment: {
+                    AssetLevel: {},
+                    Manufacturer:{},
+                    Department: {},
+                    ContractScope: {}
+                },
+                Equipments:[],
+                Type:{ID:'@ContractTypes[0].ID'},
+                Scope: { ID: '@ContractScope[0].ID' },
+                Supplier:{},
+                ContractFile:{
+                    ID:0,
+                    ObjectID:Number(@ViewBag.ID),
+                    ObjectName:"Contract",
+                    FileName:"",
+                    FileContent:"",
+                    FileType:Number(@ServiceContract)
+                },
+                Components: [],
+                Consumables: [],
+                StartDate:"",
+                EndDate:""
+            },
+        }
+    })    
+</script>
+<script>
+    $(function () {
+        if ('@ViewBag.ID' > 0) {
+            GetContract();
+        }
+    })
+
+    //获取合同信息
+    function GetContract() {
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("GetContractByID", "Contract")"+"?" + $.param({ ID: Number(@ViewBag.ID) }),
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    contractVue.Contract = response.Data;
+                    $("#FileContract").val(contractVue.Contract.ContractFile.FileName);
+                    $("#FileContractID").val(contractVue.Contract.ContractFile.ID);
+                    $("#startDate").val(parseAndFormatJsonDate(contractVue.Contract.StartDate));
+                    $("#endDate").val(parseAndFormatJsonDate(contractVue.Contract.EndDate));
+
+                }
+            }
+        )
+    }
+
+    //获取设备信息
+    function GetEquipment(id) {
+        SetPageWaiting(true);
+        $.get("@Url.Action("GetEquipmentByID", "Equipment")"+"?" + $.param({ id: id}),
+            function (response) {
+                SetPageWaiting(false);
+                contractVue.Contract.Equipment = response.Data;
+            }
+    )}
+
+    function UploadFile(fileType, fileElementId) {
+        PreviewUploadFile('@BusinessObjects.Domain.ObjectTypes.Contract', Number(contractVue.Contract.ID), fileType,'', fileElementId,singleFileUpload);
+    }
+
+    function OpenLocalFile(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DownloadFile('@BusinessObjects.Domain.ObjectTypes.Contract', $("#" + fieldElementId + "ID").val());
+    }
+
+    function DeleteUploadFileData(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DeleteUploadFile('@BusinessObjects.Domain.ObjectTypes.Contract', fieldElementId,$("#"+fieldElementId+"ID").val(),singleFileDelete);
+    }
+
+    function singleFileUpload(fileElementId,id){
+        $("#"+fileElementId+"ID").val(id);
+    }
+
+    function singleFileDelete(fileElementId) {
+        $("input[id *=" + fileElementId + "]").val("");
+    }
+
+    function callback(objectVue){
+        contractVue.Contract.Supplier=objectVue
+    }
+
+    function Back() {
+        window.location = "@Url.Action("ContractList","Contract")";
+    }
+</script>

@@ -1,0 +1,687 @@
+2020-05-12 08:34:00.6829 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitContractDetail', Arguments: AuditDetailInfo = BusinessObjects.Domain.AuditDetailInfo 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 199
+2020-05-12 08:34:00.7978 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1265 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 79
+2020-05-12 08:34:00.8438 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 83
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 105
+2020-05-12 08:34:06.0955 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitContractDetail', Arguments: AuditDetailInfo = BusinessObjects.Domain.AuditDetailInfo 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 199
+2020-05-12 08:34:06.1435 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1265 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 79
+2020-05-12 08:34:06.1895 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 83
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 105
+2020-05-12 08:34:33.5464 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitContractDetail', Arguments: AuditDetailInfo = BusinessObjects.Domain.AuditDetailInfo 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 199
+2020-05-12 08:34:33.6194 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1265 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 79
+2020-05-12 08:34:45.2462 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitContractDetail(AuditDetailInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 208
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 83
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 105
+2020-05-12 08:39:31.4942 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 145
+2020-05-12 08:39:31.5452 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditManager', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 59
+2020-05-12 08:39:31.5891 ERROR Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 67
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.QuerySysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 72
+2020-05-12 08:39:34.3344 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 145
+2020-05-12 08:39:34.3794 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditManager', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 59
+2020-05-12 08:39:34.4234 ERROR Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 67
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.QuerySysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 72
+2020-05-12 08:40:35.5304 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 145
+2020-05-12 08:40:35.6053 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditManager', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 59
+2020-05-12 08:40:46.7734 ERROR Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 67
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.QuerySysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 72
+2020-05-12 08:43:02.1807 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 145
+2020-05-12 08:43:02.2307 ERROR Exception: 'Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified.' happened in Class 'AuditManager', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 59
+2020-05-12 08:43:02.2786 ERROR Invalid column name 'AuditID'.
+ORDER BY items must appear in the select list if SELECT DISTINCT is specified. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 155
+   在 BusinessObjects.Manager.AuditManager.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 67
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.QuerySysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 72
+2020-05-12 09:35:24.8729 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:35:24.9268 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:35:24.9718 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:35:46.3365 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:35:46.4065 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:36:54.9409 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:36:54.9828 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:36:55.0338 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:38:52.9665 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:38:53.0125 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:38:53.0534 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:40:42.3095 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:40:42.3755 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:41:40.4354 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:48:53.3344 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:48:53.4154 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:49:11.7999 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:50:19.6158 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:50:19.6837 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:50:32.7706 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 09:50:52.4154 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 09:50:52.4853 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 09:50:55.6244 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 10:03:49.7628 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 10:03:49.8977 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 10:03:49.9426 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 125
+2020-05-12 10:20:01.8176 ERROR Exception: 'Must declare the scalar variable "@FilterTextORDER".
+Invalid usage of the option NEXT in the FETCH statement.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 162
+2020-05-12 10:20:01.8875 ERROR Must declare the scalar variable "@FilterTextORDER".
+Invalid usage of the option NEXT in the FETCH statement. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 172
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.QuerySysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 92
+2020-05-12 10:21:28.5311 ERROR Exception: 'Must declare the scalar variable "@FilterTextORDER".
+Invalid usage of the option NEXT in the FETCH statement.' happened in Class 'AuditDao', Method 'QuerySysAuditLogs', Arguments: 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 69
+   在 BusinessObjects.DataAccess.AuditDao.QuerySysAuditLogs(Int32 objectTypeID, String filterField, String filterText, String sortField, Boolean sortDirection, DateTime startDate, DateTime endDate, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\AuditDao.cs:行号 162
+2020-05-12 11:15:24.7104 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 11:15:24.8243 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 11:15:24.8703 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 11:15:32.1568 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 11:15:32.2057 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1323 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 11:15:32.2607 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 13:44:45.7788 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1328 
+    在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+2020-05-12 13:44:45.8578 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 13:45:41.9070 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 76
+2020-05-12 13:45:41.9620 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1328 
+    在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 53
+2020-05-12 13:45:42.0160 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 161
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 58
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 13:47:15.3539 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1328 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+2020-05-12 13:47:15.3979 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 13:47:21.1194 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'GetAuditInfo', Arguments: Int32 = 1328 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+2020-05-12 13:47:26.1462 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj)
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos)
+   在 BusinessObjects.Manager.AuditManager.GetAuditInfo(Int32 auditID)
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.GetSysAuditLog(Int32 id) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 134
+2020-05-12 14:26:39.2686 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 88
+2020-05-12 14:26:39.3786 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'ExportAuditDetailList', Arguments: Int32 = -1, String = u.LoginID, String = , String = h.UpdateDate, Boolean = False, DateTime = 2020/5/12 0:00:00, DateTime = 2020/5/12 0:00:00 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 173
+   在 BusinessObjects.Manager.AuditManager.ExportAuditDetailList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 49
+2020-05-12 14:26:39.4225 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 173
+   在 BusinessObjects.Manager.AuditManager.ExportAuditDetailList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 55
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.ExportSysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 215
+2020-05-12 14:26:42.6555 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'InitEquipmentDetail', Arguments: List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.AuditDetailInfo] 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 88
+2020-05-12 14:26:42.7035 ERROR Exception: '输入字符串的格式不正确。' happened in Class 'AuditManager', Method 'ExportAuditDetailList', Arguments: Int32 = -1, String = u.LoginID, String = , String = h.UpdateDate, Boolean = False, DateTime = 2020/5/12 0:00:00, DateTime = 2020/5/12 0:00:00 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 173
+   在 BusinessObjects.Manager.AuditManager.ExportAuditDetailList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 49
+2020-05-12 14:26:42.7465 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 40
+   在 BusinessObjects.Manager.AuditManager.InitEquipmentDetail(List`1 infos) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 173
+   在 BusinessObjects.Manager.AuditManager.ExportAuditDetailList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\AuditManager.cs:行号 55
+   在 MedicalEquipmentHostingSystem.Controllers.AuditController.ExportSysAuditLogList(Int32 objectTypeID, String filterField, String filterText, String field, Boolean direction, DateTime startDate, DateTime endDate) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\AuditController.cs:行号 215

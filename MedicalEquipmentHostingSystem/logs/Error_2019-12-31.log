@@ -1,0 +1,83 @@
+2019-12-31 13:03:06.2525 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'GetEquipmentCount', Arguments: Int32 = 8, Int32 = 0, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 291
+2019-12-31 13:03:06.3339 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'EquipmentCountReport', Arguments: Int32 = 8, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 300
+2019-12-31 13:03:06.3782 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 303
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.EquipmentCountReport(Int32 type, Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 226
+2019-12-31 13:03:11.2947 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'GetEquipmentCount', Arguments: Int32 = 8, Int32 = 0, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 291
+2019-12-31 13:03:11.3412 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'EquipmentCountReport', Arguments: Int32 = 8, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 300
+2019-12-31 13:03:11.3852 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 303
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.EquipmentCountReport(Int32 type, Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 226
+2019-12-31 13:03:18.3327 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'GetEquipmentCount', Arguments: Int32 = 8, Int32 = 0, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 291
+2019-12-31 13:03:18.3764 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'EquipmentCountReport', Arguments: Int32 = 8, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 300
+2019-12-31 13:03:18.4214 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 303
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.EquipmentCountReport(Int32 type, Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 226
+2019-12-31 13:04:42.9735 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'GetEquipmentCount', Arguments: Int32 = 8, Int32 = 0, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 291
+2019-12-31 13:04:43.0425 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'EquipmentCountReport', Arguments: Int32 = 8, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 300
+2019-12-31 13:05:19.4536 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'GetEquipmentCount', Arguments: Int32 = 8, Int32 = 0, Int32 = 0 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 291
+2019-12-31 13:05:19.4977 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'EquipmentCountReport', Arguments: Int32 = 8, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 300
+2019-12-31 13:05:19.5443 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.GetEquipmentCount(Int32 type, Int32 year, Int32 month) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 297
+   在 BusinessObjects.Manager.ReportManager.EquipmentCountReport(Int32 type, Int32 year, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 303
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.EquipmentCountReport(Int32 type, Int32 year) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 226

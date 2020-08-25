@@ -1,0 +1,488 @@
+﻿
+@{
+    ViewBag.Title = "RequestList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    int type = ViewBag.RequestType;
+    int urgency = ViewBag.Urgency;
+    string isRecall = (ViewBag.IsRecall).ToString().ToLower();
+    string overDue = (ViewBag.OverDue).ToString().ToLower();
+    int status = ViewBag.Status;
+    int source = ViewBag.Source;
+
+    List<BusinessObjects.Domain.KeyValueInfo> RequestStatus = BusinessObjects.Manager.LookupManager.GetRequestStatus();
+    List<BusinessObjects.Domain.KeyValueInfo> RequestTypes = BusinessObjects.Manager.LookupManager.GetRequestTypes();
+    List<BusinessObjects.Domain.KeyValueInfo> Urgency = BusinessObjects.Manager.LookupManager.GetUrgency();
+    List<BusinessObjects.Domain.KeyValueInfo> Source = BusinessObjects.Domain.RequestInfo.Sources.GetSource();
+    List<BusinessObjects.Domain.DepartmentInfo> Departments = BusinessObjects.Manager.LookupManager.GetDepartments();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+
+<div id="RequestList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">客户请求列表</td>
+            <td>
+                <table cellspacing="0">
+                    <tr></tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model="Filter.Status" v-on:change="QueryRequestList()" style="width:105px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in RequestStatus)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                    <option value="98">待派工</option>
+                                </select>
+                            </td>
+                            <td>
+                                类型:
+                                <select v-model="Filter.RequestType" v-on:change="QueryRequestList()" style="width:105px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in RequestTypes)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                召回:
+                                <input type="checkbox" v-model="Filter.IsRecall" v-on:change="QueryRequestList()">
+                            </td>
+                            <td>
+                                科室:
+                                <input type="text" id="Department" v-model.trim="Filter.Department.Name" onfocus="autoCompleteDepartments(RequestVue.Filter)" maxlength="100" onkeydown="DoQuery()" style="width:100px;" />
+                            </td>
+                            <td>
+                                请求来源:
+                                <select v-model="Filter.Source" @@change="QueryRequestList()" style="width:105px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in Source)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                紧急程度:
+                                <select v-model="Filter.Urgency" v-on:change="QueryRequestList()" style="width:80px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in Urgency)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                超期:
+                                <input type="checkbox" v-model="Filter.OverDue" v-on:change="QueryRequestList()">
+                            </td>
+                            <td style="width:400px;">
+                                请求日期：<input type="text" id="startDate" class="datePicker" value="@DateTime.Today.AddYears(-1).ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" onchange="QueryRequestList()" placeholder="YYYY-MM-DD" style="width:150px;" /> - <input type="text" id="endDate" class="datePicker" value="@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" onchange="QueryRequestList()" placeholder="YYYY-MM-DD" style="width:150px;" />
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField" style="width:110px;">
+                                    <option value="r.ID">请求编号</option>
+                                    <option value="e.ID">设备系统编号</option>
+                                    <option value="e.Name">设备名称</option>
+                                    <option value="r.RequestUserName">请求人</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:100px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm" onclick="QueryRequestList()">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table " cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px" class="sortColumn" id="r.ID" onclick="sortRequestList(this)">请求编号</th>
+                <th style="min-width:100px" id="j.EquipmentID">设备系统编号</th>
+                <th style="min-width:200px">设备名称</th>
+                <th style="min-width:100px">科室</th>
+                <th style="min-width:100px">请求人</th>
+                <th style="min-width:100px" class="sortColumn" id="r.RequestDate" onclick="sortRequestList(this)">请求日期</th>
+                <th style="min-width:100px">择期日期</th>
+                <th style="min-width:80px">请求来源</th>
+                <th style="min-width:80px">类型</th>
+                <th style="min-width:80px">状态</th>
+                <th style="min-width:80px" class="text-center">派工单</th>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="min-width:80px" class="text-center">操作</th>
+                }                
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="requestInfo in RequestList">
+                <td class="linkFile cursor" v-on:click="btnRequest(requestInfo.ID,requestInfo.RequestType.ID,requestInfo.Status.ID)">{{requestInfo.OID}}</td>
+                <td>{{requestInfo.EquipmentOID}}</td>
+                <td v-bind:class="requestInfo.EquipmentID > 0 ? 'linkFile cursor' : ''" v-on:click="btnTimeLine(requestInfo.EquipmentID)">{{requestInfo.EquipmentName}}</td>
+                <td>{{(requestInfo.Equipments == null || requestInfo.Equipments.length == 0)?"":requestInfo.Equipments[0].Department.Name}}</td>
+                <td>{{requestInfo.RequestUser.Name}}</td>
+                <td>{{parseAndFormatJsonDate(requestInfo.RequestDate)}}</td>
+                <td>{{parseAndFormatJsonDate(requestInfo.SelectiveDate)}}</td>
+                <td>{{requestInfo.Source.Name}}</td>
+                <td>{{requestInfo.RequestType.Name}}</td>
+                <td>{{requestInfo.Status.Name}}</td>
+                <td class="text-center cursor" v-on:click="historyDispatch(requestInfo.ID)"><img src="~/Content/img/paigongList.png" class="icon-sm" /></td>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td style="white-space:nowrap;" class="text-center" v-if="requestInfo.Status.ID != @BusinessObjects.Domain.RequestInfo.Statuses.Cancelled && requestInfo.Status.ID != @BusinessObjects.Domain.RequestInfo.Statuses.Close">
+                        <button class="btn btn-outline-info btn-sm" v-on:click="btnRequestDispatch(requestInfo.ID,requestInfo.RequestType.ID)" style="width:65px;text-align:center;">派工</button>
+                        <button class="btn btn-outline-info btn-sm" v-on:click="btnRequestSelective(requestInfo.ID,requestInfo.RequestType.ID)" style="width:65px;text-align:center;">择期</button>
+                    </td>
+					<td v-else class="text-center">
+                        <button class="btn btn-outline-info btn-sm" v-on:click="btnRequest(requestInfo.ID,requestInfo.RequestType.ID,requestInfo.Status.ID)" style="width:65px;text-align:center;">查看</button>
+                    </td>
+                }
+                
+            </tr>
+            <tr v-if="RequestList.length == 0">
+                <td colspan="12" style="text-align:center">暂无数据</td>
+            </tr>
+            <tr>
+                <td>
+                    @if (@user.Role.ID != @BusinessObjects.Domain.UserRole.SuperUser && @user.Role.ID != @BusinessObjects.Domain.UserRole.SystemAdmin)
+                    {
+                        <button class="btn btn-info btn-sm" v-on:click="btnAddRequest()">新建请求</button>
+                    }
+                </td>
+                <td colspan="12" style="padding:5px;">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="ui-dialog-content ui-widget-content" id="dialog-form-Add" tabindex="-1" style="display:none">
+        <table cellspacing="7" cellpadding="0">
+            <tr>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Repair" v-on:click="addRequest" style="width:80px;text-align:center;">维&nbsp;&nbsp;&nbsp;修</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">保&nbsp;&nbsp;&nbsp;&nbsp;养</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">巡&nbsp;&nbsp;&nbsp;检</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">强&nbsp;&nbsp;&nbsp;&nbsp;检</button></td>
+            </tr>
+            <tr>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Correcting" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">校&nbsp;&nbsp;&nbsp;&nbsp;准</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.AddEquipment" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">设备新增</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Others" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">其它服务</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.AdverseEvent" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">不良事件</button></td>
+            </tr>
+        </table>
+        </br>
+        <div class="header">
+            <span class="line"></span>
+            <span class="text">生命周期</span>
+            <span class="line"></span>
+        </div>
+        <table cellspacing="7" cellpadding="0">
+            <tr>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.ContractArchives" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">合同档案</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Accetance" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">验收安装</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Allocation" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">调&nbsp;&nbsp;&nbsp;&nbsp;拨</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Borrow" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">借&nbsp;&nbsp;&nbsp;&nbsp;用</button></td>
+            </tr>
+            <tr>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Inventory" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">盘&nbsp;&nbsp;&nbsp;&nbsp;点</button></td>
+                <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@BusinessObjects.Domain.RequestInfo.RequestTypes.Scrap" v-model="RequestTypeID" v-on:click="addRequest" style="width:80px;text-align:center;">报&nbsp;&nbsp;&nbsp;&nbsp;废</button></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    //RequestList导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload('@Url.Action("ExportRequestsList", "Request")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "post",
+                data: json
+            });
+    }
+
+    function Refresh() {
+       RequestVue.Filter = {
+           Status: 0,
+           RequestType: 0,
+           Department: {ID: -1},
+           Urgency: 0,
+           Source:0,
+           OverDue: false,
+           IsRecall:false,
+           FilterField: 'r.ID',
+           FilterText: '',
+           CurrentPage: 1,
+           PageSize: 10,
+           SortObject: {
+               Field: 'init',
+               Direction: true,
+           }
+       }
+       $("#startDate").val('@DateTime.Today.AddMonths(-1).ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)');
+       $("#endDate").val('@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)');
+       DisplaySortIcon(RequestVue.Filter.SortObject);
+       QueryRequestList();
+    }
+</script>
+<script>
+    function sortRequestList(item) {
+        UpdateSortIcon(item, RequestVue.Filter.SortObject)
+        QueryRequestList();
+    }
+
+    function PageClick(pageclickednumber) {
+        RequestVue.Filter.CurrentPage = pageclickednumber;
+        QueryRequestList();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13)// Entry event
+            QueryRequestList();
+    }
+    function changeCurNum_pager() {
+        RequestVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryRequestList();
+    }
+</script>
+<script>
+    function InitQueryFilter(){
+        var json = {
+            status: RequestVue.Filter.Status,
+            requestType: RequestVue.Filter.RequestType,
+            isRecall: RequestVue.Filter.IsRecall,
+            department: RequestVue.Filter.Department.ID,
+            departmentName: RequestVue.Filter.Department.Name,
+            urgency: RequestVue.Filter.Urgency,
+            source:RequestVue.Filter.Source,
+            overDue: RequestVue.Filter.OverDue,
+            filterField: RequestVue.Filter.FilterField,
+            filterText: RequestVue.Filter.FilterText,
+            currentPage: RequestVue.Filter.CurrentPage,
+            field: RequestVue.Filter.SortObject.Field,
+            direction: RequestVue.Filter.SortObject.Direction,
+            startDate: ($("#startDate").val() == null) ? "" : $("#startDate").val(),
+            endDate: ($("#endDate").val() == null) ? "" : $("#endDate").val(),
+            pageSize: RequestVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('RequestList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            RequestVue.Filter.Status = json.status;
+            RequestVue.Filter.RequestType = json.requestType;
+            RequestVue.Filter.IsRecall=json.isRecall;
+            RequestVue.Filter.Department.ID =json.department;
+            RequestVue.Filter.Department.Name =json.departmentName;
+            RequestVue.Filter.Urgency=json.urgency;
+            RequestVue.Filter.Source = json.source;
+            RequestVue.Filter.OverDue = json.overDue;
+            $("#startDate").val(json.startDate);
+            $("#endDate").val(json.endDate);
+            RequestVue.Filter.FilterField = json.filterField;
+            RequestVue.Filter.FilterText = json.filterText;
+            RequestVue.Filter.SortObject.Field = json.field;
+            RequestVue.Filter.SortObject.Direction = json.direction;
+            RequestVue.Filter.CurrentPage = json.currentPage;
+            RequestVue.Filter.PageSize = json.pageSize;
+        }
+        localStorage.removeItem('RequestList_Filter');
+
+        var startDate = localStorage.getItem('RequestList_StartDate');
+        if (startDate) {
+            $("#startDate").val(JSON.parse(startDate));
+        }
+        
+    }
+
+    function SaveFilterParameters(json) {
+        localStorage.setItem('RequestList_Filter', JSON.stringify(json));
+        localStorage.setItem('RequestList_StartDate', JSON.stringify(json.startDate));
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitDate();
+        InitForm();
+        InitFilterParameters();
+        autoCompleteDepartments(RequestVue.Filter);
+        DisplaySortIcon(RequestVue.Filter.SortObject);
+        if ('@ViewBag.EquipmentId' != 0) {
+            RequestVue.Filter.FilterField = "e.ID";
+            RequestVue.Filter.FilterText = '@ViewBag.EquipmentId';
+        }
+        if('@ViewBag.startDate' != '')
+            $("#startDate").val('@ViewBag.startDate');
+        if('@ViewBag.endDate' != '')
+            $("#endDate").val('@ViewBag.endDate');
+        if ('@ViewBag.IsDemo' == 'True')
+            $("#startDate").val('2019-01-01');
+        QueryRequestList();
+    })
+
+    function QueryRequestList() {
+        if (CheckDate() == false) return;
+        var json = InitQueryFilter();
+        if (json.departmentName == '') json.department = -1
+        $.get('@Url.Action("QueryRequestList","Request")', json, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                RequestVue.RequestList = response.Data;
+                RequestVue.Filter.CurrentPage = SetTotalPage4Pager(RequestVue.Filter.CurrentPage, response.TotalPages);
+                localStorage.setItem('RequestList_StartDate', JSON.stringify(json.startDate));
+                $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+            }
+        })
+    }
+    //查询时判断filter筛选条件
+    function CheckDate(){
+        if (CheckDatePicker("startDate", "请求开始日期") != "") {
+            jAlert(CheckDatePicker("startDate", "请求开始日期"),"警告",function(){
+                Refresh();
+            });
+            return false;
+        }
+        if (CheckDatePicker("endDate", "请求结束日期") != ""){
+            jAlert(CheckDatePicker("endDate", "请求结束日期"),"警告",function(){
+                Refresh();
+            });
+            return false;
+        } 
+        if((new Date($("#startDate").val().replace(/-/g,"\/"))) > (new Date($("#endDate").val().replace(/-/g,"\/")))){
+            jAlert("请求开始日期必须小于请求结束日期", "警告",function(){
+                Refresh();
+            });
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<script>
+    function InitForm() {
+        var dialog = $("#dialog-form-Add").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 600,
+            modal: true,
+            resizable: false,
+        });
+    }
+    function InitDate() {
+        var dateFields = $([]).add($("#startDate")).add($("#endDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+
+    function btnAddRequest() {
+        $("#dialog-form-Add").dialog({ title: "新建请求" });
+        $("#dialog-form-Add").dialog("open");
+
+    }
+    function btnRequest(id, requestType, requestStatus) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("RequestDetail","Request")' + '?' + $.param({ id: id, actionName: 'RequestList', requestType: requestType, requestStatus: requestStatus });
+    }
+    function historyDispatch(requestID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("RequestToDispatch", "Dispatch")' + '?' + $.param({ requestID: requestID });
+    }
+    function btnRequestDispatch(id, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("RequestDispatch", "Request")' + '?' + $.param({ id: id, actionName: 'RequestList',requestType: requestType });
+    }
+    function btnRequestSelective(id, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("RequestSelective", "Request")' + '?' + $.param({ id: id, actionName: 'RequestList', requestType: requestType });
+    }
+    function btnTimeLine(id) {
+        if (id > 0){
+            var json = InitQueryFilter();
+            SaveFilterParameters(json);
+            window.open('@Url.Action("EquipmentTimeLine", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' }));
+        }
+    }
+</script>
+<script>
+    var RequestVue = new Vue({
+        el: "#RequestList",
+        data: {
+            RequestList: [],
+            Filter: {
+                Status: '@status',
+                RequestType: '@type',
+                IsRecall: @isRecall,
+                Department: {
+                    ID: -1,
+                    Name: ''
+                },
+                Urgency: '@urgency',
+                Source:'@source',
+                OverDue: @overDue,
+                FilterField: 'r.ID',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize:10,
+                SortObject: {
+                    Field: 'init',
+                    Direction: true,
+                }
+            },
+            RequestTypeID: -1,
+        },
+        methods: {
+            addRequest: function (event) {
+                var e = event.target;
+                var status = e.value;
+                window.location = '@Url.Action("RequestDetail","Request")' + '?' + $.param({ id: 0, actionName: 'RequestList', requestType: status, requestStatus: 0 });
+            }
+        }
+    })
+</script>

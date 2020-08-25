@@ -1,0 +1,250 @@
+﻿@{
+    ViewBag.title = "InvServiceList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> ServiceStatus = BusinessObjects.Domain.InvServiceInfo.Statuses.GetStatuses();
+}
+
+<div id="InvserviceList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">服务库</td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model.trim="Filter.StatusID" v-on:change="QueryService()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in ServiceStatus)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model.trim="Filter.FilterField">
+                                    <option value="se.ID">系统编号</option>
+                                    <option value="se.Name">服务名称</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <a href="#"><img src="~/Content/img/search.png" class="icon-sm" onclick="QueryService()" /></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;" class="sortColumn" id="se.ID" onclick="SortServices(this)">系统编号</th>
+                <th style="min-width:100px;">服务名称</th>
+                <th style="min-width:100px;">关联富士II类</th>
+                <th style="min-width:100px;">供应商</th>
+                <th style="min-width:80px;">服务次数</th>
+                <th style="min-width:100px;">开始日期</th>
+                <th style="min-width:100px;">结束日期</th>
+                <th style="min-width:50px;">金额</th>
+                <th style="min-width:120px;">剩余服务次数</th>
+                <th style="min-width:120px;">采购单号</th>
+                <th style="min-width:80px;">状态</th>
+                <th style="min-width:50px;" class="tdListCenter">编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="InvServiceList.length == 0">
+                <td colspan="13" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="Invservice in InvServiceList" v-else>
+                <td>{{Invservice.OID}}</td>
+                <td>{{Invservice.Name}}</td>
+                <td>{{Invservice.FujiClass2.Name}}</td>
+                <td>{{Invservice.Supplier.Name}}</td>
+                <td>{{Invservice.TotalTimes}}</td>
+                <td>{{parseAndFormatJsonDate(Invservice.StartDate)}}</td>
+                <td>{{parseAndFormatJsonDate(Invservice.EndDate)}}</td>
+                <td>{{Invservice.Price}}</td>
+                <td>{{Invservice.AvaibleTimes}}</td>
+                <td>{{Invservice.Purchase.ID== 0 ? "" : Invservice.Purchase.Name}}</td>
+                <td>{{Invservice.Status}}</td>
+                <td class="tdListCenter"><img src="~/Content/img/edit.png" class="cursor icon-sm" v-on:click="GotoServiceDetail(Invservice.ID) " /></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" onclick="GotoServiceDetail(0)"> 新增服务</button>
+                    </div>
+                </td>
+                <td colspan="10">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        
+                        <div id="pagerService" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var InvserviceVue = new Vue({
+        el: "#InvserviceList",
+        data: {
+            InvServiceList: [],
+            Filter: {
+                StatusID: 0,
+                FilterField: "se.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                SortObject: { Field: "se.ID", Direction: true },
+                PageSize: 10
+            }
+        }
+    })
+</script>
+
+<!--local storage-->
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: InvserviceVue.Filter.CurrentPage,
+            statusID: InvserviceVue.Filter.StatusID,
+            filterField: InvserviceVue.Filter.FilterField,
+            filterText: InvserviceVue.Filter.FilterText,
+            sortField: InvserviceVue.Filter.SortObject.Field,
+            sortDirection: InvserviceVue.Filter.SortObject.Direction,
+            pageSize: InvserviceVue.Filter.PageSize
+        }
+        return json;
+    }
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('InvServiceList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            InvserviceVue.Filter.StatusID = json.statusID;
+            InvserviceVue.Filter.FilterField = json.filterField;
+            InvserviceVue.Filter.FilterText = json.filterText;
+            InvserviceVue.Filter.SortObject.Field = json.sortField;
+            InvserviceVue.Filter.SortObject.Direction = json.sortDirection;
+            InvserviceVue.Filter.CurrentPage = json.currentPage;
+            InvserviceVue.Filter.PageSize = json.pageSize;
+            localStorage.removeItem('InvServiceList_Filter');
+        }
+    }
+
+    //保存筛选条件至缓存中
+    function SaveFilterParameters(json) {
+        localStorage.setItem('InvServiceList_Filter', JSON.stringify(json));
+    }
+    //导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportServices", "InvService")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+    //刷新
+    function Refresh() {
+        InvserviceVue.Filter = {
+
+            StatusID: 0,
+            FilterField: "se.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            SortObject: { Field: "se.ID", Direction: true },
+            PageSize: 10,
+        }
+        DisplaySortIcon(InvserviceVue.Filter.SortObject);
+        QueryService();
+    }
+
+</script>
+<script>
+    //回车搜索
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryService();
+        }
+    }
+    //点击页码
+    function PageClickService(pageclickednumber) {
+        InvserviceVue.Filter.CurrentPage = pageclickednumber;
+        QueryService();
+    }
+    function changeCurNum_pagerService() {
+        InvserviceVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryService();
+    }
+</script>
+<script>
+    //进入页面需要执行的操作
+    $().ready(function () {
+        InitFilterParameters();
+        DisplaySortIcon(InvserviceVue.Filter.SortObject);
+        setTimeout(QueryService(), 100);
+    })
+
+
+    //获取服务列表信息
+    function QueryService() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryServiceList", "InvService")', json,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    InvserviceVue.InvServiceList = response.Data;
+                    InvserviceVue.Filter.CurrentPage = SetTotalPage4Pager(InvserviceVue.Filter.CurrentPage, response.TotalPages, "pagerService", PageClickService);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+
+                }
+            })
+    }
+</script>
+
+<!--排序-->
+<script>
+    function SortServices(item) {
+        UpdateSortIcon(item, InvserviceVue.Filter.SortObject);
+        QueryService();
+    }
+</script>
+<script>
+    //合同新增页面
+    function GotoServiceDetail(serviceID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("InvServiceDetail", "InvService")" + "?" + $.param({ serviceID: serviceID })
+    }
+</script>

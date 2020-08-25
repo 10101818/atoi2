@@ -1,0 +1,101 @@
+2020-08-17 09:38:17.3371 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 79).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitEquipments', Arguments: Int32 = 79 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 208
+2020-08-17 09:38:17.5779 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 79).
+The statement has been terminated.' happened in Class 'ValuationManager', Method 'GetValControlInfo', Arguments: Int32 = 79 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 210
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 64
+2020-08-17 09:38:17.6329 ERROR Violation of PRIMARY KEY constraint 'PK_tblValEquipment'. Cannot insert duplicate key in object 'dbo.tblValEquipment'. The duplicate key value is (1, 1, 79).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitEquipments(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 210
+   在 BusinessObjects.Manager.ValuationManager.GetValControlInfo(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 71
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetValControl() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 167
+2020-08-17 13:27:25.6798 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: Int32 = 2, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 410
+2020-08-17 13:27:26.0337 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 2 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 313
+2020-08-17 13:27:26.2058 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-17 13:27:34.4801 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: Int32 = 2, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 410
+2020-08-17 13:27:34.5401 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 2 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 313
+2020-08-17 13:27:34.6860 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-17 13:29:08.8488 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: Int32 = 2, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 410
+2020-08-17 13:29:08.9197 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 2 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 313
+2020-08-17 13:30:24.1894 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: Int32 = 2, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 410
+2020-08-17 13:30:24.2344 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 2 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 313
+2020-08-17 13:30:24.3383 ERROR 给定关键字不在字典中。 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 323
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.RunVal() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 869
+2020-08-17 13:35:03.4107 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'CalculateRepair3partyCostForcast', Arguments: Int32 = 2, DateTime = 2020/8/1 0:00:00, Int32 = 5 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 410
+2020-08-17 13:35:03.4926 ERROR Exception: '给定关键字不在字典中。' happened in Class 'ValuationManager', Method 'RunVal', Arguments: Int32 = 2 
+    在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 BusinessObjects.Manager.ValuationManager.CalculateRepair3partyCostForcast(Int32 userID, DateTime startDate, Int32 years) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 432
+   在 BusinessObjects.Manager.ValuationManager.RunVal(Int32 userID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 313
+2020-08-17 14:18:24.5579 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'CalculateSpareCount', Arguments: DateTime = 2020/8/1 0:00:00, DateTime = 2020/8/31 0:00:00, Double = 50, List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 1060
+2020-08-17 14:18:24.6924 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ValuationManager.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 1066
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 906
+2020-08-17 14:20:47.9345 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'CalculateSpareCount', Arguments: DateTime = 2020/8/1 0:00:00, DateTime = 2020/8/31 0:00:00, Double = 50, List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 1060
+2020-08-17 14:21:21.3231 ERROR Exception: '未将对象引用设置到对象的实例。' happened in Class 'ValuationManager', Method 'CalculateSpareCount', Arguments: DateTime = 2020/8/1 0:00:00, DateTime = 2020/8/31 0:00:00, Double = 50, List`1 = NULL 
+    在 BusinessObjects.Manager.ValuationManager.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 1060
+2020-08-17 14:21:21.3670 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.ValuationManager.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 1066
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.CalculateSpareCount(DateTime startDate, DateTime endDate, Double safeRate, List`1 valSpareList) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 906

@@ -1,0 +1,66 @@
+2020-01-03 15:21:42.4973 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 15:21:51.8524 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 15:25:15.5583 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 15:25:42.9097 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 15:26:05.5791 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 15:27:39.4727 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 114
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 97
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 177
+2020-01-03 16:10:53.2649 ERROR Exception: 'The parameterized query '(@LoginID varchar(8000),@LoginPwd varchar(8000),@Name nvarchar(4' expects the parameter '@LoginID', which was not supplied.' happened in Class 'UserDao', Method 'AddUser', Arguments: UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.UserDao.AddUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\UserDao.cs:行号 193
+2020-01-03 16:10:53.3290 ERROR Exception: 'The parameterized query '(@LoginID varchar(8000),@LoginPwd varchar(8000),@Name nvarchar(4' expects the parameter '@LoginID', which was not supplied.' happened in Class 'UserManager', Method 'SaveUser', Arguments: UserInfo = BusinessObjects.Domain.UserInfo 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.UserDao.AddUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\UserDao.cs:行号 197
+   在 BusinessObjects.Manager.UserManager.SaveUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 51
+2020-01-03 16:10:53.4438 ERROR The parameterized query '(@LoginID varchar(8000),@LoginPwd varchar(8000),@Name nvarchar(4' expects the parameter '@LoginID', which was not supplied. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 BusinessObjects.DataAccess.UserDao.AddUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\UserDao.cs:行号 197
+   在 BusinessObjects.Manager.UserManager.SaveUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\UserManager.cs:行号 54
+   在 MedicalEquipmentHostingSystem.Controllers.UserController.SaveUser(UserInfo info) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\UserController.cs:行号 103

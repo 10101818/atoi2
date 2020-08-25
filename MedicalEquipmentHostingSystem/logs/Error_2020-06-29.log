@@ -1,0 +1,72 @@
+2020-06-29 11:32:14.6495 ERROR Exception: '该字符串未被识别为有效的 DateTime。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   在 System.Convert.ToDateTime(String value, IFormatProvider provider)
+   在 System.String.System.IConvertible.ToDateTime(IFormatProvider provider)
+   在 System.Convert.ToDateTime(Object value)
+   在 BusinessObjects.Util.SQLUtil.ConvertDateTime(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 86
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 115
+2020-06-29 11:32:14.7520 ERROR 该字符串未被识别为有效的 DateTime。 
+    在 System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   在 System.Convert.ToDateTime(String value, IFormatProvider provider)
+   在 System.String.System.IConvertible.ToDateTime(IFormatProvider provider)
+   在 System.Convert.ToDateTime(Object value)
+   在 BusinessObjects.Util.SQLUtil.ConvertDateTime(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 86
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 173
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 412
+2020-06-29 11:32:49.6013 ERROR Exception: '该字符串未被识别为有效的 DateTime。' happened in Class 'ValuationManager', Method 'ParseImportFile', Arguments: Byte[] = System.Byte[], String = , List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo], List`1 = System.Collections.Generic.List`1[BusinessObjects.Domain.ValEquipmentInfo] 
+    在 System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   在 System.Convert.ToDateTime(String value, IFormatProvider provider)
+   在 System.String.System.IConvertible.ToDateTime(IFormatProvider provider)
+   在 System.Convert.ToDateTime(Object value)
+   在 BusinessObjects.Util.SQLUtil.ConvertDateTime(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 86
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 115
+2020-06-29 11:33:01.4843 ERROR 该字符串未被识别为有效的 DateTime。 
+    在 System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   在 System.Convert.ToDateTime(String value, IFormatProvider provider)
+   在 System.String.System.IConvertible.ToDateTime(IFormatProvider provider)
+   在 System.Convert.ToDateTime(Object value)
+   在 BusinessObjects.Util.SQLUtil.ConvertDateTime(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 86
+   在 BusinessObjects.Manager.ValuationManager.ParseImportFile(Byte[] fileBytes, String& message, List`1& insertEquipments, List`1& updateEquipments) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 173
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.ImportValEquipment(String base64String) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 412
+2020-06-29 11:44:48.0820 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValConsumable'. Cannot insert duplicate key in object 'dbo.tblValConsumable'. The duplicate key value is (14).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitConsumables', Arguments: None 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 402
+2020-06-29 11:44:48.2270 ERROR Violation of PRIMARY KEY constraint 'PK_tblValConsumable'. Cannot insert duplicate key in object 'dbo.tblValConsumable'. The duplicate key value is (14).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 404
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.InitValConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 625
+2020-06-29 11:46:57.9880 ERROR Exception: 'Violation of PRIMARY KEY constraint 'PK_tblValConsumable'. Cannot insert duplicate key in object 'dbo.tblValConsumable'. The duplicate key value is (14).
+The statement has been terminated.' happened in Class 'ValuationDao', Method 'InitConsumables', Arguments: None 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 402
+2020-06-29 11:46:58.0479 ERROR Violation of PRIMARY KEY constraint 'PK_tblValConsumable'. Cannot insert duplicate key in object 'dbo.tblValConsumable'. The duplicate key value is (14).
+The statement has been terminated. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 BusinessObjects.DataAccess.ValuationDao.InitConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 404
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.InitValConsumables() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 625

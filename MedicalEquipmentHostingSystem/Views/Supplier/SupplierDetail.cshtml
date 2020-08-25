@@ -1,0 +1,418 @@
+﻿@{
+    ViewBag.Title = "SupplierList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> SupplierType = BusinessObjects.Manager.LookupManager.GetSupplierType();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+<div id="supplierDetailVue" v-cloak class="tblDiv">
+    <div><a class="linkFile backPage" href="#" onclick="back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a></div>
+    <div class="title">
+        @if (@ViewBag.ReadOnly) { 
+        <p>查看供应商信息</p>}
+        else
+        {
+        <p v-if="@ViewBag.ID == 0">新增供应商</p>
+        <p v-else>更新供应商</p>}
+    </div>
+    
+    @if (@ViewBag.ReadOnly)
+    {
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" cellspacing="7" cellpadding="0" frame="void">
+                <tbody>
+                    <tr class="headtr">
+                        <td colspan="3" class="tblName">
+                            供应商基本信息
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>系统编号</th>
+                        <td class="tdReadOnly"><label>{{SupplierMSG.OID}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>名称</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.Name}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>类型</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.SupplierType.Name}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>省份</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.Province}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>电话</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.Mobile}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>地址</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.Address}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>联系人</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.Contact}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>联系人电话</th>
+                        <td class="tdReadOnly"><label class="tdReadOnly">{{SupplierMSG.ContactMobile}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>供应商经营状态</th>
+                        <td class="tdReadOnly"><label name="select" style="width:350px">{{SupplierMSG.IsActive?"启用":"停用"}}</label></td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>许可证</th>
+                        <td class="tdReadOnly">
+                            <input type="text" style="border: none; width: 350px" readonly class="linkFile" id="FileSupplier" onclick="OpenLocalFile('FileSupplier')" />
+                            <input type="hidden" id="FileSupplierID" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>医疗器械经营证书</th>
+                        <td class="tdReadOnly">
+                            <input type="text" style="border: none; width: 350px" readonly class="linkFile" id="FileAttachmentSupplier" onclick="OpenLocalFile('FileAttachmentSupplier')" />
+                            <input type="hidden" id="FileAttachmentSupplierID" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <h5 align="center" id="errorMSG" class="required">&nbsp;</h5>
+        <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%;width: 800px;">
+            <td>
+                <button class="btn btn-info" onclick="back()"><span>返回</span></button>
+            </td>
+
+        </table>
+    }
+    else
+    {
+        <div class="radiusOnly">
+            <table class="tblDetail" border="1" cellspacing="7" cellpadding="0" frame="void">
+                <tbody>
+                    <tr class="headtr">
+                        <td colspan="5" class="tblName">
+                            供应商基本信息
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>系统编号</th>
+                        <td class="tdReadOnly">
+                            <label v-if="@ViewBag.ID == 0">由系统自动生成</label>
+                            <label v-else>{{SupplierMSG.OID}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>名称</th>
+                        <td class="tdReadOnly">
+                            <input type="text" maxlength="50" class="input validate-box" id="Name" v-model="SupplierMSG.Name" style="width:350px" />
+                            <label id="reqName" class="required"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>类型</th>
+                        <td class="tdReadOnly">
+                            <select class="input" id="Type" v-model="SupplierMSG.SupplierType.ID" style="width:350px">
+                                @foreach (var temp in SupplierType)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>省份</th>
+                        <td class="tdReadOnly">
+                            <select class="input" id="Province" style="width:350px" v-model="SupplierMSG.Province">
+                                <option v-for="(temp,index) in ProvinceList">{{temp}}</option>
+                            </select>
+                            <label id="reqProvince" class="required"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>电话</th>
+                        <td class="tdReadOnly">
+                            <input type="text" maxlength="20" class="input" id="Mobile" v-model="SupplierMSG.Mobile" style="width:350px" />
+                            @*<label id="reqMobile" class="required"></label>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>地址</th>
+                        <td class="tdReadOnly">
+                            <input type="text" maxlength="255" class="input" id="Address" v-model="SupplierMSG.Address" style="width:350px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>联系人</th>
+                        <td class="tdReadOnly">
+                            <input type="text" maxlength="20" class="input" id="Contact" v-model="SupplierMSG.Contact" style="width:350px" />
+                            <label id="reqContact" class="required"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>联系人电话</th>
+                        <td class="tdReadOnly">
+                            <input type="text" maxlength="20" class="input" id="ContactMobile" v-model="SupplierMSG.ContactMobile" style="width:350px" />
+                            <label id="reqContactMobile" class="required"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                        <th>供应商经营状态</th>
+                        <td>
+                            <input name="select" type="radio" value="true" v-model="SupplierMSG.IsActive" />启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="select" type="radio" value="false" v-model="SupplierMSG.IsActive" />停用
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>许可证</th>
+                        <td class="tdReadOnly">
+                            <input type="text" class="linkFile cursor" id="FileSupplier" style="width: 350px" readonly="readonly" onclick="OpenLocalFile('FileSupplier')" />
+                            <img class="cursor icon-upload" src="~/Content/img/upload.png" onclick="fileFileSupplier.click()" />
+                            <img class="cursor icon-delete" src="~/Content/img/delete.png" onclick="DeleteUploadFileData('FileSupplier')" />
+                            <input type="file" id="fileFileSupplier" style="display: none; width: 350px" onchange="UploadFile('FileSupplier',@BusinessObjects.Domain.SupplierInfo.FileTypes.ServiceSupplier)">
+                            <input type="hidden" id="FileSupplierPath" />
+                            <input type="hidden" id="FileSupplierID" />
+                            <label id="reqFileSupplier" class="required"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="tdrequired" width="15px"><span class="required"></span></th>
+                        <th>医疗器械经营证书</th>
+                        <td class="tdReadOnly">
+                            <input type="text" class="linkFile cursor" id="FileAttachmentSupplier" style="width: 350px" readonly="readonly" onclick="OpenLocalFile('FileAttachmentSupplier')" />
+                            <img class="cursor icon-upload" src="~/Content/img/upload.png" onclick="fileFileAttachmentSupplier.click()" />
+                            <img class="cursor icon-delete" src="~/Content/img/delete.png" onclick="DeleteUploadFileData('FileAttachmentSupplier')" />
+                            <input type="file" id="fileFileAttachmentSupplier" style="display: none; width: 350px" onchange="UploadFile('FileAttachmentSupplier',@BusinessObjects.Domain.SupplierInfo.FileTypes.SupplierAttachment)">
+                            <input type="hidden" id="FileAttachmentSupplierPath" />
+                            <input type="hidden" id="FileAttachmentSupplierID" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <h5 align="center" id="errorMSG" class="required">&nbsp;</h5>
+        <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%;width: 800px;">
+            <tr>
+                <td><button class="btn btn-info" onclick="saveSupplier()"><span>保存</span></button></td>
+                <td><button class="btn btn-info" onclick="back()"><span>返回</span></button></td>
+            </tr>
+        </table>
+
+    }
+
+</div>
+<script src="~/Content/Scripts/proviceSelect.js"></script>
+<script>
+    var supplierDetailVue = new Vue({
+        el: "#supplierDetailVue",
+        data: {
+            ProvinceList: [],
+            SupplierMSG: {
+                SupplierType: { ID: '1' },
+                IsActive: true,
+                SupplierFile: {
+                    FileName: ""
+                },
+                Province: "北京",
+                Name: "",
+                Contact: "",
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        SupplierDialogForm();
+        ClearRequired();
+        if ('@ViewBag.ID' > 0) { GetSupplierInfo('@ViewBag.ID') }
+    })
+    function SupplierDialogForm() {
+        ClearRequired();
+        $('#FileSupplier').val('');
+        supplierDetailVue.ProvinceList = provinces;
+        supplierDetailVue.SupplierMSG = {
+            SupplierType: {
+                ID: '1',
+                Name: "厂商"
+            },
+            IsActive: true,
+            SupplierFile: {
+                FileName: "",
+                FileContent: ""
+            },
+            Province: "北京",
+            Name: "",
+            Contact: "",
+        }
+    }
+    function ClearRequired() {
+        $("label.required").html("");
+    }
+    function back() {
+        window.location.href = '@Url.Action("SupplierList", "Supplier")';
+    }
+    function GetSupplierInfo(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSupplier", "Supplier")', {
+            id: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info != null && info.SupplierFile == null) {
+                    info.SupplierFile = {};
+                }
+                else if (info != null && info.SupplierFile != null && info.SupplierFile.length > 0) {
+                    $.each(info.SupplierFile, function (idx, info) {
+                        switch(info.FileType){
+                            case @BusinessObjects.Domain.SupplierInfo.FileTypes.ServiceSupplier:
+                                $('#FileSupplier').val(info.FileName);
+                                $('#FileSupplierID').val(info.ID);
+                                break;
+                            case @BusinessObjects.Domain.SupplierInfo.FileTypes.SupplierAttachment:
+                                $('#FileAttachmentSupplier').val(info.FileName);
+                                $('#FileAttachmentSupplierID').val(info.ID);
+                                break;
+                            default:
+                                return false;
+                        }
+                    });
+                }
+                supplierDetailVue.SupplierMSG = info;
+
+            }
+        });
+    }
+    /*添加/修改保存供应商*/
+    function saveSupplier() {
+        if (CheckAddForm() == false) return;
+        var jsonData = supplierDetailVue.SupplierMSG;
+        jsonData.id = supplierDetailVue.ID
+        SetPageWaiting(true)
+        $.post('@Url.Action("SaveSupplier", "Supplier")', jsonData, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                supplierDetailVue.SupplierMSG.ID = response.Data;
+                jAlert("保存成功", "保存", function () {
+                    window.location = "@Url.Action("SupplierDetail", "Supplier")" + '?' + $.param({ id: supplierDetailVue.SupplierMSG.ID,isReadOnly:false });
+                });
+            }
+        })
+    }
+    /*验证必填项是否已填*/
+    function CheckAddForm() {
+        ClearRequired();
+        var IsValid = true;
+        var Name = supplierDetailVue.SupplierMSG.Name.trim();
+        if (Name == null || Name == "") {
+            $("#Name").focus();
+            $("#reqName").html("名称不能为空");
+            IsValid = false;
+        }
+        else if (ajaxCheckSupplierExisted() == true) {
+            IsValid = false;
+        }
+        var Province = supplierDetailVue.SupplierMSG.Province;
+        if (Province == null || Province == "") {
+            $("#reqProvince").html("请选择一个省份");
+            IsValid = false;
+        }
+
+        //var fileSupplierID = $('#FileSupplierID').val();
+        //if (fileSupplierID == null || fileSupplierID == "") {
+        //    $("#reqFileSupplier").html("请上传许可证");
+        //    IsValid = false;
+        //}
+
+        var Contact = supplierDetailVue.SupplierMSG.Contact.trim();
+        if (Contact == null || Contact == "") {
+            $("#reqContact").html("联系人不能为空");
+            IsValid = false;
+        }
+        return IsValid;
+    }
+    /*供应商是否存在*/
+    function ajaxCheckSupplierExisted() {
+        var IsExisted = true;
+        $("#reqName").html("");
+        supplierDetailVue.SupplierMSG.Name = supplierDetailVue.SupplierMSG.Name.trim();
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckSupplierName","Supplier")',
+            data: {
+                Name: supplierDetailVue.SupplierMSG.Name,
+                id: '@ViewBag.ID'
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data == true) {
+                        $("#reqName").html("供应商已存在");
+                        $("#Name").focus();
+                    } else
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+
+            error: function (response) { console.log(response); jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+    //上传附件
+    function UploadFile(fileElementId,fileType) {
+        PreviewUploadFile('@BusinessObjects.Domain.ObjectTypes.Supplier', supplierDetailVue.ID, fileType, "", fileElementId, singleFileUploaded);
+    }
+
+    function singleFileUploaded(elementId, fileId) {
+        $("#" + elementId + "ID").val(fileId);
+    }
+
+    //下载附件
+    function OpenLocalFile(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DownloadFile('@BusinessObjects.Domain.ObjectTypes.Supplier', $("#" + fieldElementId + "ID").val());
+    }
+
+    //删除附件
+    function DeleteUploadFileData(fieldElementId) {
+        if ($("#" + fieldElementId).val() != "")
+            DeleteUploadFile('@BusinessObjects.Domain.ObjectTypes.Supplier', fieldElementId, $("#" + fieldElementId + "ID").val(), DeleteSingleFile);
+    }
+
+    function DeleteSingleFile(fieldElementId) {
+        $("input[id *=" + fieldElementId + "]").val("");
+    }
+</script>

@@ -1,0 +1,471 @@
+﻿
+@{
+    ViewBag.Title = "EquipmentList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> EquipmentStatus = BusinessObjects.Manager.LookupManager.GetEquipmentStatus();
+    List<BusinessObjects.Domain.KeyValueInfo> WarrantyStatus = BusinessObjects.Domain.EquipmentInfo.WarrantyStatuses.GetWarrantyStatuses();
+    List<BusinessObjects.Domain.DepartmentInfo> Departments = BusinessObjects.Manager.LookupManager.GetDepartments();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+<div id="equipmentListVue" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">设备列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td>
+                            <button id="0" class="btn btn-sm btnFilter activeFilter" onclick="QueryEquipmentListByBadge(0,this)"><span class="btnContent">全部</span></button><sup class="btnBadge">{{CountNormal + CountFault}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QueryEquipmentListByBadge(@BusinessObjects.Domain.EquipmentInfo.EquipmentStatuses.Normal,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetEquipmentStatusDesc(@BusinessObjects.Domain.EquipmentInfo.EquipmentStatuses.Normal)</span></button><sup class="btnBadge">{{CountNormal}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter " onclick="QueryEquipmentListByBadge(@BusinessObjects.Domain.EquipmentInfo.EquipmentStatuses.Fault,this)"><span class="btnContent">@BusinessObjects.Manager.LookupManager.GetEquipmentStatusDesc(@BusinessObjects.Domain.EquipmentInfo.EquipmentStatuses.Fault)</span></button><sup class="btnBadge">{{CountFault}}</sup>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                设备状态:
+                                <select v-model="Filter.EquipmentStatus" v-on:change="QueryEquipmentList">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in EquipmentStatus)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                维保状态:
+                                <select v-model="Filter.WarrantyStatus" v-on:change="QueryEquipmentList">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in WarrantyStatus)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                科室:
+                                <input type="text" id="Department" v-model="Filter.Department.Name" onfocus="autoCompleteDepartments(equipmentListVue.Filter)" class="shortInput" style="max-width:120px;" v-on:keyup.enter="QueryEquipmentList" maxlength="100">
+                            </td>
+                            <td>
+                                设备名称:
+                                <input type="text" style="max-width:120px;" class="shortInput" v-model.trim="Filter.FilterTextName" v-on:keyup.enter="QueryEquipmentList" maxlength="30" />
+                            </td>
+                            <td>
+                                停用:
+                                <input type="checkbox" v-model="Filter.UseStatus" v-on:change="QueryEquipmentList()">
+                            </td>
+                            <td>
+                                设备序列号:
+                                <input type="text" style="max-width:100px;" class=" shortInput  " v-model.trim="Filter.FilterTextSerialCode" v-on:keyup.enter="QueryEquipmentList" maxlength="30" />
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="e.ID">系统编号</option>
+                                    <option value="e.AssetCode">资产编号</option>
+                                    <option value="e.EquipmentCode">设备型号</option>
+                                </select>
+                                <input type="text" style="width:150px" v-model.trim="Filter.FilterText" onkeydown="DoQuery()" maxlength="30" /><img src="~/Content/img/search.png" alt="" class="icon-sm cursor" v-on:click="QueryEquipmentList" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;" class="sortColumn cursor" id="e.ID" onclick="SortList(this)">系统编号</th>
+                <th style="min-width:100px;">资产编号</th>
+                <th style="min-width:100px;">序列号</th>
+                <th style="min-width:150px;">设备名称</th>
+                <th style="min-width:180px;">设备型号</th>
+                <th style="min-width:150px;">厂商</th>
+                <th style="min-width:80px;">资产等级</th>
+                <th style="min-width:150px;">使用科室</th>
+                <th style="min-width:80px;">设备状态</th>
+                <th style="min-width:80px;">维保状态</th>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+
+                    <th style="min-width:80px;">编辑</th>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || @user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                {
+                    <th style="min-width:80px;">二维码</th>
+                    <th style="text-align: center; min-width: 100px;">生命周期</th>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="text-align: center; min-width: 80px;">日志</th>
+                }
+            </tr>
+        </thead>
+        <tbody >
+            <tr v-for="equipment in EquipmentList" v-bind:class="equipment.EquipmentStatus.ID == @BusinessObjects.Domain.EquipmentInfo.EquipmentStatuses.Fault ? 'font_color' : ''" >
+                <td><a href="#" class="linkFile" v-on:click="btnViewClicked(equipment.ID)">{{equipment.OID}}</a></td>
+                <td>{{equipment.AssetCode}}</td>
+                <td>{{equipment.SerialCode}}</td>
+                <td>{{equipment.Name}}</td>
+                <td>{{equipment.EquipmentCode}}</td>
+                <td>{{equipment.Manufacturer.Name}}</td>
+                <td>{{equipment.AssetLevel.Name}}</td>
+                <td>{{equipment.Department.Name}}</td>
+                <td>{{equipment.EquipmentStatus.Name}}</td>
+                <td>{{equipment.WarrantyStatus}}</td> 
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td>
+                        <img src="~/Content/img/edit.png" class="icon-sm cursor" v-on:click="btnEditClicked(equipment.ID)">
+                    </td>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || @user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                {
+                    <td><button class="btn btn-outline-info btn-sm" v-on:click="ViewQrcode(equipment.ID)">二维码</button></td>
+                    <td style="text-align:center;">
+                        <img src="~/Content/img/shengmingzhouqi.png" class="icon-sm cursor" v-on:click="btnTimeLineClicked(equipment.ID, equipment.OID)">
+                    </td>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td style="text-align:center;"><img src="~/Content/img/logs.png" class="icon-sm cursor" v-on:click="GoToAuditDetail(@BusinessObjects.Domain.ObjectTypes.Equipment,equipment.ID)"></td>
+                }
+            </tr>
+            <tr v-if="!EquipmentList.length">
+                <td colspan="13" class="tdListCenter">暂无信息</td>
+            </tr>
+            <tr>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin || user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                { 
+                    <td>
+                        <div><button class="btn btn-info btn-sm" v-on:click="btnEditClicked(0)">新增设备</button></div>
+                    </td>
+                }
+                <td colspan="13">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="ui-dialog-content ui-widget-content" id="dialog_qrcode" tabindex="-1" style="display:none">
+    <div id='ppi_qrcode' style='height: 0; width: 1in;'></div>
+    <div class="img_qrcode" id="content_qrcode" style="margin:0 auto; width:720px;">
+        <img id="label_qrcode" />
+    </div>
+</div>
+<script>
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload('@Url.Action("ExportEquipments", "Equipment")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "POST",
+                data: json
+            }
+        );
+    }
+
+    function Refresh() {
+        equipmentListVue.Filter = {
+            EquipmentStatus: 0,
+            WarrantyStatus: 0,
+            Department: { ID: -1 },
+            FilterTextName: "",
+            FilterTextSerialCode: "",
+            UseStatus: false,
+            FilterField: "e.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "e.ID",
+                Direction: true
+            }
+        }
+        DisplaySortIcon(equipmentListVue.Filter.SortObject);
+        $(".btnFilter").removeClass("activeFilter");
+        $("#0").addClass("activeFilter");
+        QueryEquipmentList();
+    }
+</script>
+<script>
+    function SortList(item) {
+        UpdateSortIcon(item, equipmentListVue.Filter.SortObject);
+        QueryEquipmentList();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryEquipmentList();
+        }
+    }
+
+    function PageClick(pageclickednumber) {
+        equipmentListVue.Filter.CurrentPage = pageclickednumber;
+        QueryEquipmentList();
+    }
+
+    function changeCurNum_pager() {
+        equipmentListVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryEquipmentList();
+    }
+</script>
+<!-- localStorage -->
+<script>
+    function InitQueryFilter() {
+        var json = {
+            status: equipmentListVue.Filter.EquipmentStatus,
+            warrantyStatus: equipmentListVue.Filter.WarrantyStatus,
+            departmentID: equipmentListVue.Filter.Department.ID,
+            departmentName: equipmentListVue.Filter.Department.Name,
+            filterTextName: equipmentListVue.Filter.FilterTextName,
+            filterTextSerialCode: equipmentListVue.Filter.FilterTextSerialCode,
+            useStatus: equipmentListVue.Filter.UseStatus,
+            filterField: equipmentListVue.Filter.FilterField,
+            filterText: equipmentListVue.Filter.FilterText,
+            currentPage: equipmentListVue.Filter.CurrentPage,
+            sortField: equipmentListVue.Filter.SortObject.Field,
+            sortDirection: equipmentListVue.Filter.SortObject.Direction,
+            pageSize: equipmentListVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('EquipmentList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            equipmentListVue.Filter.EquipmentStatus = json.status;
+            equipmentListVue.Filter.WarrantyStatus = json.warrantyStatus;
+            equipmentListVue.Filter.Department.ID = json.departmentID;
+            equipmentListVue.Filter.Department.Name = json.departmentName;
+            equipmentListVue.Filter.FilterTextName = json.filterTextName;
+            equipmentListVue.Filter.FilterTextSerialCode = json.filterTextSerialCode;
+            equipmentListVue.Filter.UseStatus = json.useStatus;
+            equipmentListVue.Filter.FilterField = json.filterField;
+            equipmentListVue.Filter.FilterText = json.filterText;
+            equipmentListVue.Filter.SortObject.Field = json.sortField;
+            equipmentListVue.Filter.SortObject.Direction = json.sortDirection;
+            equipmentListVue.Filter.CurrentPage = json.currentPage;
+            equipmentListVue.Filter.PageSize = json.pageSize
+
+            localStorage.removeItem('EquipmentList_Filter');
+        }
+    }
+
+    function SaveFilterParameters(json) {
+        localStorage.setItem('EquipmentList_Filter', JSON.stringify(json));
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitFilterParameters();
+        InitQrcode();
+        autoCompleteDepartments(equipmentListVue.Filter);
+        DisplaySortIcon(equipmentListVue.Filter.SortObject);
+        setTimeout(QueryEquipmentList(), 100);
+    });    
+
+    function QueryEquipmentListByBadge(StatusID,obj) {
+        equipmentListVue.Filter = {
+            EquipmentStatus: StatusID,
+            WarrantyStatus: 0,
+            Department: {
+                ID: 0,
+                Name:''
+            },
+            FilterTextName: "",
+            FilterTextSerialCode: "",
+            UseStatus:false,
+            FilterField: "e.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "e.ID",
+                Direction: true
+            }
+        }
+        var temp = $(obj);
+        $(".btnFilter").removeClass("activeFilter");
+        temp.addClass("activeFilter");
+        temp.parent("button").prev().addClass("activeFilter");
+
+        DisplaySortIcon(equipmentListVue.Filter.SortObject);
+        QueryEquipmentList();
+    }
+    
+    function QueryEquipmentList() {
+        var json = InitQueryFilter();
+        if (json.departmentName == '') json.departmentID = -1
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryEquipments", "Equipment")', json, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                equipmentListVue.EquipmentList = response.Data;
+                equipmentListVue.Filter.CurrentPage = SetTotalPage4Pager(equipmentListVue.Filter.CurrentPage, response.TotalPages);
+                $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                GetEquipmentCount();
+            }
+        });
+    }
+
+    function GetEquipmentCount() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetEquipmentCount", "Equipment")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                equipmentListVue.CountNormal = response.Data.Normal;
+                equipmentListVue.CountFault = response.Data.Fault;
+                equipmentListVue.CountScrap = response.Data.Scrap;
+            }
+        });
+    }
+    
+    function btnEditClicked(id) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("EquipmentDetail", "Equipment")' +  '?' + $.param({ id: id, actionName: 'EquipmentList' });
+    }
+
+    function btnViewClicked(id) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("EquipmentView", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' });
+    }
+
+    function btnTimeLineClicked(id, oid) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location = '@Url.Action("EquipmentTimeLine", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' });
+    }
+    function GoToAuditDetail(objectTypeID, objectID) {
+        window.open('@Url.Action("SysAuditLogList","Audit")' + "?" + $.param({ objectTypeID: objectTypeID, objectID: objectID }))
+    }
+
+</script>
+<!-- QRCode -->
+<script>
+    function InitQrcode() {
+        var dialog = $("#dialog_qrcode").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 850,
+            modal: true,
+            resizable: false,
+        });
+    }
+
+    function ViewQrcode(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("EquipmentLabel", "Equipment")',
+            { id: id }
+        , function (response) {
+            if (response.ResultCode != "00") {
+                SetPageWaiting(false);
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                $('#label_qrcode').attr('src', "data:image/png;base64," + response.Data);
+            }
+            SetPageWaiting(false);
+        });
+
+        $("#dialog_qrcode").dialog({
+            title: "二维码",
+            buttons: {
+                "打印": function () { PrintCode(); },
+                "关闭": function () { $("#dialog_qrcode").dialog("close"); },
+            }
+        });
+        $("#dialog_qrcode").dialog("open");
+    }
+
+    function PrintCode() {
+        var ppi = document.getElementById('ppi_qrcode').offsetWidth * (window.devicePixelRatio || 1);
+        var w = (50 / 25.4 * ppi).toFixed(0)
+        var h = (32 / 25.4 * ppi).toFixed(0)
+        var uri = $('#label_qrcode').attr('src')
+        var style = "<style> body{margin:0;}" +
+            "@@page{margin-right:2mm;;margin-bottom:1mm;margin-top:3mm;margin-left:2mm;} " +
+            //"@@page:right{ @@bottom-left{margin:10pt 0 30pt 0;border-top:.25pt solid #666;content:Our Cats;font-size:9pt;color:#333;}" +
+            //"@@bottom-right{ margin:10pt 0 30pt 0;border-top:.25pt solid #666;content:'Test';font-size:9pt;}" +
+            //"@@top-right{content: 'Test';margin:30pt 0 10pt 0;font-size:9pt;color:#333;} }" +
+            "</style>"
+        var img = "<img src='" + uri + "' width='" + w + "' height='" + h + "' />";
+        var newWindow = window.open()
+        newWindow.document.write(style);
+        newWindow.document.write(img);
+        newWindow.setTimeout(function () {
+            newWindow.print()
+            newWindow.close()
+        }, 0);
+    }
+</script>
+<!-- vue -->
+<script>
+    var equipmentListVue =new Vue({
+        el: "#equipmentListVue",
+        data: {
+            EquipmentList: [],
+            CountNormal: 0,
+            CountFault: 0,
+            CountScrap: 0,
+            Filter: {
+                EquipmentStatus: 0,
+                WarrantyStatus: 0,
+                Department: {
+                    ID: -1,
+                    Name:''
+                },
+                FilterTextName: "",
+                FilterTextSerialCode: "",
+                UseStatus:false,
+                FilterField: "e.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: "e.ID",
+                    Direction: true
+                }
+            },
+        },
+    })
+</script>

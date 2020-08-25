@@ -1,0 +1,82 @@
+#timeline {
+    /*overflow: hidden;*/
+    /*width: 80%;*/
+    /*margin:100px auto;*/
+}
+
+#timeline div {
+    /*height: 231px;*/
+}
+
+#timeline div .date {
+    border-right: 1px rgba(179, 175, 175, 0.4) solid;
+    text-align: right
+}
+.timelineCont{
+    height:50px;
+    /*margin:auto;*/
+    width:90%;
+}
+.timelineCount div{
+    height:100%;
+}
+#timeline div .date:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #e5e5d1;
+    position: absolute;
+    left: 95.2%;
+    /*top: 88px;*/
+    border-radius: 100%;
+}
+
+#timeline div.active .date::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    /*background: red;*/
+    position: absolute;
+    left: 95.2%;
+    /*top: 98px;*/
+    border-radius: 100%
+}
+#timeline div.active .redC::before{
+    background-color:rgb(230, 67, 64);
+}
+#timeline div.active .greenC::before{
+    background-color:rgb(62, 175, 124);
+}
+#timeline div.active .grayC::before{
+    background-color:gray;
+}
+
+#timeline div .date h2 {
+    /*margin: 95px 28px;*/
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right:20px;
+}
+
+#timeline div.active .date h2 {
+    font-size: 1rem;
+    /*color: #0078FF;*/
+}
+
+/*#timeline div .text p {
+    
+   *width: 50%;
+    display: none;
+}*/
+
+.row{
+    height:100%;
+}
+
+#timeline div.active .text p {
+    /*margin: 100px 20px;*/
+    margin-left:20px;
+    display: inherit;
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+}
+

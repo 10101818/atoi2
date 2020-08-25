@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.title = "InvSpareList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> SpareStatus = BusinessObjects.Domain.InvSpareInfo.SpareStatus.GetSpareStatus();
+}
+
+<div id="InvspareList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">备用机库</td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model.trim="Filter.StatusID" v-on:change="QuerySpare()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in SpareStatus)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model.trim="Filter.FilterField">
+                                    <option value="sp.ID">系统编号</option>
+                                    <option value="sp.SerialCode">序列号</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <a href="#"><img src="~/Content/img/search.png" class="icon-sm" onclick="QuerySpare()" /></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;" class="sortColumn" id="sp.ID" onclick="SortSpares(this)">系统编号</th>
+                <th style="min-width:100px;">富士II类</th>
+                <th style="min-width:100px;">序列号</th>
+                <th style="min-width:80px;">月租(元)</th>
+                <th style="min-width:100px;">开始日期</th>
+                <th style="min-width:100px;">结束日期</th>     
+                <th style="min-width:80px;">状态</th>   
+                <th style="min-width:50px;" class="tdListCenter">编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="InvSpareList.length == 0">
+                <td colspan="13" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="Invspare in InvSpareList" v-else>
+                <td>{{Invspare.OID}}</td>
+                <td>{{Invspare.FujiClass2.Name}}</td>
+                <td>{{Invspare.SerialCode}}</td>
+                <td>{{Invspare.Price}}</td>
+                <td>{{parseAndFormatJsonDate(Invspare.StartDate)}}</td>
+                <td>{{parseAndFormatJsonDate(Invspare.EndDate)}}</td>
+                <td>{{Invspare.Status}}</td>
+                <td class="tdListCenter"><img src="~/Content/img/edit.png" class="cursor icon-sm" v-on:click="OpenEditSpare(Invspare.ID)" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" onclick="OpenAddSpare()"> 新增备用机</button>
+                    </div>
+                </td>
+                <td colspan="12">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pagerSpare" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@{ Html.RenderPartial("InvSpareDialog"); }
+
+
+<script>
+    var InvspareVue = new Vue({
+        el: "#InvspareList",
+        data: {
+            InvSpareList: [],
+            Filter: {
+                StatusID: 0,
+                FilterField: "sp.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                SortObject: { Field: "sp.ID", Direction: true },
+                PageSize: 10
+            }
+        }
+    })
+</script>
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: InvspareVue.Filter.CurrentPage,
+            statusID: InvspareVue.Filter.StatusID,
+            filterField: InvspareVue.Filter.FilterField,
+            filterText: InvspareVue.Filter.FilterText,
+            sortField: InvspareVue.Filter.SortObject.Field,
+            sortDirection: InvspareVue.Filter.SortObject.Direction,
+            pageSize: InvspareVue.Filter.PageSize
+        }
+        return json;
+    }
+    //导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportSpares", "InvSpare")",
+    {
+        preparingMessageHtml: '开始下载......',
+        failMessageHtml: '导出Excel出错，请重试',
+        httpMethod: 'POST',
+        data: json
+    })
+    }
+
+    //刷新
+    function Refresh() {
+        InvspareVue.Filter = {
+            StatusID: 0,
+            FilterField: "sp.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            SortObject: { Field: "sp.ID", Direction: true },
+            PageSize: 10
+    }
+        DisplaySortIcon(InvspareVue.Filter.SortObject);
+        QuerySpare();
+    }
+
+</script>
+<script>
+    //回车搜索
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QuerySpare();
+        }
+    }
+    //点击页码
+    function PageClickSpare(pageclickednumber) {
+        InvspareVue.Filter.CurrentPage = pageclickednumber;
+        QuerySpare();
+    }
+
+    function changeCurNum_pagerSpare() {
+        InvspareVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QuerySpare();
+    }
+</script>
+<script>
+    //进入页面需要执行的操作
+    $().ready(function () {
+        InitDate();
+        InitInvSpareDialog();
+        setTimeout(QuerySpare(), 100);
+    })
+    function InitDate() {
+        var dateFields = $([]).add($("#StartDate")).add($("#EndDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(dateText, inst) {
+                let _this = this
+                $(_this).datepicker('setDate', new Date(dateText));
+                _this.dispatchEvent(new Event('input'))
+                _this.dispatchEvent(new Event('change'))
+                _this.blur()
+            },
+        })
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+    //获取备用机列表信息
+    function QuerySpare() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get('@Url.Action("QuerySpareList", "InvSpare")', json,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    InvspareVue.InvSpareList = response.Data;
+                    InvspareVue.Filter.CurrentPage = SetTotalPage4Pager(InvspareVue.Filter.CurrentPage, response.TotalPages, "pagerSpare", PageClickSpare);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                }
+            })
+    }
+</script>
+
+<!--排序-->
+<script>
+    function SortSpares(item) {
+        UpdateSortIcon(item, InvspareVue.Filter.SortObject);
+        QuerySpare();
+    }
+</script>
+ 

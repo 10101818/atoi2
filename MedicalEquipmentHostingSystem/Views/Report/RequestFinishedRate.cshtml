@@ -1,0 +1,272 @@
+﻿@{
+    string actionName = ViewBag.ActionName;
+    ViewBag.Title = actionName;
+    int requestType = ViewBag.ID;
+    string reportName = ViewBag.Name;
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<div id="RequestFinishedRate">
+    <div style="width:1400px;margin:auto;text-align:left;padding-bottom:1%;">
+        <a class="linkFile backPage" href="@Url.Action(actionName, "Report")">
+            &lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST
+        </a>
+    </div>
+    <div id="RequestFinishedRate" class="card border-secondary bg-light tblDiv" style="width: 1400px; ">
+        <div class="card-header title">
+            <p style="padding-bottom:0;margin:0 auto;">@reportName</p>
+        </div>
+        <div class="card-body" style="height:35px;">
+            <div class="justify-content-start">
+                <div class="form-row justify-content-start">
+                    <label for="dateType">时间维度分类 </label>
+                    <div style="width:110px;padding:0 5px;">
+                        <select id="dateType" onchange="ChangeTimeType(this[selectedIndex].value)" v-model="TimeType">
+                            <option value="month">月</option>
+                            <option value="year">年</option>
+                        </select>
+                    </div>
+                    <label id="year" v-show="TimeType == 'month'">
+                        年份
+                        <select id="myYear" v-model="Year" v-on:change="GetSource()"></select>&nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+            </div>
+            <div style="float:right;margin-top:-30px;">
+                <table class="toolsTable" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="Print()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="margin-top:20px;display:-webkit-inline-box">
+            <div style="width:950px;">
+                <div id="chartDiv" style="width:950px;"></div>
+                <div id="sliderDiv" style="width:950px;display:inline;bottom:10px;"></div>
+            </div>
+            <div style="width:400px;">
+                <table class="table table-primary rounded" style="max-width:400px;margin :0 auto;">
+                    <h5 align="center">数据列表</h5>
+                    <thead>
+                        <tr>
+                            <td scope="col" class="colNormal">时间</td>
+                            <td scope="col" class="math">@ViewBag.CurName</td>
+                            <td scope="col" class="math">@ViewBag.LastName</td>
+                            <td scope="col" class="math">@ViewBag.YName</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in List">
+                            <td scope="row" class="colNormal">{{item.key}}</td>
+                            <td class="math">{{item.passed}}</td>
+                            <td class="math">{{item.total}}</td>
+                            <td class="math">{{item.value}}</td>
+                        </tr>
+                        <tr v-if="List == null">
+                            <td colspan="4" style="text-align:center">暂无数据</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var myDate = new Date();
+    var chart;
+    var RequestFinishedRateVue = new Vue({
+        el: "#RequestFinishedRate",
+        data: {
+            List: [],
+            TimeType: '',
+            Year: 0,
+            ev: {}
+        }
+    })
+</script>
+<script>
+    $(function () {
+        Refresh();
+        SelectYears();
+    })
+
+    function ChangeTimeType(timeType) {
+        RequestFinishedRateVue.TimeType = timeType;
+        if (timeType == 'month') RequestFinishedRateVue.Year = myDate.getFullYear();
+        GetSource();
+    }
+
+    function Print() {
+        PrintChart(chart, '@reportName');
+    }
+
+    function ExportToExcel() {
+        $.fileDownload('@Url.Action("Export" + @ViewBag.Inter, "Report")',
+            {
+                preparingMessageHtml: "开始下载......",
+                failMessageHtml: "导出Excel出错，请重试",
+                httpMethod: "get",
+                data: {
+                    year: RequestFinishedRateVue.TimeType == 'year' ? 0 : RequestFinishedRateVue.Year,
+                    curName: '@ViewBag.CurName',
+                    lastName: '@ViewBag.LastName',
+                    yName: '@ViewBag.YName',
+                    reportName: "@reportName"
+                }
+            });
+    }
+
+    function Refresh() {
+        RequestFinishedRateVue.List = [];
+        RequestFinishedRateVue.TimeType = 'month';
+        RequestFinishedRateVue.Year = myDate.getFullYear();
+        GetSource();
+    }
+
+    function GetSource() {
+        $.get("@Url.Action(@ViewBag.Inter, "Report")",
+            {
+                year: RequestFinishedRateVue.TimeType == 'year' ? 0 : RequestFinishedRateVue.Year,
+            }, function (res) {
+                RequestFinishedRateVue.List = res.Data;
+                RenderChart();
+            })
+    }
+
+    function RenderChart() {
+        chart = CreateChart();
+
+        var dv = new DataSet().createView().source(RequestFinishedRateVue.List);
+        
+        dv.transform({
+            type: 'rename',
+            map:{
+                total: '请求总数',
+                passed: '合格数'
+            }
+        }).transform({
+            type: "fold",
+            fields: ["请求总数", "合格数"],
+            key: "type",
+            value: "count",
+            retains: ['key', 'value']
+        });
+
+        chart.source(dv, {
+            'value': {
+                alias: '@ViewBag.YName',
+                max: 100,
+                min: 0
+            }
+        });
+        chart.scale('count', {
+            alias: '请求数量(个)'
+        },
+        'total', {
+            alias:'请求总数'
+        },
+        'passed', {
+            alias:'合格数'
+        }
+        );
+        chart.axis('count', {
+            label: {
+                textStyle: {
+                    fill: '#17A2B8'
+                },
+                formatter: function formatter(text) {
+                    return text.replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+                }
+            },
+            title: {
+                autoRotate: false,
+                textStyle: {
+                    fill: "#17A2B8",
+                    rotate: 270
+                }
+            },
+        });
+        chart.axis('value', {
+            label: {
+                textStyle: {
+                    fill: '#17A2B8'
+                },
+                formatter: function formatter(text) {
+                    return text.replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+                }
+            },
+            title: {
+                textStyle: {
+                    fill: '#17A2B8',
+                    rotate: 270
+                },
+                offset: 50
+            }
+        });
+        chart.scale('value', {
+            alias: '@ViewBag.YName',
+            max: 100,
+            min:0
+        })
+        chart.legend({
+            position: 'bottom-center'
+        });
+        chart.interval().position('key*count').color('type', ['#40a9ff', '#4CCA73']).opacity(1)
+        chart.on('click', function (ev) {
+            if (ev.data != undefined ) {
+                if (RequestFinishedRateVue.TimeType == 'month') {
+                    var endDate = new Date(RequestFinishedRateVue.Year, ev.data._origin.key, 0).getDate();
+                    if (ev.data._origin.key <= 9) {
+                        var startDate = RequestFinishedRateVue.Year + "-0" + ev.data._origin.key + "-01";
+                        endDate = RequestFinishedRateVue.Year + "-0" + ev.data._origin.key + "-" + endDate
+                    } else {
+                        var startDate = RequestFinishedRateVue.Year + "-" + ev.data._origin.key + "-01";
+                        endDate = RequestFinishedRateVue.Year + "-" + ev.data._origin.key + "-" + endDate
+                    }
+                }
+                else if (RequestFinishedRateVue.TimeType == 'year') {
+                    var startDate = ev.data._origin.key + "-01-01";
+                    var endDate = ev.data._origin.key + "-12-31";
+                }
+                window.open('@Url.Action("RequestList", "Request")' + '?' + $.param({
+                    startDate: startDate,
+                    endDate: endDate
+                }));
+            }            
+        })
+        //opacity:背景透明度
+        chart.line().position('key*value').color('#fdae6b').opacity(1).size(3);
+        chart.point().position('key*value').color('#fdae6b').size(3).shape('circle');
+        chart.tooltip(
+                    {
+                        useHtml: true,
+                        htmlContent: function (title, items) {
+                            var htmlStr = '<div class="custom-tooltip">';
+                            htmlStr += '<div class="custom-tooltip-title">' + title + '</div>';
+                            htmlStr += '<div class="custom-tooltip-value">';
+                            $.each(RequestFinishedRateVue.List, function (index, info) {
+                                if (info.key == items[0].title) {
+                                    htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#4CCA73;"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.CurName' + '</span><span class="custom-tooltip-temp-value">' + info.passed + '</span></li>';
+                                    htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#40a9ff"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.LastName' + '</span><span class="custom-tooltip-temp-value">' + info.total + '</span></li>';
+                                    htmlStr += '<div class="custom-tooltip-temp"><span class="dian" style="background-color:#fdae6b"></span><span class="custom-tooltip-temp-title">' + '@ViewBag.yName' + '</span><span class="custom-tooltip-temp-value">' + info.value + '</span></li>';
+                                }
+                            });
+
+                            htmlStr += "</div></div>";
+                            return htmlStr;
+                        },
+                        position: top,
+                    }
+                );
+        chart.render();
+    }
+</script>

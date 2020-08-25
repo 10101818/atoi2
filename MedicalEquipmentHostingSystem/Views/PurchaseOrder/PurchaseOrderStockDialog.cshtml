@@ -1,0 +1,602 @@
+﻿<!--零件入库-->
+<div class="ui-dialog-content ui-widget-content" id="StockComponent" tabindex="-1" style="display:none;">
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">序列号<img src="~/Content/img/add.png" class="icon-sm cursor" onclick="AddComponetDetail()" /></th>
+                <th style="min-width:100px;">规格</th>
+                <th style="min-width:100px;">型号</th>
+                <th style="min-width:100px;text-align: center;">删除</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(component,index) in StockComponent.Components">
+                <td>
+                    <input type="text" maxlength="30" v-bind:id="'ComponentSerialCode' + index" v-model.trim="component.SerialCode">
+                    <label class="required" v-bind:id="'reqComponentSerialCode' + index"></label>
+                </td>
+                <td>
+                    <input type="text" maxlength="50" v-bind:id="'ComponentSpecification' + index" v-model.trim="component.Specification">
+                    <label class="required" v-bind:id="'reqComponentSpecification' + index"></label>
+                </td>
+
+                <td>
+                    <input type="text" maxlength="50" v-bind:id="'ComponentModel' + index" v-model.trim="component.Model">
+                    <label class="required" v-bind:id="'reqComponentModel' + index"></label>
+                </td>
+                <td style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteComponentBtn(index)" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--耗材入库-->
+<div class="ui-dialog-content ui-widget-content" id="StockConsumable" tabindex="-1" style="display:none;">
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">批次号<img src="~/Content/img/add.png" class="icon-sm cursor" onclick=" AddConsumableDetail()" /></th>
+                <th style="min-width:100px;">规格</th>
+                <th style="min-width:100px;">型号</th>
+                <th style="min-width:100px;">数量</th>
+                <th style="min-width:100px;text-align: center;">删除</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(consumable,index) in StockConsumable.Consumables">
+                <td>
+                    <input type="text" maxlength="30" v-bind:id="'ConsumableLotNum' + index" v-model.trim="consumable.LotNum">
+                    <label class="required" v-bind:id="'reqConsumableLotNum' + index"></label>
+                </td>
+                <td>
+                    <input type="text" maxlength="50" v-bind:id="'ConsumableSpecification' + index" v-model.trim="consumable.Specification">
+                    <label class="required" v-bind:id="'reqConsumableSpecification' + index"></label>
+                </td>
+                <td>
+                    <input type="text" maxlength="50" v-bind:id="'ConsumableModel' + index" v-model.trim="consumable.Model">
+                    <label class="required" v-bind:id="'reqConsumableModel' + index"></label>
+                </td>
+                <td>
+                    <input type="text" maxlength="9" v-bind:id="'ConsumableQty' + index" v-model.trim="consumable.Qty">
+                    <label class="required" v-bind:id="'reqConsumableQty' + index"></label>
+                </td>
+                <td style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteConsumableBtn(index)" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--零件入库详情-->
+<div class="ui-dialog-content ui-widget-content" id="Component4Inbound" tabindex="-1" style="display:none;">
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">序列号</th>
+                <th style="min-width:80px;">简称</th>
+                <th style="min-width:80px;">描述</th>
+                <th style="min-width:80px;">规格</th>
+                <th style="min-width:80px;">型号</th>
+                <th style="min-width:150px;">关联设备</th>
+                <th style="min-width:80px;">单价</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="Component4InboundList.length == 0">
+                <td colspan="9" style="text-align: center; border-right: none;">暂无数据</td>
+            </tr>
+            <tr v-for="(component, index) in Component4InboundList">
+                <td>{{component.SerialCode}}</td>
+                <td>{{component.Component.Name}}</td>
+                <td>{{component.Component.Description}}</td>
+                <td>{{component.Specification}}</td>
+                <td>{{component.Model}}</td>
+                <td>{{component.Equipment.Name}}</td>
+                <td>{{component.Price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--耗材入库详情-->
+<div class="ui-dialog-content ui-widget-content" id="Consumable4Inbound" tabindex="-1" style="display:none;">
+    <table class="table table-sm" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:100px;">批次号</th>
+                <th style="min-width:80px;">简称</th>
+                <th style="min-width:80px;">描述</th>
+                <th style="min-width:80px;">规格</th>
+                <th style="min-width:80px;">型号</th>
+                <th style="min-width:120px;">关联富士II类</th>
+                <th style="min-width:80px;">单价</th>
+                <th style="min-width:80px;">数量</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="Consumable4InboundList.length == 0">
+                <td colspan="9" style="text-align: center; border-right: none;">暂无数据</td>
+            </tr>
+            <tr v-for="(consumable, index) in Consumable4InboundList">
+                <td>{{consumable.LotNum}}</td>
+                <td>{{consumable.Consumable.Name}}</td>
+                <td>{{consumable.Consumable.Description}}</td>
+                <td>{{consumable.Specification}}</td>
+                <td>{{consumable.Model}}</td>
+                <td>{{consumable.Consumable.FujiClass2.Name}}</td>
+                <td>{{consumable.Price}}</td>
+                <td>{{consumable.ReceiveQty}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var StockComponentVue = new Vue({
+        el: "#StockComponent",
+        data: {
+            StockComponent: {
+                ID: 0,
+                Components: [],
+                Component: {},
+                Supplier: {},
+                Purchase: { ID: 0 },
+
+            },
+        }
+    })
+
+    var StockConsumableVue = new Vue({
+        el: "#StockConsumable",
+        data: {
+            StockConsumable: {
+                ID: 0,
+                Consumable: {},
+                Consumables: [],
+            },
+        }
+    })
+
+    var Component4InboundVue = new Vue({
+        el: "#Component4Inbound",
+        data: {
+            Component4InboundList: [],
+            Info: {},
+        }
+    })
+
+    var Consumable4InboundVue = new Vue({
+        el: "#Consumable4Inbound",
+        data: {
+            Consumable4InboundList: []
+        }
+    })
+
+    //格式化
+    function InitStockComponentForm() {
+        $("label.required").html("");
+        StockComponentVue.StockComponent = {
+            ID: 0,
+            Components: [],
+            Component: {},
+            Supplier: {},
+            Purchase: { ID: 0 },
+        }
+    }
+    function InitStockConsumableForm() {
+        $("label.required").html("");
+        StockConsumableVue.StockConsumable = {
+            ID: 0,
+            Consumable: {},
+            Consumables: [],
+        }
+    }
+    function InitComponent4InboundForm() {
+        $("label.required").html("");
+        Component4InboundVue.Component4InboundList = [];
+        Component4InboundVue.Info = {}
+    }
+    function InitConsumable4InboundForm() {
+        $("label.required").html("");
+        Consumable4InboundVue.Consumable4InboundList = [];
+    }
+
+    //规定弹窗的格式
+    function InitDialog() {
+        $("#StockComponent").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 900,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "入库": function () { InboundComponentBtn(); },
+                "关闭": function () { $("#StockComponent").dialog("close"); }
+            }
+        });
+
+        $("#StockConsumable").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 900,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "入库": function () { InboundConsumableBtn(); },
+                "关闭": function () { $("#StockConsumable").dialog("close"); }
+            }
+        });
+
+
+        $("#Component4Inbound").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 1000,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "关闭": function () { $("#Component4Inbound").dialog("close"); }
+            }
+        });
+        $("#Consumable4Inbound").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 1000,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "关闭": function () { $("#Consumable4Inbound").dialog("close"); }
+            }
+        });
+    }
+
+    function OpenStockComponent(component, index) {
+        InitStockComponentForm();
+        StockComponentVue.StockComponent.Component = cloneObj(component);
+        StockComponentVue.StockComponent.Component.index = index;
+        AddComponetDetail();
+        $("#StockComponent").dialog({ title: StockComponentVue.StockComponent.Component.Component.Name + '-' + StockComponentVue.StockComponent.Component.Component.Description });
+        $("#StockComponent").dialog("open");
+    }
+
+    function OpenStockConsumable(consumable, index) {
+        InitStockConsumableForm();
+        StockConsumableVue.StockConsumable.Consumable = cloneObj(consumable);
+        StockConsumableVue.StockConsumable.Consumable.index = index;
+        var ConsumableMaxQty = StockConsumableVue.StockConsumable.Consumable.Qty - StockConsumableVue.StockConsumable.Consumable.InboundQty;
+        AddConsumableDetail();
+        $("#StockConsumable").dialog({ title: StockConsumableVue.StockConsumable.Consumable.Consumable.Name + '-' + StockConsumableVue.StockConsumable.Consumable.Consumable.Description });
+        $("#StockConsumable").dialog("open");
+    }
+
+    function OpenComponent4Inbound(component, index) {
+        InitComponent4InboundForm();
+        GetComponent4Inbound(component, index);
+        $("#Component4Inbound").dialog({ title: "入库详情" });
+        $("#Component4Inbound").dialog("open");
+    }
+
+    function OpenConsumable4Inbound(consumable, index) {
+        InitConsumable4InboundForm();
+        GetConsumable4Inbound(consumable, index);
+        $("#Consumable4Inbound").dialog({ title: "入库详情" });
+        $("#Consumable4Inbound").dialog("open");
+    }
+</script>
+<!--添加行-->
+<script>
+    function AddComponetDetail() {
+        if (StockComponentVue.StockComponent.Components.length >= (StockComponentVue.StockComponent.Component.Qty - StockComponentVue.StockComponent.Component.InboundQty))
+            jAlert("入库数量不能超过采购数量", "提示")
+        else {
+            StockComponentVue.StockComponent.Components.push(cloneObj(StockComponentVue.StockComponent.Component));
+        }
+    }
+    function AddConsumableDetail() {
+        if (StockConsumableVue.StockConsumable.Consumables.length >= StockConsumableVue.StockConsumable.Consumable.Qty - StockConsumableVue.StockConsumable.Consumable.InboundQty)
+            jAlert("入库数量不能超过采购数量", "提示")
+        else {
+            StockConsumableVue.StockConsumable.Consumables.push(cloneObj(StockConsumableVue.StockConsumable.Consumable));
+        }
+    }
+</script>
+<!--删除-->
+<script>
+    function DeleteComponentBtn(index) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteComponent(index)
+            }
+        });
+    }
+
+    function DeleteComponent(index) {
+        StockComponentVue.StockComponent.Components.splice(index, 1);
+    }
+
+    function DeleteConsumableBtn(index) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteConsumable(index);
+            }
+        });
+    }
+
+    function DeleteConsumable(index) {
+        StockConsumableVue.StockConsumable.Consumables.splice(index, 1);
+    }
+</script>
+<!--入库-->
+<script>
+    //零件
+    function InboundComponentBtn() {
+        jConfirm("请确认是否入库?", "入库", function (result) {
+            if (result) {
+                InboundComponent()
+            }
+        });
+    }
+    function InboundComponent() {
+        if (CheckInboundComponent()) return;
+        var inboundPurchaseOrder = cloneObj(PurchaseOrderDetailVue.PurchaseOrder);
+        inboundPurchaseOrder.Components = StockComponentVue.StockComponent.Components
+        inboundPurchaseOrder.Consumables = new Array();
+        inboundPurchaseOrder.Services = new Array();
+        SetPageWaiting(true)
+        $.post(
+                '@Url.Action("InboundPurchaseOrder", "PurchaseOrder")',
+                inboundPurchaseOrder,
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        jAlert(response.ResultMessage, "入库结果");
+                    }
+                    else {
+                        PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                        jAlert("入库成功", "入库结果", function () {
+                            $("#StockComponent").dialog("close");
+                            $.each(PurchaseOrderDetailVue.PurchaseOrder.Components, function (index, component) {
+                                if (index == StockComponentVue.StockComponent.Component.index) {
+                                    component.InboundQty = component.InboundQty + StockComponentVue.StockComponent.Components.length
+                                }
+                            })
+                            PurchaseOrderDetailVue.$forceUpdate();
+                        });
+                    }
+                    return;
+                }
+            );
+    }
+
+
+    //耗材
+    function InboundConsumableBtn() {
+        jConfirm("请确认是否入库?", "入库", function (result) {
+            if (result) {
+                InboundConsumable()
+            }
+        });
+    }
+    function InboundConsumable() {
+        if (CheckInboundConsumable()) return;
+        $.each(PurchaseOrderDetailVue.PurchaseOrder.Consumables, function (index, consumable) {
+            if (index == StockConsumableVue.StockConsumable.Consumable.index) {
+                for (var i = 0 ; i < StockConsumableVue.StockConsumable.Consumables.length; i++) {
+                    consumable.InboundQty = consumable.InboundQty + Number(StockConsumableVue.StockConsumable.Consumables[i].Qty)
+                    consumable.AvaibleQty = consumable.InboundQty
+                    consumable.ReceiveQty = consumable.InboundQty
+                    }
+
+            }
+        })
+        var inboundPurchaseOrder = cloneObj(PurchaseOrderDetailVue.PurchaseOrder);
+        inboundPurchaseOrder.Consumables = StockConsumableVue.StockConsumable.Consumables
+        inboundPurchaseOrder.Components = new Array();
+        inboundPurchaseOrder.Services = new Array();
+        SetPageWaiting(true)
+        $.post(
+                '@Url.Action("InboundPurchaseOrder", "PurchaseOrder")',
+                inboundPurchaseOrder,
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        jAlert(response.ResultMessage, "入库结果");
+                    }
+                    else {
+                        PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                        jAlert("入库成功", "入库结果", function () {
+                            $("#StockConsumable").dialog("close");
+                            PurchaseOrderDetailVue.$forceUpdate();
+
+                        });
+                    }
+                    return;
+                }
+            );
+    }
+
+</script>
+<!--检查信息-->
+<script>
+    //零件
+    function CheckInboundComponent() {
+        $("label.required").html("");
+        var IsValid = false;
+
+        for (var i = 0 ; i < StockComponentVue.StockComponent.Components.length; i++) {
+
+            for (var j = i + 1; j < StockComponentVue.StockComponent.Components.length; j++) {
+                if (StockComponentVue.StockComponent.Components[i].SerialCode == StockComponentVue.StockComponent.Components[j].SerialCode) {
+                    $("#reqComponentSerialCode" + i).html("序列号重复");
+                    $("#reqComponentSerialCode" + j).html("序列号重复");
+                    $("#ComponentSerialCode" + j).focus();
+                    IsValid = true;
+                }
+            }
+        }
+        $.each(StockComponentVue.StockComponent.Components, function (index, component) {
+            if (!component.SerialCode) {
+                $("#reqComponentSerialCode" + index).html("序列号不能为空");
+                $("#ComponentSerialCode" + index).focus();
+                IsValid = true;
+            }
+            else if (ajaxCheckSerialCodeExisted(component.SerialCode) == true) {
+                $("#reqComponentSerialCode" + index).html("序列号已存在");
+                $("#ComponentSerialCode" + index).focus();
+                IsValid = true;
+            }
+            if (!component.Specification) {
+                $("#reqComponentSpecification" + index).html("规格不能为空");
+                $("#ComponentSpecification" + index).focus();
+                IsValid = true;
+            }
+            if (!component.Model) {
+                $("#reqComponentModel" + index).html("型号不能为空");
+                $("#ComponentModel" + index).focus();
+                IsValid = true;
+            }
+        })
+        return IsValid;
+    }
+
+    //耗材
+    function CheckInboundConsumable() {
+        $("label.required").html("");
+        var IsValid = false;
+        var ConsumableMaxQty = StockConsumableVue.StockConsumable.Consumable.Qty - StockConsumableVue.StockConsumable.Consumable.InboundQty;
+        var SumQty = 0;
+        for (var i = 0 ; i < StockConsumableVue.StockConsumable.Consumables.length; i++) {
+            SumQty += Number(StockConsumableVue.StockConsumable.Consumables[i].Qty);
+
+            for (var j = i + 1; j < StockConsumableVue.StockConsumable.Consumables.length; j++) {
+                if (StockConsumableVue.StockConsumable.Consumables[i].LotNum == StockConsumableVue.StockConsumable.Consumables[j].LotNum) {
+                    $("#reqConsumableLotNum" + i).html("批次号重复");
+                    $("#reqConsumableLotNum" + j).html("批次号重复");
+                    $("#ConsumableLotNum" + j).focus();
+                    IsValid = true;
+                }
+            }
+        }
+
+        if (Number(SumQty) > Number(ConsumableMaxQty)) {
+            jAlert("入库数量不能超过采购数量", "提示");
+            IsValid = true;
+        }
+
+        $.each(StockConsumableVue.StockConsumable.Consumables, function (index, consumable) {
+            if (!consumable.LotNum) {
+                $("#reqConsumableLotNum" + index).html("批次号不能为空");
+                $("#ConsumableLotNum" + index).focus();
+                IsValid = true;
+            }
+            else if (CheckConsumableLotNum(consumable.Consumable.ID, consumable.LotNum) == true) {
+                $("#reqConsumableLotNum" + index).html("耗材批次号已存在");
+                $("#ConsumableLotNum" + index).focus();
+                IsValid = true;
+            }
+            if (!consumable.Specification) {
+                $("#reqConsumableSpecification" + index).html("规格不能为空");
+                $("#ConsumableSpecification" + index).focus();
+                IsValid = true;
+            }
+            if (!consumable.Model) {
+                $("#reqConsumableModel" + index).html("型号不能为空");
+                $("#ConsumableModel" + index).focus();
+                IsValid = true;
+            }
+
+        })
+        return IsValid;
+    }
+</script>
+<!--序列号是否重复-->
+<script>
+    function ajaxCheckSerialCodeExisted(serialCode) {
+        var IsExisted = true;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckComponentSerialCode", "InvComponent")',
+            data: {
+                serialCode: serialCode,
+                id: 0
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data != true)
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+</script>
+<!--批次号是否重复-->
+<script>
+    function CheckConsumableLotNum(consumableID, lotNum) {
+        var IsExisted = true;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckConsumableLotNum", "InvConsumable")',
+            data: {
+                lotNum: lotNum,
+                id: 0,
+                consumableID: consumableID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data != true)
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+</script>
+<!--入库详情-->
+<script>
+    //获取入库零件
+    function GetComponent4Inbound(component, index) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetComponent4Inbound", "PurchaseOrder")', {
+            purchaseOrderID: PurchaseOrderDetailVue.PurchaseOrder.ID,
+            componentID: component.Component.ID
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                Component4InboundVue.Component4InboundList = response.Data;
+            }
+        })
+    }
+    //获取入库耗材
+    function GetConsumable4Inbound(consumable, index) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetConsumable4Inbound", "PurchaseOrder")', {
+            purchaseOrderID: PurchaseOrderDetailVue.PurchaseOrder.ID,
+            consumableID: consumable.Consumable.ID
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                Consumable4InboundVue.Consumable4InboundList = response.Data;
+            }
+        })
+    }
+</script>

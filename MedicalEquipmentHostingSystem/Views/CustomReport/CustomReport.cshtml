@@ -1,0 +1,766 @@
+﻿@{
+    ViewBag.Title = "CustomReport";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    List<BusinessObjects.Domain.KeyValueInfo> types = BusinessObjects.Manager.LookupManager.GetCustRptType();
+}
+<style>
+    .dtree-nav-ul-sid li {
+        height: 15px;
+    }
+
+        .dtree-nav-ul-sid li div {
+            height: 15px;
+        }
+</style>
+<div id="CustomReport" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">自定义报表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                类型:
+                                <select v-model="Filter.TypeID" v-on:change="QueryCustomRpt()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in types)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="ID">报表编号</option>
+                                    <option value="Name">报表名称</option>
+                                    <option value="CreateUserName">创建人</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" onclick="QueryCustomRpt()">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table " cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:150px">编号</th>
+                <th style="min-width:150px">类别</th>
+                <th style="min-width:200px">名称</th>
+                <th style="min-width:150px">创建人</th>
+                <th style="min-width:150px">创建日期</th>
+                <th style="min-width:150px">更改日期</th>
+                <th style="min-width:150px">上次运行日期</th>
+                <th style="min-width:160px" colspan="2" class="text-center">操作</th>
+                <th style="min-width:80px" class="text-center">删除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="info in ReportList">
+                <td>{{info.OID}}</td>
+                <td>{{info.Type.Name}}</td>
+                <td>{{info.Name}}</td>
+                <td>{{info.CreateUser.Name}}</td>
+                <td>{{parseAndFormatJsonDate(info.CreatedDate)}}</td>
+                <td>{{parseAndFormatJsonDate(info.UpdateDate)}}</td>
+                <td>{{parseAndFormatJsonDate(info.LastRunDate)}}</td>
+                <td class="text-center"><a href="#" v-on:click="run(info.ID)"><img src="~/Content/img/run.png" class="icon-sm"></a></td>
+                <td class="text-center"><a href="#" id="editReport" v-on:click="editReport(info.ID)"><img src="~/Content/img/edit.png" class="icon-sm"></a></td>
+                <td class="text-center"><img src="~/Content/img/close.png" class="update icon-sm cursor" v-on:click="close(info.ID)"></td>
+            </tr>
+            <tr v-if="!ReportList.length">
+                <td colspan="13" class="tdListCenter">暂无信息</td>
+            </tr>
+            <tr>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td>
+                        <div><button class="btn btn-info btn-sm" v-on:click="btnAddReport(0)">新增报表</button></div>
+                    </td>
+                }
+                <td colspan="13">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--选择自定义报表类型-->
+    <div class="ui-dialog-content ui-widget-content" id="addReport-dialog" tabindex="-1" style="display:none">
+        <table style="margin-top:20px">
+            <tr>
+                @foreach (var item in types)
+                {
+                    <td width="150px" style="text-align:center;padding-top:20px;"><button class="btn btn-info" value="@item.ID" v-model="ReportMSG.Type.ID" v-on:click="showTransfer(@item.ID)">@item.Name</button></td>
+                }
+            </tr>
+        </table>
+    </div>
+    <!--选择字段弹窗-->
+    <div class="ui-dialog-content ui-widget-content" id="transfer" tabindex="-1" style="display:none">
+        <div>
+            <div class="layui-card-header">
+                自定义报表名称：<input type="text" id="CustRptName" maxlength="20" v-model="ReportMSG.Name" style="width:300px;height:30px" />
+
+                <label class="required" id="reqName"></label>
+            </div>
+        </div>
+        <div style="border:none">
+            <div class="layui-card-header layui-col-lg5">可选择字段</div>
+            <div class="layui-card-header layui-col-lg2"> </div>
+            <div class="layui-card-header layui-col-lg5">
+                已选择字段
+                <span style="float:right">
+                    <img src="~/Content/img/top.png" onclick="MoveUp()" class="icon-sm" />
+                    <img src="~/Content/img/bottom.png" onclick="MoveDown()" class="icon-sm" />
+                </span>
+            </div>
+        </div>
+        <div id="toolbarDiv">
+            <div class="layui-col-lg5">
+                <div class="layui-card">
+                    <div class="layui-card-body" style="height:500px">
+                        <div style="height: 100%; overflow: auto;">
+                            <ul id="cskTree1" class="dtree" data-id="0" style="height:100%"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg2">
+                <div style="text-align: center; height: 300px; line-height: 400px">
+                    <img class="icon-sm" src="~/Content/img/to_right.png" id="csk_btn_to_right" style="" />
+                </div>
+                <div style="text-align:center;height:200px;">
+                    <img class="icon-sm" src="~/Content/img/to_left.png" id="csk_btn_to_left" style="margin:auto" />
+                </div>
+            </div>
+            <div class="layui-col-lg5">
+                <div class="layui-card">
+                    <div class="layui-card-body" style="height:500px">
+                        <div style="height: 100%; overflow: auto;">
+                            <table id="selectData">
+                                <tbody>
+                                    <tr v-for="info in SelectData">
+                                        <td data-toggle="tooltip" data-placement="top" data-html="true" v-if="info.parentId != -1">
+                                            <input class="selectCheck" data-id="" type="checkbox" name="selectData" v-bind:value=info.id v-bind:id=info.parentId /> {{info.parentName}}-{{info.context}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--运行时间段选择-->
+    <div id="choseTime" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none">
+        <div>
+            <span>请选择时间类别</span>
+            <select v-if="ReportMSG.Type.ID == @BusinessObjects.Domain.CustomReportInfo.CustRptType.Equipment" id="field">
+                <option value="e.UpdateDate">设备更新时间</option>
+                <option value="e.MandatoryTestDate">设备强检时间</option>
+                <option value="e.CreateDate">设备添加时间</option>
+                <option value="e.AcceptanceDate">设备验收时间</option>
+                <option value="e.RecallDate">设备召回时间</option>
+            </select>
+            <select v-if="ReportMSG.Type.ID == @BusinessObjects.Domain.CustomReportInfo.CustRptType.Contract" id="field">
+                <option value="c.StartDate">合同开始日期</option>
+                <option value="c.EndDate">合同结束日期</option>
+            </select>
+            <select v-if="ReportMSG.Type.ID == @BusinessObjects.Domain.CustomReportInfo.CustRptType.Request" id="field">
+                <option value="r.RequestDate">请求开始日期</option>
+                <option value="r.CloseDate">请求结束日期</option>
+                <option value="r.DistributeDate">首次分配日期</option>
+                <option value="r.ResponseDate">首次响应时间</option>
+                <option value="r.SelectiveDate">请求择期时间</option>
+            </select>
+            <select v-if="ReportMSG.Type.ID == @BusinessObjects.Domain.CustomReportInfo.CustRptType.Dispatch" id="field">
+                <option value="d.StartDate">派工单开始日期</option>
+                <option value="d.EndDate">派工单结束日期</option>
+                <option value="d.CreateDate">派工单生成日期</option>
+                <option value="r.RequestDate">请求开始日期</option>
+                <option value="r.CloseDate">请求结束日期</option>
+                <option value="r.DistributeDate">首次分配日期</option>
+                <option value="r.ResponseDate">首次响应时间</option>
+                <option value="r.SelectiveDate">请求择期时间</option>
+            </select>
+        </div>
+        <div style="margin-top:50px;">
+            <span>起止时间：</span>
+            <input type="text" class="datePicker" id="startDate" placeholder="YYYY-MM-DD" /> - <input type="text" class="datePicker" id="endDate" placeholder="YYYY-MM-DD" />
+        </div>
+    </div>
+
+</div>
+<link rel="stylesheet" type="text/css" href="~/Content/Css/layui.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/Css/dtree.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/Css/dtreefont.css" />
+<script src="~/Content/scripts/layui.js"></script>
+<script src="~/Content/scripts/dtree.js"></script>
+<script>
+    var CustomReportVue = new Vue({
+        el: "#CustomReport",
+        data: {
+            ReportList: [],
+            ReportMSG: {
+                ID: 0,
+                Name: '',
+                Type: {},
+                Fields: [],
+                CreateUser: {
+                    ID: '@user.ID',
+                    Name: '@user.Name'
+                }
+            },
+            InitData: [],
+            SelectData: [],
+            Filter: {
+                TypeID: 0,
+                FilterField: 'ID',
+                FilterText: '',
+                CurrentPage: 1,
+                PageSize: 10,
+            }
+        }
+    })
+</script>
+<script>
+    function ExportToExcel() {
+        $.fileDownload("@Url.Action("ExportCustRpt", "CustomReport")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: {
+                typeID: CustomReportVue.Filter.TypeID,
+                filterField: CustomReportVue.Filter.FilterField,
+                filterText: CustomReportVue.Filter.FilterText
+            }
+        })
+    }
+
+    function Refresh() {
+        CustomReportVue.Filter = {
+            TypeID: 0,
+            FilterField: 'ID',
+            FilterText: '',
+            CurrentPage: 1,
+            PageSize: 10,
+        }
+        InitDialogForm();
+        QueryCustomRpt();
+    }
+</script>
+<script>
+    function PageClick(pageclickednumber) {
+        CustomReportVue.Filter.CurrentPage = pageclickednumber;
+        QueryCustomRpt();
+    }
+    function changeCurNum_pager() {
+        CustomReportVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryCustomRpt();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryCustomRpt();
+        }
+    }
+</script>
+<script>
+    $().ready(function () {
+        InitForm();
+        QueryCustomRpt();
+    })   
+
+    function InitForm() {
+        var dialog = $("#addReport-dialog").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 400,
+            modal: true,
+            resizable: false,
+        });
+        var dialog = $("#transfer").dialog({
+            autoOpen: false,
+            height: 750,
+            width: 900,
+            modal: true,
+            resizable: false,
+        });
+        var dialog = $("#choseTime").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 600,
+            modal: true,
+            resizable: false,
+        })
+    }
+
+    function InitDialogForm() {
+        CustomReportVue.InitData = []
+        CustomReportVue.SelectData = []
+        CustomReportVue.ReportMSG = {
+            ID: 0,
+            Name: '',
+            Type: { Name: '' },
+            Fields: [],
+            CreateUser: {
+                ID: '@user.ID',
+                Name: '@user.Name'
+            }
+        }
+    }
+
+    function btnAddReport() {
+        CustomReportVue.ReportMSG.Fields = [];
+        CustomReportVue.SelectData = [];
+        InitDialogForm();
+        $("#addReport-dialog").dialog({
+            title: "请选择报表类别"
+        });
+        $("#addReport-dialog").dialog("open");
+    }
+
+    //打开选择字段弹窗
+    function showTransfer(typeID) {
+        CustomReportVue.ReportMSG.Type.ID = typeID;
+        CustomReportVue.ReportMSG.Type.Name = $('button[value=' + typeID + ']').text();
+        CustomReportVue.InitData = CustomReportVue.InitData.length == 0 ? initData(typeID) : CustomReportVue.InitData;
+        initDTree(CustomReportVue.InitData);
+        $("#addReport-dialog").dialog("close");
+        $("label.required").html("");
+        $("#transfer").dialog({
+            title: CustomReportVue.ReportMSG.Type.Name,
+            buttons: {
+                "保存": function () { save(); },
+                "运行": function () { run(); }
+            }
+        });
+        $("#transfer").dialog("open");
+    }
+
+    //点击保存时判断内容为空
+    function checkMSG() {
+        $("label.required").html("");
+        var isExit = false;
+
+        if (CustomReportVue.ReportMSG.Name.trim() == "") {
+            $("#CustRptName").focus();
+            $("#reqName").html("自定义报表名称不能为空");
+            isExit = true;
+        }
+
+        if (CustomReportVue.ReportMSG.Fields.length == 0) {
+            layer.msg("请至少选择一个节点");
+            isExit = true;
+        }
+
+        return isExit;
+    }
+
+    //运行时选择时间字段及时间范围
+    function checkTime(id) {
+        if (CheckDatePicker("startDate", "起止时间") != "") {
+            layer.msg(CheckDatePicker("startDate", "起止时间"));
+            return false;
+        }
+        if (CheckDatePicker("endDate", "起止时间") != "") {
+            layer.msg(CheckDatePicker("endDate", "起止时间"));
+            return false;
+        }
+        if ((new Date($("#startDate").val().replace(/-/g, "\/"))) > (new Date($("#endDate").val().replace(/-/g, "\/")))) {
+            layer.msg("起止时间逻辑错误");
+            return false;
+        }
+        else {
+            if (id > 0) GetReportMSGByID(id);
+            var mydate = new Date();
+            CustomReportVue.ReportMSG.Name = (CustomReportVue.ReportMSG.Name == "") ? mydate.getFullYear()+"-"+(mydate.getMonth()+1)+"-"+mydate.getDate() : CustomReportVue.ReportMSG.Name;
+            $.fileDownload("@Url.Action("RunCustRpt", "CustomReport")",
+            {
+                preparingMessageHtml: '开始下载......',
+                failMessageHtml: '导出Excel出错，请重试',
+                httpMethod: 'POST',
+                data: {
+                    info: CustomReportVue.ReportMSG,
+                    field:$("#field").val(),
+                    startTime: $("#startDate").val(),
+                    endTime: $("#endDate").val()
+                }
+            })
+            $("#choseTime").dialog("close");
+            QueryCustomRpt();
+        }
+    }
+
+    function initData(typeID) {
+        var data = [], tables, fields;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("GetCustRptTemplateTableList", "CustomReport")',
+            data: {
+                typeID: typeID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    tables = response.Data
+                }
+            }
+        })
+
+        for (i = 0; i < tables.length; i++) {
+            var ele = {
+                title: tables[i].TableDesc,
+                id: tables[i].TableName,
+                parentId: 0,
+                checkArr: { type: 0, checked: 0 },
+                children: []
+            }
+            for (j = 0; j < tables[i].Fields.length; j++) {
+                var tem = {
+                    title: tables[i].Fields[j].FieldDesc,
+                    id: tables[i].Fields[j].FieldName,
+                    parentId: tables[i].TableName,
+                    checkArr: { type: 0, checked: 0 },
+                    children: []
+                }
+                ele.children.push(tem);
+            }
+            data.push(ele);
+        }
+        return data;
+    }
+
+    //运行报表
+    function run(id) {
+        if (id == 0 || id == undefined) { 
+            if (CustomReportVue.ReportMSG.Fields.length == 0) {
+                layer.msg("请至少选择一个节点");
+                return;
+            }
+        };
+        if(id>0) GetReportMSGByID(id);
+        choseTime(id);
+    }
+
+    function choseTime(id) {
+        $("#startDate").val(''); $("#endDate").val('');
+        $("#choseTime").dialog({
+            title: "请选择时间范围",
+            buttons: {
+                "确定": function () { checkTime(id); },
+                "取消": function () { $("#choseTime").dialog("close"); }
+            }
+        });
+        var dateFields = $([]).add($("#startDate")).add($("#endDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+        $("#choseTime").dialog("open");
+    }
+</script>
+<script>
+    //获取自定义报表列表
+    function QueryCustomRpt() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryCustReptList", "CustomReport")', {
+            TypeID: CustomReportVue.Filter.TypeID,
+            FilterField: CustomReportVue.Filter.FilterField,
+            FilterText: CustomReportVue.Filter.FilterText,
+            CurrentPage: CustomReportVue.Filter.CurrentPage,
+            PageSize: CustomReportVue.Filter.PageSize,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                CustomReportVue.ReportList = response.Data;
+                CustomReportVue.Filter.CurrentPage = SetTotalPage4Pager(CustomReportVue.Filter.CurrentPage, response.TotalPages);
+                $("#curNum option[value='" + CustomReportVue.Filter.PageSize + "']").prop("selected", true);
+            }
+        })
+    }
+
+    //根据报表id获取信息
+    function GetReportMSGByID(id) {
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("GetReportByID", "CustomReport")',
+            data: {
+                id: id
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    CustomReportVue.ReportMSG = response.Data;
+                    CustomReportVue.InitData = initData(CustomReportVue.ReportMSG.Type.ID);
+                }
+            }
+        })
+    }
+
+    //修改报表内容
+    function editReport(id) {
+        InitDialogForm();
+        SetPageWaiting(true);
+        GetReportMSGByID(id);
+        for (var i = 0; i < CustomReportVue.ReportMSG.Fields.length; i++) {
+            for (var j = 0 ; j < CustomReportVue.InitData.length; j++) {
+                if (CustomReportVue.ReportMSG.Fields[i].TableName == CustomReportVue.InitData[j].id) {
+                    CustomReportVue.InitData[j].checkArr.checked = '1'
+                    var parentName = CustomReportVue.InitData[j].title.match(/[\u4e00-\u9fa5]/g).join("");;
+                    for (var p = 0; p < CustomReportVue.InitData[j].children.length; p++) {
+                        if (CustomReportVue.ReportMSG.Fields[i].FieldName == CustomReportVue.InitData[j].children[p].id) {
+                            CustomReportVue.InitData[j].children[p].checkArr.checked = '1'
+                            CustomReportVue.InitData[j].children[p].parentName = parentName;
+                            CustomReportVue.InitData[j].children[p].context = CustomReportVue.InitData[j].children[p].title
+                            CustomReportVue.SelectData.push(CustomReportVue.InitData[j].children[p]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        showTransfer(CustomReportVue.ReportMSG.Type.ID);
+    }
+    //删除报表
+    function close(id) {
+        jConfirm("请确认是否删除报表?", "关闭", function (result) {
+            if (result) {
+                SetPageWaiting(true);
+                $.post('@Url.Action("DeleteCustRpt", "CustomReport")', {
+                    id:id
+                },
+                function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        jAlert("删除成功", "删除", function () {
+                            Refresh();
+                        });
+                    }
+                })
+            }
+        });
+    }
+</script>
+<!-- 上移下移删除-->
+<script>
+    function swapArray(arr, indexOne, indexTwo) {
+        arr[indexOne] = arr.splice(indexTwo, 1, arr[indexOne])[0];
+        return arr;
+    }
+    //上移所选字段
+    function MoveUp() {
+        var table = document.getElementsByName('selectData');
+        for (var k = 0; k < table.length; k++) {
+            if (table[k].checked) {
+                if (table[k].id == CustomReportVue.SelectData[k].parentId && table[k].value == CustomReportVue.SelectData[k].id) {
+                    if (k !== 0) {
+                        CustomReportVue.SelectData = this.swapArray(CustomReportVue.SelectData, k, k - 1);
+                        CustomReportVue.ReportMSG.Fields = this.swapArray(CustomReportVue.ReportMSG.Fields, k, k - 1);
+                        table[k].checked = false
+                        table[k - 1].checked = true
+                    }
+                    else
+                        layer.msg("已经处于置顶，无法上移")
+                }
+            }
+        }
+    }
+    //下移所选字段
+    function MoveDown() {
+        var table = document.getElementsByName('selectData');
+        for (var k = table.length-1; k >= 0; k--) {
+            if (table[k].checked) {
+                if (table[k].id == CustomReportVue.SelectData[k].parentId && table[k].value == CustomReportVue.SelectData[k].id) {
+                    if ((k + 1) != CustomReportVue.SelectData.length) {
+                        CustomReportVue.SelectData = this.swapArray(CustomReportVue.SelectData, k, k + 1);
+                        CustomReportVue.ReportMSG.Fields = this.swapArray(CustomReportVue.ReportMSG.Fields, k, k + 1);
+                        table[k].checked = false
+                        table[k + 1].checked = true
+                    }
+                    else
+                        layer.msg("已经处于置底，无法下移")
+                }
+            }
+        }
+    }
+</script>
+<script>
+    var d;
+    var layer,form, dtree;
+    layui.extend({
+        dtree: getRootPath() + '/Content/scripts/dtree'
+    }).use([ 'dtree','layer'], function () {
+        dtree = layui.dtree,
+        layer = layui.layer
+        form = layui.form
+        $ = layui.$;
+        
+        //从列表中添加字段
+        $("#csk_btn_to_right").click(function () {
+            var data = CustomReportVue.InitData;
+            var param = dtree.getCheckbarNodesParam("cskTree1");  // 获取选中数据
+            if (param.length == 0) {
+                layer.msg("请至少选择一个节点");
+            } else {
+                for (var i = 0; i < param.length; i++) {
+                    if (param[i].parentId == -1)
+                        var parentName = param[i].context
+                    else {
+                        var ele = {}
+                        ele.CustomReportID = CustomReportVue.ReportMSG.ID
+                        ele.TableName = param[i].parentId
+                        ele.FieldName = param[i].nodeId
+                        param[i].parentName = parentName
+                        if (JSON.stringify(CustomReportVue.ReportMSG.Fields).indexOf(JSON.stringify(ele)) == -1) {
+                            param[i].id = param[i].nodeId
+                            CustomReportVue.SelectData.push(param[i]);
+                            CustomReportVue.ReportMSG.Fields.push(ele);
+                        }
+                    }
+                }
+            }
+        });
+
+        //移除字段
+        $("#csk_btn_to_left").click(function () {
+            var data = CustomReportVue.InitData;
+            var table = document.getElementsByName('selectData');//获取右侧input
+            var selData = [];
+            var field = [];
+            for (var k = 0; k < table.length; k++) {
+                if (table[k].checked) {
+                    for (var p = 0; p < data.length; p++) {
+                        if (table[k].id == data[p].id) {
+                            for (var q = 0; q < data[p].children.length; q++) {
+                                if (table[k].value == data[p].children[q].id) {
+                                    data[p].children[q].checkArr.checked = '0';
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (table[k].value == CustomReportVue.SelectData[k].id && table[k].id == CustomReportVue.SelectData[k].parentId) {
+                        CustomReportVue.SelectData[k].checked = '0';
+                        selData.push(CustomReportVue.SelectData[k])
+                        field.push(CustomReportVue.ReportMSG.Fields[k])
+                    }//保留的数据
+                    for (var p = 0; p < data.length; p++) {
+                        data[p].checkArr.checked = '0';
+                        if (table[k].id == data[p].id) {
+                            for (var q = 0; q < data[p].children.length; q++) {
+                                if (table[k].value == data[p].children[q].id) {
+                                    data[p].children[q].checkArr.checked = '1';
+                                    data[p].checkArr.checked = '1';
+                                }
+                            }
+                        }
+                    }//设置左侧树的选中状态
+                }
+            }
+
+            for (var p = 0; p < data.length; p++) {
+                data[p].checkArr.checked = '0';
+                for (var q = 0; q < data[p].children.length; q++) {
+                    if (data[p].children[q].checkArr.checked == '1') {
+                        data[p].checkArr.checked = '1';
+                    }
+                }
+            }
+            $("input[name='selectData']").each(function () {
+                $(this).prop('checked', false);
+            })
+            initDTree(data);
+            CustomReportVue.SelectData = selData;
+            CustomReportVue.ReportMSG.Fields = field;
+        });
+    });
+
+    function initDTree(data) {
+        dtree.render({
+            elem: "#cskTree1",
+            data: data,
+            dataStyle: "layuiStyle",
+            checkbar: true,
+            checkbarType: "all",
+            load: "node",
+            checkbarData: "choose",
+            skin: "laySimple"
+        })
+    }
+    //保存报表信息
+    function save() {
+        if (checkMSG()) { return; }
+        SetPageWaiting(true)
+        $.post('@Url.Action("SaveCustRept", "CustomReport")',
+            CustomReportVue.ReportMSG,
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    jAlert("保存成功", "保存", function () {
+                        QueryCustomRpt();
+                        $("#transfer").dialog("close");
+                    });
+                }
+            })
+    }
+</script>

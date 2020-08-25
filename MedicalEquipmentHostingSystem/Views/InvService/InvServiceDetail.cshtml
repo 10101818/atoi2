@@ -1,0 +1,328 @@
+﻿@{
+    ViewBag.Title = "InvServiceList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<div id="InvServiceDetail" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" onclick="Back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+    </div>
+    <div class="title">
+        <p v-if="@ViewBag.ID == 0">新增服务</p>
+        <p v-else>更新服务</p>
+    </div>
+    <!--设备信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr>
+                    <td colspan="4" class="tblName">服务信息</td>
+                </tr>   
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">系统编号</th>
+                    <td colspan="6">
+                        <label class="tdReadOnly" v-if="@ViewBag.ID == 0">由系统自动生成</label>
+                        <label v-else class="tdReadOnly">{{Info.OID}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">服务名称</th>
+                    <td width="250px">
+                        <input type="text" id="Name" maxlength="50" v-model.trim="Info.Name" style="width:200px  ;" />
+                        <label class="required" id="reqName"></label>
+                    </td>
+                     <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">金额</th>
+                    <td width="250px">
+                        <input type="text" id="Price" maxlength="13" v-model.trim="Info.Price" style="width:200px  ;" />
+                        <label class="required" id="reqPrice"></label>
+                    </td>      
+                </tr>
+                <tr>      
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">服务次数</th>
+                    <td width="250px">
+                        <input type="text" id="TotalTimes" maxlength="9" v-model.trim="Info.TotalTimes" style="width:200px  ;" />
+                        <label class="required" id="reqTotalTimes"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">剩余服务次数</th>
+                    <td width="250px">
+                        <input type="text" id="AvaibleTimes" maxlength="9" v-model.trim="Info.AvaibleTimes" style="width:200px  ;" />
+                        <label class="required" id="reqAvaibleTimes"></label>
+                    </td>
+                </tr>               
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">开始时间</th>
+                    <td width="250px">
+                        <input type="text" class="datePicker" id="StartDate" v-model.trim="Info.StartDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                        <label class="required" id="reqStartDate"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">结束时间</th>
+                    <td width="250px">
+                        <input type="text" class="datePicker" id="EndDate" v-model.trim="Info.EndDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                        <label class="required" id="reqEndDate"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">富士II类</th>
+                    <td width="250px">
+                        <select v-model.trim="Info.FujiClass2.ID" style="width:200px;">
+                            <option v-for="temp in FujiClass2Filter" v-bind:value="temp.ID">{{temp.Name}}</option>
+                        </select>
+                        <label class="required" id="reqFujiClass2ID"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">供应商</th>
+                    <td width="250px">
+                        <input class="input" type="text" readonly id="SupplierName" maxlength="50" style="width:200px;" v-model.trim="Info.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
+                        <img src="~/Content/img/find.png" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" />
+                        <label class="required" id="reqSupplierName"></label>
+                    </td>
+                </tr>
+                <tr v-if="@ViewBag.ID != 0">
+                    <th class="tdrequired" width="15px"><span class="unrequired"></span></th>
+                    <th width="135px">采购单编号</th>
+                    <td>
+                        <label class="tdReadOnly">{{Info.Purchase.ID == 0 ? "" : Info.Purchase.Name}}</label>
+                        <label class="required" id="reqPurchaseID"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="unrequired"></span></th>
+                    <th width="135px">备注</th>
+                    <td colspan="6">
+                        <textarea rows="3" cols="20" id="Comments" maxlength="500" v-model.trim="Info.Comments"></textarea>
+                        <label class="unrequired" id="reqComments"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+<table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%; width: 800px;">
+        <tr>
+            <td><button class="btn btn-info" onclick="SaveService()">保存</button></td>
+            <td><button class="btn btn-info" onclick="Back()">返回</button></td>
+        </tr>
+    </table>
+</div>
+
+@{ Html.RenderPartial("Supplier_Selection"); }
+
+<!--Vue Init Data-->
+<script>
+    var InvServiceDetailVue = new Vue({
+        el: "#InvServiceDetail",
+        data: {
+            FujiClass2Filter: {},
+            Info: {
+                ID: 0,
+                Name: '',
+                Price: '',
+                TotalTimes: '',
+                AvaibleTimes:'',
+                StartDate: '',
+                EndDate: '',
+                FujiClass2: { ID: 0 },
+                Supplier: {},
+                Purchase: { ID: 0 },
+                PurchaseDate:'',
+                Comments: '',
+                
+            },
+
+
+        }
+    })
+</script>
+
+<!--获取富士二类-->
+<script>
+    function GetFujiClass2s() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', {},
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    InvServiceDetailVue.FujiClass2Filter = response.Data;
+                }
+            })
+    }
+</script>
+
+<!--获取供应商信息-->
+<script>
+    function callback(objectVue) {
+        InvServiceDetailVue.Info.Supplier = objectVue;
+        InvServiceDetailVue.$forceUpdate();
+
+    }
+</script>
+
+<!--判断信息-->
+<script>
+    function CheckService() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var integer = /^\d+$/;
+        var IsValid = true;
+
+        //服务名称
+        if (!InvServiceDetailVue.Info.Name ) {
+            $("#reqName").html('服务名称不能为空');
+            $("#name").focus();
+            IsValid = false;
+        }
+        //金额
+        if (InvServiceDetailVue.Info.Price > 9999999999.99) {
+            $("#reqPrice").html("金额最大为9999999999.99");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(InvServiceDetailVue.Info.Price)) {
+            $("#reqPrice").html("金额格式有误");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+
+        //服务次数
+        if (InvServiceDetailVue.Info.TotalTimes == 0) {
+            $("#reqTotalTimes").html('服务次数不能为空');
+            $("#TotalTimes").focus();
+            IsValid = false;
+        }
+        else if (!integer.test(InvServiceDetailVue.Info.TotalTimes)) {
+            $("#reqTotalTimes").html("服务次数格式有误");
+            $("#TotalTimes").focus();
+            IsValid = false;
+        }
+        //剩余服务次数
+        if (InvServiceDetailVue.Info.AvaibleTimes > InvServiceDetailVue.Info.TotalTimes) {
+            $("#reqAvaibleTimes").html("剩余服务次数不能大于总服务次数");
+            $("#AvaibleTimes").focus();
+            IsValid = false;
+        }
+        else if (!integer.test(InvServiceDetailVue.Info.AvaibleTimes)) {
+            $("#reqAvaibleTimes").html("剩余服务次数格式有误");
+            $("#AvaibleTimes").focus();
+            IsValid = false;
+        }
+
+        //时间
+        if (CheckDatePicker("StartDate", "开始日期") != "") {
+            $("#reqStartDate").html(CheckDatePicker("StartDate", "开始日期"));
+            IsValid = false;
+        }
+        if (CheckDatePicker("EndDate", "结束时间") != false) {
+            $("#reqEndDate").html(CheckDatePicker("EndDate", "结束时间"));
+            IsValid = false;
+        }
+        if ((new Date($("#StartDate").val().replace(/-/g, "\/"))) > (new Date($("#EndDate").val().replace(/-/g, "\/")))) {
+            $("#reqEndDate").html("结束日期必须大于开始日期");
+            IsValid = false;
+        }
+
+        //富士II类
+        if (!InvServiceDetailVue.Info.FujiClass2.ID) {
+            $("#reqFujiClass2ID").html("富士II类不能为空");
+            $("#FujiClass2ID").focus();
+            IsValid = false;
+        }
+
+        //供应商
+        if (!InvServiceDetailVue.Info.Supplier.Name) {
+            $("#reqSupplierName").html("供应商不能为空");
+            $("#SupplierName").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+
+</script>
+
+<!--保存服务信息-->
+<script>
+    function SaveService() {
+        if (!CheckService()) return;
+        if ('@ViewBag.ID' == 0){
+            InvServiceDetailVue.Info.PurchaseDate = InvServiceDetailVue.Info.StartDate;
+        }
+        SetPageWaiting(true)
+        $.post(
+            '@Url.Action("SaveService", "InvService")',
+            InvServiceDetailVue.Info,
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    jAlert(response.ResultMessage, "保存结果");
+                }
+                else {
+                    jAlert("保存成功", "保存结果", function () {
+                        InvServiceDetailVue.Info.ID = response.Data;
+                        window.location = "@Url.Action("InvServiceDetail", "InvService")" + "?" + $.param({ serviceID: InvServiceDetailVue.Info.ID })
+                    });
+                }
+                return;
+            }
+        );
+    }
+    function Back() {
+        window.location = "@Url.Action("InvServiceList", "InvService")";
+    }
+</script>
+
+<!--获取服务信息-->
+<script>
+    $(function () {
+        GetFujiClass2s();
+        InitDate();
+        if ('@ViewBag.ID' > 0) {
+            GetService();
+        }
+    })
+    function InitDate() {
+        var dateFields = $([]).add($("#StartDate")).add($("#EndDate"))
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function (dateText, inst) {
+                let _this = this
+                $(_this).datepicker('setDate', new Date(dateText));
+                _this.dispatchEvent(new Event('input'))
+                _this.dispatchEvent(new Event('change'))
+                _this.blur()
+            },
+        })
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+
+    function GetService() {
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("GetServiceByID", "InvService")" + "?" + $.param({ ServiceID: Number(@ViewBag.ID) }),
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    InvServiceDetailVue.Info = response.Data;
+                    InvServiceDetailVue.Info.PurchaseDate = parseAndFormatJsonDate(InvServiceDetailVue.Info.PurchaseDate);
+                    InvServiceDetailVue.Info.StartDate = parseAndFormatJsonDate(InvServiceDetailVue.Info.StartDate);
+                    InvServiceDetailVue.Info.EndDate = parseAndFormatJsonDate(InvServiceDetailVue.Info.EndDate);   
+                }
+            })
+    }
+</script>
+
+
+
+
+
+

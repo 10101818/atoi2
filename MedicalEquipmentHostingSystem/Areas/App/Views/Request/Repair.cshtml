@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]--> 
+@{
+    List<BusinessObjects.Domain.KeyValueInfo> MachineStatuses = BusinessObjects.Domain.MachineStatuses.GetMachineStatuses();
+}
+@model BusinessObjects.Domain.EquipmentInfo
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ATOI用户报修</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/materialize.css" />
+    <script src="~/Content/Scripts/jquery-1.11.0.js"></script>
+    <script src="~/Content/Scripts/materialize.js"></script>
+</head>
+
+<body>
+    <div class="container" style="width: 100%">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper bg-gradient">
+                    <a href="#" class="brand-logo center" style="font-size: 20px;">ATOI报修页面</a>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">设备信息</span>
+                        <ul class="collection">
+                            <li class="collection-item item-flex">
+                                <div class="item-title">设备名称：</div>
+                                <div class="item-body" id="name">@Model.Name</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">使用科室：</div>
+                                <div class="item-body" id="department">@Model.Department.Name</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">安装地点：</div>
+                                <div class="item-body" id="location">@Model.InstalSite</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">设备厂商：</div>
+                                <div class="item-body" id="manufacture">@Model.Manufacturer.Name</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">设备型号：</div>
+                                <div class="item-body" id="location">@Model.EquipmentCode</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">序列号：</div>
+                                <div class="item-body" id="manufacture">@Model.SerialCode</div>
+                            </li>
+                            <li class="collection-item item-flex">
+                                <div class="item-title">资产编号：</div>
+                                <div class="item-body" id="manufacture">@Model.AssetCode</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title">报修信息</span>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="姓名" id="user-name" oninput="descInput(this)" type="text" class="validate" maxlength="20">
+                                <span id="user-name-span">0/20</span>
+                                <label for="first_name">您的姓名</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="联系方式" id="user-phone" oninput="descInput(this)" type="tel" class="validate" maxlength="20">
+                                <span id="user-phone-span">0/20</span>
+                                <label for="icon_prefix">您的联系方式</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="故障描述" id="description" oninput="descInput(this)" type="text" class="validate" maxlength="200">
+                                <span id="description-span">0/200</span>
+                                <label for="icon_prefix">故障描述</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="machineStatus">
+                                    @foreach (var item in MachineStatuses)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+                                </select>
+                                <label>机器状态</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="file-field input-field">
+                                <div class="waves-effect waves-light btn white btn-border">
+                                    <span class="teal-text">上传照片</span>
+                                    <input type="file" onchange="showPicture(this)" multiple id="image-file" accept="image/*">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    最多可上传3张图片
+                                    <input class="file-path validate" type="hidden">
+                                </div>
+                            </div>
+                            <div class="card-img" style="display: flex; margin-top: 30px;">
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                            <a class="waves-effect waves-light btn" style="background: #2c5c85" id="submit">提交报修</a>
+                        </div>
+                        <input type="hidden" id="equipment" value="@Model.ID">
+                        <input type="hidden" id="image-encoded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        InitFilterParameters();
+
+        $('select').formSelect();
+        $('#submit').click(function () {
+            if ($.trim($("#equipment").val()) == "") {
+                M.toast({
+                    html: '请扫描二维码',
+                })
+                return;
+            }
+
+            if ($('#user-name').val().length > 20) {
+                M.toast({
+                    html: '姓名长度过长',
+                })
+                return;
+            } 
+            else if ($('#user-name').val().length == 0) {
+                M.toast({
+                    html: '姓名不可为空',
+                })
+                return;
+            }
+
+            if ($('#user-phone').val().length > 20) {
+                M.toast({
+                    html: '联系方式过长',
+                })
+                return;
+            }
+            else if ($('#user-phone').val().length == 0) {
+                M.toast({
+                    html: '联系方式不可为空',
+                })
+                return;
+            }
+
+            if ($('#description').val().length > 200) {
+                M.toast({
+                    html: '故障描述过长',
+                })
+                return;
+            }
+            else if ($('#description').val().length == 0) {
+                M.toast({
+                    html: '故障描述不可为空',
+                })
+                return;
+            }
+
+            var form = {
+                RequestUser: {
+                    Name: $('#user-name').val(),
+                    Mobile: $('#user-phone').val()
+                },
+                FaultDesc: $('#description').val(),
+                Equipments: [
+                    {
+                        ID: $("#equipment").val()
+                    },
+                ],
+                MachineStatus: {
+                        ID: $("#machineStatus").val()
+                    }
+                
+            }
+            var list = $('.card-img img').toArray();
+            Promise.all(list.map(function (item) {
+                return base64Encode(item.src, item.dataset.type);
+            })).then(function (array) {
+                var Files = array.map(function (item, i) {
+                    return {
+                        FileContent: item,
+                        FileName: i + '.jpg',
+                        FileType: 1,
+                        ID: 0
+                    };
+                });
+                form['Files'] = Files;
+                M.toast({
+                    html: '上传中',
+                })
+                $.post("@Url.Action("AddRequest4User", "Request")", form, function (data, err) {
+                    console.log(data, err);
+                    M.Toast.dismissAll();
+                    if (data.ResultCode == '00') {
+                        SaveFilterParameters();
+                        M.toast({
+                            html: '您的请求已成功提交，请耐心等待，谢谢',
+                        })
+                        clearForm();
+                        setTimeout('WeixinJSBridge.call("closeWindow")', 1500);
+                    } else {
+                        M.toast({
+                            html: '报修失败，请重新报修，谢谢',
+                        })
+                    }
+                })
+            })
+        })
+
+    })
+
+    function SaveFilterParameters() {
+        localStorage.setItem('UserRepair_Info', JSON.stringify(
+            {
+                Phone: $('#user-phone').val(),
+                Name: $('#user-name').val(),
+            })
+        );
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('UserRepair_Info');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            $('#user-phone').val(json.Phone);
+            $('#user-name').val(json.Name);
+        }
+    }
+
+    function descInput(temp) {
+        var id = temp.id;
+        var length = $("#" + id).val().length;
+        var maxlength = $("#" + id).attr("maxlength");
+        $("#" + id + "-span").html(length + "/" + maxlength);
+    }
+
+    function clearForm() {
+        $(".item-body").html("");
+        $("input").val("");
+    }
+
+
+    function showPicture(imgFile) {
+        for (var i = 0; imgFile.files.length > 3 ? i < 3 : i < imgFile.files.length; i++) {
+            var src = window.URL.createObjectURL(imgFile.files[i]);
+            var image_list = $('.card-img img').toArray();
+            if (image_list.length == 3) {
+                $('.card-img img')[0].remove();
+                $('.card-img button')[0].remove();
+            }
+            var fileName = imgFile.files[i].name;
+            var fileType = imgFile.files[i].type;
+            var myDate = new Date();
+			var cipher = myDate.getTime()+ i;
+            var id = "'"+ cipher +"'";
+            $('.card-img').append('<div id="img_' + cipher + '"><img src="' + src + '" width="100" height="100" data-type="'+fileType+'"/><button class="waves-effect waves-blue btn-flat" onclick="deletePic('+id+')">删除</button></div>');
+        }
+    }
+
+    function deletePic(id) {
+        FileList.prototype.removeOne = function (id) {
+            delete this[id];
+        }
+        $('#image-file').get(0).files;
+        var id = "#img_" + id;
+        $(id).remove();
+    }
+
+    function base64Encode(src, outputFormat) {
+        return new Promise(function (resolve, reject) {
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function () {
+                var canvas = document.createElement('CANVAS');
+                var ctx = canvas.getContext('2d');
+                var dataURL;
+                var scale = this.width/800;
+                if (scale > 1) {
+                    this.height = this.height/scale;
+                    this.width = this.width/scale;
+                }
+                canvas.height = this.height;
+                canvas.width = this.width;
+                ctx.drawImage(this, 0, 0, this.width, this.height);
+                dataURL = canvas.toDataURL(outputFormat, 0.9);
+                resolve(dataURL);
+            };
+            img.src = src;
+            if (img.complete || img.complete === undefined) {
+                img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                img.src = src;
+            }
+        })
+    }
+</script>
+<style>
+    .bg-gradient {
+        background: linear-gradient(to right, #2c5c85, #2E94B9);
+    }
+
+    .item-flex {
+        display: flex;
+    }
+
+    .item-title {
+        width: 40%;
+    }
+
+    .item-body {
+        color: grey;
+    }
+    .btn-border {
+        border: 0.5px solid teal;
+        height: 25px;
+        line-height: 25px;
+    }
+</style>
+
+</html>

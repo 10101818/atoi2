@@ -1,0 +1,277 @@
+﻿
+<!--新增备用机-->
+<div class="ui-dialog-content ui-widget-content" id="AddSpare" v-cloak tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">系统编号</td>
+            <td class="tdReadOnly"><label>{{Info.OID}}</label></td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <select v-model.trim="Info.FujiClass2.ID" style="width:200px;" >
+                    <option v-for="temp in FujiClass2Filter" v-bind:value="temp.ID">{{temp.Name}}</option>
+                </select>
+                <label class="required" id="reqFujiClass2ID"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">序列号</td>
+            <td>
+                <input class="input" type="text" id="SerialCode" maxlength="30" style="width:200px;" v-model.trim="Info.SerialCode" />
+                <label class="required" id="reqSerialCode"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">月租(元)</td>
+            <td>
+                <input class="input" type="text" id="Price" maxlength="13" style="width:200px;" v-model.trim="Info.Price" />
+                <label class="required" id="reqPrice"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">开始日期</td>
+            <td>
+                <input type="text" class="datePicker" id="StartDate" v-model.trim="Info.StartDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqStartDate"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">结束日期</td>
+            <td>
+                <input type="text" class="datePicker" id="EndDate" v-model.trim="Info.EndDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqEndDate"></label>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+
+<script>
+    
+    var AddSpareVue = new Vue({
+        el: "#AddSpare",
+        data: {
+            IsEdited: false,
+            SpareList: [],
+            FujiClass2Filter: {},
+            Info: {
+                ID: 0,
+                FujiClass2: { ID: 0 },
+                SerialCode: '',
+                Price: '',
+                StartDate: '',
+                EndDate: '',
+               
+            }
+            
+        }
+    })
+
+</script>
+
+<script>
+    //规定弹窗的格式
+    function InitInvSpareDialog() {
+        $("#AddSpare").dialog({
+            autoOpen: false,
+            height: 450,
+            width: 600,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveSpare(AddSpareVue.Info.ID); },
+                "关闭": function () { $("#AddSpare").dialog("close"); }
+            }
+        });
+    }
+
+    //格式化弹窗中的数据
+    function InitInvSpareDialogForm() {
+        $("label.required").html("");     
+        AddSpareVue.Info = {
+            ID: 0,
+            FujiClass2: { ID: 0 },           
+            SerialCode: '',
+            Price: '',
+            StartDate: '',
+            EndDate: '',
+          
+        }
+        AddSpareVue.FujiClass2Filter = [];
+    }
+
+    //打开添加备用机弹窗
+    function OpenAddSpare() {
+        AddSpareVue.IsEdited = false;
+        InitInvSpareDialogForm();
+        GetFujiClass2s();
+        $("#AddSpare").dialog({ title: "新增备用机" });
+        $("#AddSpare").dialog("open");
+    }
+
+    //打开编辑备用机弹窗
+    function OpenEditSpare(id) {
+        AddSpareVue.IsEdited = true;
+        InitInvSpareDialogForm();
+        GetSpareByID(id);
+        GetFujiClass2s();
+        $("#AddSpare").dialog({ title: "编辑备用机" });
+        $("#AddSpare").dialog("open");
+    }
+
+    //保存备用机信息
+    function SaveSpare(id) {
+        if (!CheckSpare()) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveSpare", "InvSpare")', AddSpareVue.Info, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                jAlert("保存成功", "保存", function () {
+                    $("#AddSpare").dialog("close");
+                    QuerySpare();
+                });
+            }
+        })
+    }
+</script>
+
+<!--判断信息-->
+<script>
+    function CheckSpare() {
+        $("label.required").html("");
+
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+
+        var IsValid = true;
+        //富士II类
+        if (!AddSpareVue.Info.FujiClass2.ID) {
+            $("#reqFujiClass2ID").html("富士II类不能为空");
+            $("#FujiClass2ID").focus();
+            IsValid = false;
+        }
+     
+        //月租
+        if (AddSpareVue.Info.Price > 9999999999.99) {
+            $("#reqPrice").html("月租最大为9999999999.99");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddSpareVue.Info.Price)) {
+            $("#reqPrice").html("月租格式有误");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+       
+        //开始日期
+        if (CheckDatePicker("StartDate", "开始日期") != "") {
+            $("#reqStartDate").html(CheckDatePicker("StartDate", "开始日期"));
+            $("#StartDate").focus();
+            IsValid = false;
+        }
+        //结束日期
+        if (CheckDatePicker("EndDate", "结束日期") != "") {
+            $("#reqEndDate").html(CheckDatePicker("EndDate", "结束日期"));
+            $("#EndDate").focus();
+            IsValid = false;
+        }
+        //
+        if ((new Date($("#StartDate").val().replace(/-/g, "\/"))) > (new Date($("#EndDate").val().replace(/-/g, "\/")))) {
+            $("#reqEndDate").html("结束日期必须大于开始日期");
+            IsValid = false;
+        }
+
+
+        //序列号
+        if (!AddSpareVue.Info.SerialCode    ) {
+            $("#reqSerialCode").html("备用机序列号不能为空");
+            $("#SerialCode").focus();
+            IsValid = false;
+        }
+        else if (IsValid == true && CheckSpareSerialCode() == true) {
+            $("#reqSerialCode").html("备用机序列号重复");
+            $("#SerialCode").focus();
+           IsValid = false;
+        }
+        return IsValid;
+    }
+
+</script>
+
+<!--序列号是否重复-->
+<script>
+    function CheckSpareSerialCode() {
+        var IsExisted = true;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckSpareSerialCode", "InvSpare")',
+            data: {
+                serialCode: AddSpareVue.Info.SerialCode.trim(),
+                id: AddSpareVue.Info.ID,
+                fujiClass2ID: AddSpareVue.Info.FujiClass2.ID,
+                startDate: $("#StartDate").val(),
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data != true)
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+</script>
+
+<!--获取备用机信息-->
+<script>
+    function GetSpareByID(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSpareByID", "InvSpare")', {
+            SpareID: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                AddSpareVue.Info = response.Data;
+                AddSpareVue.Info.StartDate = parseAndFormatJsonDate(AddSpareVue.Info.StartDate);
+                AddSpareVue.Info.EndDate = parseAndFormatJsonDate(AddSpareVue.Info.EndDate);
+            }
+        })
+    }
+</script>
+
+<!--获取富士二类-->
+<script>
+    function GetFujiClass2s() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', {},
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    AddSpareVue.FujiClass2Filter = response.Data;
+                }
+            })
+    }
+</script>
+
+

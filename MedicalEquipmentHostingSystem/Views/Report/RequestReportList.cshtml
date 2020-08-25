@@ -1,0 +1,246 @@
+﻿@{
+    int repair = BusinessObjects.Domain.RequestInfo.RequestTypes.Repair;
+    int maintain = BusinessObjects.Domain.RequestInfo.RequestTypes.Maintain;
+    int onSiteInspection = BusinessObjects.Domain.RequestInfo.RequestTypes.OnSiteInspection;
+    int inspection = BusinessObjects.Domain.RequestInfo.RequestTypes.Inspection;
+    int recall = BusinessObjects.Domain.RequestInfo.RequestTypes.Recall;
+    int correcting = BusinessObjects.Domain.RequestInfo.RequestTypes.Correcting;
+    int allocation = BusinessObjects.Domain.RequestInfo.RequestTypes.Allocation;
+    ViewBag.Title = "RequestReportList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<style>
+    .ifram {
+        width: 80%;
+        margin: 20px 0 20px 10px;
+    }
+    .div {
+        display: inline-block;
+        text-align: center;
+        margin: 20px 20px;
+        width: 130px;
+    }
+    .div b {
+        margin: 10px auto;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .img img {
+        width: 50px;
+        height: 50px;
+        /* background-color: aqua; */
+    }
+
+    .img {
+        width: 50px;
+        height: 50px;
+        /* border-radius: 50px; */
+        margin: 0 auto;
+    }
+</style>
+<div id="RequestReportList" class="radiusOnly" style="width:1400px;margin:20px auto 3%; ">
+    <table style="color: black; border-top:none;border-bottom:none;border-left:none;" width="1400" border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">客户请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestTime('派工响应时间', 'ResponseDispatchTime','派工单数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>派工响应时间</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@repair,@BusinessObjects.Domain.DispatchInfo.Statuses.Approved,'DispatchRatio','派工执行率','执行数','派工总数','执行率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>派工执行率</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestFinishedRatio(0, 'RequestFinishedRateReport', '服务合格率','合格数','服务总数', '合格率(%)')">
+                    <div class="img"><img src="~/Content/img/countAndRatio.png"></div>
+                    <b>服务合格率</b>
+                </div>
+                <div class="div cursor" onclick="GoToServiceRatio('PassServiceRatioReport','服务时间达标率','达标数量','总数量','达标率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>服务时间达标率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center" width="150px;">维修请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@repair,0,'ReportRequestCount','维修请求数量统计','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>维修请求数量统计</b>
+                </div>
+                <div class="div cursor" onclick="GoToUnFinishedRequestCount(@repair,@BusinessObjects.Domain.RequestInfo.ReportStatus.Unclosed,'ReportRequestCount','维修请求未关闭数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>维修请求未关闭数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToUnFinishedRequestCount(@repair,@BusinessObjects.Domain.RequestInfo.ReportStatus.Unresponsed,'ReportRequestCount','维修请求未响应数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>维修请求未响应数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@repair,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'ReportRequestCount','维修请求已关闭数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>维修请求已关闭数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToEqptRatioReport('维修请求增长率', 'RepairRequestGrowthRatioReport', '当年数量','去年数量','增长率(%)')">
+                    <div class=" img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>维修请求增长率</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@repair,@BusinessObjects.Domain.RequestInfo.ReportStatus.Responsed,'RequestRatioReport','维修请求响应率','响应数量','计划总数','响应率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>维修请求响应率</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestResponseTime('维修请求响应时间',@repair, 'RepairResponseTimeReport','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>维修请求响应时间</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">设备维修方式报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToSupplierRequestRatio(@repair,@BusinessObjects.Domain.DispatchReportInfo.SolutionResultStatuses.Waitting_Thirdparty,'RepairRatioReport','设备自修率','非供应商维修数','维修总数','自修率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备自修率</b>
+                </div>
+                <div class="div cursor" onclick="GoToSupplierRequestRatio(@repair,@BusinessObjects.Domain.DispatchReportInfo.SolutionResultStatuses.Waitting_Thirdparty,'Supplier_RepairRatioReport','设备供应商维修率','供应商维修数','维修总数','供应商维修率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备供应商维修率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">保养请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@maintain,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'ReportRequestCount','设备实际保养数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备实际保养数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@maintain,0,'ReportRequestCount','设备计划保养数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备计划保养数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@maintain,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'RequestRatioReport','设备保养率','实际数量','计划总数','保养率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备保养率</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@maintain,@BusinessObjects.Domain.DispatchReportInfo.SolutionResultStatuses.Waitting_Thirdparty,'ResultCount_supplierReport','设备供应商保养数','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备供应商保养数</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@maintain,@BusinessObjects.Domain.DispatchReportInfo.SolutionResultStatuses.Waitting_Thirdparty,'ResultCount_self','设备内部保养数','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备内部保养数</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">巡检请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@onSiteInspection,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'ReportRequestCount','设备实际巡检数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备实际巡检数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@onSiteInspection,0,'ReportRequestCount','设备计划巡检数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备计划巡检数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@onSiteInspection,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'RequestRatioReport','设备巡检率','实际数量','计划总数','巡检率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备巡检率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">强检请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@inspection,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'ReportRequestCount','设备实际强检数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备实际强检数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToUnFinishedRequestCount(@inspection,@BusinessObjects.Domain.RequestInfo.ReportStatus.Unclosed,'ReportRequestCount','设备未完成强检数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备未完成强检数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToUnFinishedRequestCount(@recall,@BusinessObjects.Domain.RequestInfo.ReportStatus.Unclosed,'ReportRequestCount','设备待召回请求数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备待召回请求数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@inspection,0,'ReportRequestCount','设备计划强检数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备计划强检数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@inspection,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'RequestRatioReport','设备强检率','实际数量','计划总数','强检率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备强检率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">校准请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@correcting,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'ReportRequestCount','设备实际校准数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备实际校准数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestCount(@correcting,0,'ReportRequestCount','设备计划校准数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备计划校准数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@correcting,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'RequestRatioReport','设备校准率','实际数量','计划总数','校准率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备校准率</b>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdHead" style="text-align:center">调拨请求报表</td>
+            <td>
+                <div class="div cursor" onclick="GoToRequestCount(@allocation,0,'ReportRequestCount','设备调拨数量','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备调拨数量</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@allocation,@BusinessObjects.Domain.RequestInfo.ReportStatus.Responsed,'RequestRatioReport','设备调拨响应率','响应数量','计划总数','响应率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备调拨响应率</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestResponseTime('设备调拨响应时间',@allocation, 'RepairResponseTimeReport','请求数量(个)')">
+                    <div class="img"><img src="~/Content/img/Count.png"></div>
+                    <b>设备调拨响应时间</b>
+                </div>
+                <div class="div cursor" onclick="GoToRequestRatio(@allocation,@BusinessObjects.Domain.RequestInfo.ReportStatus.Closed,'RequestRatioReport','设备调拨完成率','完成数量','计划总数','完成率(%)')">
+                    <div class="img"><img src="~/Content/img/Ratio.png"></div>
+                    <b>设备调拨完成率</b>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function GoToRequestResponseTime(reportName, requestType, inter,yName) {
+        window.location.href = '@Url.Action("RequestResponseTimeReport", "Report")' + '?' + $.param({ reportName: reportName, requestType: requestType, inter: inter,yName:yName, actionName: 'RequestReportList' });
+    }
+    function GoToRequestCount(requestType, status, inter, reportName, yName) {
+        window.location.href = '@Url.Action("RequestCountReport", "Report")' + '?' + $.param({ requestType: requestType, status: status, actionName: 'RequestReportList', inter: inter, reportName: reportName, yName: yName });
+    }
+    function GoToUnFinishedRequestCount(requestType, status, inter, reportName, yName) {
+        window.location.href = '@Url.Action("UnFinishedRequestCountReport", "Report")' + '?' + $.param({ requestType: requestType, status: status, actionName: 'RequestReportList', inter: inter, reportName: reportName, yName: yName });
+    }
+    function GoToEqptRatioReport(reportName, inter,curName, lastName, yName) {
+        window.location.href = '@Url.Action("EqptRatio", "Report")' + '?' + $.param({ reportName: reportName, inter: inter,curName:curName,lastName:lastName, yName: yName, actionName: "RequestReportList" });
+    }
+    function GoToRequestRatio(requestType, status, inter, reportName, curName, lastName, yName) {
+        window.location.href = '@Url.Action("RequestRatio", "Report")' + '?' + $.param({ requestType: requestType, status: status, inter: inter, actionName: 'RequestReportList', reportName: reportName, curName:curName,lastName:lastName,yName: yName });
+    }
+        function GoToSupplierRequestRatio(requestType, status, inter, reportName, curName, lastName, yName) {
+            window.location.href = '@Url.Action("SupplierRequestRatio", "Report")' + '?' + $.param({ requestType: requestType, status: status, inter: inter, actionName: 'RequestReportList', reportName: reportName, curName:curName,lastName:lastName, yName: yName });
+    }
+    function GoToServiceRatio(inter, reportName,curName, lastName, yName) {
+        window.location.href = '@Url.Action("ServiceRatio", "Report")' + '?' + $.param({ inter: inter, actionName: 'RequestReportList', reportName: reportName,curName:curName,lastName:lastName, yName: yName });
+    }
+    function GoToRequestTime(reportName, inter, yName) {
+        window.location.href = '@Url.Action("RepairTimeReport", "Report")' + '?' + $.param({ reportName: reportName, inter: inter, yName: yName, actionName: "RequestReportList" });
+    }
+    function GoToRequestFinishedRatio(requestType, inter, reportName,curName, lastName, yName) {
+            window.location.href = '@Url.Action("RequestFinishedRate", "Report")' + '?' + $.param({ requestType: requestType, reportName: reportName, inter: inter,curName:curName,lastName:lastName, yName: yName, actionName: "RequestReportList" });
+    }
+</script>

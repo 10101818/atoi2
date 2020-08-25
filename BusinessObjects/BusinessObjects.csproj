@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E769E398-6F37-4883-BD52-90EE3A69626A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessObjects</RootNamespace>
+    <AssemblyName>BusinessObjects</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>ace41820</NuGetPackageImportStamp>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\\BusinessObjects.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GetuiServerApiSDK, Version=4.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>protobuffer\GetuiServerApiSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Jiguang.JPush, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jiguang.JPush.1.2.3\lib\net45\Jiguang.JPush.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.11.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.3.38.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.4.3.38\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.6\lib\net40\QRCoder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aspect\ConnectionAspect.cs" />
+    <Compile Include="Aspect\LoggingAspect.cs" />
+    <Compile Include="Aspect\TransactionAspect.cs" />
+    <Compile Include="DataAccess\BaseDao.cs" />
+    <Compile Include="DataAccess\ComponentDao.cs" />
+    <Compile Include="DataAccess\ConsumableDao.cs" />
+    <Compile Include="DataAccess\ContractDao.cs" />
+    <Compile Include="DataAccess\ControlDao.cs" />
+    <Compile Include="DataAccess\CustomReportDao.cs" />
+    <Compile Include="DataAccess\DepartmentDao.cs" />
+    <Compile Include="DataAccess\DispatchDao.cs" />
+    <Compile Include="DataAccess\DispatchJournalDao.cs" />
+    <Compile Include="DataAccess\DispatchReportDao.cs" />
+    <Compile Include="DataAccess\EquipmentDao.cs" />
+    <Compile Include="DataAccess\FileDao.cs" />
+    <Compile Include="DataAccess\FaultRateDao.cs" />
+    <Compile Include="DataAccess\FujiClassDao.cs" />
+    <Compile Include="DataAccess\HistoryDao.cs" />
+    <Compile Include="DataAccess\InvComponentDao.cs" />
+    <Compile Include="DataAccess\InvConsumableDao.cs" />
+    <Compile Include="DataAccess\InvServiceDao.cs" />
+    <Compile Include="DataAccess\InvSpareDao.cs" />
+    <Compile Include="DataAccess\LookupDao.cs" />
+    <Compile Include="DataAccess\NoticeDao.cs" />
+    <Compile Include="DataAccess\PurchaseOrderDao.cs" />
+    <Compile Include="DataAccess\ReportDao.cs" />
+    <Compile Include="DataAccess\RequestDao.cs" />
+    <Compile Include="DataAccess\ServiceHisDao.cs" />
+    <Compile Include="DataAccess\SupplierDao.cs" />
+    <Compile Include="DataAccess\AuditDao.cs" />
+    <Compile Include="DataAccess\UserDao.cs" />
+    <Compile Include="DataAccess\ValuationDao.cs" />
+    <Compile Include="Domain\AuditDetailInfo.cs" />
+    <Compile Include="Domain\ComponentInfo.cs" />
+    <Compile Include="Domain\Constants.cs" />
+    <Compile Include="Domain\ConsumableInfo.cs" />
+    <Compile Include="Domain\ContractInfo.cs" />
+    <Compile Include="Domain\CustomReportInfo.cs" />
+    <Compile Include="Domain\DepartmentInfo.cs" />
+    <Compile Include="Domain\DispatchInfo.cs" />
+    <Compile Include="Domain\DispatchJournalInfo.cs" />
+    <Compile Include="Domain\DispatchReportInfo.cs" />
+    <Compile Include="Domain\EquipmentInfo.cs" />
+    <Compile Include="Domain\EntityInfo.cs" />
+    <Compile Include="Domain\InvComponentInfo.cs" />
+    <Compile Include="Domain\InvConsumableInfo.cs" />
+    <Compile Include="Domain\InvServiceInfo.cs" />
+    <Compile Include="Domain\InvSpareInfo.cs" />
+    <Compile Include="Domain\PurchaseOrderInfo.cs" />
+    <Compile Include="Domain\ValuationInfo.cs" />
+    <Compile Include="Domain\FaultRateInfo.cs" />
+    <Compile Include="Domain\FujiClass1Info.cs" />
+    <Compile Include="Domain\FujiClass2Info.cs" />
+    <Compile Include="Domain\LookupInfo.cs" />
+    <Compile Include="Domain\NoticeInfo.cs" />
+    <Compile Include="Domain\RequestInfo.cs" />
+    <Compile Include="Domain\ServiceHisInfo.cs" />
+    <Compile Include="Domain\SmtpInfo.cs" />
+    <Compile Include="Domain\SupplierInfo.cs" />
+    <Compile Include="Domain\AuditHdrInfo.cs" />
+    <Compile Include="Domain\UserInfo.cs" />
+    <Compile Include="Manager\ComponentManager.cs" />
+    <Compile Include="Manager\ConsumableManager.cs" />
+    <Compile Include="Manager\ContractManager.cs" />
+    <Compile Include="Manager\ControlManager.cs" />
+    <Compile Include="Manager\CustomReportManager.cs" />
+    <Compile Include="Manager\DepartmentManager.cs" />
+    <Compile Include="Manager\DispatchManager.cs" />
+    <Compile Include="Manager\EquipmentManager.cs" />
+    <Compile Include="Manager\FujiClassManager.cs" />
+    <Compile Include="Manager\HistoryManager.cs" />
+    <Compile Include="Manager\InvComponentManager.cs" />
+    <Compile Include="Manager\InvConsumableManager.cs" />
+    <Compile Include="Manager\InvServiceManager.cs" />
+    <Compile Include="Manager\InvSpareManager.cs" />
+    <Compile Include="Manager\JPushManager.cs" />
+    <Compile Include="Manager\LookupManager.cs" />
+    <Compile Include="Manager\PurchaseOrderManager.cs" />
+    <Compile Include="Manager\ReportManager.cs" />
+    <Compile Include="Manager\RequestGenerator.cs" />
+    <Compile Include="Manager\NoticeManager.cs" />
+    <Compile Include="Manager\RequestManager.cs" />
+    <Compile Include="Manager\SupplierManager.cs" />
+    <Compile Include="Manager\AuditManager.cs" />
+    <Compile Include="Manager\UploadFileManager.cs" />
+    <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Manager\ValuationManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ConnectionUtil.cs" />
+    <Compile Include="Util\EmailUtil.cs" />
+    <Compile Include="Util\EncryptionUtil.cs" />
+    <Compile Include="Util\EnumUtil.cs" />
+    <Compile Include="Util\ExportUtil.cs" />
+    <Compile Include="Util\FileUtil.cs" />
+    <Compile Include="Util\FTPUtil.cs" />
+    <Compile Include="Util\SmsSender.cs" />
+    <Compile Include="Util\SQLUtil.cs" />
+    <Compile Include="Util\UrlUitl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\PostSharp.4.3.38\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.3.38\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.3.38\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.3.38\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

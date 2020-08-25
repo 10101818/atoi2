@@ -1,0 +1,409 @@
+﻿@{
+    ViewBag.Title = "PurchaseOrderList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    int SuperAdmin = BusinessObjects.Domain.UserRole.SuperAdmin;
+}
+<div id="PurchaseOrderDetail" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" onclick="Back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+    </div>
+    <div class="title">
+        <p>采购单入库</p>
+    </div>
+    <!--基本信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr>
+                    <td colspan="4" class="tblName">
+                        基本信息
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">系统编号</th>
+                    <td width="300px">
+                        <label class="tdReadOnly">{{PurchaseOrder.OID}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求人</th>
+                    <td width="300px" class="tdReadOnly" > {{PurchaseOrder.User.Name}}
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">采购日期</th>
+                    <td width="300px">
+                        <label  class="tdReadOnly">{{PurchaseOrder.OrderDate}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">到货日期</th>
+                    <td width="300px">
+                        <label class="tdReadOnly">{{PurchaseOrder.DueDate}}</label></td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">供应商</th>
+                    <td width="300px" class="tdReadOnly">{{PurchaseOrder.Supplier.Name}} </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">备注</th>
+                    <td width="300px">
+                        <label class="tdReadOnly">{{PurchaseOrder.Comments}}</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--零件信息-->
+    <div class="radiusOnly">
+        
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="8" class="tblName">
+                        零件     
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:50px;">描述</th>
+                    <th style="min-width:60px;">类型</th>
+                    <th style="min-width:70px;">关联设备</th>
+                    <th style="min-width:70px;">单价</th>
+                    <th style="min-width:70px;">数量</th>
+                    <th style="min-width:70px;">已入库数量</th>
+                    <th style="min-width:80px;">操作</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="PurchaseOrder.Components.length == 0">
+                    <td colspan="8" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+
+                <tr v-for="(component,index) in PurchaseOrder.Components">
+                    <td>{{component.Component.Name}}</td>
+                    <td>{{component.Component.Description}}</td>
+                    <td>{{component.Component.Type.Name}}</td>
+                    <td>{{component.Equipment.Name}}</td>
+                    <td>{{component.Price}}</td>
+                    <td>{{component.Qty}}</td>
+                    <td>{{component.InboundQty}}</td> 
+                    <td align="center">
+                        <button class="btn btn-info " v-if="component.InboundQty < component.Qty" v-on:click="OpenStockComponent(component, index)">入库</button>
+                        <label v-if="component.InboundQty == component.Qty"> 已入库</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--耗材信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="9" class="tblName">
+                        耗材
+                    </td>
+                </tr>
+                <tr>               
+                    <th style="min-width:80px;">简称</th>
+                    <th style="min-width:50px;">描述</th>
+                    <th style="min-width:70px;">关联富士II类</th>
+                    <th style="min-width:70px;">单价</th>
+                    <th style="min-width:70px;">预计购买数量</th>
+                    <th style="min-width:70px;">已入库数量</th>
+                    <th style="min-width:80px;">操作</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="PurchaseOrder.Consumables.length == 0">
+                    <td colspan="9" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+                <tr v-for="(consumable, index) in PurchaseOrder.Consumables">
+                    <td>{{consumable.Consumable.Name}}</td>
+                    <td>{{consumable.Consumable.Description}}</td>
+                    <td>{{consumable.Consumable.FujiClass2.Name}}</td>
+                    <td>{{consumable.Price}}</td>
+                    <td>{{consumable.Qty}}</td>  
+                    <td>{{consumable.InboundQty}}</td> 
+                  
+                    <td align="center">
+                        <button class="btn btn-info " v-if="consumable.InboundQty < consumable.Qty" v-on:click="OpenStockConsumable(consumable, index)">入库</button>
+                        <label v-if="consumable.InboundQty == consumable.Qty"> 已入库</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--服务信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="7" class="tblName"> 服务</td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">服务名称</th>
+                    <th style="min-width:100px;">关联富士II类</th>
+                    <th style="min-width:100px;">金额(元)</th>
+                    <th style="min-width:100px;">服务开始时间</th>
+                    <th style="min-width:100px;">服务结束时间</th>
+                    <th style="min-width:100px;">服务次数</th> 
+                    <th style="min-width:80px;">操作</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(service, index) in PurchaseOrder.Services">
+                    <td>{{service.Name}}</td>
+                    <td>{{service.FujiClass2.Name}}</td>
+                    <td>{{service.Price}}</td>
+                    <td>{{service.StartDate}}</td>
+                    <td>{{service.EndDate}}</td>
+                    <td>
+                        <input v-if="service.Inbounded == false" type="text" maxlength="9" v-model.trim="service.TotalTimes" />
+                        <label v-if="service.Inbounded == true">{{service.TotalTimes}}</label>
+                    </td>
+                    <td align="center">
+                         <button class="btn btn-info" v-if="service.Inbounded == false" v-on:click="InboundServiceBtn(service, index)">入库</button>
+                        <label  v-if="service.Inbounded == true"> 已入库</label>
+                    </td>
+
+                </tr>
+                <tr v-if="PurchaseOrder.Services.length == 0">
+                    <td colspan="7" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--流程信息 第一次填写时不显示-->
+    <div class="radiusOnly" v-if="PurchaseOrder.FormatHistory != null">
+        <table class="tblDetail" width="800" border="1" frame="void">
+            <tr>
+                <td class="tblName" colspan="3">审批流程</td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required"></span></th>
+                <th width="189px">流程信息</th>
+                <td>
+                    <textarea readonly>{{PurchaseOrder.FormatHistory}}</textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br v-if="PurchaseOrder.FormatHistory != null" />
+
+    <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%; width: 800px;">
+        <tr>
+            <td align="center"><button class="btn btn-info" onclick="EndBtn()">完成</button></td>
+            <td align="center"><button class="btn btn-info" onclick="Back()">返回</button></td>
+        </tr>
+    </table>
+</div>
+
+@{ Html.RenderPartial("PurchaseOrderStockDialog"); }
+<!--Vue Init Data-->
+<script>
+    var PurchaseOrderDetailVue = new Vue({
+        el: "#PurchaseOrderDetail",
+        data: {
+            PurchaseOrder: {
+                ID: 0,
+                User: {ID:0},
+                Supplier: {},
+                OrderDate: '',
+                DueDate: '',
+                Comments: '',
+                Components: [],
+                Consumables: [],
+                Services: [],
+                Status:{ID:1},
+            },
+          
+        }
+    })
+</script>
+
+<!--初始化-->
+<script>
+    $(function () {
+        InitDateForm();
+        InitDialog();
+        GetPurchaseOrderByID();
+    })
+    function InitDateForm() {
+        var dateFields = $([]).add($("#OrderDate")).add($("#DueDate")).add($("#StartDate")).add($("#EndDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function (dateText, inst) {
+                let _this = this
+                $(_this).datepicker('setDate', new Date(dateText));
+                _this.dispatchEvent(new Event('input'))
+                _this.dispatchEvent(new Event('change'))
+                _this.blur()
+            },
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+</script>
+<!--获取采购单-->
+<script>
+    //获取采购单信息
+    function GetPurchaseOrderByID() {
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("GetPurchaseOrderByID", "PurchaseOrder")" + "?" + $.param({ PurchaseOrderID: Number(@ViewBag.ID) }),
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    PurchaseOrderDetailVue.PurchaseOrder = response.Data;
+                    PurchaseOrderDetailVue.PurchaseOrder.OrderDate = parseAndFormatJsonDate(PurchaseOrderDetailVue.PurchaseOrder.OrderDate );
+                    PurchaseOrderDetailVue.PurchaseOrder.DueDate = parseAndFormatJsonDate(PurchaseOrderDetailVue.PurchaseOrder.DueDate);
+                    $.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, serivce) {
+                        serivce.StartDate = parseAndFormatJsonDate(serivce.StartDate);
+                        serivce.EndDate = parseAndFormatJsonDate(serivce.EndDate);
+                        serivce.PurchaseDate = serivce.StartDate;
+                        serivce.AvaibleTimes = serivce.TotalTimes;
+                    });
+                   
+                   
+                }
+
+            })
+    }
+
+</script>
+
+
+<!--按钮-->
+<script>
+    function Back() {
+        window.location = "@Url.Action("PurchaseOrderList", "PurchaseOrder")";
+    }
+
+    function EndBtn() {
+        var IsStocked = "" ;
+      
+        for (var i = 0 ; i < PurchaseOrderDetailVue.PurchaseOrder.Components.length; i++) {
+            if (PurchaseOrderDetailVue.PurchaseOrder.Components[i].Qty > PurchaseOrderDetailVue.PurchaseOrder.Components[i].InboundQty) {
+                IsStocked += "零件未完全入库，";
+                break;
+            }
+        }
+
+        for (var i = 0 ; i < PurchaseOrderDetailVue.PurchaseOrder.Consumables.length; i++) {
+            if (PurchaseOrderDetailVue.PurchaseOrder.Consumables[i].Qty > PurchaseOrderDetailVue.PurchaseOrder.Consumables[i].InboundQty) {
+                IsStocked += "耗材未完全入库，";
+                break;
+            }
+        }
+        for (var i = 0 ; i < PurchaseOrderDetailVue.PurchaseOrder.Services.length; i++) {
+            if (PurchaseOrderDetailVue.PurchaseOrder.Services[i].Inbounded == false) {
+                IsStocked += "服务未完全入库，";
+                break;
+            }
+        }
+
+        //$.each(PurchaseOrderDetailVue.PurchaseOrder.Components, function (index, component) {
+        //    if (component.Qty > component.InboundQty) {
+        //        IsStocked = "零件未完全入库，";
+        //        return;
+        //    }
+        //});
+        //$.each(PurchaseOrderDetailVue.PurchaseOrder.Consumables, function (index, consumable) {
+        //    if (consumable.Qty > consumable.InboundQty) {
+        //        IsStocked += "耗材未完全入库，";
+        //        return;
+        //    }
+           
+        //});
+        //$.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, service) {
+        //    if (service.Inbounded == false) {
+        //        IsStocked += "服务未完全入库，";
+        //        return;
+        //    }
+        //});
+
+        jConfirm(IsStocked + "请确认完成入库?", "入库", function (result) {
+            if (result) {
+                EndPurchaseOrder()
+            }
+        });
+    }
+    function EndPurchaseOrder() {
+        PurchaseOrderDetailVue.PurchaseOrder.Status.ID = '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Ended'
+        SetPageWaiting(true)
+        $.post(
+                '@Url.Action("EndPurchaseOrder", "PurchaseOrder")',{
+                    purchaseOrderID:PurchaseOrderDetailVue.PurchaseOrder.ID,
+                comments:PurchaseOrderDetailVue.PurchaseOrder.FujiComments
+                },
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        jAlert(response.ResultMessage, "入库结果");
+                    }
+                    else {
+                        PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                        jAlert("入库完成", "入库结果", function () {
+                            Back();
+                        });
+                    }
+                    return;
+                }
+            );
+    }
+   
+         
+
+
+    //服务入库
+    function InboundServiceBtn(service, index) {
+        jConfirm("请确认是否入库?", "入库", function (result) {
+            if (result) {
+                InboundService(service, index)
+            }
+        });
+    }
+
+    function InboundService(service, index) {
+        $.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, serivce) {
+            serivce.AvaibleTimes = serivce.TotalTimes;
+        });
+        var inboundPurchaseOrder = cloneObj(PurchaseOrderDetailVue.PurchaseOrder);
+        inboundPurchaseOrder.Services = new Array();
+        inboundPurchaseOrder.Services.push(service);
+        inboundPurchaseOrder.Consumables = new Array();
+        inboundPurchaseOrder.Components = new Array();
+        SetPageWaiting(true)
+        $.post(
+                '@Url.Action("InboundPurchaseOrder", "PurchaseOrder")',
+                inboundPurchaseOrder,
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        jAlert(response.ResultMessage, "入库结果");
+                    }
+                    else {
+                        PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                        jAlert("入库成功", "入库结果", function () {
+                            service.Inbounded = true;
+                            PurchaseOrderDetailVue.$forceUpdate();
+                        });
+                    }
+                    return;
+                }
+            );
+    }
+
+
+
+
+
+</script>

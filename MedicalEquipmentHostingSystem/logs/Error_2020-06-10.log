@@ -1,0 +1,72 @@
+2020-06-10 09:34:06.6827 ERROR Exception: '传入参数或类型非可转换枚举类型！' happened in Class 'FujiClassDao', Method 'GetFujiClass2', Arguments: None 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 90
+2020-06-10 09:34:06.8456 ERROR 传入参数或类型非可转换枚举类型！ 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 96
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 91
+2020-06-10 09:34:22.2788 ERROR Exception: '调用的目标发生了异常。' happened in Class 'FujiClassDao', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 40
+2020-06-10 09:34:22.3288 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 42
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 65
+2020-06-10 09:34:58.4192 ERROR Exception: '传入参数或类型非可转换枚举类型！' happened in Class 'FujiClassDao', Method 'GetFujiClass2', Arguments: None 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 90
+2020-06-10 09:34:58.4882 ERROR 传入参数或类型非可转换枚举类型！ 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 96
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 91
+2020-06-10 09:35:21.7651 ERROR Exception: '调用的目标发生了异常。' happened in Class 'FujiClassDao', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 40
+2020-06-10 09:35:21.8091 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 42
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 65
+2020-06-10 09:35:28.4386 ERROR Exception: '传入参数或类型非可转换枚举类型！' happened in Class 'FujiClassDao', Method 'GetFujiClass2', Arguments: None 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 90
+2020-06-10 09:35:28.5085 ERROR 传入参数或类型非可转换枚举类型！ 
+    在 BusinessObjects.Util.SQLUtil.ConvertEnum[T](Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 409
+   在 BusinessObjects.Domain.FujiClass2Info..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\FujiClass2Info.cs:行号 95
+   在 BusinessObjects.DataAccess.FujiClassDao.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 96
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetFujiClass2() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 91
+2020-06-10 09:40:19.3851 ERROR Exception: '调用的目标发生了异常。' happened in Class 'FujiClassDao', Method 'QueryFujiClass2s', Arguments: Int32 = 0, Int32 = 0, String = f2.Name, String = , String = f1.Name, Boolean = True, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 40
+2020-06-10 09:40:49.5055 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 308
+   在 BusinessObjects.DataAccess.FujiClassDao.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FujiClassDao.cs:行号 42
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.QueryFujiClass2s(Int32 class1, Int32 class2, String filterField, String filterText, String sortField, Boolean sortDirection, Int32 currentPage) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 65

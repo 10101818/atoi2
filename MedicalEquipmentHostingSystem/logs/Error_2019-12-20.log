@@ -1,0 +1,5 @@
+2019-12-20 14:38:46.1245 ERROR 未将对象引用设置到对象的实例。 
+    在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.<>c__DisplayClass11.<IncomeExpenseByDepartment>b__9(ServiceHisCountInfo temp) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 412
+   在 System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   在 MedicalEquipmentHostingSystem.Controllers.EquipmentController.IncomeExpenseByDepartment() 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\EquipmentController.cs:行号 412

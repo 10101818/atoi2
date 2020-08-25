@@ -1,0 +1,419 @@
+﻿@{
+    List<BusinessObjects.Domain.KeyValueInfo> ComponentStatus = BusinessObjects.Domain.InvComponentInfo.ComponentStatus.GetComponentStatus();
+}
+
+
+<!--新增零件-->
+<div class="ui-dialog-content ui-widget-content" id="AddComponent" v-cloak tabindex="-1" style="display:none;">
+    <table class="table">  
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">系统编号</td>
+            <td class="tdReadOnly"><label>{{Info.OID}}</label></td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">关联设备</td>
+            <td>
+                <input class="input" type="text" id="EquipmentName" maxlength="50" style="width:300px;" readonly v-model.trim="Info.Equipment.Name" onclick="OpenSelectEquipmentDialog()" />
+                <img src="~/Content/img/find.png" class="icon-sm cursor" onclick="OpenSelectEquipmentDialog()" />
+                <label class="required" id="reqEquipmentName"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">选择零件</td>
+            <td>
+                <select v-model.trim="Info.Component.ID" style="width:200px;" id="ComponentID">
+                    <option v-for="Component in ComponentList" v-bind:value="Component.ID">{{Component.Name}}</option>
+                </select>
+                <label class="required" id="reqComponentID"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">选择零件</td>
+            <td>
+                <label class="tdReadOnly">{{Info.Component.Name}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">序列号</td>
+            <td>
+                <input class="input" type="text" id="SerialCode" maxlength="30" style="width:300px;" v-model.trim="Info.SerialCode" />
+                <label class="required" id="reqSerialCode"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">规格</td>
+            <td>
+                <input class="input" type="text" id="Specification" maxlength="50" style="width:300px;" v-model.trim="Info.Specification" />
+                <label class="required" id="reqSpecification"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">型号</td>
+            <td>
+                <input class="input" type="text" id="Model" maxlength="50" style="width:300px;" v-model.trim="Info.Model" />
+                <label class="required" id="reqModel"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">供应商</td>
+            <td>
+                <input class="input" type="text" id="SupplierName" maxlength="12" style="width:300px;" readonly v-model.trim="Info.Supplier.Name" v-on:click="OpenSupplierSelection(callback);"  />
+                <img src="~/Content/img/find.png" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" />
+                <label class="required" id="reqSupplierName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">单价(元)</td>
+            <td>
+                <input class="input" type="text" id="Price" maxlength="13" style="width:300px;" v-model.trim="Info.Price" />
+                <label class="required" id="reqPrice"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">购入日期</td>
+            <td>
+                <input type="text" class="datePicker" id="PurchaseDate" v-model.trim="Info.PurchaseDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqPurchaseDate"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">购入日期</td>
+            <td>
+                <label class="tdReadOnly">{{Info.PurchaseDate}}</label>
+                <label class="required" id="reqPurchaseDate"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">采购单号</td>
+            <td>
+                <label class="tdReadOnly">{{Info.Purchase.ID == 0 ? "" : Info.Purchase.Name}}</label>
+                <label class="required" id="reqPurchaseID"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">备注</td>
+            <td>
+                <textarea rows="3" cols="20" id="Comments" maxlength="500" v-model.trim="Info.Comments"></textarea>
+                <label class="unrequired" id="reqComments"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">状态</td>
+            <td>
+                <select v-model.trim="Info.Status.ID">
+                    @foreach (var temp in ComponentStatus)
+                    {
+                        <option value="@temp.ID">@temp.Name</option>
+                    }
+                </select>
+                <label class="required" id="reqStatusID"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+@{ Html.RenderPartial("SelectEquipmentDialog"); }
+@{ Html.RenderPartial("Supplier_Selection"); }
+
+<script>
+    
+    var AddComponentVue = new Vue({
+        el: "#AddComponent",
+        data: {
+            IsEdited: false,
+            ComponentList: [],
+            Info: {
+                ID:0,
+                Equipment: { FujiClass2: {}},
+                Component: {},
+                SerialCode: '',
+                Model: '',
+                Supplier: {},
+                Name: '',
+                Price: '',
+                Purchase: {ID:0},
+                PurchaseDate: '',
+                Comments: '',
+                Status: {ID:1},
+            }
+        },
+        watch: {
+            'IsEdited': function () {
+                this.$nextTick(function () {
+                    InitDate();
+                })
+            }
+        },
+    })
+</script>
+
+<script>
+    //规定弹窗的格式
+    function InitInvComponentDialog() {
+        $("#AddComponent").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 680,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveComponent(AddComponentVue.Info.ID); },
+                "关闭": function () { $("#AddComponent").dialog("close"); }
+            }
+        });
+    }
+
+    //格式化弹窗中的数据
+    function InitInvComponentDialogForm() {
+        $("label.required").html("");
+        AddComponentVue.Info = {
+            ID: 0,
+            Equipment: { FujiClass2: {} },
+            Component: {},
+            SerialCode: '',
+            Model: '',
+            Supplier: {},
+            Name: '',
+            Price: '',
+            Purchase: {ID:0},
+            PurchaseDate: '',
+            Comments: '',
+            Status: { ID: 1 },
+        }
+
+        AddComponentVue.ComponentList = [];
+    }
+
+    //打开新增零件弹窗
+    function OpenAddComponent() {
+        RefreshEquipment();
+        AddComponentVue.IsEdited = false;
+        InitInvComponentDialogForm();
+        $("#AddComponent").dialog({ title: "新增零件" });
+        $("#AddComponent").dialog("open");
+    }
+
+    //刷新设备
+    function RefreshEquipment() {
+        SelectEquipmentDialogVue.Equipments = [];
+        SelectEquipmentDialogVue.checkval = [];
+        }
+
+    //打开编辑零件弹窗
+    function OpenEditComponent(id) {
+        RefreshEquipment();
+        AddComponentVue.IsEdited = true;
+        InitInvComponentDialogForm();
+        GetComponentByID(id);
+        AddComponentVue.$forceUpdate();
+        $("#AddComponent").dialog({ title: "编辑零件" });
+        $("#AddComponent").dialog("open");
+        $("#PurchaseDate").datepicker("destroy");
+    }
+
+    //保存零件信息
+    function SaveComponent(id) {
+        if (!CheckComponent()) return;        
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveComponent", "InvComponent")', AddComponentVue.Info, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                jAlert("保存成功", "保存", function () {
+                    $("#AddComponent").dialog("close");
+                    QueryComponent();
+                });
+            }
+        })
+    }
+
+</script>
+
+<script>
+    //打开选择设备弹窗
+    function OpenSelectEquipmentDialog() {
+        InitSelectEquipmentDialogForm();
+        if (AddComponentVue.IsEdited == true) {
+            OpenEquipmentDialog(1, AddComponentVue.Info.Equipment.FujiClass2.ID);
+        }
+        else {
+            OpenEquipmentDialog(1);
+        }
+        
+    }
+    //添加到弹窗
+    function SaveEquipments() {
+        var Equipments = CheckSaveSelectEquipment()
+        if (Equipments == undefined) return;
+        if (AddComponentVue.IsEdited == true && Equipments.FujiClass2.ID != AddComponentVue.Info.Equipment.FujiClass2.ID) {
+            jAlert("设备富士II类不一致，无法更换设备！", "提示");
+            return;
+        }
+        else {
+            AddComponentVue.Info.Equipment = Equipments;
+            AddComponentVue.$forceUpdate();
+            GetComponentByFujiClass2();
+        }
+    }
+    //供应商
+    function callback(objectVue) {
+        AddComponentVue.Info.Supplier= objectVue;
+        AddComponentVue.$forceUpdate();
+    }
+</script>
+
+<!--判断信息-->
+<script>
+    function CheckComponent() {
+        $("label.required").html("");
+
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+
+        var IsValid = true;
+        // 关联设备
+        if (!AddComponentVue.Info.Equipment.Name) {
+            $("#reqEquipmentName").html("关联设备不能为空");
+            $("#EquipmentName").focus();
+            IsValid = false;
+        }
+        //零件
+        if (!AddComponentVue.Info.Component.ID) {
+            $("#reqComponentID").html("零件不能为空");
+            $("#ComponentID").focus();
+            IsValid = false;
+        }
+        
+        // 规格
+        if (!AddComponentVue.Info.Specification) {
+            $("#reqSpecification").html("规格不能为空");
+            $("#Specification").focus();
+            IsValid = false;
+        }
+        //型号
+        if (!AddComponentVue.Info.Model) {
+            $("#reqModel").html("型号不能为空");
+            $("#Model").focus();
+            IsValid = false;
+        }
+        //供应商
+        if (!AddComponentVue.Info.Supplier.Name) {
+            $("#reqSupplierName").html("供应商不能为空");
+            $("#SupplierName").focus();
+            IsValid = false;
+        }
+        //单价
+        if (AddComponentVue.Info.Price > 9999999999.99) {
+            $("#reqPrice").html("单价最大为9999999999.99");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddComponentVue.Info.Price)) {
+            $("#reqPrice").html("单价格式有误");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        //购入日期
+        if (CheckDatePicker("PurchaseDate", "购入日期") != "") {
+            $("#reqPurchaseDate").html(CheckDatePicker("PurchaseDate", "购入日期"));
+            $("#PurchaseDate").focus();
+            IsValid = false;
+        }
+        //序列号
+        if (!AddComponentVue.Info.SerialCode) {
+            $("#reqSerialCode").html("序列号不能为空");
+            $("#SerialCode").focus();
+            IsValid = false;
+        }
+        else if (ajaxCheckSerialCodeExisted() == true) {
+           $("#reqSerialCode").html("序列号重复");
+           $("#SerialCode").focus();
+           IsValid = false;
+        }
+        return IsValid;
+    }
+</script>
+
+<!--序列号是否重复-->
+<script>
+    function ajaxCheckSerialCodeExisted() {
+        var IsExisted = true;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckComponentSerialCode", "InvComponent")',
+            data: {
+                serialCode: AddComponentVue.Info.SerialCode.trim(),
+                id: AddComponentVue.Info.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data != true)
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+</script>
+
+<!--根据2类选择零件-->
+<script>
+    function GetComponentByFujiClass2() {       
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryComponentsByFujiClass2ID", "Component")', {
+            fujiClass2ID: AddComponentVue.Info.Equipment.FujiClass2.ID,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                AddComponentVue.ComponentList = response.Data;
+                if (AddComponentVue.IsEdited != true) {
+                    AddComponentVue.Info.Component.ID = 0;
+                }
+            }
+        })
+    }
+</script>
+
+<!--获取零件信息-->
+<script>
+    function GetComponentByID(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetComponentByID", "InvComponent")', {
+            componentID: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                AddComponentVue.Info = response.Data;
+                AddComponentVue.Info.PurchaseDate = parseAndFormatJsonDate(AddComponentVue.Info.PurchaseDate);
+                SelectEquipmentDialogVue.checkval = AddComponentVue.Info.Equipment.ID;
+            }
+        })
+    }
+</script>
+

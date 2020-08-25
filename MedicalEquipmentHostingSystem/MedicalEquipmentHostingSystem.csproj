@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B1310BE-783D-45D2-868F-606F139C49AB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MedicalEquipmentHostingSystem</RootNamespace>
+    <AssemblyName>MedicalEquipmentHostingSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SkipPostSharp>True</SkipPostSharp>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\\MedicalEquipmentHostingSystem.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="MathNet.Numerics, Version=4.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.11.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\dashboard\app.min.css" />
+    <Content Include="Content\css\dashboard\indexA.min.css" />
+    <Content Include="Content\css\dashboard\indexSA.min.css" />
+    <Content Include="Content\css\dashboard\indexU.min.css" />
+    <Content Include="Content\css\dtree.css" />
+    <Content Include="Content\css\dtreefont.css" />
+    <Content Include="Content\css\iconfont.css" />
+    <Content Include="Content\css\iconfont.svg" />
+    <Content Include="Content\css\jquery.timepicker.min.css" />
+    <Content Include="Content\css\layer.css" />
+    <Content Include="Content\css\layui.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\materialize.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\timelinev.css" />
+    <Content Include="Content\css\util.css" />
+    <Content Include="Content\img\add.png" />
+    <Content Include="Content\img\addFujiClass.png" />
+    <Content Include="Content\img\appearance.png" />
+    <Content Include="Content\img\back.png" />
+    <Content Include="Content\img\bottom.png" />
+    <Content Include="Content\img\close.png" />
+    <Content Include="Content\img\collect.png" />
+    <Content Include="Content\img\asc.png" />
+    <Content Include="Content\img\copy.png" />
+    <Content Include="Content\img\Count.png" />
+    <Content Include="Content\img\countAndRatio.png" />
+    <Content Include="Content\img\delete.png" />
+    <Content Include="Content\img\edit.png" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\find.png" />
+    <Content Include="Content\img\imageNoFound.png" />
+    <Content Include="Content\img\jump.png" />
+    <Content Include="Content\img\label.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\loginBg.jpg" />
+    <Content Include="Content\img\logo_block.png" />
+    <Content Include="Content\img\logo_horizon.png" />
+    <Content Include="Content\img\logs.png" />
+    <Content Include="Content\img\look.png" />
+    <Content Include="Content\img\no.png" />
+    <Content Include="Content\img\open.png" />
+    <Content Include="Content\img\paigongList.png" />
+    <Content Include="Content\img\plaque.png" />
+    <Content Include="Content\img\Ratio.png" />
+    <Content Include="Content\img\reduce.png" />
+    <Content Include="Content\img\refresh.png" />
+    <Content Include="Content\img\refreshList.png" />
+    <Content Include="Content\img\Report-1.png" />
+    <Content Include="Content\img\run.png" />
+    <Content Include="Content\img\search.png" />
+    <Content Include="Content\img\shengmingzhouqi.png" />
+    <Content Include="Content\img\SysRequest.png" />
+    <Content Include="Content\img\top.png" />
+    <Content Include="Content\img\to_left.png" />
+    <Content Include="Content\img\to_right.png" />
+    <Content Include="Content\img\unKnow.png" />
+    <Content Include="Content\img\update.png" />
+    <Content Include="Content\img\upload.png" />
+    <Content Include="Content\img\view.png" />
+    <Content Include="Content\img\yes.png" />
+    <Content Include="Content\scripts\bootstrap.min.js" />
+    <Content Include="Content\scripts\css\modules\code.css" />
+    <Content Include="Content\scripts\css\modules\layer\default\layer.css" />
+    <Content Include="Content\scripts\dashboard\app.js" />
+    <Content Include="Content\scripts\dashboard\common.js" />
+    <Content Include="Content\scripts\dashboard\index.js" />
+    <Content Include="Content\scripts\dashboard\indexA.js" />
+    <Content Include="Content\scripts\dashboard\indexSA.js" />
+    <Content Include="Content\scripts\dashboard\indexU.js" />
+    <Content Include="Content\scripts\dashboard\radar.js" />
+    <Content Include="Content\scripts\dashboard\vendor.js" />
+    <Content Include="Content\scripts\data-set.js" />
+    <Content Include="Content\scripts\dtree.js" />
+    <Content Include="Content\scripts\exif.js" />
+    <Content Include="Content\scripts\g2.min.js" />
+    <Content Include="Content\scripts\iconfont.js" />
+    <Content Include="Content\scripts\jquery.qrcode.min.js" />
+    <Content Include="Content\scripts\jquery.timelinev.js" />
+    <Content Include="Content\scripts\jquery.timepicker.min.js" />
+    <Content Include="Content\scripts\jSignature.min.js" />
+    <Content Include="Content\scripts\layui.js" />
+    <Content Include="Content\scripts\lay\modules\code.js" />
+    <Content Include="Content\scripts\lay\modules\element.js" />
+    <Content Include="Content\scripts\lay\modules\form.js" />
+    <Content Include="Content\scripts\lay\modules\layer.js" />
+    <Content Include="Content\scripts\lay\modules\tree.js" />
+    <Content Include="Content\scripts\materialize.js" />
+    <Content Include="Content\scripts\polyfill.min.js" />
+    <Content Include="Content\scripts\proviceSelect.js" />
+    <Content Include="Content\scripts\scrollTo.js" />
+    <Content Include="Content\scripts\vue.min.js" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery.alerts.css" />
+    <Content Include="Content\css\jquery.pager.css" />
+    <Content Include="Content\scripts\ajaxfileupload.js" />
+    <Content Include="Content\scripts\common.js" />
+    <Content Include="Content\scripts\jquery-1.11.0.js" />
+    <Content Include="Content\scripts\jquery-ui.js" />
+    <Content Include="Content\scripts\jquery.alerts.js" />
+    <Content Include="Content\scripts\jquery.blockUI.min.js" />
+    <Content Include="Content\scripts\jquery.fileDownload.js" />
+    <Content Include="Content\scripts\jquery.pager.js" />
+    <Content Include="Content\scripts\js.DateTime.js" />
+    <Content Include="Content\scripts\Site.js" />
+    <Content Include="Content\ui-images\help.gif" />
+    <Content Include="Content\ui-images\important.gif" />
+    <Content Include="Content\ui-images\info.gif" />
+    <Content Include="Content\ui-images\title.gif" />
+    <Content Include="Content\ui-images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
+    <Content Include="Content\ui-images\ui-bg_diagonal-maze_40_000000_10x10.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_10_eceadf_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_15_eceadf_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_15_f7f3de_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_15_ffffff_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_65_654b24_60x60.png" />
+    <Content Include="Content\ui-images\ui-bg_fine-grain_68_b83400_60x60.png" />
+    <Content Include="Content\ui-images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\ui-images\ui-icons_3572ac_256x240.png" />
+    <Content Include="Content\ui-images\ui-icons_8c291d_256x240.png" />
+    <Content Include="Content\ui-images\ui-icons_b83400_256x240.png" />
+    <Content Include="Content\ui-images\ui-icons_fbdb93_256x240.png" />
+    <Content Include="Content\ui-images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Shared\_SubMain.cshtml" />
+    <Content Include="Views\Shared\Supplier_Selection.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="App_Start\ConstDefinition.cs" />
+    <Compile Include="App_Start\NoCacheAttribute .cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebConfig.cs" />
+    <Compile Include="App_Start\DashboardProvider.cs" />
+    <Compile Include="Areas\App\AppAreaRegistration.cs" />
+    <Compile Include="Areas\App\Controllers\BaseController.cs" />
+    <Compile Include="Areas\App\Controllers\ContractController.cs" />
+    <Compile Include="Areas\App\Controllers\DispatchController.cs" />
+    <Compile Include="Areas\App\Controllers\DispatchJournalController.cs" />
+    <Compile Include="Areas\App\Controllers\DispatchReportController.cs" />
+    <Compile Include="Areas\App\Controllers\EquipmentController.cs" />
+    <Compile Include="Areas\App\Controllers\FujiClass2Controller.cs" />
+    <Compile Include="Areas\App\Controllers\InvComponentController.cs" />
+    <Compile Include="Areas\App\Controllers\InvConsumableController.cs" />
+    <Compile Include="Areas\App\Controllers\InvServiceController.cs" />
+    <Compile Include="Areas\App\Controllers\InvSpareController.cs" />
+    <Compile Include="Areas\App\Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Areas\App\Controllers\ReportController.cs" />
+    <Compile Include="Areas\App\Controllers\RequestController.cs" />
+    <Compile Include="Areas\App\Controllers\SupplierController.cs" />
+    <Compile Include="Areas\App\Controllers\UserController.cs" />
+    <Compile Include="Areas\App\Models\JsonNetResult.cs" />
+    <Compile Include="Areas\App\Models\MinDateTimeConverter.cs" />
+    <Compile Include="Areas\App\Models\ServiceResultModel.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ComponentController.cs" />
+    <Compile Include="Controllers\ConsumableController.cs" />
+    <Compile Include="Controllers\ContractController.cs" />
+    <Compile Include="Controllers\CustomReportController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DispatchController.cs" />
+    <Compile Include="Controllers\DispatchJournalController.cs" />
+    <Compile Include="Controllers\DispatchReportController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\FujiClass1Controller.cs" />
+    <Compile Include="Controllers\FujiClass2Controller.cs" />
+    <Compile Include="Controllers\InvComponentController.cs" />
+    <Compile Include="Controllers\InvConsumableController.cs" />
+    <Compile Include="Controllers\InvServiceController.cs" />
+    <Compile Include="Controllers\InvSpareController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\ValuationController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\UploadFileController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepartPerformanceModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NLog.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\RequestList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\System\SmptEmail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\userList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Equipment\EquipmentDetail.cshtml" />
+    <Content Include="Views\Equipment\EquipmentList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contract\ContractDetail.cshtml" />
+    <Content Include="Views\Contract\ContractList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Project>{e769e398-6f37-4883-bd52-90ee3a69626a}</Project>
+      <Name>BusinessObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Supplier\SupplierList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Request\RequestDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\System\NoticeList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\css\iconfont.eot" />
+    <Content Include="Content\css\iconfont.ttf" />
+    <Content Include="Content\css\iconfont.woff" />
+    <Content Include="Content\css\iconfont.woff2" />
+    <Content Include="Areas\App\Views\Web.config" />
+    <Content Include="Areas\App\Views\Request\Repair.cshtml" />
+    <Content Include="Content\css\dtreefont.ttf" />
+    <Content Include="Content\css\dtreefont.woff" />
+    <None Include="Properties\PublishProfiles\MEHS.pubxml" />
+    <Content Include="Views\Request\RequestDispatch.cshtml" />
+    <Content Include="Views\DispatchJournal\DispatchJournalDetail.cshtml" />
+    <Content Include="Views\Dispatch\DispatchResponse.cshtml" />
+    <Content Include="Views\Dispatch\DispatchList.cshtml" />
+    <Content Include="Views\DispatchReport\DispatchReportDetail.cshtml" />
+    <Content Include="Views\Equipment\EquipmentTimeLine.cshtml" />
+    <Content Include="Views\Equipment\EquipmentView.cshtml" />
+    <Content Include="Views\System\App.cshtml" />
+    <Content Include="Views\System\Sms.cshtml" />
+    <Content Include="Views\Dispatch\DispatchReportList.cshtml" />
+    <Content Include="Views\Dispatch\DispatchJournalList.cshtml" />
+    <Content Include="Views\Shared\SelectEquipmentDialog.cshtml" />
+    <Content Include="Views\Request\RequestSelective.cshtml" />
+    <Content Include="Views\Report\AmountReport.cshtml" />
+    <Content Include="Views\Report\EquipmentReportList.cshtml" />
+    <Content Include="Views\Report\RequestReportList.cshtml" />
+    <Content Include="Views\Report\RatioReport.cshtml" />
+    <Content Include="Views\Report\RepairTimeReport.cshtml" />
+    <Content Include="Views\Report\RequestFinishedRate.cshtml" />
+    <Content Include="Views\System\ErrorMessageEdit.cshtml" />
+    <Content Include="Views\CustomReport\CustomReport.cshtml" />
+    <Content Include="Views\Supplier\SupplierDetail.cshtml" />
+    <Content Include="Views\System\WarningTimeEdit.cshtml" />
+    <Content Include="Views\Contract\ContractDetailView.cshtml" />
+    <Content Include="Views\Report\EqptRatio.cshtml" />
+    <Content Include="Views\Report\RequestCountReport.cshtml" />
+    <Content Include="Views\Report\RequestRatio.cshtml" />
+    <Content Include="Views\Report\RequestResponseTimeReport.cshtml" />
+    <Content Include="Views\Report\ServiceRatio.cshtml" />
+    <Content Include="Views\Report\UnFinishedRequestCountReport.cshtml" />
+    <Content Include="Views\Report\SupplierRequestRatio.cshtml" />
+    <Content Include="Views\Department\DepartmentList.cshtml" />
+    <Content Include="Views\Audit\SysAuditLogList.cshtml" />
+    <Content Include="Views\Component\ComponentList.cshtml" />
+    <Content Include="Views\Consumable\ConsumableList.cshtml" />
+    <Content Include="Views\Shared\ComponentDialog.cshtml" />
+    <Content Include="Views\Shared\ConsumableDialog.cshtml" />
+    <Content Include="Views\FujiClass2\FujiClass2Dialog.cshtml" />
+    <Content Include="Views\FujiClass2\FujiClass2List.cshtml" />
+    <Content Include="Views\FujiClass2\FujiClass2FaultRateDialog.cshtml" />
+    <Content Include="Views\FujiClass1\FujiClassList.cshtml" />
+    <Content Include="Views\FujiClass1\FujiClass1Dialog.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Contract\ContractDialog.cshtml" />
+    <Content Include="Views\FujiClass2\FujiClass2Detail.cshtml" />
+    <Content Include="Views\FujiClass1\FujiClass2Dialog.cshtml" />
+    <Content Include="Views\FujiClass2\FujiClass2PartialDialog.cshtml" />
+    <Content Include="Views\Valuation\Parameter.cshtml" />
+    <Content Include="Views\Valuation\Actual.cshtml" />
+    <Content Include="Views\Valuation\Valuation.cshtml" />
+    <Content Include="Views\Valuation\ValuationDialog.cshtml" />
+    <Content Include="Views\Valuation\ValuationResults.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\InvComponent\InvComponentDialog.cshtml" />
+    <Content Include="Views\InvComponent\InvComponentList.cshtml" />
+    <Content Include="Views\InvConsumable\InvConsumableDialog.cshtml" />
+    <Content Include="Views\InvConsumable\InvConsumableList.cshtml" />
+    <Content Include="Views\InvSpare\InvSpareDialog.cshtml" />
+    <Content Include="Views\InvSpare\InvSpareList.cshtml" />
+    <Content Include="Views\InvService\InvServiceList.cshtml" />
+    <Content Include="Views\InvService\InvServiceDetail.cshtml" />
+    <Content Include="Views\FujiClass2\WebDialog.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderDetail.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderDialog.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderList.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderStock.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderStockDialog.cshtml" />
+    <Content Include="Views\Shared\InvComponentDialog.cshtml" />
+    <Content Include="Views\Shared\ValuationVaR.cshtml" />
+    <Content Include="Views\Valuation\DecisionAids.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrderDetailView.cshtml" />
+    <Content Include="Views\Shared\ContractTool.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DispatchJournal\DispatchJournalApproveDetail.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63381</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63381/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

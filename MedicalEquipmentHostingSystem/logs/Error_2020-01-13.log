@@ -1,0 +1,218 @@
+2020-01-13 09:21:35.1818 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 27
+   在 BusinessObjects.Manager.CustomReportManager.GetEquipmentDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 174
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Equipment(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 63
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 211
+2020-01-13 09:22:54.8747 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 27
+   在 BusinessObjects.Manager.CustomReportManager.GetEquipmentDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 174
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Equipment(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 63
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 211
+2020-01-13 09:40:09.1472 ERROR 输入字符串的格式不正确。 
+    在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 BusinessObjects.Util.SQLUtil.ConvertInt(Object obj) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Util\SQLUtil.cs:行号 27
+   在 BusinessObjects.Manager.CustomReportManager.GetEquipmentDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 174
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Equipment(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 63
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 211
+2020-01-13 10:07:57.2200 ERROR Exception: 'Invalid column name 'ReportFujiComments'.' happened in Class 'CustomReportDao', Method 'QueryCustRpt4Dispatch', Arguments: String = r.RequestDate, DateTime = 2020/1/1 0:00:00, DateTime = 2020/1/4 0:00:00 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 63
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 188
+2020-01-13 10:07:57.2766 ERROR Invalid column name 'ReportFujiComments'. 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 63
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 190
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 121
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:08:13.5487 ERROR Exception: 'Invalid column name 'ReportFujiComments'.' happened in Class 'CustomReportDao', Method 'QueryCustRpt4Dispatch', Arguments: String = r.RequestDate, DateTime = 2020/1/1 0:00:00, DateTime = 2020/1/4 0:00:00 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 63
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 188
+2020-01-13 10:16:34.0531 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:16:52.4537 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:19:08.4752 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:22:32.2492 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:23:16.0157 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:24:04.9205 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:24:34.8619 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:31:46.7206 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 10:53:33.7352 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 158
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:02:30.8574 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:04:50.7109 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:05:41.9993 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:09:54.3906 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:17:16.5347 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:32:24.9915 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:35:47.8829 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:37:30.2514 ERROR Fill: SelectCommand.Connection 属性尚未初始化。 
+    在 System.Data.Common.DbDataAdapter.GetConnection3(DbDataAdapter adapter, IDbCommand command, String method)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName)
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:38:08.6439 ERROR Exception: 'Incorrect syntax near 'dj'.' happened in Class 'CustomReportDao', Method 'QueryCustRpt4Dispatch', Arguments: String = r.RequestDate, DateTime = 2020/1/13 0:00:00, DateTime = 2020/1/14 0:00:00 
+    在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 63
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\CustomReportDao.cs:行号 188
+2020-01-13 11:39:12.5832 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 154
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:40:41.7461 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 154
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:43:32.6769 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:43:43.6919 ERROR 列“ServiceScopeDesc”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.set_Item(String columnName, Object value)
+   在 BusinessObjects.Manager.CustomReportManager.GetDispatchReportDesc(DataRow dr, List`1 fieldsInRpt)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 11:44:51.5983 ERROR Fill: SelectCommand.Connection 属性尚未初始化。 
+    在 System.Data.Common.DbDataAdapter.GetConnection3(DbDataAdapter adapter, IDbCommand command, String method)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDataTable(SqlCommand command, String tableName)
+   在 BusinessObjects.DataAccess.CustomReportDao.QueryCustRpt4Dispatch(String field, DateTime startTime, DateTime endTime)
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime)
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 16:35:13.7675 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.GetDispatchReportDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 234
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 127
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 16:35:56.4337 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.GetDispatchReportDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 234
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 127
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 16:36:58.7037 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.GetDispatchReportDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 234
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 127
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-13 16:40:12.2742 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.GetDispatchReportDesc(DataRow dr, List`1 fieldsInRpt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 234
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 127
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217

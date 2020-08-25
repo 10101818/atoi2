@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Actual";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+
+<div style="width: 100%; height: 100%; display: inline-flex;">
+    <div id="Actual" style="width:400px;border-right:1px dashed gray">
+        <div class="title"><p>运营实绩</p></div>
+        <div class="radiusOnly" style="margin:5px;">
+            <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>开始时间</th>
+                    <td>
+                        <input type="text" id="ActualStartDate" class="datePicker" value="@DateTime.Today.AddYears(-1).ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" placeholder="YYYY-MM-DD" style="width:150px;">
+                        <label id="reqSystemCost" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>截止时间</th>
+                    <td>
+                        <input type="text" id="ActualEndDate" class="datePicker" value="@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)" placeholder="YYYY-MM-DD" style="width:150px;">
+                        <label id="reqMonthlyHours" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>实绩工程师数量</th>
+                    <td>
+                        <input type="text" id="EngineerCount" maxlength="50">
+                        <label id="reqEngineerCount" class="required"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        @*<p align="center"><button class="btn btn-info" onclick="GetActualData()">查看</button></p>*@
+    </div>
+    <div style=" height: 100%; margin: 0 50px 0 10px; width:auto;" id="resultContainer">
+        @*@{ Html.RenderPartial("ValuationResults");}*@
+
+        <div id="resultBtns" style="display:none;">
+            <div><button class="btn btn-outline-info btn-sm amountdetailBtn" onclick="ShowAmountDetail()">成本明细</button></div>
+            <div><button class="btn btn-outline-info btn-sm" onclick="">分析</button></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var ActualVue = new Vue({
+        el: "#Actual",
+        data: {
+            Info: {
+
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        InitDate();
+        $("#ActualStartDate").val('@DateTime.Today.AddYears(-1).ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)');
+        $("#ActualEndDate").val('@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER)');
+    })
+
+    function InitDate() {
+        var dateFields = $([]).add($("#ActualStartDate")).add($("#ActualEndDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+</script>

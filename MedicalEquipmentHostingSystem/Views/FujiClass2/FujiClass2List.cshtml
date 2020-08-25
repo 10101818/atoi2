@@ -1,0 +1,324 @@
+﻿
+@{
+    ViewBag.Title = "FujiClass2List";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    int selectedClass1 = ViewBag.SelectedClass1;
+    List<BusinessObjects.Domain.KeyValueInfo> class1 = ViewBag.Class1;
+    List<Tuple<BusinessObjects.Domain.KeyValueInfo, int>> class2 = ViewBag.Class2;
+    var class2s = Html.Raw(Json.Encode(class2));
+    var class1s = Html.Raw(Json.Encode(class1));
+}
+<div id="FujiClass2" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">富士II类</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" v-on:change="Filter.Class2 = 0 ;QueryFujiClass2()" style="width:200px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in class1)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" @@change="MatchListClass1()" style="width:200px;">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in class2)
+                                    {
+                                        <option value="@temp.Item1.ID">@temp.Item1.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="f2.Name">简称</option>
+                                    <option value="f2.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor " onclick="QueryFujiClass2()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table" cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width: 120px;max-width:200px;" class="sortColumn" id="f1.Name" onclick="SortFujiClass2s(this)">富士I类 </th>
+                <th style="min-width: 150px;max-width:200px;" class="sortColumn" id="f2.Name" onclick="SortFujiClass2s(this)">富士II类简称</th>
+                <th style="min-width: 250px;max-width:200px;">富士II类描述</th>
+                <th style="min-width: 100px;" class="tdListCenter">
+                    <span>  人工费  </span>
+                </th>
+                <th style="min-width: 100px;" class="tdListCenter">
+                    <span>  维保服务费  </span>
+                </th>
+                <th style="min-width: 100px;" class="tdListCenter">
+                    <span>  备用机成本  </span>
+                </th>
+                <th style="min-width: 150px;" class="tdListCenter">
+                    <span>  维保额外维修费  </span>
+                </th>
+                <th style="min-width: 70px;" class="tdListCenter">
+                    <span>  零件  </span>
+                </th>
+                <th style="min-width: 70px;" class="tdListCenter">
+                    <span>  耗材  </span>
+                </th>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="min-width: 50px;" class="tdListCenter">编辑</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="!FujiClass2s.length">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="(fujiClass2,index) in FujiClass2s" v-else>
+                <td style="max-width:200px;word-break:break-word;white-space: normal;">{{fujiClass2.FujiClass1.Name}}</td>
+                <td style="max-width:200px;word-break:break-word;white-space: normal;">{{fujiClass2.Name}}</td>
+                <td style="max-width:200px;word-break:break-word;white-space: normal;">{{fujiClass2.Description}}</td>
+                <td class="tdListCenter">
+                    <input type="checkbox" v-model="fujiClass2.IncludeLabour" onclick="this.checked=!this.checked" style="vertical-align: middle;" /> <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm" v-on:click="OpenLabour(fujiClass2.FujiClass1.ID,fujiClass2.ID)">
+                </td>
+                <td class="tdListCenter">
+                    <input type="checkbox" v-model="fujiClass2.IncludeContract" onclick="this.checked=!this.checked" style="vertical-align: middle;" /> <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm" v-on:click="OpenContract(fujiClass2.FujiClass1.ID,fujiClass2.ID)">
+                </td>
+                <td class="tdListCenter">
+                    <input type="checkbox" v-model="fujiClass2.IncludeSpare" onclick="this.checked=!this.checked" style="vertical-align: middle;" /> <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm" v-on:click="OpenSpare(fujiClass2.FujiClass1.ID,fujiClass2.ID)">
+                </td>
+                <td class="tdListCenter">
+                    <input type="checkbox" v-model="fujiClass2.IncludeRepair" onclick="this.checked=!this.checked" style="vertical-align: middle;" /> <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm" @@click="OpenRepair(0,fujiClass2.FujiClass1.ID,fujiClass2.ID,QueryFujiClass2)">
+                </td>
+                <td class="tdListCenter">
+                    <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm cursor" v-on:click="OpenFujiClass2Component(0,fujiClass2.FujiClass1.ID,fujiClass2.ID)" />
+                </td>
+                <td class="tdListCenter">
+                    <img src="~/Content/img/update.png" class="fujiclass2-edit icon-sm cursor" v-on:click="OpenFujiClass2Consumable(fujiClass2.FujiClass1.ID,fujiClass2.ID)" />
+                </td>
+                @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td class="cursor tdListCenter" v-on:click="GotofujiClass2Detail(fujiClass2.ID)"><img src="~/Content/img/edit.png" class="icon-sm"></td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @*@if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                        {
+                            <button class="btn btn-info btn-sm" onclick="GotofujiClass2Detail(0)"> 新增II类</button>
+                        }*@
+                    </div>
+                </td>
+                <td colspan="11">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@{ Html.RenderPartial("FujiClass2Dialog"); }
+@{ Html.RenderPartial("FujiClass2FaultRateDialog"); }
+@{ Html.RenderPartial("FujiClass2PartialDialog"); }
+
+<script>
+    var fujiClass2ListVue = new Vue({
+        el: "#FujiClass2",
+        data: {
+            FujiClass2s: [],
+            Class2s : @class2s,
+            Filter: {
+                Class1: @selectedClass1,
+                Class2: 0,
+                FilterField: "f2.Name",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: "f1.Name",
+                    Direction: true
+                }
+            },
+        }
+    })
+</script>
+
+<script>
+    $(function () {
+        InitFujiClass2Dialog();
+        InitConsumableDialog();
+        InitComponentDialog();
+        InitRepairDialog()
+        InitDialog()
+    })
+    function ExportToExcel() {
+        let json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportFujiClass2s", "FujiClass2")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+
+    function Refresh() {
+        fujiClass2ListVue.Filter = {
+            Class1: 0,
+            Class2: 0,
+            FilterField: "f2.Name",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize:10,
+            SortObject: {
+                Field: "f1.Name",
+                Direction: true
+            }
+        }
+        DisplaySortIcon(fujiClass2ListVue.Filter.SortObject);
+        QueryFujiClass2();
+        RefreshRepair()
+    }
+
+    function SortFujiClass2s(item) {
+        UpdateSortIcon(item, fujiClass2ListVue.Filter.SortObject);
+        QueryFujiClass2();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryFujiClass2();
+        }
+    }
+
+    function PageClick(pageclickednumber) {
+        fujiClass2ListVue.Filter.CurrentPage = pageclickednumber;
+        QueryFujiClass2();
+    }
+
+    function changeCurNum_pager() {
+        fujiClass2ListVue.Filter.PageSize = Number($('#FujiClass2 #curNum option:selected').val());//选中的值
+        QueryFujiClass2();
+    }
+</script>
+
+<!-- localStorage -->
+<script>
+    function InitQueryFilter() {
+        let json = {
+            currentPage: fujiClass2ListVue.Filter.CurrentPage,
+            class1: fujiClass2ListVue.Filter.Class1,
+            class2: 0,
+            filterField: fujiClass2ListVue.Filter.FilterField,
+            filterText: fujiClass2ListVue.Filter.FilterText,
+            sortField: fujiClass2ListVue.Filter.SortObject.Field,
+            sortDirection: fujiClass2ListVue.Filter.SortObject.Direction,
+            pageSize: fujiClass2ListVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        let jsonStr = localStorage.getItem('FujiClass2_Filter');
+        if (jsonStr) {
+            let json = JSON.parse(jsonStr);
+            fujiClass2ListVue.Filter.Class1 = json.class1;
+            fujiClass2ListVue.Filter.Class2 = json.class2;
+            fujiClass2ListVue.Filter.FilterField = json.filterField;
+            fujiClass2ListVue.Filter.FilterText = json.filterText;
+            fujiClass2ListVue.Filter.SortObject.Field = json.sortField;
+            fujiClass2ListVue.Filter.SortObject.Direction = json.sortDirection;
+            fujiClass2ListVue.Filter.CurrentPage = json.currentPage;
+            fujiClass2ListVue.Filter.PageSize = json.pageSize;
+
+            localStorage.removeItem('FujiClass2_Filter');
+        }
+    }
+
+    function SaveFilterParameters(json) {
+        localStorage.setItem('FujiClass2_Filter', JSON.stringify(json));
+    }
+</script>
+<script>
+    $(function () {
+        InitFilterParameters(); 
+        DisplaySortIcon(fujiClass2ListVue.Filter.SortObject); 
+        setTimeout(QueryFujiClass2(), 100);
+        if ('@user.Role.ID' == '@BusinessObjects.Domain.UserRole.SuperAdmin') {
+            $(".fujiclass2-edit").show()
+        } else {
+            $(".fujiclass2-edit").hide()
+        }
+    })
+
+    function MatchListClass1() {
+        parseInt(fujiClass2ListVue.Filter.Class2) && (
+            fujiClass2ListVue.Filter.Class1 = fujiClass2ListVue.Class2s.filter(function (class2) { return class2.Item1.ID == fujiClass2ListVue.Filter.Class2 })[0].Item2,
+            QueryFujiClass2()
+        )
+    }
+    function QueryFujiClass2() { 
+        let json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("QueryFujiClass2s", "FujiClass2")", json ,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    fujiClass2ListVue.FujiClass2s = response.Data;
+                    fujiClass2ListVue.Filter.CurrentPage = SetTotalPage4Pager(fujiClass2ListVue.Filter.CurrentPage, response.TotalPages);
+                    $("#FujiClass2 #curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                }
+            }
+        )
+    }
+    function GotofujiClass2Detail(id) {
+        window.location.href="@Url.Action("Detail", "FujiClass2")"+"/"+id
+    }
+</script>
+
+
+

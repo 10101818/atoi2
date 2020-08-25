@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "ContractTool";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+<style>
+    .menu1, .menu2, .menu3 {
+        min-width: 20px;
+        height: 25px;
+        white-space: nowrap;
+    }
+
+    .menu1 {
+        background-color: #94cf4b;
+    }
+
+    .menu2 {
+        background-color: #c2e29a;
+    }
+
+    .menu3 {
+        background-color: #e3f2d1;
+    }
+
+    .sub td {
+        border-top: solid 1px;
+        border-bottom: solid 1px;
+    }
+
+    .sumAmount {
+        background-color: #c8d8ef;
+    }
+
+    #resultBtns {
+        display: flex;
+        width: 800px;
+    }
+
+        #resultBtns div {
+            flex: 1;
+            text-align: center;
+        }
+
+    .menu1, .menu2, .menu3, .freezeContent, .freezeContent2 {
+        left: 0;
+        position: sticky;
+    }
+
+    .menu2 {
+        left: 20px;
+    }
+
+    .menu3 {
+        left: 40px;
+    }
+
+    .freezeContent2 {
+        left: 108px;
+    }
+</style>
+<!--决策辅助工具-->
+<div id="ContractTool" class="resultDialog" style="width:100%;overflow:auto;display:none;">
+    <div class="title freezeContent"><p>决策辅助工具</p></div>
+    <table style="text-align:left;" border="1">
+        <thead>
+            <tr style="color:white;white-space:nowrap;">
+                <th rowspan="2" style="background-color: #1b4082; border:none;">是否在系统中</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">资产编号</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">名称</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">富士II类</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">维保分类</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">故障设备分类</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">故障分类</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">未来1年内故障成本</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">未来1年内故障外购维修成本</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">未来1年内总故障成本</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">未来1年全保成本</th>
+                <th rowspan="2" style="background-color: #1b4082; border:none;">未来1年技术保成本</th>
+                <th colspan="2" style="background-color: #4f6328; border:none; text-align:center;">未来1年故障成本-维保成本差异</th>
+            </tr>
+            <tr style="color: white; text-align: center;">
+                <th style="background-color: #4f6328;border:none;">购买全保判断</th>
+                <th style="background-color: #4f6328;border:none;">购买技术保判断</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>是</td>
+                <td>LSRM002020900002</td>
+                <td style="white-space:nowrap;">医用磁共振成像系统</td>
+                <td style="border:none;background-color:#dceff3;">NRI</td>
+                <td style="border:none;background-color:#dceff3;">MRI</td>
+                <td style="border:none;background-color:#dceff3;">MRI</td>
+                <td style="border:none;background-color:#dceff3;">重要设备</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">438,762</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">6,695</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">445,457</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">868,000</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">162,750</td>
+                <td>
+                    <img src="~/Content/img/no.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float: right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />422,543</span>
+                </td>
+                <td>
+                    <img src="~/Content/img/no.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float: right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />156,055</span>
+                </td>
+                <td style="display:none;">
+                    <img src="~/Content/img/yes.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <img src="~/Content/img/no.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <img src="~/Content/img/unKnow.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float:right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />{{}}</span>
+                </td>
+                <td style="display:none;">
+                    <img src="~/Content/img/yes.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <img src="~/Content/img/no.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <img src="~/Content/img/unKnow.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float:right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />{{}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>是</td>
+                <td>LSRM000003</td>
+                <td style="white-space:nowrap;">CT机</td>
+                <td style="border:none;background-color:#dceff3;">CT</td>
+                <td style="border:none;background-color:#dceff3;">CT</td>
+                <td style="border:none;background-color:#dceff3;">CT</td>
+                <td style="border:none;background-color:#dceff3;">重要设备</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">637,624</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">4,111</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">641,735</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">429,600</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">53,700</td>
+                <td>
+                    <img src="~/Content/img/yes.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float:right;">212,135</span>
+                </td>
+                <td>
+                    <img src="~/Content/img/no.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float: right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />49,589</span>
+                </td>
+            </tr>
+            <tr>
+                <td>是</td>
+                <td>LSRM002021000004</td>
+                <td style="white-space:nowrap;">数字X射线摄影系统</td>
+                <td style="border:none;background-color:#dceff3;">普放</td>
+                <td style="border:none;background-color:#dceff3;">普放</td>
+                <td style="border:none;background-color:#dceff3;">普放</td>
+                <td style="border:none;background-color:#dceff3;">一般设备</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">-</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">-</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">-</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">276,000</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">41,400</td>
+                <td>
+                    <span style="float: right;">-</span>
+                </td>
+                <td>
+                    <span style="float: right;">-</span>
+                </td>
+            </tr>
+            <tr>
+                <td>是</td>
+                <td>LSRM002020900296</td>
+                <td style="white-space:nowrap;">高频电刀</td>
+                <td style="border:none;background-color:#dceff3;">医用刀类</td>
+                <td style="border:none;background-color:#dceff3;">医用刀类</td>
+                <td style="border:none;background-color:#dceff3;">医用刀类</td>
+                <td style="border:none;background-color:#dceff3;">一般设备</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">3,960</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">1,980</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">5,940</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">15,130</td>
+                <td style="border:none;background-color:#dceff3;text-align:right;">2,270</td>
+                <td>
+                    <img src="~/Content/img/unKnow.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float: right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />9,190</span>
+                </td>
+                <td>
+                    <img src="~/Content/img/unKnow.png" class="icon-sm" style="width:16px;height:16px;" />
+                    <span style="float: right;"><img src="~/Content/img/asc.png" class="icon-sm" style="width:16px;height:16px;" />290</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--维保辅助工具-->
+<script>
+    function ShowContractTool() {
+        $(".resultDialog").hide();
+        $("#ContractTool").show();
+    }
+</script>

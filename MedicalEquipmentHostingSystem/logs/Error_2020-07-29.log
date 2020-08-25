@@ -1,0 +1,90 @@
+2020-07-29 10:56:09.1625 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 10:56:09.3057 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550
+2020-07-29 10:58:13.6137 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 10:58:13.6577 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550
+2020-07-29 10:59:39.7105 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 10:59:39.7705 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550
+2020-07-29 11:00:55.7160 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 11:00:55.7980 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550
+2020-07-29 11:02:13.7493 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 11:02:13.8135 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550
+2020-07-29 11:12:53.6823 ERROR Exception: '调用的目标发生了异常。' happened in Class 'ValuationDao', Method 'QueryComponentList', Arguments: Int32 = 3, Int32 = 0, String = c.Name, String = , Boolean = False, Int32 = 0, Int32 = 10 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 680
+2020-07-29 11:12:54.2416 ERROR 调用的目标发生了异常。 
+    在 System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   在 System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.ConstructorInfo.Invoke(Object[] parameters)
+   在 BusinessObjects.DataAccess.BaseDao.DataRowInstantiation[T](List`1 infos, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 352
+   在 BusinessObjects.DataAccess.BaseDao.GetList[T](SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 330
+   在 BusinessObjects.DataAccess.ValuationDao.QueryComponentList(Int32 componentType, Int32 equipmentType, String filterField, String filterText, Boolean wholeMachineonly, Int32 curRowNum, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 682
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.QueryValComponents(List`1 infos, Int32 componentType, Int32 equipmentType, String filterField, String filterText, Int32 currentPage, Int32 pageSize) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 550

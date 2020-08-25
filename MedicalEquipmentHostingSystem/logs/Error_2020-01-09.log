@@ -1,0 +1,11 @@
+2020-01-09 16:06:36.0574 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'ReportManager', Method 'DispatchResponseRatio', Arguments: Int32 = 3, Int32 = 2020, Int32 = 0, Boolean = True 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.DispatchResponseRatio(Int32 type, Int32 year, Int32 month, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 1188
+2020-01-09 16:06:36.1928 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.Manager.ReportManager.DispatchResponseRatio(Int32 type, Int32 year, Int32 month, Boolean limitRecord) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ReportManager.cs:行号 1202
+   在 MedicalEquipmentHostingSystem.Controllers.ReportController.DispatchRatio(Int32 type, Int32 requestType, Int32 status, Boolean byYear) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ReportController.cs:行号 2372

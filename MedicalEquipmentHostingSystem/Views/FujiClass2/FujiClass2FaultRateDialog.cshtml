@@ -1,0 +1,636 @@
+﻿@{
+    List<BusinessObjects.Domain.KeyValueInfo> class1 = ViewBag.Class1;
+    List<Tuple<BusinessObjects.Domain.KeyValueInfo, int>> class2 = ViewBag.Class2;
+    List<BusinessObjects.Domain.KeyValueInfo> equipmentType = BusinessObjects.Manager.LookupManager.GetEquipmentType();
+    var years = Html.Raw(Json.Encode(BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection>()));
+    var subYears = Html.Raw(Json.Encode(BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.FaultRateSubSection>()));
+    var months = Html.Raw(Json.Encode(BusinessObjects.Util.EnumUtil.ToKVList<BusinessObjects.Domain.FaultRateInfo.DateTimeMonth>()));
+    var class2s = Html.Raw(Json.Encode(class2));
+}
+<div id="Repair">
+    <!--维保额外维修费Btn-->
+    <div id="RepairDialog" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;" title="维保额外维修费">
+        <div style="overflow: auto;height:100%;">
+            <table class="searchTable" cellpadding="0" cellspacing="0" v-show="showWhole">
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    富士I类:
+                                    <select v-model="Filter.Class1" @@change="Filter.Class2 = 0 ;GetRepairs()" style="width:200px;">
+                                        @foreach (var temp in class1)
+                                        {
+                                            <option value="@temp.ID">@temp.Name</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    富士II类:
+                                    <select v-model="Filter.Class2" @@change="MatchRepairClass1()" style="width:200px;">
+                                        <option value="0"></option>
+                                        @foreach (var temp in class2)
+                                        {
+                                            <option value="@temp.Item1.ID">@temp.Item1.Name</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="5" class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th style="min-width:120px;max-width:200px; padding:5px;">富士I类</th>
+                        <th style="min-width:120px;max-width:200px; padding:5px;">富士II类简称</th> 
+                        <th style="min-width:80px; padding:5px;" v-show="showWhole">是否包含维保额外维修费</th>
+                        <th style="min-width:80px; padding:5px;" v-show="showWhole">默认使用量</th>
+                        <th style="min-width:80px; padding:5px;" v-show="showWhole">调整使用量</th>
+                        <th style="min-width:80px; padding:5px;" v-show="showWhole">设备等级</th>
+                        <th style="min-width:85px; padding:5px;" v-show="showWhole">单次维修平均零件成本（元）</th>
+                        <th style="min-width:85px; padding:5px;" v-show="showWhole">工程师无法修复概率（%）</th>
+                        <th style="min-width:85px; padding:5px;" v-show="showWhole">外购维修服务平均成本（元）</th>
+                        <th style="min-width:85px; padding:5px;" v-show="showWhole">故障成本占设备金额的比例（%）</th>
+                        <th style="min-width:120px; padding:5px;">故障率计算方式</th>
+                        <th style="min-width:120px; padding:5px;">
+                            韦伯计算
+                        </th>
+                        <th style="min-width:80px; padding:5px;padding-bottom:0;" v-for="year in years">
+                            <table width="100%" frame="void">
+                                <thead>
+                                    <tr>
+                                        <td v-bind:colspan="((year.ID<5)?12:(year.ID<10?5:1))" class="tdListCenter" style="border-top:none;padding:0;height:auto;min-width: 80px;">
+                                            <span>{{year.Name}}故障概率</span>
+                                            <img src="~/Content/img/add.png" v-bind:id="'class2icon_'+year.ID" class="icon-sm" data-show="false" v-show="year.ID<10" @@click="ExpandCollapseFujiClass2Data($event.currentTarget,year.ID)" />
+                                        </td>
+                                    </tr>
+                                    <tr v-bind:id="'class2field_'+year.ID" v-if="year.ID < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))" style="display:none">
+                                        <td class="tdListCenter" style="min-width:60px;padding:0;height:auto;" v-for="month in months">{{month.Name}}</td>
+                                    </tr>
+                                    <tr v-bind:id="'class2field_'+year.ID" v-else-if="year.ID < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))" style="display:none">
+                                        <td class="tdListCenter" style="min-width:80px;padding:0;height:auto;" v-for="subYear in subYears">
+                                            <table width="100%" frame="void">
+                                                <thead>
+                                                    <tr>
+                                                        <td colspan="12"  style="border-top:none;padding:0;height:auto;" class="tdListCenter"> 
+                                                            <span>{{subYear.Name}}</span>
+                                                            <img src="~/Content/img/add.png" v-bind:id="'sub_class2icon_'+subYear.ID" class="icon-sm" data-show="false" @@click="ExpandCollapseFujiClass2Data($event.currentTarget,subYear.ID,'sub_')" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr v-bind:id="'sub_class2field_'+subYear.ID" style="display:none">
+                                                        <td style="min-width:60px;padding:0;height:auto;" class="tdListCenter" v-for="month in months">{{month.Name}}</td>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-if="!Objects || Objects.length==0">
+                        <td class="tdListCenter" colspan="18">暂无数据</td>
+                    </tr>
+                    <tr v-else v-for="object in Objects">
+                        <td style="max-width:200px;">{{object.FujiClass1.Name}}</td>
+                        <td style="max-width:200px;">{{object.Name}}</td> 
+                        <td v-show="showWhole"><input type="checkbox" v-model="object.IncludeRepair" @@change="AddToClass2Queue(object)" /></td>
+                        <td v-show="showWhole"><input type="text" maxlength="9" style="padding: 2px 4px;" v-model="object.Usage" v-bind:id="'usage_'+object.ID" @@change="AddToClass2Queue(object)" @@keyup="object.Usage = (object.Usage+'' ).replace(/[^0-9\d]/g, '')" /></td>
+                        <td v-show="showWhole"><label>{{(object.Usage * HospitalFactor).toFixed(0)}}</label></td>
+                        <td v-show="showWhole" v-if="object.ID > -1">
+                            <select v-model="object.EquipmentType.ID" v-bind:id="'equipmentType_'+object.ID" @@change="ChangeField(object)">
+                                @foreach (var temp in equipmentType)
+                                {
+                                    <option value="@temp.ID">@temp.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td v-show="showWhole" v-else>{{object.EquipmentType.Name}}</td>
+                        <td v-show="showWhole"><input type="text" maxlength="12" v-show="object.EquipmentType.ID != @BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General" style="padding: 2px 4px;" v-model="object.RepairComponentCost" v-bind:id="'repairComponentCost_'+object.ID" @@change="AddToClass2Queue(object)" @@keyup="object.RepairComponentCost = (object.RepairComponentCost+'' ).replace(/[^0-9\.\d]/g, '')" /></td>
+                        <td v-show="showWhole"><input type="text" maxlength="6" v-show="object.EquipmentType.ID != @BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General" style="padding: 2px 4px;" v-model="object.Repair3partyRatio" v-bind:id="'repair3partyRatio_'+object.ID" @@change="AddToClass2Queue(object)" @@keyup="object.Repair3partyRatio = (object.Repair3partyRatio+'' ).replace(/[^0-9\.\d]/g, '')" /></td>
+                        <td v-show="showWhole"><input type="text" maxlength="12" v-show="object.EquipmentType.ID != @BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General" style="padding: 2px 4px;" v-model="object.Repair3partyCost" v-bind:id="'repair3partyCost_'+object.ID" @@change="AddToClass2Queue(object)" @@keyup="object.Repair3partyCost = (object.Repair3partyCost+'' ).replace(/[^0-9\.\d]/g, '')" /></td>
+                        <td v-show="showWhole"><input type="text" maxlength="6" v-show="object.EquipmentType.ID == @BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General" style="padding: 2px 4px;" v-model="object.RepairCostRatio" v-bind:id="'repairCostRatio_'+object.ID" @@change="AddToClass2Queue(object)" @@keyup="object.RepairCostRatio = (object.RepairCostRatio+'' ).replace(/[^0-9\.\d]/g, '')" /></td>
+                        <td>
+                            <div v-show="object.EquipmentType.ID != @BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General">
+                                <input v-bind:name="'method_'+object.ID" type="radio" v-model="object.MethodID" value="@BusinessObjects.Domain.FujiClass2Info.Method.Manual.ToString("d")" @@change="AddToClass2Queue(object)" />手动
+                                <input v-bind:name="'method_'+object.ID" type="radio" v-model="object.MethodID" value="@BusinessObjects.Domain.FujiClass2Info.Method.WebbStatistics.ToString("d")" @@change="AddToClass2Queue(object)" />韦伯
+                            </div>
+                        </td>
+                        <td>
+                            <div v-show="object.EquipmentType.ID != (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                                <button class="btn btn-outline-info btn-sm" v-on:click="ShowRepairWeb(object)">
+                                    韦伯计算
+                                </button>
+                            </div>
+                        </td>
+                        <td style="padding:0;" v-for="faultRates in object.RepairFaultRates" class="tdListCenter">
+                            <div v-show="object.EquipmentType.ID != (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)">
+                                <input type="text" maxlength="6" style="width:50%;padding: 2px 4px;" v-model="faultRates.avg" @@keyup="faultRates.avg = faultRates.avg.replace(/[^0-9\.\d]/g, '')" v-bind:class="'class2avg_'+faultRates.year" v-bind:id="object.ID+'_faultRateAvg_' + faultRates.year" maxlength="6" />
+                                <span v-bind:class="'class2avg_'+faultRates.year +' iconfont icon-save-bold'" @@click="AvgClass2Update(object,faultRates,undefined,object.ID+'_faultRateAvg_' + faultRates.year)" style="cursor:pointer;color:#17A2B8;"></span>
+                                <table width="100%" frame="void" v-bind:class="'class2detail_'+faultRates.year" style="display: none" v-if="faultRates.year<(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))">
+                                    <tbody>
+                                        <tr>
+                                            <td v-for="faultRate in faultRates.data" style="border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                                <input type="text" maxlength="6" style="padding: 2px 4px;" v-model="faultRate.Rate" v-bind:id="'class2rate_'+faultRate.ObjectID+'_'+faultRate.Year+'_'+faultRate.Month" @@change="CellClass2Change(faultRate,object,faultRates)" @@keyup="faultRate.Rate = (faultRate.Rate+'' ).replace(/[^0-9\.\d]/g, '')" maxlength="6" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table width="100%" frame="void" v-bind:class="'class2detail_'+faultRates.year" style="display:none" v-else-if="faultRates.year<(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))">
+                                    <tbody>
+                                        <tr>
+                                            <td v-for="subDatas in faultRates.data" style="border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                                <input type="text" maxlength="6" style="width:70%;padding: 2px 4px;" v-model="subDatas.avg" @@keyup="subDatas.avg = subDatas.avg.replace(/[^0-9\.\d]/g, '')" v-bind:class="'sub_class2avg_'+subDatas.year" v-bind:id="object.ID+'_subRateAvg_'+subDatas.year" maxlength="6" />
+                                                <span v-bind:class="'sub_class2avg_'+subDatas.year +' iconfont icon-save-bold'" @@click="AvgClass2Update(object,subDatas,faultRates,object.ID+'_subRateAvg_'+subDatas.year)" style="cursor:pointer;color:#17A2B8;"></span>
+                                                <table width="100%" frame="void" v-bind:class="'sub_class2detail_'+subDatas.year" style="display:none">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td v-for="subFaultRate in subDatas.data" style="min-width:60px;border-top:none;padding:0;height:auto;" class="tdListCenter">
+                                                                <input type="text" maxlength="6" style="padding: 2px 4px;" v-model="subFaultRate.Rate" v-bind:id="'sub_class2rate_'+subFaultRate.ObjectID+'_'+subFaultRate.Year+'_'+subFaultRate.Month" @@change="CellClass2Change(subFaultRate,object,subDatas,faultRates)" @@keyup="subFaultRate.Rate = (subFaultRate.Rate +'').replace(/[^0-9\.\d]/g, '')" maxlength="6" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td colspan="99"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @{ Html.RenderPartial("WebDialog"); }
+</div>
+<script> 
+    var repairVue = new Vue({
+        el: "#Repair",
+        data: { 
+                Objects: [],
+                PendingUpgrade:[],
+                Class2s : @class2s,
+                Filter: {
+                    Class1: 0,
+                    Class2: 0,
+                    FilterField: "f2.Name",
+                    FilterText: "",
+                    CurrentPage: 0,
+                    PageSize:10,
+                    SortObject: {
+                        Field: "f1.Name",
+                        Direction: true
+                    }
+                },
+                years: @years,
+                subYears:@subYears,
+                months:@months,
+                showWhole: false,
+                WebList:[],
+                Obj:{},
+                HospitalFactor:0,
+        },
+        methods:{
+            CellClass2Change:function(cellData, obj, faultRates, parentFaultRates) {
+                cellData.Rate = cellData.Rate || 0
+                AddToClass2Queue(obj)
+                let avg = eval(faultRates.data.map(function (temp) { return temp.Rate }).join("+")) / faultRates.data.length
+                faultRates.avg = avg.toFixed(1);
+                // Vue.set(faultRates.avg, faultRates.avg, avg.toFixed(1));
+
+                parentFaultRates && (
+                    avg = eval(parentFaultRates.data.map(function (temp) { return temp.avg }).join("+")) / faultRates.data.length,
+                    parentFaultRates.avg = avg.toFixed(1)
+                )
+                this.$forceUpdate()
+            },
+            ChangeAVG:function(item){
+                InitRepairFaultRates(item);
+                AddToClass2Queue(item);
+                this.$forceUpdate();
+            }
+        }
+    })
+</script>
+<script>
+    var fujiclass2Callback;
+    function InitRepairDialog() {
+        $("#RepairDialog").dialog({
+            autoOpen: false,
+            height: 700,
+            width: "95%",
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveClass2Repair(); },
+                "关闭": function () { $("#RepairDialog").dialog("close"); }
+            },
+            close: function (event, ui) {
+                //CollapseClass2All()
+            }
+        });
+        
+    }
+
+    function MatchRepairClass1() {
+        parseInt(repairVue.Filter.Class2) && (
+            repairVue.Filter.Class1 = repairVue.Class2s.filter(function (class2) { return class2.Item1.ID == repairVue.Filter.Class2 })[0].Item2,
+            GetRepairs()
+        )
+    }
+
+    function ChangeField(object) {
+        AddToClass2Queue(object)
+        if (object.EquipmentType.ID ==  (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General)) {
+            object.RepairComponentCost = 0
+            object.Repair3partyRatio   = 0
+            object.Repair3partyCost    = 0
+        } else {
+            object.RepairCostRatio     = 0
+        }
+    }
+
+    function AddToClass2Queue(obj) {
+        !repairVue.PendingUpgrade.some(function (info) { return info.ID == obj.ID }) && repairVue.PendingUpgrade.push(obj)
+    }
+
+    function AvgClass2Update(obj, faultRates, parentFaultRates,id) {
+        if(isNaN(faultRates.avg) || !faultRates.avg.trim()){
+            jAlert("平均值不能为空", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        else if(faultRates.avg > 100){
+            jAlert("平均值最大值为100.00", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        if (!(/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(faultRates.avg.trim()))) {
+            jAlert("平均值格式不正确", "更新结果",function(){
+                $("#" + id).focus();
+            });
+            return
+        }
+        AddToClass2Queue(obj)
+        if (faultRates.data.length > 5) {
+            faultRates.data.forEach(function (data) {
+                data.Rate = faultRates.avg;
+            })
+            parentFaultRates && (
+                avg = eval(parentFaultRates.data.map(function (temp) { return temp.avg }).join("+")) / faultRates.data.length,
+                parentFaultRates.avg = avg.toFixed(1)
+            )
+        } else {
+            faultRates.data.forEach(function (datas) {
+                datas.avg = faultRates.avg
+                datas.data.forEach(function (data) {
+                    data.Rate = faultRates.avg;
+                })
+            })
+        }
+        jAlert("已更新！", "更新结果", function () {
+        });
+    }
+
+    function CollapseClass2All() {
+        repairVue.years.forEach(function (year) {
+            $("#class2field_" + year.ID).hide()
+            $(".class2avg_" + year.ID).show()
+            $(".class2detail_" + year.ID).hide()
+            document.querySelector('#class2icon_' + year.ID).dataset.show = false
+            $('#class2icon_' + year.ID).attr("src", getRootPath() + "/Content/img/add.png")
+            if (year.ID == (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))) {
+                for (let i = year.ID; i <(@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d")); i++) {
+                    $(".sub_class2avg_" + i).show()
+                    $("#sub_class2field_" + i).hide()
+                    $(".sub_class2detail_" + i).hide()
+                    document.querySelector('#sub_class2icon_' + i).dataset.show = false
+                    $('#sub_class2icon_' + i).attr("src", getRootPath() + "/Content/img/add.png")
+                }
+            }
+        })
+    }
+
+    function ExpandCollapseFujiClass2Data(_this, year, pre) {
+        pre = pre || ""
+        let flag = JSON.parse(_this.dataset.show)
+        if (flag) {
+            $("#" +pre+"class2field_" + year).hide()
+            $("." + pre +"class2avg_" + year).show()
+            $("." + pre +"class2detail_" + year).hide()
+            _this.src = getRootPath()+"/Content/img/add.png"
+        } else {
+            $("#" + pre +"class2field_" + year).show()
+            $("." + pre +"class2avg_" + year).hide()
+            $("." + pre +"class2detail_" + year).show()
+            _this.src = getRootPath()+"/Content/img/reduce.png"
+        }
+        _this.dataset.show = !flag
+    }
+
+    function RefreshRepair() {
+        CollapseClass2All()
+        repairVue.Filter = {
+            Class1: 0,
+            Class2: 0,
+            FilterField: "f2.Name",
+            FilterText: "",
+            CurrentPage: 0,
+            PageSize:10,
+            SortObject: {
+                Field: "f1.Name",
+                Direction: true
+            }
+        }
+        repairVue.Objects = [];
+        repairVue.PendingUpgrade = [];
+    }
+
+    function GetParameterInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetParameter", "Valuation")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                if(response.Data.HospitalLevel.ID == 1)
+                    repairVue.HospitalFactor = response.Data.HospitalFactor1
+                else if(response.Data.HospitalLevel.ID == 2)
+                    repairVue.HospitalFactor = response.Data.HospitalFactor2
+                else if(response.Data.HospitalLevel.ID == 3)
+                    repairVue.HospitalFactor = response.Data.HospitalFactor3
+            }
+        });
+    }
+
+    function OpenRepair(objs, class1, class2, _callback) {
+        GetParameterInfo();
+        RefreshRepair()
+        repairVue.showWhole = !objs
+        if (objs) {
+            repairVue.Objects = JSON.parse(JSON.stringify(objs))
+            DataClass2Set()
+        } else {
+            repairVue.Filter.Class1 = class1
+            repairVue.Filter.Class2 = class2
+            GetRepairs()
+        }
+        fujiclass2Callback = _callback
+        $("#RepairDialog").dialog("open");
+    }
+
+    function GetRepairs() {
+        CollapseClass2All();
+        let url = "@Url.Action("QueryFujiClass2s", "FujiClass2")"
+        let data = {
+            currentPage: repairVue.Filter.CurrentPage,
+            pageSize:repairVue.Filter.PageSize,
+            class1: repairVue.Filter.Class1,
+            class2: 0,
+            filterField: repairVue.Filter.FilterField,
+            filterText: repairVue.Filter.FilterText,
+            sortField: repairVue.Filter.SortObject.Field,
+            sortDirection: repairVue.Filter.SortObject.Direction
+        }
+        return $.get(
+            url,
+            data,
+            function (result) {
+                if (result.ResultCode != "00") {
+                    processResponseError(result.ResultCode, result.ResultMessage)
+                } else {
+                    repairVue.Objects = result.Data
+                    DataClass2Set()
+                }
+            }
+        )
+    }
+
+    function DataClass2Set() {
+        repairVue.Objects.forEach(function (info) {
+            InitRepairFaultRates(info);
+        })
+    }
+
+    function InitRepairFaultRates(info) {
+        let transformData = []
+        for (let i = 1; i <= 10; i++) {
+            let rates = info.Repairs.filter(function (rate) {
+                return rate.Year == i
+            })
+            rates = Class2DataRepair(info, i, rates)
+            transformData.push({
+                year: i,
+                data: rates,
+                avg: (eval((rates.map(function (rate) { return rate.Rate })).join("+")) / rates.length).toFixed(1)
+            })
+        }
+        let complexData = transformData.splice((@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")) - 1, 5);
+        complexData = {
+            year: (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")),
+            data: complexData,
+            avg: (eval((complexData.map(function (data) { return data.avg })).join("+")) / complexData.length).toFixed(1)
+        }
+        transformData.splice((@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")) - 1, 0, complexData);
+        info.RepairFaultRates = transformData
+    }
+
+    function Class2DataRepair(obj, i, rates) {
+        rates.sort(function (a, b) { return a.Month - b.Month })
+        if (!rates.length) {
+            rates = new Array(12).fill({
+                ObjectID: obj.ID,
+                ObjectTypeID: (@BusinessObjects.Domain.FaultRateInfo.ObjectType.Repair.ToString("d")),
+                Year: i,
+                Month: 0,
+                Rate: 0.00
+            })
+            rates.forEach(function (rate, index) {
+                rate.Month = index + 1;
+                obj.Repairs.push(rate)
+            })
+
+        }
+        else if (rates.length < 12) {
+            let iniMonths = new Array(12).fill(0).map(function(v, i){ return i + 1});
+            for (var index = rates.length; index > 0; index--) {
+                iniMonths.splice(rates[index-1].Month-1,1);
+            }
+            iniMonths.forEach(function (month) {
+                let rate ={
+                    ObjectID: obj.ID,
+                    ObjectTypeID: (@BusinessObjects.Domain.FaultRateInfo.ObjectType.Repair.ToString("d")),
+                    Year: i,
+                    Month: month,
+                    Rate: 0.00
+                }
+                rates.splice(month - 2, 0, rate)
+                obj.Repairs.push(rate)
+            })
+        }
+        rates.sort(function (a, b) { return a.Month - b.Month })
+        return rates
+    }
+
+    function SaveClass2Repair() {
+        if (!repairVue.PendingUpgrade || !repairVue.PendingUpgrade.length ) {
+            jAlert("暂无改动", "保存结果");
+        } else {
+            if (!CheckClass2RepairFaultRate()) {
+                return
+            }
+            if (repairVue.showWhole && !CheckClass2Repair()) {
+                return
+            }
+            if (repairVue.showWhole) {
+                SaveRepairFaultRate().then(function () {
+                    repairVue.PendingUpgrade=[]
+                    fujiclass2Callback()
+                })
+            } else {
+                fujiclass2Callback(repairVue.Objects[0])
+                $("#RepairDialog").dialog('close');
+            }
+        }
+    }
+
+    function SaveRepairFaultRate() {
+        SetPageWaiting(true);
+        return $.post(
+            "@Url.Action("SaveFujiClass2s", "FujiClass2")",
+            {
+                infos: repairVue.PendingUpgrade,
+                type: '@BusinessObjects.Domain.FujiClass2Info.SectionType.Repair.ToString("d")'
+            },
+            function (result) {
+                SetPageWaiting(false);
+                if (result.ResultCode != "00") {
+                    processResponseError(result.ResultCode, result.ResultMessage)
+                } else {
+                    jAlert("保存成功！", "保存结果", function () {
+                        //$("#RepairDialog").dialog('close');
+                    });
+                }
+            }
+        )
+    }
+
+    function CheckClass2Repair() {
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !repairVue.PendingUpgrade.some(function (fujiClass2) {
+            if(fujiClass2.Usage > 2147483647){
+                jAlert("默认使用量最大值为2147483647", "提示", function () {
+                    $("#usage_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.Usage == null || fujiClass2.Usage == "" || !(/^([1-9]\d{0,9})$/.test(fujiClass2.Usage)) && fujiClass2.Usage != 0) {
+                jAlert("默认使用量格式不正确", "提示", function () {
+                    $("#usage_" + fujiClass2.ID).focus()
+                });
+                return true
+            } else if (!fujiClass2.EquipmentType || !fujiClass2.EquipmentType.ID) {
+                jAlert("设备等级无效！", "提示", function () {
+                    $("#equipmentType_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            if (fujiClass2.EquipmentType.ID == (@BusinessObjects.Domain.FujiClass2Info.LKPEquipmentType.General )) {
+                if(fujiClass2.RepairCostRatio > 100){
+                    jAlert("故障成本占设备金额的比例最大值为100.00", "提示", function () {
+                        $("#repairCostRatio_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else if (!(str.test(fujiClass2.RepairCostRatio))) {
+                    jAlert("故障成本占设备金额的比例格式不正确", "提示", function () {
+                        $("#repairCostRatio_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+            } else {
+                if(fujiClass2.RepairComponentCost > 999999999.99){
+                    jAlert("单次维修平均零件成本最大值为999999999.99", "提示", function () {
+                        $("#repairComponentCost_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                if ( !(str.test(fujiClass2.RepairComponentCost))) {
+                    jAlert("单次维修平均零件成本格式不正确", "提示", function () {
+                        $("#repairComponentCost_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else if(fujiClass2.Repair3partyRatio > 100){
+                    jAlert("工程师无法修复概率最大值为100.00", "提示", function () {
+                        $("#repair3partyRatio_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else if (!(str.test(fujiClass2.Repair3partyRatio))) {
+                    jAlert("工程师无法修复概率格式不正确", "提示", function () {
+                        $("#repair3partyRatio_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else if(fujiClass2.Repair3partyCost > 999999999.99){
+                    jAlert("外购维修服务平均成本最大值为999999999.99", "提示", function () {
+                        $("#repair3partyCost_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else if (!(str.test(fujiClass2.Repair3partyCost))) {
+                    jAlert("外购维修服务平均成本格式不正确", "提示", function () {
+                        $("#repair3partyCost_" + fujiClass2.ID).focus()
+                    });
+                    return true
+                }
+                else
+                    return false;
+            }
+        })
+    }
+
+    function CheckClass2RepairFaultRate() {
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !repairVue.PendingUpgrade.some(function (fujiClass2) {
+            return fujiClass2.Repairs.some(function (faultRate) {
+                var msg = "";
+                if(faultRate.Rate > 100) msg = "故障率数据最大值为100.00";
+                else if(!str.test(faultRate.Rate)) msg = "故障率数据格式不正确";
+                if (msg == "")
+                    return false
+                else {
+                    jAlert(msg, "提示", function () { 
+                        if (faultRate.Year < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d"))) {
+                            let icon = document.querySelector('#class2icon_' + faultRate.Year)
+                            if (!JSON.parse(icon.dataset.show))
+                                ExpandCollapseFujiClass2Data(icon, faultRate.Year)
+                            $("#class2rate_" + faultRate.ObjectID + "_" + faultRate.Year + "_" + faultRate.Month).focus()
+                        }
+                        else if (faultRate.Year < (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.TenAndAbove.ToString("d"))) {
+                            let icon = document.querySelector('#class2icon_' + (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")))
+                            let subIcon = document.querySelector('#sub_class2icon_' + faultRate.Year)
+                            if (!JSON.parse(icon.dataset.show))
+                                ExpandCollapseFujiClass2Data(icon, (@BusinessObjects.Domain.FaultRateInfo.FaultRateShortSection.FiveToNine.ToString("d")))
+                            if (!JSON.parse(subIcon.dataset.show))
+                                ExpandCollapseFujiClass2Data(subIcon, faultRate.Year,"sub_")
+                            $("#sub_class2rate_" + faultRate.ObjectID + "_" + faultRate.Year + "_" + faultRate.Month).focus()
+                        }
+                    });
+                    return true;
+                }
+            })
+        })
+    }
+
+</script>

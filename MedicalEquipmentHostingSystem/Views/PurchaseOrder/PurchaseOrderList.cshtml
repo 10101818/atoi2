@@ -1,0 +1,277 @@
+﻿
+@{
+    ViewBag.Title = "PurchaseOrderList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> statuses = BusinessObjects.Manager.LookupManager.GetPurchaseOrderStatus();
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    
+}
+<div id="purchaseorder" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">采购单</td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model.trim="Filter.Status" v-on:change="QueryPurchaseOrders()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in statuses)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model.trim="Filter.FilterField">
+                                    <option value="po.ID">系统编号</option>
+
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor " onclick="QueryPurchaseOrders()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table" cellspacing="0" cellpadding="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:120px;" class="sortColumn" id="po.ID" onclick="SortContracts(this)">系统编号</th>
+                <th style="min-width:120px;">请求人</th>
+                <th style="min-width:120px;">供应商</th>
+                <th style="min-width:180px;">采购日期</th>
+                <th style="min-width:160px;">到货日期</th>
+                <th style="min-width:180px;">状态</th>
+                <th style="min-width:100px; text-align: center;">编辑</th>
+                <th style="min-width:100px;text-align: center; ">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="PurchaseOrderList.length == 0 ">
+                <td colspan="12" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="purchaseorder in PurchaseOrderList" v-else>
+                <td><a href="#" v-on:click="GotoPurchaseOrderView(purchaseorder.ID)" class="linkFile">{{purchaseorder.OID}}</td>
+                <td>{{purchaseorder.User.Name}}</td>
+                <td>{{purchaseorder.Supplier.Name}}</td>
+                <td>{{parseAndFormatJsonDate(purchaseorder.OrderDate)}}</td>
+                <td>{{parseAndFormatJsonDate(purchaseorder.DueDate)}}</td>
+                <td>{{purchaseorder.Status.Name}}</td>
+                <td style="text-align: center;"><img src="~/Content/img/edit.png" class="icon-sm cursor" v-on:click="GotoPurchaseOrderDetail(purchaseorder.ID)" v-show="purchaseorder.Status.ID == @BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.New"></td>
+                <td style="text-align: center;">
+                    @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                    {
+                        <button v-show="purchaseorder.Status.ID == @BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Pending" class="btn btn-outline-info " style="width:70px;" v-on:click="GotoPurchaseOrderDetail(purchaseorder.ID)">审批</button>
+
+                    }
+                    @if (user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                    {
+
+                        <button v-show="purchaseorder.Status.ID == @BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Stocking" class="btn btn-outline-info " style="width:70px;" v-on:click="GotoPurchaseOrderStock(purchaseorder.ID)">入库</button>
+
+                    }
+                </td>
+              
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <button class="btn btn-info btn-sm" onclick="GotoPurchaseOrderDetail(0)">新增采购单</button>
+                    </div>
+                </td>
+                <td colspan="11">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pagerPurchaseOrder" style="display:inline-block;"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var purchaseorderVue = new Vue({
+        el: "#purchaseorder",
+        data: {
+            PurchaseOrderList: [],
+            Filter: {
+                Status: 0,
+                FilterField: "po.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: "po.ID",
+                    Direction:true
+                }
+            },
+        }
+    })
+</script>
+
+<!--导出、刷新-->
+<script>
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportPurchaseOrders", "PurchaseOrder")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+
+    function Refresh() {
+        purchaseorderVue.Filter = {
+            Status: 0,
+            FilterField: "po.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "po.ID",
+                Direction:true
+            }
+        }
+        DisplaySortIcon(purchaseorderVue.Filter.SortObject);
+        QueryPurchaseOrders();
+    }
+</script>
+
+<!--排序、页码-->
+<script>
+    function SortContracts(item) {
+        UpdateSortIcon(item, purchaseorderVue.Filter.SortObject);
+        QueryPurchaseOrders();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryPurchaseOrders();
+        }
+    }
+
+    function PageClickPurchaseOrder(pageclickednumber) {
+        purchaseorderVue.Filter.CurrentPage = pageclickednumber;
+        QueryPurchaseOrders();
+    }
+    function changeCurNum_pagerPurchaseOrder() {
+        purchaseorderVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryPurchaseOrders();
+    }
+</script>
+
+<!-- localStorage -->
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: purchaseorderVue.Filter.CurrentPage,
+            statusID: purchaseorderVue.Filter.Status,
+            filterField: purchaseorderVue.Filter.FilterField,
+            filterText: purchaseorderVue.Filter.FilterText,
+            sortField: purchaseorderVue.Filter.SortObject.Field,
+            sortDirection: purchaseorderVue.Filter.SortObject.Direction,
+            pageSize: purchaseorderVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('PurchaseOrderList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            purchaseorderVue.Filter.Status = json.statusID;
+            purchaseorderVue.Filter.FilterField = json.filterField;
+            purchaseorderVue.Filter.FilterText = json.filterText;
+            purchaseorderVue.Filter.SortObject.Field = json.sortField;
+            purchaseorderVue.Filter.SortObject.Direction = json.sortDirection;
+            purchaseorderVue.Filter.CurrentPage = json.currentPage;
+            purchaseorderVue.Filter.PageSize = json.pageSize;
+            localStorage.removeItem('PurchaseOrderList_Filter');
+        }
+    }
+
+    //保存筛选条件至缓存中
+    function SaveFilterParameters(json) {
+        localStorage.setItem('PurchaseOrderList_Filter', JSON.stringify(json));
+    }
+</script>
+
+<script>
+    $(function () {
+        InitFilterParameters();
+        DisplaySortIcon(purchaseorderVue.Filter.SortObject);
+        setTimeout(QueryPurchaseOrders(), 100);
+    })
+
+
+
+    //获取采购单信息
+    function QueryPurchaseOrders() {
+        var json = InitQueryFilter();
+        $.get(
+            "@Url.Action("QueryPurchaseOrderList", "PurchaseOrder")", json,
+            function (response) {
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    purchaseorderVue.PurchaseOrderList = response.Data;
+                    purchaseorderVue.Filter.CurrentPage = SetTotalPage4Pager(purchaseorderVue.Filter.CurrentPage, response.TotalPages, "pagerPurchaseOrder", PageClickPurchaseOrder);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+
+                }
+            }
+        )
+    }
+
+    //采购单新增/编辑页面
+    function GotoPurchaseOrderDetail(purchaseOrderID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("PurchaseOrderDetail", "PurchaseOrder")" + "?" + $.param({ purchaseOrderID: purchaseOrderID })
+    }
+    //采购单入库页面
+    function GotoPurchaseOrderStock(purchaseOrderID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("PurchaseOrderStock", "PurchaseOrder")" + "?" + $.param({ purchaseOrderID: purchaseOrderID })
+    }
+
+    function GotoPurchaseOrderView(purchaseOrderID) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("PurchaseOrderDetailView", "PurchaseOrder")" + "?" + $.param({ purchaseOrderID: purchaseOrderID })
+    }
+    
+
+
+</script>
+
+

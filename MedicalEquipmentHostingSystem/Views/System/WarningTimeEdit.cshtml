@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "WarningTimeEdit";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+
+<div id="VueWarningTime" v-cloak class="tblDiv">
+    <div class="title"><p>预警时间设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>请求超期时间（天）</th>
+                <td>
+                    <input type="text" id="OverDueTime" style="width: 90%;" maxlength="50" v-model="SettingInfo.OverDueTime">
+                    <label id="reqOverDueTime" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>合同即将失效时间（天）</th>
+                <td>
+                    <input type="text" id="WillExpireTime" style="width: 90%;" maxlength="50" v-model="SettingInfo.WillExpireTime">
+                    <label id="reqWillExpireTime" class="required"></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 备注：用<span class="required">*</span>标记的为必填项</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveWarningTime()">保存</button></p>
+</div>
+<script>
+    var WarningTimeVue = new Vue({
+        el: "#VueWarningTime",
+        data: {
+            SettingInfo: {
+                OverDueTime: 0,
+                WillExpireTime: 0
+            }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        setTimeout(GetWarningTimeInfo(), 100);
+    });
+    function GetWarningTimeInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSettingInfo", "System")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info != null) {
+                    WarningTimeVue.SettingInfo = info
+                }
+            }
+        });
+    }
+
+    function SaveWarningTime() {
+        if (CheckWarningTime() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveWarningTime", "System")', {
+            info: WarningTimeVue.SettingInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存");
+            }
+        });
+    }
+
+    function CheckWarningTime() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var OverDueTime = WarningTimeVue.SettingInfo.OverDueTime
+        if (OverDueTime == 0) {
+            $("#reqOverDueTime").html("请输入超期时间");
+            $("#OverDueTime").focus();
+            IsValid = false;
+        }
+
+        var WillExpireTime = WarningTimeVue.SettingInfo.WillExpireTime
+        if (WillExpireTime == 0) {
+            $("#reqWillExpireTime").html("请输入即将失效时间");
+            $("#WillExpireTime").focus();
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+
+</script>

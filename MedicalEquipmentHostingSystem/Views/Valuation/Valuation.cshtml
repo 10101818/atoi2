@@ -1,0 +1,439 @@
+﻿
+@{
+    ViewBag.Title = "Valuation";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.HospitalLevelInfo> hospitalLevels = BusinessObjects.Manager.LookupManager.GetHospitalLevels();
+    var hospitals = Html.Raw(Json.Encode(hospitalLevels));
+}
+<style>
+    #btns {
+        display: flex;
+        margin: 5px;
+    }
+    li {
+        display: block;
+        margin-top: 10px;
+    }
+    
+</style>
+<div style="width: 100%; height: 100%; display: inline-flex;">
+    <div id="Execute" style="width:400px;border-right:1px dashed gray" v-cloak>
+        <div class="title"><p>估价前提条件</p></div>
+        <div class="radiusOnly" style="margin:5px;">
+            <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="135px">评估开始月</th>
+                    <td>
+                        <div class="form-row justify-content-start">
+                            <div id="endyear" class="form-row justify-content-start">
+                                <div style="padding:0 5px;">
+                                    <select id="endYear" class="form-control-sm" v-model="endYear"  ></select>
+                                </div>
+                                <label class="form-row justify-content-start align-items-center">年 </label>
+                            </div>
+                            <div id="endmonth" class="form-row justify-content-start">
+                                <div style="padding:0 5px;">
+                                    <select id="endMonth" class="form-control-sm" v-model="endMonth" ></select>
+                                </div>
+                                <label class="form-row justify-content-start align-items-center">月 </label>
+                            </div><label id="reqEndDate" class="required"></label>
+                        </div>
+                        <!--<input type="text" id="deadline" class="yearMonth" placeholder="YYYY-MM" style="width:150px;" v-model="Control.EndDate">-->
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>合同开始月</th>
+                    <td>
+                        <div class="form-row justify-content-start">
+                            <div id="contractStartyear" class="form-row justify-content-start">
+                                <div style="padding:0 5px;">
+                                    <select id="contractStartYear" class="form-control-sm" v-model="contractStartYear"  ></select>
+                                </div>
+                                <label class="form-row justify-content-start align-items-center">年 </label>
+                            </div>
+                            <div id="contractStartmonth" class="form-row justify-content-start">
+                                <div style="padding:0 5px;">
+                                    <select id="contractStartMonth" class="form-control-sm" v-model="contractStartMonth" ></select>
+                                </div>
+                                <label class="form-row justify-content-start align-items-center">月 </label>
+                            </div><label id="reqContractStartDate" class="required"></label>
+                        </div>
+                        <!--<input type="text" id="contractDate" class="yearMonth" v-model="Control.ContractStartDate" placeholder="YYYY-MM" style="width:150px;">-->
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>合同年限</th>
+                    <td>
+                        <input type="text" id="Years" maxlength="1" v-model.number="Control.Years" @@keyup=" Control.Years = (Control.Years +'').replace(/[^0-9\d]/g, '')">
+                        <label id="reqYears" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>医院等级</th>
+                    <td>
+                        <select id="HospitalLevelID" v-model="Control.HospitalLevel.ID">
+                            <option v-for="item in HospitalLevels" v-bind:value="item.ID">{{item.Description}}</option>
+                        </select>
+                        <label id="reqHospitalLevelID" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>参考系数</th>
+                    <td>
+                        <input v-if="Control.HospitalLevel.ID == 1" type="text" disabled v-bind:value="Control.HospitalFactor1" />
+                        <input v-if="Control.HospitalLevel.ID == 2" type="text" disabled v-bind:value="Control.HospitalFactor2" />
+                        <input v-if="Control.HospitalLevel.ID == 3" type="text" disabled v-bind:value="Control.HospitalFactor3" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>导入期成本</th>
+                    <td>
+                        <input type="text" id="ImportCost" maxlength="13" v-model.number="Control.ImportCost" @@keyup="Control.ImportCost = ( Control.ImportCost+'').replace(/[^0-9\.\d]/g, '')" />
+                        <label id="reqImportCost" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>边际利润率</th>
+                    <td>
+                        <input type="text" id="ProfitMargins" maxlength="6" v-model="Control.ProfitMargins" @@keyup="Control.ProfitMargins = (Control.ProfitMargins +'').replace(/[^0-9\.\d]/g, '')" />
+                        <label id="reqProfitMargins" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>风险控制度</th>
+                    <td>
+                        <input type="text" id="RiskRatio" maxlength="6" v-model.number="Control.RiskRatio" @@keyup="Control.RiskRatio = (Control.RiskRatio +'').replace(/[^0-9\.\d]/g, '')" />
+                        <label id="reqRiskRatio" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>VaR资产金额比例</th>
+                    <td>
+                        <input type="text" id="VarAmount" maxlength="6" v-model.number="Control.VarAmount" @@keyup="Control.VarAmount = (Control.VarAmount +'').replace(/[^0-9\.\d]/g, '')" />
+                        <label id="reqVarAmount" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th>预测工程师数量</th>
+                    <td>
+                        <input type="text" disabled id="ComputeEngineer" maxlength="6" v-model="Control.ComputeEngineer"><img class="icon-sm cursor" src="~/Content/img/refresh.png" onclick="GetComputeEngineer()" />
+                        <label id="reqComputeEngineer" class="required"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th>预定工程师数量</th>
+                    <td>
+                        <input type="text" id="ForecastEngineer" maxlength="9" v-model.number="Control.ForecastEngineer" @@keyup=" Control.ForecastEngineer = (Control.ForecastEngineer +'').replace(/[^0-9\d]/g, '')" />
+                        <label id="reqForecastEngineer" class="required"></label>
+                    </td>
+                </tr>
+                <tr><td colspan="3" class="text-center"><button class="btn btn-info" onclick="SaveValControl()"><span>保存</span></button></td></tr>
+            </table>
+        </div>
+        <br />
+        @*<div><button class="btn btn-info" onclick="UpdateListData()">更新清单</button></div>*@
+        <div><span class="cursor" style="color:#17a2b8;" onclick="UpdateListData()">更新清单<img src="~/Content/img/refreshList.png" class="icon-sm" /></span></div>
+        <br />
+        <div id="btns">
+            <ul style="width: 100%;">
+                <li>
+                    <button class="btn btn-outline-info btn-sm GoToEquipmentList" onclick="OpenValEquipment()">设备清单</button>
+                    <button class="btn btn-info" style="float:right;" onclick="RunVal()"><span>执行</span></button>
+                </li>
+                <li>
+                    <button class="btn btn-outline-info btn-sm GoToInvSpareList" onclick="OpenValSpare()">备用机清单</button>
+                    <button class="btn btn-info" style="float:right;"><span>保存执行结果</span></button>
+                </li>
+                <li><button class="btn btn-outline-info btn-sm" onclick="OpenValConsumable()">维保对耗材的覆盖情况</button></li>
+                <li><button class="btn btn-outline-info btn-sm GoToImportantEqpt" @@click="OpenValComponent()">使用量</button></li>
+                <li>
+                    <button class="btn btn-outline-info btn-sm GoToCTList" @@click="OpenValCTTube()">CT球管登记表</button>
+                    <button class="btn btn-info" style="float:right;"><span>历史</span></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style=" height: 100%; margin: 0 50px 0 10px; width:auto;" id="resultContainer">
+         @{ Html.RenderPartial("ValuationResults");} 
+    </div>
+</div>
+@{ Html.RenderPartial("ValuationDialog"); }
+@{Html.RenderPartial("ValuationVaR");} 
+<script>
+    var ValuationVue = new Vue({
+        el: "#Execute",
+        data: {
+            Control: {
+                HospitalLevel: { ID: 1 },
+                ComputeEngineer: 0,
+                IsExecuted: false,
+                CtlFlag: "CTL",
+                EndDate:"@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER_YM)",
+                ContractStartDate:"@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER_YM)"
+            },
+            endYear:"@DateTime.Today.Year",
+            endMonth:"@DateTime.Today.Month",
+            contractStartYear:"@DateTime.Today.Year",
+            contractStartMonth:"@DateTime.Today.Month",
+            LastHospitalFactor: 0,
+            HospitalLevels: @hospitals,
+            ParameterInfo: {},
+        }
+    })
+</script>
+<script>
+    $(function () {
+        //InitForm();
+        SelectYears('endYear', 10);
+        SelectMonths('endMonth');
+        SelectYears('contractStartYear', 10);
+        SelectMonths('contractStartMonth');
+        InitDialog();
+        GetValControl();
+        GetParameterInfo();
+    })
+
+    function Refresh() {
+        ValuationVue.Control = {
+            HospitalLevel: { ID: 1 },
+            HospitalFactor: 0,
+            ComputeEngineer: 0,
+            IsExecuted: false,
+            CtlFlag: 'CTL',
+            EndDate:"@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER_YM)",
+            ContractStartDate:"@DateTime.Today.ToString(MedicalEquipmentHostingSystem.App_Start.ConstDefinition.DATEFORMAT_DATEPICKER_YM)"
+        }
+        ValuationVue.endYear="@DateTime.Today.Year"
+        ValuationVue.endMonth="@DateTime.Today.Month"
+        ValuationVue.contractStartYear="@DateTime.Today.Year"
+        ValuationVue.contractStartMonth="@DateTime.Today.Month"
+    }
+
+    function InitForm() { 
+        let dateYMFields = $([]).add($("#deadline")).add($("#contractDate"))
+        dateYMFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "yy-mm",
+            hidePanel:true,
+            hidePrevNext:true,
+            onChangeMonthYear:function(year,month){
+                let  _this = this;
+                let selType =  $("select").context.activeElement.attributes["data-handler"]
+                if(selType && selType.value == 'selectMonth'){
+                    setTimeout(function(){
+                        $(".ui-datepicker-calendar .ui-state-default")[0].click()
+                        $(_this).datepicker('setDate', new Date(year, month-1, 1));
+                        _this.dispatchEvent(new Event('input'))
+                        _this.blur()
+                    },1)
+                }else if(selType && selType.value == 'selectYear'){
+                    setTimeout(function(){
+                        $(_this).datepicker('setDate', new Date(year, month-1, 1));
+                        _this.dispatchEvent(new Event('input'))
+                    },1)
+                }
+            },
+        });
+    }
+
+    function UpdateListData() {
+        InitEquipment().done(function(){
+            InitConsumable();
+            InitSpare();
+            InitValComponent();
+        })
+        ValuationVue.LastHospitalFactor = ValuationVue.Control.HospitalFactor
+    }
+
+    function GetFujiClass(vue) {
+        SetPageWaiting(true)
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                vue.FujiClass2s = response.Data;
+            }
+        })
+        SetPageWaiting(true)
+        $.get('@Url.Action("GetFujiClass1s", "FujiClass1")', function (response) {
+            SetPageWaiting(false)
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                vue.FujiClass1s = response.Data;
+            }
+        })
+    }
+
+    function GetParameterInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetParameter", "Valuation")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                ValuationVue.ParameterInfo = response.Data;
+            }
+        });
+    }
+
+</script>
+
+<!--control-->
+<script>
+    function GetValControl() {
+        ValuationVue.LastData = {};
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetValControl", "Valuation")', function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                if (response.Data != null) {
+                    ValuationVue.Control = response.Data;
+                    ValuationVue.Control.EndDate = parseAndFormatJsonMonth(ValuationVue.Control.EndDate).toString("yyyy-MM");
+                    ValuationVue.endYear = Number(ValuationVue.Control.EndDate.split('-')[0])
+                    ValuationVue.endMonth = Number(ValuationVue.Control.EndDate.split('-')[1])
+                    ValuationVue.Control.ContractStartDate = parseAndFormatJsonMonth(ValuationVue.Control.ContractStartDate).toString("yyyy-MM");
+                    ValuationVue.contractStartYear = Number(ValuationVue.Control.ContractStartDate.split('-')[0])
+                    ValuationVue.contractStartMonth = Number(ValuationVue.Control.ContractStartDate.split('-')[1])
+                    ValuationVue.LastHospitalFactor = ValuationVue.Control.HospitalFactor
+                }
+            }
+        })
+    }
+
+    function GetComputeEngineer(){
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetComputeEngineer", "Valuation")',function(response){
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                ValuationVue.Control.ComputeEngineer = response.Data
+            }
+        })
+    }
+
+    function SaveValControl() {
+        SaveControl().then(function(){
+            jAlert("保存成功","提示");
+        })
+    }
+
+    function SaveControl(){
+        ValuationVue.Control.EndDate = ValuationVue.endYear + '-' + ValuationVue.endMonth
+        ValuationVue.Control.ContractStartDate = ValuationVue.contractStartYear + '-' + ValuationVue.contractStartMonth
+        if(CheckControl()) return;
+        else
+            return $.post('@Url.Action("SaveValControl", "Valuation")', {
+                info: ValuationVue.Control
+            }, function (response) {
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+            })
+    }
+
+    function CheckControl(){
+        $("label.required").html("");
+        var IsValid = false;
+
+        if (!ValuationVue.endYear || !ValuationVue.endMonth)
+        {
+            $("#reqEndDate").html("评估开始月不能为空");
+            IsValid = true;
+        }
+
+        if (!ValuationVue.contractStartYear || !ValuationVue.contractStartMonth)
+        {
+            $("#reqContractStartDate").html("合同开始月不能为空");
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.Years || ValuationVue.Control.Years == 0)
+        {
+            $("#reqYears").html("合同年限不能为空");
+            $("#Years").focus();
+            IsValid = true;
+        }
+
+        if($("#HospitalLevelID").val() == null)
+        {
+            $("#reqHospitalLevelID").html("请选择医院等级");
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.ImportCost || ValuationVue.Control.ImportCost == 0)
+        {
+            $("#reqImportCost").html("导入期成本不能为空");
+            $("#ImportCost").focus();
+            IsValid = true;
+        }
+        else if(ValuationVue.Control.ImportCost > 9999999999.99){
+            $("#reqImportCost").html("导入期成本最大为9999999999.99");
+            $("#ImportCost").focus();
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.ProfitMargins || ValuationVue.Control.ProfitMargins == 0)
+        {
+            $("#reqProfitMargins").html("边际利润率不能为空");
+            $("#ProfitMargins").focus();
+            IsValid = true;
+        }
+        else if(ValuationVue.Control.ProfitMargins >= 100){
+            $("#reqProfitMargins").html("边际利润率必须小于100");
+            $("#ProfitMargins").focus();
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.RiskRatio || ValuationVue.Control.RiskRatio == 0)
+        {
+            $("#reqRiskRatio").html("风险控制度不能为空");
+            $("#RiskRatio").focus();
+            IsValid = true;
+        }
+        else if(ValuationVue.Control.RiskRatio > 999.99){
+            $("#reqRiskRatio").html("风险控制度最大为999.99");
+            $("#RiskRatio").focus();
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.VarAmount || ValuationVue.Control.VarAmount == 0)
+        {
+            $("#reqVarAmount").html("VaR资产金额比例不能为空");
+            $("#VarAmount").focus();
+            IsValid = true;
+        }
+        else if(ValuationVue.Control.VarAmount > 999.99){
+            $("#reqVarAmount").html("VaR资产金额比例最大为999.99");
+            $("#VarAmount").focus();
+            IsValid = true;
+        }
+
+        if(!ValuationVue.Control.ForecastEngineer || ValuationVue.Control.ForecastEngineer == 0)
+        {
+            $("#reqForecastEngineer").html("预定工程师数量不能为空");
+            $("#ForecastEngineer").focus();
+            IsValid = true;
+        }
+
+        return IsValid;
+    }
+</script>

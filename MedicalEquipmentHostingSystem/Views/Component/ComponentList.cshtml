@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.title = "ComponentList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    
+    BusinessObjects.Domain.UserInfo user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    
+}
+
+<div id="componentList" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">零件定义</td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                状态:
+                                <select v-model="Filter.StatusID" v-on:change="QueryComponent()">
+                                    <option value="-1">全部</option>
+                                    <option value="1">启用</option>
+                                    <option value="0">停用</option>
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="c.Name">简称</option>
+                                    <option value="c.Description">描述</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="50" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor" onclick="QueryComponent()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table" cellpadding="0" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:200px;">富士II类</th>
+                <th style="min-width:200px;">简称</th>
+                <th style="min-width:200px;">描述</th>
+                <th style="min-width:100px;">类型</th>
+                <th style="min-width:100px;">标准单价(元)</th>
+                <th style="min-width:110px;">是否参与估值</th>
+                <th style="min-width:100px;">标准使用量</th>
+                <th style="min-width:50px;">状态</th>
+                <th style="min-width:50px;" class="tdListCenter">编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="ComponentList.length == 0">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="component in ComponentList" v-else>
+                <td>{{component.FujiClass2.Name}}</td>
+                <td>{{component.Name}}</td>
+                <td>{{component.Description}}</td>
+                <td>{{component.Type.Name}}</td>
+                <td>{{component.StdPrice}}</td>
+                <td>{{component.IsIncluded ? '是' : '否'}}</td>
+                <td>{{component.Usage}}</td>
+                <td>{{component.IsActive ? '启用' : '停用'}}</td>
+                <td class="tdListCenter"><img src="~/Content/img/edit.png" class="cursor icon-sm" v-on:click="OpenEditComponent(component.ID)" /></td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>   
+</div>
+@{ Html.RenderPartial("ComponentDialog"); }
+<script>
+    var componentVue = new Vue({
+        el: "#componentList",
+        data: {
+            ComponentList: [],
+            Filter: {
+                StatusID: 1,
+                FilterField: "c.Name",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+            }
+        }
+    })
+</script>
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: componentVue.Filter.CurrentPage,
+            statusID: componentVue.Filter.StatusID,
+            filterField: componentVue.Filter.FilterField,
+            filterText: componentVue.Filter.FilterText,
+            pageSize: componentVue.Filter.PageSize
+        }         
+        return json;
+    }
+    //导出
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportComponents", "Component")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+    //刷新
+    function Refresh() {
+        componentVue.Filter = {
+            StatusID: 1,
+            FilterField: "c.Name",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+        }
+        QueryComponent();
+    }
+
+</script>
+<script>
+    //回车搜索
+    function DoQuery() {
+        if(event.keyCode == 13)
+        {
+            QueryComponent();
+        }
+    }
+    //点击页码
+    function PageClick(pageclickednumber) {
+        componentVue.Filter.CurrentPage = pageclickednumber;
+        QueryComponent();
+    }
+    function changeCurNum_pager() {
+        componentVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryComponent();
+    }
+</script>
+<script>
+    //进入页面需要执行的操作
+    $().ready(function () {
+        InitComponentDialog();
+        GetFujiClass2();
+        setTimeout(QueryComponent(), 100);
+    })    
+    //获取零件列表信息
+    function QueryComponent() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryComponentList", "Component")', json,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    componentVue.ComponentList = response.Data;
+                    componentVue.Filter.CurrentPage = SetTotalPage4Pager(componentVue.Filter.CurrentPage, response.TotalPages);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                }
+            })
+    }
+</script>

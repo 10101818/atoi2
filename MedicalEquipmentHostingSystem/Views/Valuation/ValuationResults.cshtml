@@ -1,0 +1,1084 @@
+﻿@{
+    ViewBag.Title = "Valuation";
+
+    var ForecastYears = BusinessObjects.Domain.ValControlInfo.ForecastYears.GetForecastYearsList();
+    var ActualYears = BusinessObjects.Domain.ValControlInfo.ActualYears.GetActualYearsList();
+    var forecastYears = Html.Raw(Json.Encode(ForecastYears));
+    var actualYears = Html.Raw(Json.Encode(ActualYears));
+}
+<style>
+    #AmountDetail th, td, #PriceDetail th, td {
+        height: 20px;
+        padding: 1px;
+    }
+
+    #AmountDetail td, #PriceDetail td{
+        text-align: right;
+        padding: 3px;
+    }
+
+    .menu1, .menu2, .menu3 {
+        min-width: 20px;
+        height: 25px;
+        white-space: nowrap;
+    }
+    .menu1 {
+        background-color: #94cf4b;
+        width: 20px;
+    }
+    .menu2 {
+        background-color: #c2e29a;
+        width:20px;
+    }
+    #PriceDetail .menu2 {
+        width: 80px;
+    } 
+    .menu3 {
+        background-color: #e3f2d1;
+        width: 40px;
+    }
+    .sub td {
+        border-top: solid 1px;
+        border-bottom: solid 1px;
+    }
+    .sumAmount {
+        background-color: #c8d8ef;
+    }
+
+    #resultBtns {
+        display: flex;
+        width: 800px;
+    }
+
+    #resultBtns div {
+        flex: 1;
+        text-align: center;
+    }
+
+    .menu1, .menu2, .menu3, .freezeContent, .freezeContent2 {
+        left: 0;
+        position: sticky;
+    }
+
+    .freezeContent2{
+        left: 108px;
+    }
+
+</style>
+
+<!--最终定价表-->
+<div id="PriceDetail" class="resultDialog" style="width:100%;display:none;overflow: auto;">
+    <div class="title freezeContent"> <p>最终定价表</p> </div>
+    <table style="text-align: left; width: 100%;">
+        <thead>
+            <tr>
+                <th colspan="2" rowspan="3" class="menu1" width="100" style="border-top: none; background-color: #1b4082; "></th>
+                <th class="headtr" v-bind:colspan="AmountDetail.ForecastDate.length+1" style="background-color: #1b4082; border-bottom: none; color: white;"><span style="float:right;">千元</span></th>
+            </tr>
+            <tr>
+                <th style="text-align: center; color: white; background-color: #41589b;" v-bind:colspan="5"> Forecast </th>
+                <th style="background-color: #1b4082; height: 20px; padding: 1px;"></th>
+            </tr>
+            <!--日期title-->
+            <tr style="text-align: center;">
+                @*<td v-for="item in AmountDetail.ForecastDate" style="color: white; background-color: #4985bf; white-space: nowrap; ">{{item.Name}}</td>*@
+                <td v-for="year in ForecastYears" style="color: white; background-color: #41589b; white-space: nowrap; padding: 0px !important; ">
+                    <table frame="void" class="tdListCenter" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <td colspan="12" class="tdListCenter" style="border-top:none;padding:0;height:auto;min-width:80px;">
+                                    <span>第{{year.Name}}年</span>
+                                    <img src="~/Content/img/add.png" v-bind:id="'Priceicon_' + year.ID" class="icon-sm" data-show="false" @@click="ExpandCollapsePriceDetail($event.currentTarget,year.ID)" />
+                                </td>
+                            </tr>
+                            <tr v-bind:id="'PriceDetail_' + year.ID" style="display:none;">
+                                <td class="tdListCenter" v-for="(date,index) in AmountDetail.ForecastDate" style="min-width: 80px; background-color: #4985bf; " v-if="index >= (year.ID-1)*12 && index < year.ID  * 12 ">
+                                    <span>{{date.Name}}</span>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </td>
+                <th class="sumAmount" style="text-align: center;">小计</th>
+            </tr>
+            <!--成本汇总-->
+            <tr class="sub">
+                <th class="menu1" colspan="2"><b>成本汇总</b></th>
+                @*<td v-for="item in AmountDetail.ForecastAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.AmountForecast">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.AmountTotal">{{AmountDetail.AmountTotal >= 1000 ? (AmountDetail.AmountTotal/1000).toFixed(0) : (AmountDetail.AmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--固定类-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2">固定类</th>
+                @*<td v-for="item in AmountDetail.ForecastFixedAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.FixedForecastAmount">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.FixedAmountTotal">{{AmountDetail.FixedAmountTotal >= 1000 ? (AmountDetail.FixedAmountTotal/1000).toFixed(0) : (AmountDetail.FixedAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类-保养-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2">变动类-保养</th>
+                @*<td v-for="item in AmountDetail.ForecastConsumableAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.ConsumableForecastAmount">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ConsumableAmountTotal">{{AmountDetail.ConsumableAmountTotal >= 1000 ? (AmountDetail.ConsumableAmountTotal/1000).toFixed(0) : (AmountDetail.ConsumableAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2">变动类-维修</th>
+                @*<td v-for="item in AmountDetail.ForecastRepairAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.RepairForecastAmount">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.RepairAmountTotal">{{AmountDetail.RepairAmountTotal >= 1000 ? (AmountDetail.RepairAmountTotal/1000).toFixed(0) : (AmountDetail.RepairAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--导入期成本-->
+            <tr>
+                <th class="menu1" colspan="2">导入期成本</th>
+                @*<td v-for="item in AmountDetail.ImportAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.ImportAmount">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ImportAmountTotal">{{AmountDetail.ImportAmountTotal >= 1000 ? (AmountDetail.ImportAmountTotal/1000).toFixed(0) : (AmountDetail.ImportAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--总成本-->
+            <tr class="sub">
+                <th class="menu1" colspan="2">总成本</th>
+                @*<td v-for="item in AmountDetail.TotalAmount" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.TotalAmount">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.TotalAmountTotal">{{AmountDetail.TotalAmountTotal >= 1000 ? (AmountDetail.TotalAmountTotal/1000).toFixed(0) : (AmountDetail.TotalAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--边际利润-->
+            <tr>
+                <th class="menu1" colspan="2">边际利润</th>
+                @*<td v-for="item in AmountDetail.VaRProfit" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.VaRProfit">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.VaRProfitTotal">{{AmountDetail.VaRProfitTotal >= 1000 ? (AmountDetail.VaRProfitTotal/1000).toFixed(0) : (AmountDetail.VaRProfitTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--边际利润率-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2">边际利润率</th>
+                @*<td v-for="item in AmountDetail.VaRRate" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.VaRRate">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="AmountDetail.VaRRates">{{AmountDetail.VaRRates}}%</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data}}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.VaRRates">{{AmountDetail.VaRRates}}%</td>
+            </tr>
+            <!--安全额-->
+            <tr>
+                <th class="menu1" colspan="2">安全额</th>
+                @*<td v-for="item in AmountDetail.SafeProfit" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.SafeProfit">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.SafeProfitTotal">{{AmountDetail.SafeProfitTotal >= 1000 ? (AmountDetail.SafeProfitTotal/1000).toFixed(0) : (AmountDetail.SafeProfitTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--报价-->
+            <tr style="background-color: #4f612b !important; color: white;">
+                <th colspan="2" class="menu1" style="background-color: #4f612b !important; color: white;">报价</th>
+                @*<td v-for="item in AmountDetail.Price" v-bind:title="item">{{item >= 1000 ? (item/1000).toFixed(0) : (item/1000).toFixed(1)}}</td>*@
+                <td style="padding:0;" v-for="item in AmountDetail.Price">
+                    <div>
+                        <span v-bind:class="'PriceDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table v-bind:class="'PriceDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.PriceTotal">{{AmountDetail.PriceTotal >= 1000 ? (AmountDetail.PriceTotal/1000).toFixed(0) : (AmountDetail.PriceTotal/1000).toFixed(1)}}</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div id="AmountDetail" class="resultDialog" style="width:100%;display:none;overflow: auto;">
+    <div class="title freezeContent"> <p>成本明细</p> </div>
+    <table style="text-align: left; width:100%;">
+        <thead>
+            <tr>
+                <th colspan="3" rowspan="3" class="menu1" width="130" style="border-top: none; background-color: #1b4082; "></th>
+                <th class="headtr" v-bind:colspan="AmountDetail.ActualDate.length + AmountDetail.ForecastDate.length+1" style="background-color: #1b4082; border-bottom: none; color: white;"><span style="float:right;">千元</span></th>
+            </tr>
+            <tr>
+                <th style="text-align: center; color: white; background-color: #827c85;" v-bind:colspan="@BusinessObjects.Domain.ValControlInfo.ActualYears.ActualYear"> Actual </th>
+                <th style="text-align: center; color: white; background-color: #41589b;" v-bind:colspan="@BusinessObjects.Domain.ValControlInfo.ForecastYears.ForecastYear"> Forecast </th>
+                <th style="background-color: #1b4082; height: 20px; padding: 1px;"></th>
+            </tr>
+            <!--日期title-->
+            <tr style="text-align: center;">
+                <td v-for="year in ActualYears" style="color: white; background-color: #827c85; white-space: nowrap; padding: 0px !important; ">
+                    <table frame="void" class="tdListCenter" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <td colspan="12" class="tdListCenter" style="border-top: none; height: auto; min-width: 80px; background-color: #827c85; ">
+                                    <span>第{{year.Name}}年</span>
+                                    <img src="~/Content/img/add.png" v-bind:id="'ActualAmounticon_' + year.ID" class="icon-sm" data-show="false" @@click="ExpandCollapseActualAmountDetail($event.currentTarget,year.ID)" />
+                                </td>
+                            </tr>
+                            <tr v-bind:id="'ActualAmountDetail_' + year.ID" style="display:none;">
+                                <td class="tdListCenter" v-for="(date,index) in AmountDetail.ActualDate" style="min-width: 80px; background-color: #c0bec0; " v-if="index >= (year.ID-1)*12 && index < year.ID  * 12">
+                                    <span>{{date.Name}}</span>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </td>
+                <td v-for="year in ForecastYears" style="color: white; background-color: #41589b; white-space: nowrap; padding: 0px !important; ">
+                    <table frame="void" class="tdListCenter" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <td colspan="12" class="tdListCenter" style="border-top: none; height: auto; min-width: 80px; background-color: #41589b; ">
+                                    <span>第{{year.Name}}年</span>
+                                    <img src="~/Content/img/add.png" v-bind:id="'ForecastAmounticon_' + year.ID" class="icon-sm" data-show="false" @@click="ExpandCollapseForecastAmountDetail($event.currentTarget,year.ID)" />
+                                </td>
+                            </tr>
+                            <tr v-bind:id="'ForecastAmountDetail_' + year.ID" style="display:none;">
+                                <td class="tdListCenter" v-for="(date,index) in AmountDetail.ForecastDate" style="min-width: 80px; background-color: #4985bf; " v-if="index >= (year.ID-1)*12 && index < year.ID  * 12">
+                                    <span>{{date.Name}}</span>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </td>
+                <th class="sumAmount" style="text-align: center;">小计</th>
+            </tr>
+            <!--固定类汇总-->
+            <tr class="sub">
+                <th class="menu1" colspan="3"><b>固定类</b></th>
+                <td style="padding:0;" v-for="item in AmountDetail.FixedActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.FixedForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.FixedAmountTotal">{{AmountDetail.FixedAmountTotal >= 1000 ? (AmountDetail.FixedAmountTotal/1000).toFixed(0) : (AmountDetail.FixedAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--固定类-信息系统使用费-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">信息系统使用费</th>
+                <td style="padding:0;" v-for="item in AmountDetail.SystemActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.SystemForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.SystemAmountTotal">{{AmountDetail.SystemAmountTotal >= 1000 ? (AmountDetail.SystemAmountTotal/1000).toFixed(0) : (AmountDetail.SystemAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--固定类-人工费-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">人工费</th>
+                <td style="padding:0;" v-for="item in AmountDetail.LabourActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.LabourForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.LabourAmountTotal">{{AmountDetail.LabourAmountTotal >= 1000 ? (AmountDetail.LabourAmountTotal/1000).toFixed(0) : (AmountDetail.LabourAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--固定类-维保费-->
+            <tr>
+                <th class="menu1"></th>
+                <th colspan="2" class="menu2">维保费</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ContractActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ContractForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ContractAmountTotal">{{AmountDetail.ContractAmountTotal >= 1000 ? (AmountDetail.ContractAmountTotal/1000).toFixed(0) : (AmountDetail.ContractAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--固定类-备用机成本-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">备用机成本</th>
+                <td style="padding:0;" v-for="item in AmountDetail.SpareActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.SpareForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.SpareAmountTotal">{{AmountDetail.SpareAmountTotal >= 1000 ? (AmountDetail.SpareAmountTotal/1000).toFixed(0) : (AmountDetail.SpareAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:保养 汇总-->
+            <tr class="sub">
+                <th class="menu1" colspan="3">变动类-保养</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ConsumableActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ConsumableForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ConsumableAmountTotal">{{AmountDetail.ConsumableAmountTotal >= 1000 ? (AmountDetail.ConsumableAmountTotal/1000).toFixed(0) : (AmountDetail.ConsumableAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:保养-耗材类-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">耗材费</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ConsumableActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ConsumableForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ConsumableAmountTotal">{{AmountDetail.ConsumableAmountTotal >= 1000 ? (AmountDetail.ConsumableAmountTotal/1000).toFixed(0) : (AmountDetail.ConsumableAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:保养-耗材类-定期-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">定期类</th>
+                <td style="padding:0;" v-for="item in AmountDetail.RegularActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.RegularForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.RegularAmountTotal">{{AmountDetail.RegularAmountTotal >= 1000 ? (AmountDetail.RegularAmountTotal/1000).toFixed(0) : (AmountDetail.RegularAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:保养耗材类-定量-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">定量类</th>
+                <td style="padding:0;" v-for="item in AmountDetail.QuanTityActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.QuanTityForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.QuanTityAmountTotal">{{AmountDetail.QuanTityAmountTotal >= 1000 ? (AmountDetail.QuanTityAmountTotal/1000).toFixed(0) : (AmountDetail.QuanTityAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:保养-耗材类-小额汇总成本-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">小额汇总成本</th>
+                <td style="padding:0;" v-for="item in AmountDetail.SmallActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.SmallForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.SmallAmountTotal">{{AmountDetail.SmallAmountTotal >= 1000 ? (AmountDetail.SmallAmountTotal/1000).toFixed(0) : (AmountDetail.SmallAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-->
+            <tr class="sub">
+                <th class="menu1" colspan="3">变动类-维修</th>
+                <td style="padding:0;" v-for="item in AmountDetail.RepairActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.RepairForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.RepairAmountTotal">{{AmountDetail.RepairAmountTotal >= 1000 ? (AmountDetail.RepairAmountTotal/1000).toFixed(0) : (AmountDetail.RepairAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-故障零件成本-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">故障零件成本</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ComponentActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ComponentForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ComponentAmountTotal">{{AmountDetail.ComponentAmountTotal >= 1000 ? (AmountDetail.ComponentAmountTotal/1000).toFixed(0) : (AmountDetail.ComponentAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-故障零件成本--重点设备-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">重点设备</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ImportantComponentActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ImportantComponentForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ImportantComponentAmountTotal">{{AmountDetail.ImportantComponentAmountTotal >= 1000 ? (AmountDetail.ImportantComponentAmountTotal/1000).toFixed(0) : (AmountDetail.ImportantComponentAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-故障零件成本--一般设备-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">一般设备</th>
+                <td style="padding:0;" v-for="item in AmountDetail.GeneralComponentActualAmount">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.GeneralComponentForecastAmount">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.GeneralComponentAmountTotal">{{AmountDetail.GeneralComponentAmountTotal >= 1000 ? (AmountDetail.GeneralComponentAmountTotal/1000).toFixed(0) : (AmountDetail.GeneralComponentAmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-外来服务费-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2" colspan="2">外来服务费</th>
+                <td style="padding:0;" v-for="item in AmountDetail.Repair3partyActualCost">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.Repair3partyForecastCost">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.Repair3partyCostTotal">{{AmountDetail.Repair3partyCostTotal >= 1000 ? (AmountDetail.Repair3partyCostTotal/1000).toFixed(0) : (AmountDetail.Repair3partyCostTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-外来服务费--重点设备-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">重点设备</th>
+                <td style="padding:0;" v-for="item in AmountDetail.ImportantRepair3partyActualCost">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.ImportantRepair3partyForecastCost">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.ImportantRepair3partyCostTotal">{{AmountDetail.ImportantRepair3partyCostTotal >= 1000 ? (AmountDetail.ImportantRepair3partyCostTotal/1000).toFixed(0) : (AmountDetail.ImportantRepair3partyCostTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <!--变动类:维修-外来服务费--一般设备-->
+            <tr>
+                <th class="menu1"></th>
+                <th class="menu2"></th>
+                <th class="menu3">一般设备</th>
+                <td style="padding:0;" v-for="item in AmountDetail.GeneralRepair3partyActualCost">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.GeneralRepair3partyForecastCost">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.GeneralRepair3partyCostTotal">{{AmountDetail.GeneralRepair3partyCostTotal >= 1000 ? (AmountDetail.GeneralRepair3partyCostTotal/1000).toFixed(0) : (AmountDetail.GeneralRepair3partyCostTotal/1000).toFixed(1)}}</td>
+            </tr>
+            <tr style="background-color: #4f612b; color: white;">
+                <th colspan="3" class="menu1" style="background-color: #4f612b; color: white;">总计</th>
+                <td style="padding:0;" v-for="item in AmountDetail.AmountActual">
+                    <div>
+                        <span v-bind:class="'ActualAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ActualAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td style="padding:0;" v-for="item in AmountDetail.AmountForecast">
+                    <div>
+                        <span v-bind:class="'ForecastAmountDetailSum_'+item.year" v-bind:title="item.sum.toFixed(0)">{{item.sum >= 1000 ? (item.sum/1000).toFixed(0) : (item.sum/1000).toFixed(1)}}</span>
+                        <table frame="void" v-bind:class="'ForecastAmountDetail_'+item.year" style="display:none;">
+                            <tbody>
+                                <tr>
+                                    <td v-for="data in item.data" style="border-top:none;padding:0;height:auto;min-width:80px;" v-bind:title="data.toFixed(0)">{{data >= 1000 ? (data/1000).toFixed(0) : (data/1000).toFixed(1)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td v-bind:title="AmountDetail.AmountTotal">{{AmountDetail.AmountTotal >= 1000 ? (AmountDetail.AmountTotal/1000).toFixed(0) : (AmountDetail.AmountTotal/1000).toFixed(1)}}</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+<br>
+<div id="resultBtns" style="display:none;">
+    <div><button class="btn btn-outline-info btn-sm" onclick="ShowPriceDetail()">最终定价表</button></div>
+    <div><button class="btn btn-outline-info btn-sm amountdetailBtn" onclick="ShowAmountDetail()">成本明细</button></div>
+    <div><button class="btn btn-outline-info btn-sm" onclick="">分析</button></div>
+    <div><button class="btn btn-outline-info btn-sm" onclick="GoToDecisionAids()">决策辅助工具</button></div>
+    <div><button class="btn btn-outline-info btn-sm" onclick="OpenVaRTypeList()">VaR</button></div>
+</div> 
+
+<script>
+    var AmountDetailVue = new Vue({
+        el: "#AmountDetail",
+        data: {
+            AmountDetail: {
+                ForecastDate: [],
+                ActualDate: [],
+            },
+            ForecastYears: @forecastYears,
+            ActualYears: @actualYears
+        }
+    })
+
+    var PriceDetailVue = new Vue({
+        el: "#PriceDetail",
+        data: {
+            AmountDetail: {
+                ForecastDate: [],
+            },
+            ForecastYears: @forecastYears,
+        }
+    })
+</script>
+<script>
+    $(function () {
+        InitValVaRDialog()
+        $("#resultBtns .btn").click(function () {
+            $('#resultBtns .btn').addClass('btn-outline-info');
+            $('#resultBtns .btn').removeClass('btn-info');
+            $(this).removeClass('btn-outline-info');
+            $(this).addClass('btn-info');
+        });
+        window.onresize = function () {
+            setTimeout(function () {
+                let resultDiv = document.querySelector("#resultContainer");
+                let mainBody = document.querySelector(".mainBody");
+                resultDiv && resultDiv.parentElement && (resultDiv.style.width = mainBody.offsetWidth - 630 - 60 + "px");
+            }, 1)
+        }
+    })
+    function ShowAmountDetail() {
+        CloseAmountDetail();
+        $(".resultDialog").hide();
+        $("#AmountDetail").show();
+        $(".amountdetailBtn").removeClass('btn-outline-info');
+        $(".amountdetailBtn").addClass('btn-info');
+        $("#AmountDetail").scrollLeft(0);
+    }
+
+    function ShowPriceDetail() {
+        ClosePriceDetail();
+        $(".resultDialog").hide();
+        $("#PriceDetail").show();
+        $("#PriceDetail").scrollLeft(0);
+    }
+
+    function RunVal() {
+        if (CheckControl()) return;
+
+        SaveControl().then(function(){
+            jAlert("<progress max='100' value='0' id='pg'></progress><span id='curr'></span>%", "计算中", function () { })
+            $("input:button").prop("disabled", true)
+            $("#pg").val(0)
+            $("#curr").text(0)
+            var intervalID = setInterval(function (e) {
+                var value = $("#pg").val()
+                if (value <= 89) {
+                    $("#pg").val(value + 1);
+                    $("#curr").text($("#pg").val())
+                }
+                else clearInterval(intervalID);
+            });
+            $.ajaxSetup({ async: true });
+
+            $('#resultBtns .btn').addClass('btn-outline-info');
+            $('#resultBtns .btn').removeClass('btn-info');
+            let resultDiv = document.querySelector("#resultContainer");
+            resultDiv && resultDiv.parentElement && (resultDiv.style.width = resultDiv.parentElement.offsetWidth - 400 - 60 + "px");
+
+            RunAmountDetail();
+        })
+    }
+    function RunAmountDetail() {
+        SetPageWaiting(true);
+        $.post('@Url.Action("RunVal", "Valuation")', function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00")
+                processResponseError(result.ResultCode, result.ResultMessage);
+            else {
+                AmountDetailVue.AmountDetail = result.Data;
+                PriceDetailVue.AmountDetail = result.Data;
+                var intervalID = setInterval(function (e) {
+                    var value = $("#pg").val()
+                    if (value <= 99) {
+                        $("#pg").val(value + 1);
+                        $("#curr").text($("#pg").val())
+                    }
+                    else {
+                        clearInterval(intervalID);
+                        $("input:button").prop("disabled", false)
+                        $("input:button").click()
+                    }
+                });
+                ShowAmountDetail();
+                $("#resultBtns").show();
+            }
+        })
+    }
+
+    function ClosePriceDetail() {
+        PriceDetailVue.ForecastYears.forEach(function (year) {
+            $("#PriceDetail_" + year.ID).hide();
+            $(".PriceDetailSum_" + year.ID).show();
+            $(".PriceDetail_" + year.ID).hide();
+            document.querySelector('#Priceicon_' + year.ID).dataset.show = false
+            $('#Priceicon_' + year.ID).attr("src", getRootPath() + "/Content/img/add.png")
+        })
+    }
+
+    function CloseAmountDetail() {
+        AmountDetailVue.ForecastYears.forEach(function (year) {
+            $("#ForecastAmountDetail_" + year.ID).hide();
+            $(".ForecastAmountDetailSum_" + year.ID).show();
+            $(".ForecastAmountDetail_" + year.ID).hide();
+            document.querySelector('#ForecastAmounticon_' + year.ID).dataset.show = false
+            $('#ForecastAmounticon_' + year.ID).attr("src", getRootPath() + "/Content/img/add.png")
+        })
+
+        AmountDetailVue.ActualYears.forEach(function (year) {
+            $("#ActualAmountDetail_" + year.ID).hide();
+            $(".ActualAmountDetailSum_" + year.ID).show();
+            $(".ActualAmountDetail_" + year.ID).hide();
+            document.querySelector('#ActualAmounticon_' + year.ID).dataset.show = false
+            $('#ActualAmounticon_' + year.ID).attr("src", getRootPath() + "/Content/img/add.png")
+        })
+    }
+
+    function ExpandCollapseForecastAmountDetail(_this, year) {
+        let flag = JSON.parse(_this.dataset.show)
+        if (flag) {
+            $("#ForecastAmountDetail_" + year).hide();
+            $(".ForecastAmountDetailSum_" + year).show();
+            $(".ForecastAmountDetail_" + year).hide();
+            _this.src = getRootPath() + "/Content/img/add.png";
+        } else {
+            $("#ForecastAmountDetail_" + year).show();
+            $(".ForecastAmountDetailSum_" + year).hide();
+            $(".ForecastAmountDetail_" + year).show();
+            _this.src = getRootPath() + "/Content/img/reduce.png";
+        }
+        _this.dataset.show = !flag
+    }
+
+    function ExpandCollapseActualAmountDetail(_this, year){
+        let flag = JSON.parse(_this.dataset.show)
+        if (flag) {
+            $("#ActualAmountDetail_" + year).hide();
+            $(".ActualAmountDetailSum_" + year).show();
+            $(".ActualAmountDetail_" + year).hide();
+            _this.src = getRootPath() + "/Content/img/add.png";
+        } else {
+            $("#ActualAmountDetail_" + year).show();
+            $(".ActualAmountDetailSum_" + year).hide();
+            $(".ActualAmountDetail_" + year).show();
+            _this.src = getRootPath() + "/Content/img/reduce.png";
+        }
+        _this.dataset.show = !flag
+    }
+
+    function ExpandCollapsePriceDetail(_this, year) {
+        let flag = JSON.parse(_this.dataset.show)
+        if (flag) {
+            $("#PriceDetail_" + year).hide();
+            $(".PriceDetailSum_" + year).show();
+            $(".PriceDetail_" + year).hide();
+            _this.src = getRootPath() + "/Content/img/add.png";
+        } else {
+            $("#PriceDetail_" + year).show();
+            $(".PriceDetailSum_" + year).hide();
+            $(".PriceDetail_" + year).show();
+            _this.src = getRootPath() + "/Content/img/reduce.png";
+        }
+        _this.dataset.show = !flag
+    }
+
+    function GoToDecisionAids(){
+        window.open("@Url.Action("DecisionAids", "Valuation")")
+    }
+</script>

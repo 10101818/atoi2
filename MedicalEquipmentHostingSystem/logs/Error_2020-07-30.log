@@ -1,0 +1,63 @@
+2020-07-30 11:26:01.2540 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FaultRateDao', Method 'GetEqptRepairMonth', Arguments: Int32 = 16 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 232
+2020-07-30 11:26:01.4099 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 16, Int32 = 60 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 234
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 394
+2020-07-30 11:26:01.4589 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 234
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 460
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 466
+2020-07-30 11:26:13.8674 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FaultRateDao', Method 'GetEqptRepairMonth', Arguments: Int32 = 16 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 232
+2020-07-30 11:26:13.9124 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 16, Int32 = 60 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 234
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 394
+2020-07-30 11:26:13.9574 ERROR 已添加了具有相同键的项。 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 234
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 460
+   在 MedicalEquipmentHostingSystem.Controllers.FujiClass2Controller.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\FujiClass2Controller.cs:行号 466
+2020-07-30 11:26:49.1077 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FaultRateDao', Method 'GetEqptRepairMonth', Arguments: Int32 = 16 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 232
+2020-07-30 11:26:49.1837 ERROR Exception: '已添加了具有相同键的项。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 16, Int32 = 60 
+    在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\BaseDao.cs:行号 172
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\FaultRateDao.cs:行号 234
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\FujiClassManager.cs:行号 394
+2020-07-30 11:30:15.9732 ERROR Exception: 'Fill: SelectCommand.Connection 属性尚未初始化。' happened in Class 'FujiClassManager', Method 'GetWebData', Arguments: Int32 = 16, Int32 = 60 
+    在 System.Data.Common.DbDataAdapter.GetConnection3(DbDataAdapter adapter, IDbCommand command, String method)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 BusinessObjects.DataAccess.BaseDao.GetDictionary(SqlCommand command)
+   在 BusinessObjects.DataAccess.FaultRateDao.GetEqptRepairMonth(Int32 fujiClass2ID)
+   在 BusinessObjects.Manager.FujiClassManager.GetWebData(Int32 fujiClass2ID, Int32 months)

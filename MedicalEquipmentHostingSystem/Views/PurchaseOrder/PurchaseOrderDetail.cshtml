@@ -1,0 +1,582 @@
+﻿@{
+    ViewBag.Title = "PurchaseOrderList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+    int SuperAdmin = BusinessObjects.Domain.UserRole.SuperAdmin;
+}
+<div id="PurchaseOrderDetail" v-cloak class="tblDiv">
+    <div>
+        <a class="linkFile backPage" href="#" onclick="Back()">&lt;&lt;@BusinessObjects.Domain.Constants.BACKLIST</a>
+    </div>
+    <div class="title">
+        <p v-if="Approvable">审核采购单</p>
+        <p v-else-if="@ViewBag.ID != 0">更新采购单</p>
+        <p v-else>新增采购单</p>
+    </div>
+    <!--基本信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <tbody>
+                <tr>
+                    <td colspan="4" class="tblName">
+                        基本信息
+                    </td>
+                </tr>
+                <tr>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">系统编号</th>
+                    <td width="300px">
+                        <label class="tdReadOnly" v-if="@ViewBag.ID == 0">由系统自动生成</label>
+                        <label v-else class="tdReadOnly">{{PurchaseOrder.OID}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">请求人</th>
+                    <td width="300px" class="tdReadOnly" v-if="@ViewBag.ID == 0" v-model.trim="PurchaseOrder.User.ID">@user.Name </td>
+                    <td width="300px" class="tdReadOnly" v-else> {{PurchaseOrder.User.Name}}
+                </tr>
+                <tr v-if="Approvable">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">采购日期</th>
+                    <td width="300px">
+                        <label v-if="Approvable" class="tdReadOnly">{{PurchaseOrder.OrderDate}}</label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">到货日期</th>
+                    <td width="300px">
+                        <label class="tdReadOnly">{{PurchaseOrder.DueDate}}</label></td>
+                </tr>
+                <tr v-else>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">采购日期</th>
+                    <td width="300px">
+                        <input type="text" class="datePicker" id="OrderDate" v-model.trim="PurchaseOrder.OrderDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                        <label class="required" id="reqOrderDate"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">到货日期</th>
+                    <td width="300px">
+                        <input type="text" class="datePicker" id="DueDate" v-model.trim="PurchaseOrder.DueDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                        <label class="required" id="reqDueDate"></label>
+                    </td>
+                </tr>
+                <tr v-if="Approvable">
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">供应商</th>
+                    <td width="300px" class="tdReadOnly">{{PurchaseOrder.Supplier.Name}} </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">备注</th>
+                    <td width="300px">
+                        <label v-if="Approvable" class="tdReadOnly">{{PurchaseOrder.Comments}}</label>
+                    </td>
+                </tr>
+                <tr v-else>
+                    <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                    <th width="189px">供应商</th> 
+                    <td width="300px">
+                        <input class="input" type="text" readonly id="SupplierName" maxlength="50" style="width:200px;" v-model.trim="PurchaseOrder.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
+                        <img src="~/Content/img/find.png" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" />
+                        <label class="required" id="reqSupplierName"></label>
+                    </td>
+                    <th class="tdrequired" width="15px"><span class="required"></span></th>
+                    <th width="189px">备注</th>
+                    <td width="300px">
+                        <input type="text" id="Comments" maxlength="500" v-model.trim="PurchaseOrder.Comments" />
+                        <label class="unrequired" id="reqComments"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--零件信息-->
+    <div class="radiusOnly">
+        
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="10" class="tblName">
+                        零件
+                        <button v-if="!Approvable" class="btn btn-info btn-sm" style=" float:right" onclick="OpenAddComponent()">添加零件</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">简称</th>
+                    <th style="min-width:50px;">描述</th>
+                    <th style="min-width:50px;">规格</th>
+                    <th style="min-width:50px;">型号</th>
+                    <th style="min-width:60px;">类型</th>
+                    <th style="min-width:70px;">关联设备</th>
+                    <th style="min-width:70px;">单价</th>
+                    <th style="min-width:70px;">数量</th>
+                    <th v-if="!Approvable" style="min-width:50px; text-align: center">编辑</th>
+                    <th v-if="!Approvable" width="50px" style="text-align: center; border-right: none;">删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="PurchaseOrder.Components.length == 0">
+                    <td colspan="10" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+                <tr v-for="(component,index) in PurchaseOrder.Components">
+             
+                    <td>{{component.Component.Name}}</td>
+                    <td>{{component.Component.Description}}</td>
+                    <td>{{component.Specification}}</td>
+                    <td>{{component.Model}}</td>
+                    <td>{{component.Component.Type.Name}}</td>
+                    <td>{{component.Equipment.Name}}</td>
+                    <td>{{component.Price}}</td>
+                    <td>{{component.Qty}}</td>
+                    <td v-if="!Approvable" class="cursor" v-on:click="OpenEditComponent(component,index)" style="text-align: center"><img src="~/Content/img/edit.png" class="icon-sm"></td>
+                    <td v-if="!Approvable"  style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteComponentBtn(index)" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--耗材信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="9" class="tblName">
+                        耗材
+                        <button v-if="!Approvable" class="btn btn-info btn-sm" style=" float:right" onclick="OpenAddConsumable()">添加耗材</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100px">简称</th>
+                    <th style="min-width:50px;">描述</th>
+                    <th style="min-width:50px;">规格</th>
+                    <th style="min-width:50px;">型号</th>
+                    <th style="min-width:100px;">关联富士II类</th>
+                    <th style="min-width:70px;">单价</th>
+                    <th style="min-width:70px;">数量</th>
+                    <th v-if="!Approvable" style="min-width:50px;text-align: center">编辑</th>
+                    <th v-if="!Approvable" width="50px" style="text-align: center; border-right: none;">删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="PurchaseOrder.Consumables.length == 0">
+                    <td colspan="9" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+                <tr v-for="(consumable, index) in PurchaseOrder.Consumables">
+                    <td>{{consumable.Consumable.Name}}</td>
+                    <td>{{consumable.Consumable.Description}}</td>
+                    <td>{{consumable.Specification}}</td>
+                    <td>{{consumable.Model}}</td>
+                    <td>{{consumable.Consumable.FujiClass2.Name}}</td>
+                    <td>{{consumable.Price}}</td>
+                    <td>{{consumable.Qty}}</td>        
+                    <td v-if="!Approvable" class="cursor" v-on:click="OpenEditConsumable(consumable,index)" style="text-align: center"><img src="~/Content/img/edit.png" class="icon-sm"></td>
+                    <td v-if="!Approvable" style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteConsumableBtn(index)" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--服务信息-->
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" frame="void">
+            <thead>
+                <tr class="headtr">
+                    <td colspan="8" class="tblName">
+                        服务
+                        <button v-if="!Approvable" class="btn btn-info btn-sm" style=" float:right" onclick="OpenAddService()">添加服务</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="min-width:100px;">服务名称</th>
+                    <th style="min-width:100px;">关联富士II类</th>
+                    <th style="min-width:100px;">金额(元)</th>
+                    <th style="min-width:100px;">服务开始时间</th>
+                    <th style="min-width:100px;">服务结束时间</th>
+                    <th style="min-width:100px;">服务次数</th>
+                    <th v-if="!Approvable" style="min-width:50px; text-align: center">编辑</th>
+                    <th v-if ="!Approvable" style="min-width:50px; text-align: center; border-right: none;">删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(service, index) in PurchaseOrder.Services">
+                    <td>{{service.Name}}</td>
+                    <td>{{service.FujiClass2.Name}}</td>
+                    <td>{{service.Price}}</td>
+                    <td>{{service.StartDate}}</td>
+                    <td>{{service.EndDate}}</td>
+                    <td>{{service.TotalTimes}}</td>
+                    <td v-if="!Approvable" class="cursor" v-on:click="OpenEditService(service,index)" style="text-align: center"><img src="~/Content/img/edit.png" class="icon-sm"></td>
+                    <td v-if="!Approvable" style="text-align: center;border-right: none;"><img class="cursor" src="~/Content/img/delete.png" v-on:click="DeleteServiceBtn(index)" /></td>
+                </tr>
+                <tr v-if="PurchaseOrder.Services.length == 0">
+                    <td colspan="8" style="text-align: center; border-right: none;">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!--审批备注 退回时填写、审批时显示-->
+    <div class="radiusOnly" v-if="PurchaseOrder.FujiComments != null|| Approvable">
+        <table class="tblDetail" width="970" border="1" frame="void">
+            <tr><td class="tblName" colspan="3">审批备注 </td></tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required"></span></th>
+                <th width="189px">审批备注</th>
+                <td v-if="Approvable">
+                    <textarea maxlength="200" id="FujiComments" v-model.trim="PurchaseOrder.FujiComments"></textarea>
+                    <label class="required tips" id="commentsMSG"></label>
+                </td>
+                <td class="tdReadOnly" v-else> <label>{{PurchaseOrder.FujiComments}}</label></td>
+            </tr>
+        </table>
+    </div>
+    <br v-if="PurchaseOrder.FujiComments != null || Approvable" />
+    <!--流程信息 第一次填写时不显示-->
+    <div class="radiusOnly" v-if="PurchaseOrder.FormatHistory != null">
+        <table class="tblDetail" width="800" border="1" frame="void">
+            <tr>
+                <td class="tblName" colspan="3">审批流程</td>
+            </tr>
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required"></span></th>
+                <th width="189px">流程信息</th>
+                <td>
+                    <textarea readonly>{{PurchaseOrder.FormatHistory}}</textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br v-if="PurchaseOrder.FormatHistory != null" />
+
+    <table border="0" class="tblDetail" style="text-align: center; margin: 20px auto 5%; width: 800px;">
+        <tr>
+            <td align="center" v-if="!Approvable "><button class="btn btn-info" onclick="SavePurchaseOrder()">保存</button></td>
+            <td align="center" v-if="!Approvable"><button class="btn btn-info" id="btnReceipt" onclick="SubmitPurchaseOrder()">提交</button></td>
+            <td align="center" v-if="Approvable"><button class="btn btn-info" onclick="PassPurchaseOrder()">通过</button></td>
+            <td align="center" v-if="Approvable"><button class="btn btn-info" onclick="RejectPurchaseOrder()">退回</button></td>
+            <td align="center" v-if="Approvable"><button class="btn btn-info" onclick="CancelPurchaseOrderBtn()">终止</button></td>
+            <td align="center"><button class="btn btn-info" onclick="Back()">返回</button></td>
+        </tr>
+    </table>
+
+</div>
+@{ Html.RenderPartial("Supplier_Selection"); }
+@{ Html.RenderPartial("PurchaseOrderDialog"); }
+
+<!--Vue Init Data-->
+<script>
+    var PurchaseOrderDetailVue = new Vue({
+        el: "#PurchaseOrderDetail",
+        data: {
+            PurchaseOrder: {
+                ID: 0,
+                User: {ID:0},
+                Supplier: {},
+                OrderDate: '',
+                DueDate: '',
+                Comments: '',
+                Components: [],
+                Consumables: [],
+                Services: [],
+                Status:{ID:1},
+            },
+            Approvable:false,
+          
+         
+        }
+    })
+</script>
+
+<!--初始化-->
+<script>
+    $(function () {
+        InitDateForm();
+        InitDialog();
+        if ('@ViewBag.ID' != 0) {
+            GetPurchaseOrderByID();
+        }
+    })
+    function InitDateForm() {
+        var dateFields = $([]).add($("#OrderDate")).add($("#DueDate")).add($("#StartDate")).add($("#EndDate"));
+        dateFields.datepicker({
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function (dateText, inst) {
+                let _this = this
+                $(_this).datepicker('setDate', new Date(dateText));
+                _this.dispatchEvent(new Event('input'))
+                _this.dispatchEvent(new Event('change'))
+                _this.blur()
+            },
+        });
+        dateFields.datepicker("option", "dateFormat", "yy-mm-dd");
+    }
+</script>
+<!--获取采购单-->
+<script>
+    //获取供应商
+    function callback(objectVue) {
+        PurchaseOrderDetailVue.PurchaseOrder.Supplier = objectVue;
+        PurchaseOrderDetailVue.$forceUpdate();
+
+    }
+
+    //获取采购单信息
+    function GetPurchaseOrderByID() {
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("GetPurchaseOrderByID", "PurchaseOrder")" + "?" + $.param({ PurchaseOrderID: Number(@ViewBag.ID) }),
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    PurchaseOrderDetailVue.PurchaseOrder = response.Data;
+                    PurchaseOrderDetailVue.PurchaseOrder.OrderDate = parseAndFormatJsonDate(PurchaseOrderDetailVue.PurchaseOrder.OrderDate );
+                    PurchaseOrderDetailVue.PurchaseOrder.DueDate = parseAndFormatJsonDate(PurchaseOrderDetailVue.PurchaseOrder.DueDate);
+                    $.each(PurchaseOrderDetailVue.PurchaseOrder.Services, function (index, serivce) {
+                        serivce.StartDate = parseAndFormatJsonDate(serivce.StartDate);
+                        serivce.EndDate = parseAndFormatJsonDate(serivce.EndDate);
+                    });
+                    PurchaseOrderDetailVue.Approvable = ('@user.Role.ID' == '@SuperAdmin' && PurchaseOrderDetailVue.PurchaseOrder.Status.ID == '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Pending')
+                   
+                }
+
+            })
+    }
+
+</script>
+
+<!--保存采购单-->
+<script>
+    //保存时判断信息是否已填/格式是否正确
+    function CheckPurchaseOrder() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        if (!PurchaseOrderDetailVue.PurchaseOrder.Supplier.Name) {
+            $("#reqSupplierName").html("供应商不能为空");
+            $("#SupplierName").focus();
+            IsValid = false;
+        }
+
+        if (CheckDatePicker("OrderDate", "采购日期") != "") {
+            $("#reqOrderDate").html(CheckDatePicker("OrderDate", "采购日期"));
+            $("#OrderDate").focus();
+            IsValid = false;
+        }
+
+        if (CheckDatePicker("DueDate", "到货日期") != "") {
+            $("#reqDueDate").html(CheckDatePicker("DueDate", "到货日期"));
+            $("#DueDate").focus();
+            IsValid = false;
+        }
+        //
+
+        if ((new Date($("#OrderDate").val().replace(/-/g, "\/"))) > (new Date($("#DueDate").val().replace(/-/g, "\/")))) {
+            $("#reqDueDate").html("到货日期必须大于采购日期");
+            $("#DueDate").focus();
+            IsValid = false;
+        }
+        return IsValid;
+    }
+    //保存采购单信息
+    function SavePurchaseOrder() {
+        if (!CheckPurchaseOrder()) return;
+        PurchaseOrderDetailVue.PurchaseOrder.Status.ID = '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.New';
+        PurchaseOrderDetailVue.PurchaseOrder.User.ID = @user.ID;
+        SetPageWaiting(true)
+        $.post(
+                '@Url.Action("SavePurchaseOrder", "PurchaseOrder")',
+                PurchaseOrderDetailVue.PurchaseOrder,
+                function (response) {
+                    SetPageWaiting(false)
+                    if (response.ResultCode != "00") {
+                        jAlert(response.ResultMessage, "保存结果");
+                    }
+                    else {
+                        PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                        jAlert("保存成功", "保存结果", function () {
+                            window.location = "@Url.Action("PurchaseOrderDetail", "PurchaseOrder")" + "?" + $.param({ purchaseOrderID: PurchaseOrderDetailVue.PurchaseOrder.ID  })
+                        });
+                    }
+                    return;
+                }
+            );
+    }
+    function Back() {
+        window.location = "@Url.Action("PurchaseOrderList", "PurchaseOrder")";
+    }
+</script>
+
+<!--提交采购单-->
+<script>
+    function SubmitPurchaseOrder() {
+        if (!CheckPurchaseOrder()) return;
+        if( PurchaseOrderDetailVue.PurchaseOrder.Services.length == 0 && PurchaseOrderDetailVue.PurchaseOrder.Consumables.length == 0 && PurchaseOrderDetailVue.PurchaseOrder.Components.length == 0)
+            jAlert("请添加采购内容", "提示", function () { })
+        else{
+           
+            PurchaseOrderDetailVue.PurchaseOrder.User.ID = @user.ID;
+            PurchaseOrderDetailVue.PurchaseOrder.Status.ID = '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Pending';
+            SetPageWaiting(true)
+            $.post(
+                    '@Url.Action("SavePurchaseOrder", "PurchaseOrder")',
+                    PurchaseOrderDetailVue.PurchaseOrder,
+                    function (response) {
+                        SetPageWaiting(false)
+                        if (response.ResultCode != "00") {
+                            jAlert(response.ResultMessage, "提交结果");
+                        }
+                        else {
+                            PurchaseOrderDetailVue.PurchaseOrder.ID = response.Data;
+                            jAlert("提交成功", "提交结果", function () {
+                                Back();
+                            });
+                        }
+                        return;
+                    }
+                );
+        }
+    }
+</script>
+
+<!--删除-->
+<script>
+    function DeleteComponentBtn(index) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteComponent(index)
+            }
+        });
+    }
+
+    function DeleteComponent(index) {
+
+        PurchaseOrderDetailVue.PurchaseOrder.Components.splice(index, 1);
+    }
+
+
+    function DeleteConsumableBtn(index) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteConsumable(index);
+            }
+        });
+    }
+
+    function DeleteConsumable(index) {
+        PurchaseOrderDetailVue.PurchaseOrder.Consumables.splice(index, 1);
+    }
+
+
+
+    function DeleteServiceBtn(index) {
+        jConfirm("请确认是否删除?", "删除", function (result) {
+            if (result) {
+                DeleteService(index);
+            }
+        });
+    }
+
+    function DeleteService(index) {
+
+        PurchaseOrderDetailVue.PurchaseOrder.Services.splice(index, 1);
+    }
+
+</script>
+
+<!--审批通过-->
+<script>
+    function PassPurchaseOrder(){
+        PurchaseOrderDetailVue.PurchaseOrder.Status.ID = '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Stocking';
+        SetPageWaiting(true)
+        $.post(
+            '@Url.Action("PassPurchaseOrder", "PurchaseOrder")',
+            {
+                purchaseOrderID:PurchaseOrderDetailVue.PurchaseOrder.ID,
+                comments:PurchaseOrderDetailVue.PurchaseOrder.FujiComments
+            },
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    jAlert("通过成功", "审批",function(){
+                        Back();
+                    });
+                }
+            })
+    }
+</script>
+
+<!--审批退回-->
+<script>
+    function RejectPurchaseOrder(){
+        if(PurchaseOrderDetailVue.PurchaseOrder.FujiComments == null){
+            $("#commentsMSG").html('审批备注不能为空');
+            $("#FujiComments").focus();
+            return;
+        }
+        SetPageWaiting(true)
+        $.post(
+            '@Url.Action("RejectPurchaseOrder", "PurchaseOrder")',
+            {
+                purchaseOrderID:PurchaseOrderDetailVue.PurchaseOrder.ID,
+                comments:PurchaseOrderDetailVue.PurchaseOrder.FujiComments
+            },
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    jAlert("退回成功", "审批",function(){
+                        Back();
+                    });
+                }
+            })
+    }
+</script>
+
+<!--审批终止-->
+<script>
+    function CancelPurchaseOrderBtn() {
+
+        if(PurchaseOrderDetailVue.PurchaseOrder.FujiComments == null){
+            $("#commentsMSG").html('审批备注不能为空');
+            $("#FujiComments").focus();
+            return;
+        }
+
+        jConfirm("请确认是否终止?", "审批", function (result) {
+            if (result) {
+                CancelPurchaseOrder()
+            }
+        });
+    }
+    function CancelPurchaseOrder(){
+        PurchaseOrderDetailVue.PurchaseOrder.Status.ID = '@BusinessObjects.Domain.PurchaseOrderInfo.PurchaseOrderStatus.Cancelled';
+        SetPageWaiting(true)
+        $.post(
+            '@Url.Action("CancelPurchaseOrder", "PurchaseOrder")',
+            {
+                purchaseOrderID:PurchaseOrderDetailVue.PurchaseOrder.ID,
+                comments:PurchaseOrderDetailVue.PurchaseOrder.FujiComments
+            },
+            function (response) {
+                SetPageWaiting(false)
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    jAlert("终止成功", "审批",function(){
+                        Back();
+                    });
+                }
+            })
+    }
+</script>
+
+
+
+
+
+
+

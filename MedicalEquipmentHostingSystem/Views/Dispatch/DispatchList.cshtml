@@ -1,0 +1,430 @@
+﻿
+@{
+    ViewBag.Title = "DispatchList";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+    List<BusinessObjects.Domain.KeyValueInfo> types = BusinessObjects.Manager.LookupManager.GetRequestTypes();
+    List<BusinessObjects.Domain.KeyValueInfo> statuses = BusinessObjects.Manager.LookupManager.GetDispatchStatus();
+    List<BusinessObjects.Domain.KeyValueInfo> urgency = BusinessObjects.Manager.LookupManager.GetUrgency();
+    var user = (BusinessObjects.Domain.UserInfo)Session[MedicalEquipmentHostingSystem.Controllers.BaseController.SESSION_KEY_USER];
+}
+
+<div id="dispatchesVue" v-cloak>
+    <table class="filterBtnTable">
+        <tr>
+            <td width="200px" class="listTitle">派工单列表</td>
+            <td>
+                <table cellspacing="0" cellpadding="9">
+                    <tr>
+                        <td>
+                            <button id="0" class="btn btn-sm btnFilter activeFilter" onclick="ChangeTypeQuery(0, this)"><span class="btnContent">全部</span></button><sup class="btnBadge">{{CountNew+CountResponded+CountPending+CountApproved}}</sup>
+                        </td>
+                        @*<td>
+                            <button class="btn btn-sm btnFilter" onclick="ChangeTypeQuery(@statuses[0].ID,this)"><span class="btnContent">@statuses[0].Name</span></button><sup class="btnBadge">{{CountCancelled}}</sup>
+                        </td>*@
+                        <td>
+                            <button class="btn btn-sm btnFilter" onclick="ChangeTypeQuery(@statuses[1].ID,this)"><span class="btnContent">@statuses[1].Name</span></button><sup class="btnBadge">{{CountNew}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter" onclick="ChangeTypeQuery(@statuses[2].ID,this)"><span class="btnContent">@statuses[2].Name</span></button><sup class="btnBadge">{{CountResponded}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter" onclick="ChangeTypeQuery(@statuses[3].ID,this)"><span class="btnContent">@statuses[3].Name</span></button><sup class="btnBadge">{{CountPending}}</sup>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btnFilter" onclick="ChangeTypeQuery(@statuses[4].ID,this)"><span class="btnContent">@statuses[4].Name</span></button><sup class="btnBadge">{{CountApproved}}</sup>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1%">
+                <table style="width: 200px;" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="PrintBody()">打印</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary  btn-sm" onclick="ExportToExcel()">导出</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" onclick="Refresh()">刷新</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="searchTable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                审批状态:
+                                <select v-model="Filter.Status" v-on:change="QueryDispatches()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in statuses)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                派工类型:
+                                <select v-model="Filter.Type" v-on:change="QueryDispatches()">
+                                    <option value="0">全部</option>    
+                                    @foreach (var temp in types)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                紧急程度:
+                                <select v-model="Filter.Urgency" v-on:change="QueryDispatches()">
+                                    <option value="0">全部</option>
+                                    @foreach (var temp in urgency)
+                                    {
+                                        <option value="@temp.ID">@temp.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                搜索:
+                                <select v-model="Filter.FilterField">
+                                    <option value="d.ID">派工单编号</option>
+                                    <option value="d.RequestID">请求编号</option>
+                                </select>
+                                <input type="text" v-model.trim="Filter.FilterText" maxlength="15" onkeydown="DoQuery()" style="width:150px;" />
+                                <img src="~/Content/img/search.png" class="icon-sm cursor " onclick="QueryDispatches()" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="table " cellspacing="0" cellpadding="5">
+        <thead class="thead-light">
+            <tr>
+                <th style="min-width:120px" class="sortColumn" id="d.ID" onclick="SortList(this)">派工单编号</th>
+                <th style="min-width:120px" class="sortColumn" id="d.RequestID" onclick="SortList(this)">请求编号</th>
+                <th style="min-width:120px">设备系统编号</th>
+                <th style="min-width:200px">设备名称</th>
+                <th style="min-width:120px" class="sortColumn" id="d.RequestType" onclick="SortList(this)">派工类型</th>
+                <th style="min-width:120px" class="sortColumn" id="d.UrgencyID" onclick="SortList(this)">紧急程度</th>
+                <th style="min-width:120px" class="sortColumn" id="d.ScheduleDate" onclick="SortList(this)">派工日期</th>
+                <th style="min-width:120px" class="sortColumn" id="d.EndDate" onclick="SortList(this)">结束日期</th>
+                <th style="min-width:100px" class="sortColumn" id="d.StatusID" onclick="SortList(this)" >状态</th>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <th style="min-width:160px" colspan="2" scope="col" class="tdListCenter">审核</th>
+                    <th style="min-width:80px">取消</th>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                {
+                    <th style="min-width:160px" colspan="2" scope="col" class="tdListCenter">操作</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="Dispatches.length == 0">
+                <td colspan="10" align="center">暂无数据</td>
+            </tr>
+            <tr v-for="dispatch in Dispatches" v-else>
+                <td>
+                    <a class="linkFile cursor" href="#" v-on:click="GoToDispatchResponse(dispatch.ID, dispatch.RequestType.ID)">{{dispatch.OID}}</a>
+                </td>
+                <td>{{dispatch.Request.OID}}</td>
+                <td>{{dispatch.Request.EquipmentOID}}</td>
+                <td v-bind:class="dispatch.Request.EquipmentID > 0 ? 'linkFile cursor' : ''" v-on:click="btnTimeLine(dispatch.Request.EquipmentID)">{{dispatch.Request.EquipmentName}}</td>
+                <td>{{dispatch.RequestType.Name}}</td>
+                <td>{{dispatch.Urgency.Name}}</td>
+                <td>{{parseAndFormatJsonDate(dispatch.ScheduleDate)}}</td>
+                <td>{{parseAndFormatJsonDate(dispatch.EndDate)}}</td>
+                <td>{{dispatch.Status.Name}}</td>
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.SuperAdmin)
+                {
+                    <td v-if="dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.New && dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.Responded" width="80px">
+                        <button v-if="dispatch.DispatchJournal.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Pending " class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchJournalApprove(dispatch.ID,dispatch.DispatchJournal.ID,dispatch.DispatchReport.ID, dispatch.RequestType.ID)">服务凭证
+                        </button>
+                    </td>
+                    <td v-if="dispatch.Status.ID !=@BusinessObjects.Domain.DispatchInfo.Statuses.New && dispatch.Status.ID !=@BusinessObjects.Domain.DispatchInfo.Statuses.Responded" width="80px">
+                        <button v-if="dispatch.DispatchReport.Status.ID == @BusinessObjects.Domain.DispatchInfo.DocStatus.Pending" class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchReportDetail(dispatch.ID,dispatch.DispatchReport.ID,dispatch.DispatchJournal.ID, dispatch.RequestType.ID)">
+                            作业报告
+                        </button>
+                    </td>
+                    <td v-if="dispatch.Status.ID ==@BusinessObjects.Domain.DispatchInfo.Statuses.New || dispatch.Status.ID ==@BusinessObjects.Domain.DispatchInfo.Statuses.Responded" colspan="2" width="170px"></td>
+                    <td width="50px"><img src="~/Content/img/close.png" v-if="dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.Cancelled && dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.Approved" class="update icon-sm cursor" v-on:click="CancelDispatch(dispatch.ID, dispatch.Request.ID)"></td>
+                }
+                @if (@user.Role.ID == @BusinessObjects.Domain.UserRole.Admin)
+                {
+                    <td v-if="dispatch.Status.ID == @BusinessObjects.Domain.DispatchInfo.Statuses.New" colspan="2" width="170px">
+                        <button class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchResponse(dispatch.ID, dispatch.RequestType.ID)">开始作业</button>
+                    </td>
+                    <td v-if="dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.New" width="80px">
+                        <button v-if="dispatch.DispatchJournal.Status.ID >@BusinessObjects.Domain.DispatchInfo.DocStatus.New || dispatch.Status.ID == @BusinessObjects.Domain.DispatchInfo.Statuses.Cancelled" class="btn btn-outline-secondary btn-sm" v-on:click="GoToDispatchJournalApprove(dispatch.ID,dispatch.DispatchJournal.ID,dispatch.DispatchReport.ID, dispatch.RequestType.ID)">服务凭证</button>
+                        <button v-else class="btn btn-outline-info btn-sm" v-on:click="GoToDispatchJournal(dispatch.ID,dispatch.DispatchJournal.ID,dispatch.DispatchReport.ID, dispatch.RequestType.ID)">服务凭证</button>
+                    </td>
+                    <td v-if="dispatch.Status.ID != @BusinessObjects.Domain.DispatchInfo.Statuses.New" width="80px">
+                        <button v-bind:class="(dispatch.DispatchReport.Status.ID >
+                            @BusinessObjects.Domain.DispatchInfo.DocStatus.New || dispatch.Status.ID == @BusinessObjects.Domain.DispatchInfo.Statuses.Cancelled)?'btn btn-outline-secondary btn-sm':'btn btn-outline-info btn-sm'"
+                            v-on:click="GoToDispatchReportDetail(dispatch.ID,dispatch.DispatchReport.ID,dispatch.DispatchJournal.ID, dispatch.RequestType.ID)">作业报告
+                        </button>
+                    </td>
+                }               
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <div class="pagenationDiv" id="pagerDiv">
+                        <div id="pager"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var dispatchesVue = new Vue({
+        el: "#dispatchesVue",
+        data: {
+            CountNew: 0,
+            CountResponded: 0,
+            CountPending: 0,
+            CountApproved: 0,
+            CountCancelled:0,
+            Dispatches: [],
+            Filter: {
+                Status: '@ViewBag.StatusID',
+                Urgency: 0,
+                Type:0,
+                FilterField: "d.ID",
+                FilterText: "",
+                CurrentPage: 1,
+                PageSize: 10,
+                SortObject: {
+                    Field: "init",
+                    Direction: true
+                }
+            },
+        }
+    })
+</script>
+<script>
+    function ExportToExcel() {
+        var json = InitQueryFilter();
+        $.fileDownload("@Url.Action("ExportDispatches", "Dispatch")",
+        {
+            preparingMessageHtml: '开始下载......',
+            failMessageHtml: '导出Excel出错，请重试',
+            httpMethod: 'POST',
+            data: json
+        })
+    }
+
+    function Refresh() {
+        dispatchesVue.Filter = {
+            Status: 0,
+            Urgency: 0,
+            Type:0,
+            FilterField: "d.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "init",
+                Direction: true
+            }
+        }
+        DisplaySortIcon(dispatchesVue.Filter.SortObject);
+        $(".btnFilter").removeClass("activeFilter");
+        $("#0").addClass("activeFilter");
+        QueryDispatches();
+    }
+</script>
+<script>
+    function SortList(item) {
+        UpdateSortIcon(item, dispatchesVue.Filter.SortObject);
+        console.log(item);
+        QueryDispatches();
+    }
+
+    function DoQuery() {
+        if (event.keyCode == 13) {
+            QueryDispatches();
+        }
+    }
+
+    function PageClick(pageclickednumber) {
+        dispatchesVue.Filter.CurrentPage = pageclickednumber;
+        QueryDispatches();
+    }
+    function changeCurNum_pager() {
+        dispatchesVue.Filter.PageSize = Number($('#curNum option:selected').val());//选中的值
+        QueryDispatches();
+    }
+</script>
+<!-- localStorage -->
+<script>
+    function InitQueryFilter() {
+        var json = {
+            currentPage: dispatchesVue.Filter.CurrentPage,
+            status: dispatchesVue.Filter.Status,
+            urgency: dispatchesVue.Filter.Urgency,
+            type: dispatchesVue.Filter.Type,
+            filterField: dispatchesVue.Filter.FilterField,
+            filterText: dispatchesVue.Filter.FilterText,
+            sortField: dispatchesVue.Filter.SortObject.Field,
+            sortDirection: dispatchesVue.Filter.SortObject.Direction,
+            pageSize: dispatchesVue.Filter.PageSize
+        }
+        return json;
+    }
+
+    function InitFilterParameters() {
+        var jsonStr = localStorage.getItem('DispatchList_Filter');
+        if (jsonStr) {
+            var json = JSON.parse(jsonStr);
+            dispatchesVue.Filter.Status = json.status;
+            dispatchesVue.Filter.Urgency = json.urgency;
+            dispatchesVue.Filter.Type = json.type;
+            dispatchesVue.Filter.FilterField = json.filterField;
+            dispatchesVue.Filter.FilterText = json.filterText;
+            dispatchesVue.Filter.SortObject.Field = json.sortField;
+            dispatchesVue.Filter.SortObject.Direction = json.sortDirection;
+            dispatchesVue.Filter.CurrentPage = json.currentPage;
+            dispatchesVue.Filter.PageSize = json.pageSize;
+
+            localStorage.removeItem('DispatchList_Filter');
+        }
+    }
+
+    function SaveFilterParameters(json) {
+        localStorage.setItem('DispatchList_Filter', JSON.stringify(json));
+    }
+</script>
+<script>
+    $(function () {
+        InitFilterParameters();
+        DisplaySortIcon(dispatchesVue.Filter.SortObject);
+        if('@ViewBag.RequestID' != 0){
+            dispatchesVue.Filter.FilterField = "d.RequestID";
+            dispatchesVue.Filter.FilterText = '@ViewBag.RequestID';
+        }
+        setTimeout(QueryDispatches(), 100);
+    })    
+
+    function ChangeTypeQuery(statusID,obj) {
+        dispatchesVue.Filter = {
+            Status: 0,
+            Urgency: 0,
+            Type: 0,
+            FilterField: "d.ID",
+            FilterText: "",
+            CurrentPage: 1,
+            PageSize: 10,
+            SortObject: {
+                Field: "init",
+                Direction: true
+            }
+        }
+        var temp = $(obj);
+        $(".btnFilter").removeClass("activeFilter");
+        temp.addClass("activeFilter");
+        temp.parent("button").prev().addClass("activeFilter");
+        
+        dispatchesVue.Filter.Status = statusID;
+        QueryDispatches();
+    }
+
+    function GetDispatchCount() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetDispatchCount", "Dispatch")',
+           { userID : '@user.ID'}
+        , function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                dispatchesVue.CountNew = response.Data.New;
+                dispatchesVue.CountResponded = response.Data.Responded;
+                dispatchesVue.CountPending = response.Data.Pending;
+                dispatchesVue.CountApproved = response.Data.Approved;
+            }
+        });
+    }
+
+    function QueryDispatches() {
+        var json = InitQueryFilter();
+        SetPageWaiting(true);
+        $.get(
+            "@Url.Action("QueryDispatches", "Dispatch")", json ,
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00") {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                } else {
+                    dispatchesVue.Dispatches = response.Data;
+                    dispatchesVue.Filter.CurrentPage = SetTotalPage4Pager(dispatchesVue.Filter.CurrentPage, response.TotalPages);
+                    $("#curNum option[value='" + json.pageSize + "']").prop("selected", true);
+                    GetDispatchCount();
+                }
+            }
+        )
+    }
+
+    function CancelDispatch(dispatchID, requestID) {
+        jConfirm("请确认是否关闭派工单?", "关闭", function (result) {
+            if (result) {
+                SetPageWaiting(true);
+                $.post('@Url.Action("CancelDispatch", "Dispatch")', {
+                    dispatchID: dispatchID,
+                    requestID: requestID,
+                },
+                function (response) {
+                    SetPageWaiting(false);
+                    if (response.ResultCode != "00") {
+                        processResponseError(response.ResultCode, response.ResultMessage);
+                    } else {
+                        jAlert("关闭成功", "关闭", function () {
+                            Refresh();
+                        });
+                    }
+                })
+            }
+        });
+    }
+
+    function GoToDispatchJournal(dispatchID, dispatchJournalID, dispatchReportID, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("DispatchJournalDetail", "DispatchJournal")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchJournalID: dispatchJournalID, dispatchReportID: dispatchReportID, requestType: requestType })
+    }
+    function GoToDispatchJournalApprove(dispatchID, dispatchJournalID, dispatchReportID, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("DispatchJournalApproveDetail", "DispatchJournal")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchJournalID: dispatchJournalID, dispatchReportID: dispatchReportID, requestType: requestType })
+    }
+
+    function GoToDispatchResponse(dispatchID, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("DispatchResponse", "Dispatch")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, requestType: requestType })
+    }
+
+    function GoToDispatchReportDetail(dispatchID, dispatchReportID, dispatchJournalID, requestType) {
+        var json = InitQueryFilter();
+        SaveFilterParameters(json);
+        window.location.href = "@Url.Action("DispatchReportDetail", "DispatchReport")" + "?" + $.param({ actionName: '@ViewBag.Title', dispatchID: dispatchID, dispatchReportID: dispatchReportID, dispatchJournalID: dispatchJournalID, requestType: requestType })
+    }
+
+    function btnTimeLine(id) {
+        if (id > 0) {
+            var json = InitQueryFilter();
+            SaveFilterParameters(json);
+            window.open('@Url.Action("EquipmentTimeLine", "Equipment")' + '?' + $.param({ id: id, actionName: 'EquipmentList' }));
+        }
+    }
+</script>
+

@@ -1,0 +1,547 @@
+﻿@{
+}
+<!--人工费Btn-->
+<div id="fujiClass2LabourDialog" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;" title="人工费">
+    <div style="overflow: auto;height:100%;">
+        <table class="searchTable"  cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" v-on:change="Filter.Class2 = 0 ;GetFujiClass2s(LabourVue, Filter.Class1)" style="width:200px;">
+                                    <option v-for="fujiClass1 in FujiClass1s" v-bind:value="fujiClass1.ID">{{fujiClass1.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" v-on:change="GetFujiClass2s(LabourVue, 0)" style="width:200px;">
+                                    <option value="0"></option>
+                                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table cellspacing="0" cellpadding="5" class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:120px;max-width:200px;">富士I类</th>
+                    <th style="min-width:120px;max-width:200px;">富士II类简称</th> 
+
+                    <th style="min-width:120px;">是否包含人工费</th>
+                    <th style="min-width:120px;">巡检次数（次/年）</th>
+                    <th style="min-width:120px;">巡检工时（次/时）</th>
+                    <th style="min-width:120px;">保养次数（次/年）</th>
+                    <th style="min-width:120px;">保养工时（次/时）</th>
+                    <th style="min-width:170px;">每月维修平均工时（时）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="!Objects || Objects.length==0">
+                    <td class="tdListCenter" colspan="18">暂无数据</td>
+                </tr> 
+                <tr v-else v-for="object in Objects">
+                    <td style="max-width:200px;">{{object.FujiClass1.Name}}</td>
+                    <td style="max-width:200px;">{{object.Name}}</td> 
+                    <td ><input type="checkbox" maxlength="12" v-model="object.IncludeLabour" @@change="AddToUpdateList(LabourVue,object)" /></td>
+                    <td ><input type="text" maxlength="12" v-model="object.PatrolTimes" v-bind:id="'PatrolTimes_'+object.ID" @@change="AddToUpdateList(LabourVue,object)" @@keyup="object.PatrolTimes = object.PatrolTimes.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td ><input type="text" maxlength="12" v-model="object.PatrolHours" v-bind:id="'PatrolHours_'+object.ID" @@change="AddToUpdateList(LabourVue,object)" @@keyup="object.PatrolHours = object.PatrolHours.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td ><input type="text" maxlength="12" v-model="object.MaintenanceTimes" v-bind:id="'MaintenanceTimes_'+object.ID" @@change="AddToUpdateList(LabourVue,object)" @@keyup="object.MaintenanceTimes = object.MaintenanceTimes.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td ><input type="text" maxlength="12" v-model="object.MaintenanceHours" v-bind:id="'MaintenanceHours_'+object.ID" @@change="AddToUpdateList(LabourVue,object)" @@keyup="object.MaintenanceHours = object.MaintenanceHours.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td ><input type="text" maxlength="12" v-model="object.RepairHours" v-bind:id="'RepairHours_'+object.ID" @@change="AddToUpdateList(LabourVue,object)" @@keyup="object.RepairHours = object.RepairHours.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                </tr>
+                <tr><td colspan="99"></td></tr>
+            </tbody>
+        </table>
+    </div>  
+</div>
+<!--维保服务费Btn-->
+<div id="fujiClass2ContractDialog" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;" title="维保服务费">
+    <div style="overflow: auto;height:100%;">
+        <table class="searchTable" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" v-on:change="Filter.Class2 = 0 ;GetFujiClass2s(ContractVue, Filter.Class1)" style="width:200px;">
+                                    <option v-for="fujiClass1 in FujiClass1s" v-bind:value="fujiClass1.ID">{{fujiClass1.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" v-on:change="GetFujiClass2s(ContractVue, 0)" style="width:200px;">
+                                    <option value="0"></option>
+                                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table cellspacing="0" cellpadding="5" class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:120px;max-width:200px;">富士I类</th>
+                    <th style="min-width:120px;max-width:200px;">富士II类简称</th> 
+
+                    <th style="min-width:120px;">是否包含维保服务费</th>
+                    <th style="min-width:120px;">全保保单单价占设备金额百分比（%）</th>
+                    <th style="min-width:120px;">技术保保单单价占设备金额百分比（%）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="!Objects || Objects.length==0">
+                    <td class="tdListCenter" colspan="18">暂无数据</td>
+                </tr>
+                <tr v-else v-for="object in Objects">
+                    <td style="max-width:200px;">{{object.FujiClass1.Name}}</td>
+                    <td style="max-width:200px;">{{object.Name}}</td> 
+                    <td><input type="checkbox" v-model="object.IncludeContract" @@change="AddToUpdateList(ContractVue,object)" /></td>
+                    <td><input type="text" maxlength="6" v-model="object.FullCoveragePtg" v-bind:id="'FullCoveragePtg_'+object.ID" @@change="AddToUpdateList(ContractVue,object)" @@keyup="object.FullCoveragePtg = object.FullCoveragePtg.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td><input type="text" maxlength="6" v-model="object.TechCoveragePtg" v-bind:id="'TechCoveragePtg_'+object.ID" @@change="AddToUpdateList(ContractVue,object)" @@keyup="object.TechCoveragePtg = object.TechCoveragePtg.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                </tr>
+                <tr><td colspan="99"></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--备用机成本Btn-->
+<div id="fujiClass2SpareDialog" class="ui-dialog-content ui-widget-content" tabindex="-1" style="display:none;" title="备用机成本">
+    <div style="overflow: auto;height:100%;">
+        <table class="searchTable" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                富士I类:
+                                <select v-model="Filter.Class1" v-on:change="Filter.Class2 = 0 ;GetFujiClass2s(SpareVue, Filter.Class1)" style="width:200px;">
+                                    <option v-for="fujiClass1 in FujiClass1s" v-bind:value="fujiClass1.ID">{{fujiClass1.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                富士II类:
+                                <select v-model="Filter.Class2" v-on:change="GetFujiClass2s(SpareVue, 0)" style="width:200px;">
+                                    <option value="0"></option>
+                                    <option v-for="fujiClass2 in FujiClass2s" v-bind:value="fujiClass2.ID">{{fujiClass2.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table cellspacing="0" cellpadding="5" class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th style="min-width:120px;max-width:200px;">富士I类</th>
+                    <th style="min-width:120px;max-width:200px;">富士II类简称</th>
+                    <th style="min-width:120px;">是否包含备用机成本</th>
+                    <th style="min-width:120px;">标准价格（元）</th>
+                    <th style="min-width:120px;">月租占标准价格的比率（%）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="!Objects || Objects.length==0">
+                    <td class="tdListCenter" colspan="18">暂无数据</td>
+                </tr>
+                <tr v-else v-for="object in Objects">
+                    <td style="max-width:200px;">{{object.FujiClass1.Name}}</td>
+                    <td style="max-width:200px;">{{object.Name}}</td> 
+                    <td><input type="checkbox" v-model="object.IncludeSpare" @@change="AddToUpdateList(SpareVue,object)" /></td>
+                    <td><input type="text" maxlength="12" v-model="object.SparePrice" v-bind:id="'SparePrice_'+object.ID" @@change="AddToUpdateList(SpareVue,object)" @@keyup="object.SparePrice = object.SparePrice.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                    <td><input type="text" maxlength="6" v-model="object.SpareRentPtg" v-bind:id="'SpareRentPtg_'+object.ID" @@change="AddToUpdateList(SpareVue,object)" @@keyup="object.SpareRentPtg = object.SpareRentPtg.toString().replace(/[^0-9\.\d]/g, '')" /></td>
+                </tr>
+                <tr><td colspan="99"></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script> 
+    var LabourVue = new Vue({
+        el: "#fujiClass2LabourDialog",
+        data: {
+                Objects: [],
+                PendingUpgrade:[],
+                FujiClass1s: [],
+                FujiClass2s: [],
+                Type:'@BusinessObjects.Domain.FujiClass2Info.SectionType.Labour',
+                Filter: {
+                    Class1: 0,
+                    Class2: 0,
+                    FilterField: "f2.Name",
+                    FilterText: "",
+                    CurrentPage: 0,
+                    PageSize:10,
+                    SortObject: {
+                        Field: "f1.Name",
+                        Direction: true
+                    }
+                }, 
+        }
+    })
+
+    var ContractVue = new Vue({
+        el: "#fujiClass2ContractDialog",
+        data: {
+            Objects: [],
+            PendingUpgrade: [],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Type: '@BusinessObjects.Domain.FujiClass2Info.SectionType.Contract',
+            Filter: {
+                Class1: 0,
+                Class2: 0,
+                FilterField: "f2.Name",
+                FilterText: "",
+                CurrentPage: 0,
+                PageSize:10,
+                SortObject: {
+                    Field: "f1.Name",
+                    Direction: true
+                }
+            },
+        }
+    })
+
+    var SpareVue = new Vue({
+        el: "#fujiClass2SpareDialog",
+        data: {
+            Objects: [],
+            PendingUpgrade: [],
+            FujiClass1s: [],
+            FujiClass2s: [],
+            Type: '@BusinessObjects.Domain.FujiClass2Info.SectionType.Spare',
+            Filter: {
+                Class1: 0,
+                Class2: 0,
+                FilterField: "f2.Name",
+                FilterText: "",
+                CurrentPage: 0,
+                PageSize:10,
+                SortObject: {
+                    Field: "f1.Name",
+                    Direction: true
+                }
+            },
+        }
+    })
+</script>
+<script>
+    function InitDialog() {
+        $("#fujiClass2LabourDialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveFujiClass2s(LabourVue); },
+                "关闭": function () { $("#fujiClass2LabourDialog").dialog("close"); }
+            }
+        });
+
+        $("#fujiClass2ContractDialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveFujiClass2s(ContractVue); },
+                "关闭": function () { $("#fujiClass2ContractDialog").dialog("close"); }
+            }
+        });
+        $("#fujiClass2SpareDialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 1200,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveFujiClass2s(SpareVue); },
+                "关闭": function () { $("#fujiClass2SpareDialog").dialog("close"); }
+            }
+        });
+    }
+
+    function RefreshDialogForm(vue) {
+        vue.Filter = {
+            Class1: 0,
+            Class2: 0,
+            FilterField: "f2.Name",
+            FilterText: "",
+            CurrentPage: 0,
+            PageSize:10,
+            SortObject: {
+                Field: "f1.Name",
+                Direction: true
+            }
+        }
+        vue.Objects = [];
+        vue.PendingUpgrade = [];
+    }
+
+    function GetFujiClass2s(vue,fujiClass1) {
+        if(fujiClass1 == 0) SetFujiClass1(vue);
+        else vue.Filter.Class2 = 0;
+        SetPageWaiting(true);
+
+        let url = "@Url.Action("QueryFujiClass2s", "FujiClass2")"
+        let data = {
+            currentPage: vue.Filter.CurrentPage,
+            pageSize: vue.Filter.PageSize,
+            class1: vue.Filter.Class1,
+            class2: 0,
+            filterField: vue.Filter.FilterField,
+            filterText: vue.Filter.FilterText,
+            sortField: vue.Filter.SortObject.Field,
+            sortDirection: vue.Filter.SortObject.Direction
+        }
+        return $.get(
+            url,
+            data,
+            function (result) {
+                SetPageWaiting(false);
+                if (result.ResultCode != "00") {
+                    processResponseError(result.ResultCode, result.ResultMessage)
+                } else {
+                    vue.Objects = result.Data
+                }
+            }
+        )
+    }
+
+    function AddToUpdateList(vue, obj) {
+        !vue.PendingUpgrade.some(function (info) { return info.ID == obj.ID }) && vue.PendingUpgrade.push(obj)
+    }
+
+    function SaveFujiClass2s(vue) {
+        if (!vue.PendingUpgrade || !vue.PendingUpgrade.length ) {
+            jAlert("暂无改动", "保存结果");
+        } else {
+            let flag = 0
+            switch (vue.Type) {
+                case '@BusinessObjects.Domain.FujiClass2Info.SectionType.Labour':
+                    flag = CheckLabour(vue)?1:-1; 
+                    break;
+                case '@BusinessObjects.Domain.FujiClass2Info.SectionType.Contract':
+                    flag = CheckContract(vue)?1:-1; 
+                    break;
+                case '@BusinessObjects.Domain.FujiClass2Info.SectionType.Spare':
+                    flag = CheckSpare(vue)?1:-1; 
+                    break;
+                case '@BusinessObjects.Domain.FujiClass2Info.SectionType.Component':
+                    CheckComponentFaultRate(vue) && SaveComponentFaultRate(vue);
+                    break;
+                case '@BusinessObjects.Domain.FujiClass2Info.SectionType.Consumable':
+                    SaveFujiConsumables(vue);
+                    break;
+            }
+            if (flag == 1) {
+                SaveFujiClass2List(vue).then(function () {
+                    QueryFujiClass2()
+                })
+            } else
+                QueryFujiClass2()
+        }
+    }
+    //保存列表
+    function SaveFujiClass2List(vue) {
+        SetPageWaiting(true);
+        return $.post("@Url.Action("SaveFujiClass2s", "FujiClass2")", {
+                infos: vue.PendingUpgrade,
+                type: vue.Type
+        }, function (result) {
+            SetPageWaiting(false);
+            if (result.ResultCode != "00") {
+                processResponseError(result.ResultCode, result.ResultMessage)
+            } else {
+                jAlert("保存成功！", "保存结果");
+                vue.PendingUpgrade=[]
+            }
+        }
+        )
+    }
+</script>
+
+<!--labour-->
+<script>
+    function OpenLabour(fujiClass1ID, fujiClass2) {
+        GetFujiClass(LabourVue);
+        LabourVue.Filter.Class1 = fujiClass1ID;
+        GetFujiClass2s(LabourVue, fujiClass1ID);
+        LabourVue.Filter.Class2 = fujiClass2;
+        $("#fujiClass2LabourDialog").dialog("open");
+    }
+
+    function CheckLabour(vue) {
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !vue.PendingUpgrade.some(function (fujiClass2) {
+            if (fujiClass2.PatrolTimes > 999999999.99) {
+                jAlert("巡检次数最大值为999999999.99", "提示", function () {
+                    $("#PatrolTimes_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.PatrolTimes))) {
+                jAlert("巡检次数格式不正确", "提示", function () {
+                    $("#PatrolTimes_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.PatrolHours > 999999999.99) {
+                jAlert("巡检工时最大值为999999999.99", "提示", function () {
+                    $("#PatrolHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.PatrolHours))) {
+                jAlert("巡检工时格式不正确", "提示", function () {
+                    $("#PatrolHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.MaintenanceTimes > 999999999.99) {
+                jAlert("保养次数最大值为999999999.99", "提示", function () {
+                    $("#MaintenanceTimes_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.MaintenanceTimes))) {
+                jAlert("保养次数格式不正确", "提示", function () {
+                    $("#MaintenanceTimes_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.MaintenanceHours > 999999999.99) {
+                jAlert("保养工时最大值为999999999.99", "提示", function () {
+                    $("#MaintenanceHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.MaintenanceHours))) {
+                jAlert("保养工时格式不正确", "提示", function () {
+                    $("#MaintenanceHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.RepairHours > 999999999.99) {
+                jAlert("维修平均工时最大值为999999999.99", "提示", function () {
+                    $("#RepairHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.RepairHours))) {
+                jAlert("维修平均工时格式不正确", "提示", function () {
+                    $("#RepairHours_" + fujiClass2.ID).focus()
+                });
+                return true
+            } else
+                return false;
+        })
+    }
+</script>
+
+<!--contract-->
+<script>
+    function OpenContract(fujiClass1ID, fujiClass2) {
+        GetFujiClass(ContractVue);
+        ContractVue.Filter.Class1 = fujiClass1ID;
+        GetFujiClass2s(ContractVue, fujiClass1ID);
+        ContractVue.Filter.Class2 = fujiClass2;
+        $("#fujiClass2ContractDialog").dialog("open");
+    }
+
+    function CheckContract(vue) {
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !vue.PendingUpgrade.some(function (fujiClass2) {
+            if(fujiClass2.FullCoveragePtg <= 0){
+                jAlert("全保单价占设备金额百分比必须大于0", "提示", function () {
+                    $("#FullCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (fujiClass2.FullCoveragePtg > 999.99) {
+                jAlert("全保单价占设备金额百分比最大值为999.99", "提示", function () {
+                    $("#FullCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.FullCoveragePtg))) {
+                jAlert("全保单价占设备金额百分比格式不正确", "提示", function () {
+                    $("#FullCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            } 
+            else if(fujiClass2.TechCoveragePtg <= 0){
+                jAlert("技术保单价占设备金额百分比必须大于0", "提示", function () {
+                    $("#TechCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if(fujiClass2.TechCoveragePtg > 999.99){
+                jAlert("技术保单价占设备金额百分比最大值为999.99", "提示", function () {
+                    $("#TechCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.TechCoveragePtg))) {
+                jAlert("技术保单价占设备金额百分比格式不正确", "提示", function () {
+                    $("#TechCoveragePtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }else
+                return false;
+        })
+    }
+</script>
+
+<!--spare-->
+<script>
+    function OpenSpare(fujiClass1ID, fujiClass2) {
+        GetFujiClass(SpareVue);
+        SpareVue.Filter.Class1 = fujiClass1ID;
+        GetFujiClass2s(SpareVue, fujiClass1ID);
+        SpareVue.Filter.Class2 = fujiClass2;
+        $("#fujiClass2SpareDialog").dialog("open");
+    }
+
+    function CheckSpare(vue) {
+        var str = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        return !vue.PendingUpgrade.some(function (fujiClass2) {
+            if (fujiClass2.SparePrice > 999999999.99) {
+                jAlert("标准价格最大值为999999999.99", "提示", function () {
+                    $("#SparePrice_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.SparePrice))) {
+                jAlert("标准价格格式不正确", "提示", function () {
+                    $("#SparePrice_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if(fujiClass2.SpareRentPtg > 999.99){
+                jAlert("月租占标准单价比率最大值为999.99", "提示", function () {
+                    $("#SpareRentPtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            }
+            else if (!(str.test(fujiClass2.SpareRentPtg))) {
+                jAlert("月租占标准单价比率格式不正确", "提示", function () {
+                    $("#SpareRentPtg_" + fujiClass2.ID).focus()
+                });
+                return true
+            } else
+                return false;
+        })
+    }
+</script>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "App";
+    Layout = "~/Views/Shared/_SubMain.cshtml";
+}
+
+<div id="VueApp" class="tblDiv" v-cloak>
+        <div class="title"><p>APP最低版本设置</p></div>
+    <div class="radiusOnly">
+        <table class="tblDetail" border="1" cellpadding="6" align="center" frame="void">
+            <tr>
+                <th class="tdrequired" width="15px"><span class="required">*</span></th>
+                <th>版本号</th>
+                <td>
+                    <input id="AppValidVersion" maxlength="30" type="text" v-model="SmtpInfo.AppValidVersion" style="width:90%" />
+                    <label id="reqAppValidVersion" class="required"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <p align="center"><button class="btn btn-info" onclick="SaveApp()">保存</button></p>
+</div>
+<script>
+    var AppVue = new Vue({
+        el: "#VueApp",
+        data: {
+            SmtpInfo: { AppValidVersion: '', }
+        }
+    })
+</script>
+<script>
+    $().ready(function () {
+        setTimeout(GetAppInfo(), 100);
+    });
+
+    function GetAppInfo() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetSmtpInfo", "System")', {
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                var info = response.Data;
+                if (info != null) {
+                    AppVue.SmtpInfo = info
+                }
+            }
+        });
+    }
+
+    function SaveApp() {
+        if (CheckApp() == false) return;
+        SetPageWaiting(true);
+        $.post('@Url.Action("SaveSmtpInfo", "System")', {
+            info: AppVue.SmtpInfo
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                jAlert("保存成功", "保存");
+            }
+        });
+    }
+
+    function CheckApp() {
+        $("label.required").html("");
+        var IsValid = true;
+
+        var AppValidVersion = $("#AppValidVersion").val().trim()
+        if (AppValidVersion == "") {
+            $("#reqAppValidVersion").html("请输入App最低版本");
+            $("#AppValidVersion").focus();
+            IsValid = false;
+        }
+
+        return IsValid;
+    }
+</script>

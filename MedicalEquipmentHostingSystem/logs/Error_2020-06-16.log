@@ -1,0 +1,24 @@
+2020-06-16 08:51:37.4812 ERROR Exception: '列“HospitalLevel”不属于表 。' happened in Class 'ValuationDao', Method 'GetHospitalLevel', Arguments: Int32 = 2 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.HospitalLevelInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ParameterInfo.cs:行号 48
+   在 BusinessObjects.DataAccess.ValuationDao.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 39
+2020-06-16 08:51:37.5281 ERROR 列“HospitalLevel”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.HospitalLevelInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ParameterInfo.cs:行号 48
+   在 BusinessObjects.DataAccess.ValuationDao.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 41
+   在 BusinessObjects.Manager.ValuationManager.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\ValuationManager.cs:行号 41
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 59
+2020-06-16 08:52:14.5817 ERROR Exception: '列“HospitalLevel”不属于表 。' happened in Class 'ValuationDao', Method 'GetHospitalLevel', Arguments: Int32 = 2 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.HospitalLevelInfo..ctor(DataRow dr) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Domain\ParameterInfo.cs:行号 48
+   在 BusinessObjects.DataAccess.ValuationDao.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\DataAccess\ValuationDao.cs:行号 39
+2020-06-16 08:52:42.1419 ERROR 列“HospitalLevel”不属于表 。 
+    在 System.Data.DataRow.GetDataColumn(String columnName)
+   在 System.Data.DataRow.get_Item(String columnName)
+   在 BusinessObjects.Domain.HospitalLevelInfo..ctor(DataRow dr)
+   在 BusinessObjects.DataAccess.ValuationDao.GetHospitalLevel(Int32 hospitalLevelID)
+   在 BusinessObjects.Manager.ValuationManager.GetHospitalLevel(Int32 hospitalLevelID)
+   在 MedicalEquipmentHostingSystem.Controllers.ValuationController.GetHospitalLevel(Int32 hospitalLevelID) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\ValuationController.cs:行号 59

@@ -1,0 +1,478 @@
+﻿
+<!--新增耗材-->
+<div class="ui-dialog-content ui-widget-content" id="AddConsumable" v-cloak tabindex="-1" style="display:none;">
+    <table class="table">
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">系统编号</td>
+            <td class="tdReadOnly"><label>{{Info.OID}}</label></td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <select v-model.trim="Info.Consumable.FujiClass2.ID" style="width:200px;" v-on:change="GetConsumableByFujiClass2()">
+                    <option v-for="temp in FujiClass2Filter" v-bind:value="temp.ID">{{temp.Name}}</option>
+                </select>
+                <label class="required" id="reqFujiClass2ID"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">富士II类</td>
+            <td>
+                <label class="tdReadOnly">{{Info.Consumable.FujiClass2.Name}}</label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">选择耗材</td>
+            <td>
+                <select v-model.trim="Info.Consumable.ID" style="width:200px;" id="ConsumableID">
+                    <option v-for="Consumable in ConsumableList" v-bind:value="Consumable.ID">{{Consumable.Name}}</option>
+                </select>
+                <label class="required" id="reqConsumableID"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">选择耗材</td>
+            <td>
+                <label class="tdReadOnly">{{Info.Consumable.Name}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">批次号</td>
+            <td>
+                <input class="input" type="text" id="LotNum" maxlength="30" style="width:300px;" v-model.trim="Info.LotNum" />
+                <label class="required" id="reqLotNum"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">规格</td>
+            <td>
+                <input class="input" type="text" id="Specification" maxlength="50" style="width:300px;" v-model.trim="Info.Specification" />
+                <label class="required" id="reqSpecification"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">型号</td>
+            <td>
+                <input class="input" type="text" id="Model" maxlength="50" style="width:300px;" v-model.trim="Info.Model" />
+                <label class="required" id="reqModel"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">供应商</td>
+            <td>
+                <input class="input" type="text" readonly id="SupplierName" maxlength="12" style="width:300px;" v-model.trim="Info.Supplier.Name" v-on:click="OpenSupplierSelection(callback);" />
+                <img src="~/Content/img/find.png" class="icon-sm cursor" v-on:click="OpenSupplierSelection(callback);" />
+                <label class="required" id="reqSupplierName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">单价(元)</td>
+            <td>
+                <input class="input" type="text" id="Price" maxlength="13" style="width:300px;" v-model.trim="Info.Price" />
+                <label class="required" id="reqPrice"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">入库数量</td>
+            <td>
+                <input class="input" type="text" id="ReceiveQty" maxlength="13" style="width:300px;" v-model.trim="Info.ReceiveQty" />
+                <label class="required" id="reqReceiveQty"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="required"></span></td>
+            <td width="135px">入库数量</td>
+            <td>
+                <label class="tdReadOnly">{{Info.ReceiveQty}}</label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">可用数量</td>
+            <td>
+                <input class="input" type="text" id="AvaibleQty" maxlength="13" style="width:300px;" v-model.trim="Info.AvaibleQty" />
+                <label class="required" id="reqAvaibleQty"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == false">
+            <td class="tdrequired" width="15px"><span class="required">*</span></td>
+            <td width="135px">购入日期</td>
+            <td>
+                <input type="text" class="datePicker" id="PurchaseDate" v-model.trim="Info.PurchaseDate" placeholder="YYYY-MM-DD" style="width:150px;" />
+                <label class="required" id="reqPurchaseDate"></label>
+            </td>
+        </tr>
+        <tr v-else>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">购入日期</td>
+            <td>
+                <label class="tdReadOnly">{{Info.PurchaseDate}}</label>
+                <label class="required" id="reqPurchaseDate"></label>
+            </td>
+        </tr>
+        <tr v-if="IsEdited == true">
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">采购单号</td>
+            <td>
+                <label class="tdReadOnly">{{Info.Purchase.ID == 0 ? "" : Info.Purchase.Name}}</label>
+                <label class="required" id="reqPurchaseID"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tdrequired" width="15px"><span class="unrequired"></span></td>
+            <td width="135px">备注</td>
+            <td>
+                <textarea rows="3" cols="20" id="Comments" maxlength="500" v-model.trim="Info.Comments"></textarea>
+                <label class="unrequired" id="reqComments"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+@{ Html.RenderPartial("Supplier_Selection"); }
+
+<script>
+    
+    var AddConsumableVue = new Vue({
+        el: "#AddConsumable",
+        data: {
+            IsEdited: false,
+            ConsumableList: [],
+            FujiClass2Filter: {},
+            Info: {
+                ID:0,
+                Consumable: { FujiClass2: {ID:0} },
+                LotNum:'',
+                Specification: '',
+                Model: '',
+                Supplier: {},
+                Name: '',
+                Price: '',
+                ReceiveQty: '',
+                AvaibleQty:'',
+                PurchaseDate: '',
+                Purchase: { ID:0 },
+                Comments:'',
+            }
+        },
+        watch: {
+            'IsEdited': function () {
+                this.$nextTick(function () {
+                    InitDate();
+                })
+            }
+        },
+    })
+
+</script>
+
+<script>
+    //规定弹窗的格式
+    function InitInvConsumableDialog() {
+        $("#AddConsumable").dialog({
+            autoOpen: false,
+            height: 730,
+            width: 680,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "保存": function () { SaveConsumable(AddConsumableVue.Info.ID); },
+                "关闭": function () { $("#AddConsumable").dialog("close"); }
+            }
+        });
+    }
+
+    //格式化弹窗中的数据
+    function InitInvConsumableDialogForm() {
+        $("label.required").html("");
+        AddConsumableVue.Info = {
+            ID: 0,   
+            Consumable: { FujiClass2: { ID: 0 } },
+            LotNum: '',
+            Specification: '',
+            Model: '',
+            Supplier: {},
+            Name: '',
+            Price: '',
+            ReceiveQty: '',
+            AvaibleQty: '',
+            PurchaseDate: '',
+            Purchase: { ID: 0 },
+            Comments: '',
+        }
+        AddConsumableVue.FujiClass2Filter = [];
+        AddConsumableVue.ConsumableList = [];
+       
+    }
+
+    //打开添新增耗材弹窗
+    function OpenAddConsumable() {
+        AddConsumableVue.IsEdited = false;
+        InitInvConsumableDialogForm();
+        GetFujiClass2s();
+        $("#AddConsumable").dialog({ title: "新增耗材" });
+        $("#AddConsumable").dialog("open");
+    }
+
+    //打开编辑耗材弹窗
+    function OpenEditConsumable(id) {
+        AddConsumableVue.IsEdited = true;
+        InitInvConsumableDialogForm();
+        GetConsumableByID(id);
+        GetFujiClass2s();
+        $("#AddConsumable").dialog({ title: "编辑耗材" });
+        $("#AddConsumable").dialog("open");
+        $("#PurchaseDate").datepicker("destroy");
+    }
+
+
+
+
+    //保存耗材信息
+    function SaveConsumable(id) {
+        if (!CheckConsumable()) return;
+        if (AddConsumableVue.Info.AvaibleQty > AddConsumableVue.Info.ReceiveQty) {
+            jConfirm("请确认可用数量是否要大于入库数量?", "提示", function (result) {
+                if (result) {
+                    SetPageWaiting(true);
+                    $.post('@Url.Action("SaveConsumable", "InvConsumable")', AddConsumableVue.Info, function (response) {
+                        SetPageWaiting(false);
+                        if (response.ResultCode != "00")
+                            processResponseError(response.ResultCode, response.ResultMessage);
+                        else {
+                            jAlert("保存成功", "保存", function () {
+                                $("#AddConsumable").dialog("close");
+                                QueryConsumable();
+                            });
+                        }
+                    })
+                }
+            });
+        }
+        else {
+            SetPageWaiting(true);
+            $.post('@Url.Action("SaveConsumable", "InvConsumable")', AddConsumableVue.Info, function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    jAlert("保存成功", "保存", function () {
+                        $("#AddConsumable").dialog("close");
+                        QueryConsumable();
+                    });
+                }
+            })
+        }
+      
+    }
+</script>
+
+
+
+
+
+
+<script>
+    //供应商
+    function callback(objectVue) {
+        AddConsumableVue.Info.Supplier = objectVue;
+        AddConsumableVue.$forceUpdate();
+    }
+</script>
+
+<!--判断信息-->
+<script>
+    function CheckConsumable() {
+        $("label.required").html("");
+        var patrn = /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/;
+        var IsValid = true;
+        //富士II类
+        if (!AddConsumableVue.Info.Consumable.FujiClass2.ID) {
+            $("#reqFujiClass2ID").html("富士II类不能为空");
+            $("#FujiClass2ID").focus();
+            IsValid = false;
+        }
+      
+        //耗材
+        if (!AddConsumableVue.Info.Consumable.ID) {
+            $("#reqConsumableID").html("耗材不能为空");
+            $("#ConsumableID").focus();
+            IsValid = false;
+        }
+        
+        // 规格
+        if (!AddConsumableVue.Info.Specification) {
+            $("#reqSpecification").html("规格不能为空");
+            $("#Specification").focus();
+            IsValid = false;
+        }
+        //型号
+        if (!AddConsumableVue.Info.Model) {
+            $("#reqModel").html("型号不能为空");
+            $("#Model").focus();
+            IsValid = false;
+        }
+        //供应商
+        if (!AddConsumableVue.Info.Supplier.Name) {
+            $("#reqSupplierName").html("供应商不能为空");
+            $("#SupplierName").focus();
+            IsValid = false;
+        }
+        //单价
+        if (AddConsumableVue.Info.Price > 9999999999.99) {
+            $("#reqPrice").html("单价最大为9999999999.99");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddConsumableVue.Info.Price)) {
+            $("#reqPrice").html("单价格式有误");
+            $("#reqPrice").focus();
+            IsValid = false;
+        }
+        //入库数量
+        if (!AddConsumableVue.Info.ReceiveQty || AddConsumableVue.Info.ReceiveQty == 0) {
+            $("#reqReceiveQty").html("入库数量不能为空");
+            $("#ReceiveQty").focus();
+            IsValid = false;
+        }
+        else if (AddConsumableVue.Info.ReceiveQty > 9999999999.99) {
+            $("#reqReceiveQty").html("入库数量最大为9999999999.99");
+            $("#ReceiveQty").focus();
+            IsValid = false;
+        }
+        else if (!patrn.test(AddConsumableVue.Info.ReceiveQty)) {
+            $("#reqReceiveQty").html("入库数量格式有误");
+            $("#ReceiveQty").focus();
+            IsValid = false;
+        }
+
+        // 可用数量
+        if (AddConsumableVue.IsEdited && AddConsumableVue.Info.AvaibleQty > 9999999999.99) {
+            $("#reqAvaibleQty").html("可用数量最大为9999999999.99");
+             $("#AvaibleQty").focus();
+             IsValid = false;
+        }
+        else if (AddConsumableVue.IsEdited && !patrn.test(AddConsumableVue.Info.AvaibleQty)) {
+            $("#reqAvaibleQty").html("可用数量格式有误");
+            $("#AvaibleQty").focus();
+            IsValid = false;
+        }
+
+
+        //购入日期
+        if (CheckDatePicker("PurchaseDate", "购入日期") != "") {
+            $("#reqPurchaseDate").html(CheckDatePicker("PurchaseDate", "购入日期"));
+            $("#PurchaseDate").focus();
+            IsValid = false;
+        }
+        //序列号
+        if (!AddConsumableVue.Info.LotNum) {
+            $("#reqLotNum").html("耗材批次号不能为空");
+            $("#LotNum").focus();
+            IsValid = false;
+        }
+        else if (CheckConsumableLotNum() == true) {
+            $("#reqLotNum").html("耗材批次号重复");
+            $("#LotNum").focus();
+           IsValid = false;
+        }
+        return IsValid;
+    }
+
+</script>
+
+<!--批次号是否重复-->
+<script>
+    function CheckConsumableLotNum() {
+        var IsExisted = true;
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("CheckConsumableLotNum", "InvConsumable")',
+            data: {
+                lotNum: AddConsumableVue.Info.LotNum.trim(),
+                id: AddConsumableVue.Info.ID,
+                consumableID: AddConsumableVue.Info.Consumable.ID
+            },
+            secureuri: false,
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                if (response.ResultCode == "00") {
+                    if (response.Data != true)
+                        IsExisted = false;
+                }
+                else {
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                }
+            },
+            error: function (response) { jAlert("连接服务器出错", "错误"); }
+        });
+        return IsExisted;
+    }
+</script>
+
+<!--获取耗材信息-->
+<script>
+    function GetConsumableByID(id) {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetConsumableByID", "InvConsumable")', {
+            consumableID: id
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00")
+                processResponseError(response.ResultCode, response.ResultMessage);
+            else {
+                AddConsumableVue.Info = response.Data;
+                AddConsumableVue.Info.PurchaseDate = parseAndFormatJsonDate(AddConsumableVue.Info.PurchaseDate);
+            }
+        })
+    }
+</script>
+
+<!--获取富士二类-->
+<script>
+    function GetFujiClass2s() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("GetFujiClass2", "FujiClass2")', {},
+            function (response) {
+                SetPageWaiting(false);
+                if (response.ResultCode != "00")
+                    processResponseError(response.ResultCode, response.ResultMessage);
+                else {
+                    AddConsumableVue.FujiClass2Filter = response.Data;
+                }
+            })
+    }
+</script>
+
+<!--根据富士二类获取耗材-->
+<script>
+    function GetConsumableByFujiClass2() {
+        SetPageWaiting(true);
+        $.get('@Url.Action("QueryConsumablesByFujiClass2ID", "Consumable")', {
+            fujiClass2ID: AddConsumableVue.Info.Consumable.FujiClass2.ID,
+        }, function (response) {
+            SetPageWaiting(false);
+            if (response.ResultCode != "00") {
+                processResponseError(response.ResultCode, response.ResultMessage);
+            } else {
+                AddConsumableVue.ConsumableList = response.Data;
+                AddConsumableVue.Info.Consumable.ID = 0;
+            }
+        })
+    }
+</script>
+

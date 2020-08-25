@@ -1,0 +1,12 @@
+2020-01-15 08:19:58.2959 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 154
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-15 08:45:01.9235 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 154
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
+2020-01-15 08:45:20.3745 ERROR 未将对象引用设置到对象的实例。 
+    在 BusinessObjects.Manager.CustomReportManager.SortColumn(CustomReportInfo info, DataTable dt) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 154
+   在 BusinessObjects.Manager.CustomReportManager.QueryCustRpt4Dispatch(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\BusinessObjects\Manager\CustomReportManager.cs:行号 131
+   在 MedicalEquipmentHostingSystem.Controllers.CustomReportController.RunCustRpt(CustomReportInfo info, String field, DateTime startTime, DateTime endTime) 位置 d:\Projects\FujiFilm-MEMS\TeamCode\Code\MedicalEquipmentHostingSystem\MedicalEquipmentHostingSystem\Controllers\CustomReportController.cs:行号 217
